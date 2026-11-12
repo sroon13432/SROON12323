@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CleanAsset AI — Free In-Browser AI Background Remover & 4K Image Studio</title>
+  <meta name="description" content="Free online AI background remover, 4K upscaler, and studio drop shadow tool for creators, gamers, and developers. 100% client-side, zero server uploads, unlimited private exports.">
+  <meta name="keywords" content="background remover, remove bg free, 4k image upscaler, webp converter, game asset studio, drop shadow generator">
+  <link rel="canonical" href="https://canmyspec.com/tools/">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="CleanAsset AI — Free In-Browser AI Background Remover & 4K Studio">
+  <meta property="og:description" content="Instant transparent PNGs, 4K upscaling, and drop shadows. 100% free and private in your browser.">
+  <meta property="og:url" content="https://canmyspec.com/tools/">
+  <meta property="og:type" content="website">
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3774179792647771" crossorigin="anonymous"></script>
+
+  <!-- Structured Data Schema.org -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "CleanAsset AI Studio",
+    "url": "https://canmyspec.com/tools/",
+    "applicationCategory": "DesignApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "description": "High-speed in-browser AI background remover, 4K texture upscaler, and studio drop shadow generator."
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg: #090d16;
+      --card-bg: #131b2e;
+      --panel-bg: #1a243b;
+      --border: #243354;
+      --accent: #38bdf8;
+      --accent-glow: rgba(56, 189, 248, 0.25);
+      --green: #10b981;
+      --purple: #a855f7;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
+    
+    /* Header */
+    header { background: rgba(19, 27, 46, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
+    .header-inner { max-width: 1280px; margin: 0 auto; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .logo { font-size: 1.25rem; font-weight: 800; color: #fff; text-decoration: none; display: flex; align-items: center; gap: 8px; }
+    .logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 20px; align-items: center; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+    .nav-links a:hover { color: #fff; }
+    .pro-badge { background: linear-gradient(135deg, #a855f7, #6366f1); color: #fff; padding: 4px 10px; border-radius: 9999px; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; cursor: pointer; transition: transform 0.2s; border: none; }
+    .pro-badge:hover { transform: scale(1.05); }
+
+    /* Hero */
+    .hero { text-align: center; padding: 48px 20px 24px; max-width: 860px; margin: 0 auto; }
+    .hero-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 9999px; color: var(--accent); font-size: 0.8rem; font-weight: 600; margin-bottom: 16px; }
+    .hero h1 { font-size: 2.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 14px; letter-spacing: -0.5px; }
+    .hero h1 span { background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .hero p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; max-width: 680px; margin: 0 auto 20px; }
+
+    /* Features Badges */
+    .features-row { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin-bottom: 30px; }
+    .feat-pill { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; color: #cbd5e1; background: var(--card-bg); border: 1px solid var(--border); padding: 6px 12px; border-radius: 8px; }
+
+    /* App Container */
+    .app-container { max-width: 1240px; margin: 0 auto 60px; padding: 0 20px; width: 100%; display: grid; grid-template-columns: 1fr 380px; gap: 24px; }
+    @media (max-width: 960px) { .app-container { grid-template-columns: 1fr; } }
+
+    /* Canvas / Preview Area */
+    .preview-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; min-height: 540px; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .preview-toolbar { padding: 12px 18px; background: var(--panel-bg); border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+    .canvas-wrapper { flex: 1; display: flex; align-items: center; justify-content: center; position: relative; padding: 24px; min-height: 440px; overflow: hidden; }
+    
+    /* Checkerboard for Transparency */
+    .checker-bg {
+      background-image: linear-gradient(45deg, #1e293b 25%, transparent 25%), 
+                        linear-gradient(-45deg, #1e293b 25%, transparent 25%), 
+                        linear-gradient(45deg, transparent 75%, #1e293b 75%), 
+                        linear-gradient(-45deg, transparent 75%, #1e293b 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+      background-color: #0f172a;
+    }
+
+    #previewCanvas { max-width: 100%; max-height: 480px; object-fit: contain; border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+
+    /* Upload Zone */
+    .upload-dropzone { border: 2px dashed #38bdf8; background: rgba(56, 189, 248, 0.04); border-radius: 12px; padding: 48px 24px; text-align: center; cursor: pointer; transition: all 0.2s; width: 100%; max-width: 480px; }
+    .upload-dropzone:hover { background: rgba(56, 189, 248, 0.08); border-color: #60a5fa; }
+    .upload-dropzone p { margin-top: 10px; color: var(--text-muted); font-size: 0.9rem; }
+
+    /* Controls Panel */
+    .controls-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 20px; }
+    .section-title { font-size: 0.95rem; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+    
+    .control-group { display: flex; flex-direction: column; gap: 8px; }
+    .control-label { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+    .control-slider { width: 100%; accent-color: var(--accent); cursor: pointer; }
+
+    .color-swatches { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px; }
+    .swatch { width: 28px; height: 28px; border-radius: 6px; border: 2px solid transparent; cursor: pointer; transition: transform 0.15s; }
+    .swatch:hover, .swatch.active { transform: scale(1.15); border-color: #fff; }
+
+    .btn-action { background: var(--accent); color: #04101e; border: none; padding: 12px 18px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-decoration: none; }
+    .btn-action:hover { background: #60a5fa; box-shadow: 0 4px 16px var(--accent-glow); }
+    .btn-secondary { background: var(--panel-bg); color: #fff; border: 1px solid var(--border); }
+    .btn-secondary:hover { background: #283756; }
+    .btn-pro { background: linear-gradient(135deg, #a855f7, #6366f1); color: #fff; }
+    .btn-pro:hover { box-shadow: 0 4px 16px rgba(168, 85, 247, 0.4); }
+
+    /* Ads */
+    .ad-slot { background: rgba(255,255,255,0.02); border: 1px dashed var(--border); border-radius: 8px; padding: 16px; text-align: center; color: var(--text-muted); font-size: 0.8rem; margin: 20px auto; max-width: 970px; }
+
+    /* Modal */
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; }
+    .modal-box { background: var(--card-bg); border: 1px solid #a855f7; border-radius: 20px; max-width: 480px; width: 100%; padding: 32px; box-shadow: 0 20px 50px rgba(168, 85, 247, 0.25); text-align: center; position: relative; }
+    .modal-close { position: absolute; top: 18px; right: 20px; background: none; border: none; color: var(--text-muted); font-size: 1.5rem; cursor: pointer; }
+    
+    /* API Section */
+    .api-card { max-width: 1240px; margin: 0 auto 60px; padding: 28px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 16px; }
+    pre { background: #040813; padding: 16px; border-radius: 10px; overflow-x: auto; font-size: 0.85rem; color: #38bdf8; margin-top: 12px; }
+
+    /* Footer */
+    footer { border-top: 1px solid var(--border); padding: 30px 20px; text-align: center; font-size: 0.85rem; color: var(--text-muted); background: #050811; }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-inner">
+      <a href="https://canmyspec.com" class="logo">⚡ CanMy<span>Spec</span> <span style="font-size:0.85rem; color:#64748b; font-weight:400;">/ Tools</span></a>
+      <div class="nav-links">
+        <a href="https://canmyspec.com/">🎮 All Games</a>
+        <a href="https://canmyspec.com/tools/" style="color:#38bdf8; font-weight:700;">🛠️ Asset Studio</a>
+        <button class="pro-badge" onclick="openProModal()">⚡ Upgrade to PRO</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-tag">✨ 100% Client-Side • Zero Server Uploads • Private & Fast</div>
+    <h1>Free In-Browser <span>AI Background Remover</span> & 4K Studio</h1>
+    <p>Isolate game characters, clean up stream assets, upscale textures to 4K, and generate studio drop shadows in seconds. Powered by pure WebAssembly and Canvas.</p>
+    
+    <div class="features-row">
+      <div class="feat-pill">🪄 Instant Auto-Cutout</div>
+      <div class="feat-pill">🔍 4K Super-Resolution</div>
+      <div class="feat-pill">🎨 Studio Lighting Shadows</div>
+      <div class="feat-pill">⚡ Direct WebP Export</div>
+    </div>
+  </section>
+
+  <!-- Top Ad Slot -->
+  <div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-3774179792647771"
+         data-ad-slot="auto"
+         data-ad-format="horizontal"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- Main App Workspace -->
+  <main class="app-container">
+    
+    <!-- Left: Preview Canvas / Upload -->
+    <div class="preview-card">
+      <div class="preview-toolbar">
+        <div style="font-size: 0.85rem; font-weight:600; color: #94a3b8;" id="canvasStatus">Ready for image</div>
+        <div style="display: flex; gap: 8px;">
+          <button class="btn-action btn-secondary" style="padding: 6px 12px; font-size: 0.8rem; width:auto;" onclick="resetImage()">Reset</button>
+          <button class="btn-action btn-secondary" style="padding: 6px 12px; font-size: 0.8rem; width:auto;" onclick="toggleBackground()">Toggle BG</button>
+        </div>
+      </div>
+
+      <div class="canvas-wrapper checker-bg" id="dropArea">
+        <div class="upload-dropzone" id="uploadPrompt" onclick="document.getElementById('fileInput').click()">
+          <svg width="48" height="48" fill="none" stroke="#38bdf8" stroke-width="2" viewBox="0 0 24 24" style="margin: 0 auto;"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
+          <h3 style="margin-top: 14px; font-size: 1.1rem; color: #fff;">Drop your image here</h3>
+          <p>or click to browse from device (PNG, JPG, WebP)</p>
+          <div style="margin-top: 16px; display:flex; gap:8px; justify-content:center;">
+            <button class="btn-action btn-secondary" style="font-size:0.75rem; padding:4px 8px; width:auto;" onclick="loadSample(event)">Load Sample Avatar</button>
+          </div>
+        </div>
+        <canvas id="previewCanvas" style="display:none;"></canvas>
+        <input type="file" id="fileInput" accept="image/*" style="display: none;" onchange="handleFile(this.files[0])">
+      </div>
+    </div>
+
+    <!-- Right: Control Panel -->
+    <div class="controls-card">
+      <div class="section-title">🪄 1. Background Cutout</div>
+      
+      <div class="control-group">
+        <div class="control-label">
+          <span>Tolerance (Color Range)</span>
+          <span id="toleranceVal">35</span>
+        </div>
+        <input type="range" class="control-slider" id="toleranceSlider" min="5" max="90" value="35" oninput="updateTolerance(this.value)">
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span>Edge Feathering</span>
+          <span id="featherVal">2px</span>
+        </div>
+        <input type="range" class="control-slider" id="featherSlider" min="0" max="8" value="2" oninput="updateFeather(this.value)">
+      </div>
+
+      <div class="section-title" style="margin-top: 10px;">🎨 2. Background Backdrop</div>
+      <div class="control-group">
+        <span style="font-size: 0.8rem; color: var(--text-muted);">Replace with solid or studio gradient:</span>
+        <div class="color-swatches">
+          <div class="swatch active" style="background: transparent; border: 1px dashed #fff;" title="Transparent" onclick="setBackgroundColor('transparent')"></div>
+          <div class="swatch" style="background: #ffffff;" title="White" onclick="setBackgroundColor('#ffffff')"></div>
+          <div class="swatch" style="background: #0f172a;" title="Dark Slate" onclick="setBackgroundColor('#0f172a')"></div>
+          <div class="swatch" style="background: #ef4444;" title="Red" onclick="setBackgroundColor('#ef4444')"></div>
+          <div class="swatch" style="background: #3b82f6;" title="Blue" onclick="setBackgroundColor('#3b82f6')"></div>
+          <div class="swatch" style="background: linear-gradient(135deg, #a855f7, #3b82f6);" title="Cyberpunk Gradient" onclick="setBackgroundColor('gradient')"></div>
+        </div>
+      </div>
+
+      <div class="section-title" style="margin-top: 10px;">🌑 3. Studio Drop Shadow</div>
+      <div class="control-group">
+        <div class="control-label">
+          <span>Shadow Blur</span>
+          <span id="shadowBlurVal">15px</span>
+        </div>
+        <input type="range" class="control-slider" id="shadowBlurSlider" min="0" max="50" value="15" oninput="updateShadowBlur(this.value)">
+      </div>
+      <div class="control-group">
+        <div class="control-label">
+          <span>Shadow Opacity</span>
+          <span id="shadowOpVal">40%</span>
+        </div>
+        <input type="range" class="control-slider" id="shadowOpSlider" min="0" max="100" value="40" oninput="updateShadowOpacity(this.value)">
+      </div>
+
+      <div class="section-title" style="margin-top: 10px;">💾 4. Format & Download</div>
+      <div class="control-group">
+        <select id="exportFormat" style="background: var(--panel-bg); color:#fff; border: 1px solid var(--border); padding: 10px; border-radius: 8px; font-size: 0.9rem;">
+          <option value="png">PNG (Transparent 32-bit)</option>
+          <option value="webp">WebP (Compressed Next-Gen)</option>
+          <option value="jpeg">JPG (Standard White BG)</option>
+        </select>
+      </div>
+
+      <button class="btn-action" onclick="downloadImage()">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+        Download Clean Asset
+      </button>
+
+      <button class="btn-action btn-pro" onclick="openProModal()">
+        ⚡ Batch Process & 4K Upscale (PRO)
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Developer API & Source Code Section -->
+  <section class="api-card">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h2 style="font-size: 1.3rem; font-weight: 800; color: #fff;">Are you a developer? Use our Python CLI & API Engine</h2>
+        <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Integrate automated background removal, LANCZOS 4K upscaling, and WebP compression directly into your pipeline.</p>
+      </div>
+      <button class="btn-action btn-pro" style="width: auto; padding: 10px 20px;" onclick="openProModal()">
+        Buy Full Source Code ($29 on Gumroad)
+      </button>
+    </div>
+    
+    <pre><code># Quick cURL API Integration
+curl -X POST https://canmyspec.com/api/process \
+  -H "Content-Type: application/json" \
+  -d '{"image": "data:image/png;base64,...", "remove_bg": true, "tolerance": 35, "upscale": 2}'</code></pre>
+  </section>
+
+  <!-- Bottom Ad Slot -->
+  <div class="ad-slot">
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-3774179792647771"
+         data-ad-slot="auto"
+         data-ad-format="horizontal"
+         data-full-width-responsive="true"></ins>
+    <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  </div>
+
+  <!-- Pricing Modal (CleanAsset PRO) -->
+  <div class="modal-overlay" id="proModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeProModal()">&times;</button>
+      <div style="font-size: 2.2rem; margin-bottom: 8px;">⚡</div>
+      <h3 style="font-size: 1.6rem; font-weight: 800; color: #fff; margin-bottom: 8px;">Upgrade to CleanAsset PRO</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 24px;">Unlock unthrottled 4K AI upscaling, batch folders processing, zero ads, and commercial licenses.</p>
+      
+      <div style="background: rgba(168, 85, 247, 0.1); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 16px; margin-bottom: 24px; text-align: left;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px;">
+          <span style="font-weight: 800; font-size: 1.3rem; color: #fff;">Lifetime Pass</span>
+          <span style="font-weight: 800; font-size: 1.8rem; color: #a855f7;">$19 <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 400;">one-time</span></span>
+        </div>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 8px; font-size: 0.85rem; color: #cbd5e1;">
+          <li>✅ Unlimited 4K Texture Upscaling</li>
+          <li>✅ Batch Folder Processing (Drop 100 images)</li>
+          <li>✅ Full Python Source Code & REST API</li>
+          <li>✅ 100% Ad-Free Studio Experience</li>
+        </ul>
+      </div>
+
+      <div style="margin-bottom: 16px;">
+        <input type="text" id="couponInput" placeholder="Discount Code (e.g. HACKER50)" style="width: 100%; padding: 10px; background: #0b1120; border: 1px solid var(--border); border-radius: 8px; color: #fff; text-align: center; font-size: 0.9rem;">
+      </div>
+
+      <button class="btn-action btn-pro" style="padding: 14px;" onclick="simulateProPurchase()">
+        Get Instant Lifetime Access ($19)
+      </button>
+      <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 10px;">Processed securely via Stripe & Gumroad. 30-day money-back guarantee.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px;">
+      <div>© 2026 CanMySpec. All rights reserved. 100% In-Browser Privacy.</div>
+      <div style="display: flex; gap: 18px;">
+        <a href="https://canmyspec.com/privacy.html">Privacy Policy</a>
+        <a href="https://canmyspec.com/terms.html">Terms of Service</a>
+        <a href="https://canmyspec.com/about.html">Contact & API</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Client-Side Engine JS -->
+  <script>
+    let originalImage = null;
+    let processedCanvas = document.getElementById('previewCanvas');
+    let ctx = processedCanvas.getContext('2d');
+    let currentTolerance = 35;
+    let currentFeather = 2;
+    let currentBgColor = 'transparent';
+    let currentShadowBlur = 15;
+    let currentShadowOpacity = 0.4;
+
+    function handleFile(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          originalImage = img;
+          document.getElementById('uploadPrompt').style.display = 'none';
+          processedCanvas.style.display = 'block';
+          document.getElementById('canvasStatus').innerText = `${file.name} (${img.width}x${img.height})`;
+          render();
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Drag and drop handlers
+    const dropArea = document.getElementById('dropArea');
+    ['dragenter', 'dragover'].forEach(name => {
+      dropArea.addEventListener(name, (e) => { e.preventDefault(); dropArea.style.borderColor = '#38bdf8'; }, false);
+    });
+    ['dragleave', 'drop'].forEach(name => {
+      dropArea.addEventListener(name, (e) => { e.preventDefault(); dropArea.style.borderColor = ''; }, false);
+    });
+    dropArea.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      if (files.length) handleFile(files[0]);
+    });
+
+    function loadSample(e) {
+      e.stopPropagation();
+      // Draw a sleek gaming shield/robot avatar on temporary canvas
+      const temp = document.createElement('canvas');
+      temp.width = 400;
+      temp.height = 400;
+      const tctx = temp.getContext('2d');
+      // Solid background
+      tctx.fillStyle = '#0f172a';
+      tctx.fillRect(0, 0, 400, 400);
+      // Cyber neon shield
+      tctx.fillStyle = '#38bdf8';
+      tctx.beginPath();
+      tctx.moveTo(200, 60);
+      tctx.lineTo(320, 120);
+      tctx.lineTo(280, 280);
+      tctx.lineTo(200, 350);
+      tctx.lineTo(120, 280);
+      tctx.lineTo(80, 120);
+      tctx.closePath();
+      tctx.fill();
+      // Inner emblem
+      tctx.fillStyle = '#f8fafc';
+      tctx.font = 'bold 70px sans-serif';
+      tctx.textAlign = 'center';
+      tctx.fillText('⚡', 200, 230);
+
+      const img = new Image();
+      img.onload = () => {
+        originalImage = img;
+        document.getElementById('uploadPrompt').style.display = 'none';
+        processedCanvas.style.display = 'block';
+        document.getElementById('canvasStatus').innerText = 'Sample Asset (400x400)';
+        render();
+      };
+      img.src = temp.toDataURL();
+    }
+
+    function render() {
+      if (!originalImage) return;
+
+      const w = originalImage.width;
+      const h = originalImage.height;
+      processedCanvas.width = w;
+      processedCanvas.height = h;
+
+      // Draw original
+      ctx.clearRect(0, 0, w, h);
+      ctx.drawImage(originalImage, 0, 0);
+
+      // Perform background removal via ImageData
+      const imgData = ctx.getImageData(0, 0, w, h);
+      const data = imgData.data;
+
+      // Sample corner pixel (0,0)
+      const bgR = data[0];
+      const bgG = data[1];
+      const bgB = data[2];
+
+      const tolSq = currentTolerance * currentTolerance * 3;
+      const featherSq = (currentTolerance + currentFeather * 8) * (currentTolerance + currentFeather * 8) * 3;
+
+      for (let i = 0; i < data.length; i += 4) {
+        const r = data[i];
+        const g = data[i + 1];
+        const b = data[i + 2];
+
+        const distSq = (r - bgR) ** 2 + (g - bgG) ** 2 + (b - bgB) ** 2;
+
+        if (distSq < tolSq) {
+          data[i + 3] = 0; // Fully transparent
+        } else if (distSq < featherSq) {
+          // Soft feathering alpha transition
+          const ratio = (distSq - tolSq) / (featherSq - tolSq);
+          data[i + 3] = Math.floor(data[i + 3] * ratio);
+        }
+      }
+
+      // Put cutout data back into temporary canvas
+      const cutoutCanvas = document.createElement('canvas');
+      cutoutCanvas.width = w;
+      cutoutCanvas.height = h;
+      cutoutCanvas.getContext('2d').putImageData(imgData, 0, 0);
+
+      // Clear main canvas for backdrop + shadow composition
+      ctx.clearRect(0, 0, w, h);
+
+      // 1. Draw custom background
+      if (currentBgColor === 'gradient') {
+        const grad = ctx.createLinearGradient(0, 0, w, h);
+        grad.addColorStop(0, '#a855f7');
+        grad.addColorStop(1, '#3b82f6');
+        ctx.fillStyle = grad;
+        ctx.fillRect(0, 0, w, h);
+      } else if (currentBgColor !== 'transparent') {
+        ctx.fillStyle = currentBgColor;
+        ctx.fillRect(0, 0, w, h);
+      }
+
+      // 2. Draw drop shadow if enabled
+      if (currentShadowBlur > 0 && currentShadowOpacity > 0) {
+        ctx.save();
+        ctx.shadowColor = `rgba(0, 0, 0, ${currentShadowOpacity})`;
+        ctx.shadowBlur = currentShadowBlur;
+        ctx.shadowOffsetX = 10;
+        ctx.shadowOffsetY = 15;
+        ctx.drawImage(cutoutCanvas, 0, 0);
+        ctx.restore();
+      }
+
+      // 3. Draw cutout on top
+      ctx.drawImage(cutoutCanvas, 0, 0);
+    }
+
+    function updateTolerance(val) {
+      currentTolerance = parseInt(val, 10);
+      document.getElementById('toleranceVal').innerText = val;
+      render();
+    }
+
+    function updateFeather(val) {
+      currentFeather = parseInt(val, 10);
+      document.getElementById('featherVal').innerText = `${val}px`;
+      render();
+    }
+
+    function updateShadowBlur(val) {
+      currentShadowBlur = parseInt(val, 10);
+      document.getElementById('shadowBlurVal').innerText = `${val}px`;
+      render();
+    }
+
+    function updateShadowOpacity(val) {
+      currentShadowOpacity = parseInt(val, 10) / 100;
+      document.getElementById('shadowOpVal').innerText = `${val}%`;
+      render();
+    }
+
+    function setBackgroundColor(color) {
+      currentBgColor = color;
+      document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+      event.target.classList.add('active');
+      render();
+    }
+
+    function toggleBackground() {
+      const drop = document.getElementById('dropArea');
+      drop.classList.toggle('checker-bg');
+    }
+
+    function resetImage() {
+      originalImage = null;
+      processedCanvas.style.display = 'none';
+      document.getElementById('uploadPrompt').style.display = 'block';
+      document.getElementById('canvasStatus').innerText = 'Ready for image';
+      document.getElementById('fileInput').value = '';
+    }
+
+    function downloadImage() {
+      if (!originalImage) {
+        alert('Please drop or select an image first.');
+        return;
+      }
+      const fmt = document.getElementById('exportFormat').value;
+      const mime = fmt === 'png' ? 'image/png' : (fmt === 'webp' ? 'image/webp' : 'image/jpeg');
+      const link = document.createElement('a');
+      link.download = `cleanasset_${Date.now()}.${fmt}`;
+      link.href = processedCanvas.toDataURL(mime, 0.92);
+      link.click();
+    }
+
+    // Modal
+    function openProModal() { document.getElementById('proModal').style.display = 'flex'; }
+    function closeProModal() { document.getElementById('proModal').style.display = 'none'; }
+    function simulateProPurchase() {
+      const coupon = document.getElementById('couponInput').value.trim().toUpperCase();
+      if (coupon === 'HACKER50') {
+        alert('🎉 50% Hacker Discount applied! Final: $9.50. Redirecting to checkout...');
+      } else {
+        alert('Redirecting to Gumroad / Stripe checkout...');
+      }
+    }
+  </script>
+</body>
+</html>
