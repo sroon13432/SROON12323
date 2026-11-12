@@ -279,9 +279,9 @@
         <h2 style="font-size: 1.3rem; font-weight: 800; color: #fff;">Are you a developer? Use our Python CLI & API Engine</h2>
         <p style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">Integrate automated background removal, LANCZOS 4K upscaling, and WebP compression directly into your pipeline.</p>
       </div>
-      <button class="btn-action btn-pro" style="width: auto; padding: 10px 20px;" onclick="openProModal()">
-        Buy Full Source Code ($29 on Gumroad)
-      </button>
+      <a href="https://bbhc.gumroad.com/l/cleanasset" target="_blank" class="btn-action btn-pro" style="width: auto; padding: 10px 20px; text-decoration: none;">
+        Buy Full Source Code ($19 on Gumroad)
+      </a>
     </div>
     
     <pre><code># Quick cURL API Integration
@@ -563,11 +563,7 @@ curl -X POST https://canmyspec.com/api/process \
     function closeProModal() { document.getElementById('proModal').style.display = 'none'; }
     function simulateProPurchase() {
       const coupon = document.getElementById('couponInput').value.trim().toUpperCase();
-      if (coupon === 'HACKER50') {
-        alert('🎉 50% Hacker Discount applied! Final: $9.50. Redirecting to checkout...');
-      } else {
-        alert('Redirecting to Gumroad / Stripe checkout...');
-      }
+      window.open('https://bbhc.gumroad.com/l/cleanasset', '_blank');
     }
   </script>
 </body>
