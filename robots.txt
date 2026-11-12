@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sroon13432.github.io/SROON12323/sitemap.xml
+Sitemap: https://canmyspec.com/sitemap.xml
