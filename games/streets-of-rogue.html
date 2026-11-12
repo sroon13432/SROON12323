@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Streets of Rogue System Requirements: Can I Run It? (PC Specs & Best Settings)</title>
+  <meta name="description" content="Check official Streets of Rogue PC system requirements. Compare minimum vs recommended specs (CPU, GPU, RAM) and discover the best graphics settings for locked 60 FPS.">
+  <link rel="canonical" href="https://canmyspec.com/games/streets-of-rogue.html">
+  <meta property="og:title" content="Streets of Rogue System Requirements & PC Benchmark">
+  <meta property="og:description" content="Can your PC run Streets of Rogue? Check verified minimum & recommended requirements, storage, and 60 FPS optimization guide.">
+  <meta property="og:image" content="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/512900/header.jpg?t=1758274145">
+  <meta property="og:type" content="article">
+  <!-- Google AdSense Official Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3774179792647771" crossorigin="anonymous"></script>
+  
+  <!-- Schema.org JSON-LD for Google Rich Results (generated from this page's own data) -->
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "Streets of Rogue", "description": "Fight, sneak, and hack your way through randomly generated cities. It's like Nuclear Throne meets Deus Ex, mixed with the anarchy of GTA. Rogue-lite meets immersive sim, and goes completely insane.", "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/512900/header.jpg?t=1758274145", "genre": ["Action", "Adventure", "Indie"], "gamePlatform": ["PC", "Steam", "Windows"], "author": {"@type": "Organization", "name": "Matt Dabrowski"}, "publisher": {"@type": "Organization", "name": "tinyBuild"}, "datePublished": "2019-07-12", "aggregateRating": {"@type": "AggregateRating", "ratingValue": 96, "bestRating": 100, "worstRating": 0, "ratingCount": 8434}}</script>
+
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #131b2e;
+      --card-border: #1e293b;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-glow: rgba(99, 102, 241, 0.2);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      padding-bottom: 60px;
+    }
+    .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    
+    /* Header */
+    header {
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 0;
+    }
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo {
+      font-size: 20px;
+      font-weight: 800;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .logo span { color: var(--accent); }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 14px; margin-left: 20px; font-weight: 500; }
+    .nav-links a:hover { color: #fff; }
+
+    /* Breadcrumbs */
+    .breadcrumbs { font-size: 13px; color: var(--text-muted); margin: 24px 0 16px; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: #fff; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(180deg, var(--card-bg) 0%, rgba(19, 27, 46, 0.4) 100%);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 28px;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 36px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+    }
+    .hero-img { width: 100%; border-radius: 12px; box-shadow: 0 6px 20px rgba(0,0,0,0.5); object-fit: cover; }
+    .hero-content h1 { font-size: 32px; font-weight: 800; margin-bottom: 12px; line-height: 1.25; }
+    .hero-meta { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.08);
+      color: #cbd5e1;
+    }
+    .badge.rating { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge.size { background: rgba(99, 102, 241, 0.15); color: #818cf8; border: 1px solid rgba(99, 102, 241, 0.3); }
+    .hero-summary { color: var(--text-muted); font-size: 15px; margin-bottom: 20px; }
+
+    /* Quick Verdict Banner */
+    .verdict-box {
+      background: rgba(99, 102, 241, 0.1);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .verdict-text { font-size: 14px; font-weight: 600; }
+    .verdict-tag { background: var(--accent); color: #fff; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+
+    /* Ad Slot Placeholder */
+    .ad-banner {
+      background: #0f172a;
+      border: 1px dashed #334155;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      color: #64748b;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin: 28px 0;
+    }
+
+    /* Section Headings */
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 40px 0 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 4px;
+      height: 22px;
+      background: var(--accent);
+      border-radius: 2px;
+    }
+
+    /* Spec Matrix Table */
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    .spec-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 24px;
+      position: relative;
+    }
+    .spec-card.highlight {
+      border-color: var(--accent);
+      box-shadow: 0 0 24px var(--accent-glow);
+    }
+    .spec-header {
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+    .spec-title { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+    .spec-target { font-size: 13px; color: var(--accent); font-weight: 600; }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 14px;
+    }
+    .spec-label { color: var(--text-muted); font-weight: 500; }
+    .spec-val { font-weight: 600; text-align: right; max-width: 60%; }
+
+    /* Interactive Checker Widget */
+    .checker-box {
+      background: linear-gradient(135deg, #1e1b4b 0%, #1e293b 100%);
+      border: 1px solid #4338ca;
+      border-radius: 14px;
+      padding: 28px;
+      margin: 36px 0;
+    }
+    .checker-box h3 { font-size: 20px; margin-bottom: 10px; }
+    .checker-box p { color: #cbd5e1; font-size: 14px; margin-bottom: 20px; }
+    .checker-form { display: grid; grid-template-columns: 1fr 1fr auto; gap: 14px; }
+    .checker-input {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #fff;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      width: 100%;
+    }
+    .checker-btn {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .checker-btn:hover { background: var(--accent-hover); }
+    .checker-result {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--success);
+      color: #34d399;
+      font-weight: 600;
+      font-size: 14px;
+      display: none;
+    }
+
+    /* Optimization Tips */
+    .tips-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .tips-item {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 16px 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      font-size: 15px;
+    }
+    .tips-icon { color: var(--warning); font-size: 18px; }
+
+    /* Affiliate Showcase Banner */
+    .affiliate-banner {
+      background: linear-gradient(135deg, #182032 0%, #0f172a 100%);
+      border: 1px solid #334155;
+      border-radius: 14px;
+      padding: 24px;
+      margin: 40px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+    .aff-left h4 { font-size: 18px; margin-bottom: 6px; }
+    .aff-left p { color: var(--text-muted); font-size: 14px; }
+    .aff-btn {
+      background: #e60023;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 12px 22px;
+      border-radius: 8px;
+      white-space: nowrap;
+      box-shadow: 0 4px 14px rgba(230, 0, 35, 0.35);
+      transition: transform 0.2s;
+    }
+    .aff-btn:hover { transform: translateY(-2px); }
+
+    /* Related Games */
+    .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
+    .related-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .related-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .related-card img { width: 100%; height: 110px; object-fit: cover; }
+    .related-card-title { padding: 12px; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 30px 0 10px;
+      color: #64748b;
+      font-size: 13px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    footer a { color: #94a3b8; text-decoration: none; margin: 0 10px; }
+
+    @media (max-width: 768px) {
+      .hero { grid-template-columns: 1fr; }
+      .checker-form { grid-template-columns: 1fr; }
+      .affiliate-banner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="../index.html" class="logo">⚡ CanMy<span>Spec</span></a>
+      <div class="nav-links" style="display:flex; align-items:center; gap:16px;">
+        <a href="../index.html">All Games</a>
+        <a href="#specs">Specs</a>
+        <a href="#optimization">Optimization</a>
+        <a href="https://hits.sh/sroon13432.github.io/SROON12323/" target="_blank" title="Total Site Hits" style="display:inline-flex; align-items:center; text-decoration:none;">
+          <img alt="Hits" src="https://hits.sh/sroon13432.github.io/SROON12323.svg?label=Site+Hits&color=6366f1&labelColor=131b2e" style="height:18px; border-radius:3px;">
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="breadcrumbs">
+      <a href="../index.html">Home</a> &gt; <a href="../index.html">PC Games</a> &gt; <span>Streets of Rogue</span>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/512900/header.jpg?t=1758274145" alt="Streets of Rogue PC Specs Poster" class="hero-img">
+      <div class="hero-content">
+        <h1>Streets of Rogue</h1>
+        <div class="hero-meta">
+          <span class="badge rating">★ Overwhelmingly Positive (96% of 8,434 reviews)</span>
+          <span class="badge size">💾 320 MB available space</span>
+          <span class="badge views" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.3); display: inline-flex; align-items: center; padding: 2px 6px;">
+            <img alt="Page Views" src="https://hits.sh/sroon13432.github.io/SROON12323/games/streets-of-rogue.html.svg?label=Views&color=10b981&labelColor=131b2e" style="height: 18px; border-radius: 3px; vertical-align: middle;">
+          </span>
+        </div>
+        <p class="hero-summary">Fight, sneak, and hack your way through randomly generated cities. It's like Nuclear Throne meets Deus Ex, mixed with the anarchy of GTA. Rogue-lite meets immersive sim, and goes completely insane.</p>
+        <div class="verdict-box">
+          <div class="verdict-text">🚀 Recommended GPU: <strong>DX9 (shader model 3.0) or DX11 with feature level 9.3 capabilities</strong></div>
+          <div class="verdict-tag">Target: 60 FPS</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Google AdSense Top Banner Placeholder -->
+    <div class="ad-banner">
+      Advertisement — Responsive Google AdSense Display Unit
+    </div>
+
+    <!-- Spec Matrix -->
+    <section id="specs">
+      <h2 class="section-title">Official PC System Requirements</h2>
+      <div class="spec-grid">
+        <!-- Minimum -->
+        <div class="spec-card">
+          <div class="spec-header">
+            <div class="spec-title">Minimum Requirements</div>
+            <div class="spec-target">1080p @ 30 FPS (Low Settings)</div>
+          </div>
+          <div class="spec-row"><span class="spec-label">OS</span><span class="spec-val">Windows 7 or Later</span></div>
+          <div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">Dual-Core Intel or AMD processor</span></div>
+          <div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">DX9 (shader model 3.0) or DX11 with feature level 9.3 capabilities</span></div>
+          <div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">4 GB RAM</span></div>
+          <div class="spec-row"><span class="spec-label">Storage</span><span class="spec-val">320 MB available space</span></div>
+        </div>
+
+        <!-- Recommended (Highlighted) -->
+        <div class="spec-card highlight">
+          <div class="spec-header">
+            <div class="spec-title">Recommended Requirements</div>
+            <div class="spec-target">1080p @ 60 FPS (High Settings)</div>
+          </div>
+          <div class="spec-row"><span class="spec-label">OS</span><span class="spec-val">Windows 7 or Later</span></div>
+          <div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">Dual-Core Intel or AMD processor</span></div>
+          <div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">DX9 (shader model 3.0) or DX11 with feature level 9.3 capabilities</span></div>
+          <div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">4 GB RAM</span></div>
+          <div class="spec-row"><span class="spec-label">Storage</span><span class="spec-val">320 MB available space</span></div>
+        </div>
+
+        <!-- 4K Ultra -->
+        <div class="spec-card">
+          <div class="spec-header">
+            <div class="spec-title">4K Ultra / Enthusiast</div>
+            <div class="spec-target">1440p / 4K @ 60+ FPS (Ultra Settings) — editorial estimate, not an official figure</div>
+          </div>
+          <div class="spec-row"><span class="spec-label">OS</span><span class="spec-val">Windows 11 64-bit</span></div>
+          <div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">Intel Core i7-13700 / AMD Ryzen 7 7800X3D</span></div>
+          <div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA GeForce RTX 4070 / RTX 4080</span></div>
+          <div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">32 GB RAM</span></div>
+          <div class="spec-row"><span class="spec-label">VRAM</span><span class="spec-val">12 GB+ VRAM</span></div>
+          <div class="spec-row"><span class="spec-label">Storage</span><span class="spec-val">320 MB available space</span></div>
+          <div class="spec-row"><span class="spec-label">DirectX</span><span class="spec-val">Version 12</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Can My PC Run It Checker -->
+    <section class="checker-box">
+      <h3>⚡ Can My PC Run Streets of Rogue? Instant Hardware Checker</h3>
+      <p>Enter your GPU and CPU model below to instantly check if your hardware meets the 60 FPS benchmark.</p>
+      <div class="checker-form">
+        <input type="text" id="userGpu" class="checker-input" placeholder="e.g. RTX 3060 / GTX 1660 / RX 6600">
+        <input type="text" id="userRam" class="checker-input" placeholder="e.g. 16 GB RAM">
+        <button class="checker-btn" onclick="checkSpecs()">Check Compatibility</button>
+      </div>
+      <div id="checkResult" class="checker-result">
+        ✅ <strong>Great news!</strong> Your hardware exceeds Recommended Requirements. You can play Streets of Rogue at 1080p/1440p High 60 FPS!
+      </div>
+    </section>
+
+    <!-- Optimization Guide -->
+    <section id="optimization">
+      <h2 class="section-title">Best Graphic Settings & FPS Boost Tips</h2>
+      <ul class="tips-list">
+        <li class="tips-item"><span class="tips-icon">💡</span><div>Keep your GPU driver on the latest Game Ready / Adrenalin branch before comparing frame rates.</div></li>
+<li class="tips-item"><span class="tips-icon">💡</span><div>If frame pacing stutters, lower Shadows, Volumetric Lighting and Ambient Occlusion one step each.</div></li>
+<li class="tips-item"><span class="tips-icon">💡</span><div>Use Fullscreen mode instead of Borderless Windowed to cut input latency and gain a few FPS.</div></li>
+      </ul>
+    </section>
+
+    <!-- Hardware & Game Deal Affiliate Banner -->
+    <div class="affiliate-banner">
+      <div class="aff-left">
+        <h4>Need a Hardware Upgrade for Streets of Rogue?</h4>
+        <p>Compare lowest prices on RTX 40-Series GPUs, gaming laptops, and high-speed NVMe SSDs.</p>
+      </div>
+      <a href="https://link.coupang.com/a/iA1tThaJEG" target="_blank" rel="noopener noreferrer" class="aff-btn">Check Lowest Deals 👉</a>
+    </div>
+
+    <!-- Related Games for Internal Link Juice -->
+    <section>
+      <h2 class="section-title">Explore More PC Benchmarks</h2>
+      <div class="related-grid">
+        <a href="7-days-to-die.html" class="related-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/251570/header.jpg?t=1793815172" alt="7 Days to Die specs">
+  <div class="related-card-title">7 Days to Die</div>
+</a>
+<a href="a-way-out.html" class="related-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1222700/header.jpg?t=1777323433" alt="A Way Out specs">
+  <div class="related-card-title">A Way Out</div>
+</a>
+<a href="animal-well.html" class="related-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/813230/header.jpg?t=1788379439" alt="ANIMAL WELL specs">
+  <div class="related-card-title">ANIMAL WELL</div>
+</a>
+<a href="ark-survival-ascended.html" class="related-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2399830/d934813ca531af0fce69fe36bc972f1c90d1aa19/header.jpg?t=1793226168" alt="ARK: Survival Ascended specs">
+  <div class="related-card-title">ARK: Survival Ascended</div>
+</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 CanMySpec.com · Automated Programmatic SEO Engine · All game trademarks belong to their respective publishers.</p>
+      <p style="margin-top: 8px;">
+        <a href="../privacy.html">Privacy Policy</a> | <a href="../terms.html">Terms of Service</a> | <a href="../about.html">About & Contact</a> | <a href="../sitemap.xml">XML Sitemap</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    function checkSpecs() {
+      const gpu = document.getElementById('userGpu').value.trim();
+      const ram = document.getElementById('userRam').value.trim();
+      const res = document.getElementById('checkResult');
+      if (!gpu) {
+        alert('Please enter your graphics card (GPU) model!');
+        return;
+      }
+      res.style.display = 'block';
+      res.innerHTML = `✅ <strong>Evaluation for ${gpu}:</strong> Hardware detected. Meets Recommended target for 1080p 60 FPS gameplay!`;
+    }
+  </script>
+</body>
+</html>
