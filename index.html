@@ -120,9 +120,15 @@
     /* Stats Bar */
     .stats-bar {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 16px;
       margin-bottom: 40px;
+    }
+    @media (max-width: 860px) {
+      .stats-bar { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .stats-bar { grid-template-columns: 1fr; }
     }
     .stat-card {
       background: var(--card-bg);
@@ -133,6 +139,51 @@
     }
     .stat-num { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 4px; }
     .stat-label { font-size: 13px; color: var(--text-muted); }
+
+    /* Pagination */
+    .pagination-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin: 40px 0 20px;
+    }
+    .pagination-controls {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .page-btn {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .page-btn:hover:not(:disabled) {
+      border-color: var(--accent);
+      color: #fff;
+      background: rgba(99, 102, 241, 0.15);
+    }
+    .page-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .page-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+    .page-info {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
 
     /* Game Grid */
     .grid-header {
@@ -200,8 +251,11 @@
   <header>
     <div class="container nav">
       <a href="index.html" class="logo">⚡ Game<span>Spec</span>.io</a>
-      <div class="status-badge">
+      <div class="status-badge" style="display:flex; align-items:center; gap:8px;">
         <span class="status-dot"></span> 100% Automated pSEO Engine Live
+        <a href="https://hits.sh/sroon13432.github.io/SROON12323/" target="_blank" title="Live Visitor Counter" style="display:inline-flex; align-items:center; text-decoration:none;">
+          <img alt="Hits" src="https://hits.sh/sroon13432.github.io/SROON12323.svg?label=Visitors&color=10b981&labelColor=131b2e" style="height:18px; border-radius:3px;">
+        </a>
       </div>
     </div>
   </header>
@@ -225,6 +279,14 @@
       <div class="stat-card">
         <div class="stat-num">358 Games</div>
         <div class="stat-label">Verified Benchmarks</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" style="display:flex; justify-content:center; align-items:center; min-height:32px;">
+          <a href="https://hits.sh/sroon13432.github.io/SROON12323/" target="_blank" title="Live Visitor Counter" style="display:inline-flex; align-items:center; text-decoration:none;">
+            <img alt="Visitors" src="https://hits.sh/sroon13432.github.io/SROON12323.svg?label=Live+Visitors&color=6366f1&labelColor=131b2e" style="height:24px; border-radius:4px;">
+          </a>
+        </div>
+        <div class="stat-label">Total Verified Visits</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">0.05s</div>
@@ -4183,6 +4245,11 @@
 </a>
 
       </div>
+
+      <div class="pagination-wrapper" id="paginationWrapper">
+        <div class="pagination-controls" id="paginationControls"></div>
+        <div class="page-info" id="pageInfo"></div>
+      </div>
     </section>
   </main>
 
@@ -4196,18 +4263,118 @@
   </footer>
 
   <script>
-    function filterGames() {
-      const q = document.getElementById('gameSearch').value.toLowerCase();
-      const cards = document.querySelectorAll('.game-card');
-      cards.forEach(card => {
-        const title = card.getAttribute('data-title');
-        if (title.includes(q)) {
-          card.style.display = 'flex';
-        } else {
-          card.style.display = 'none';
-        }
-      });
+    const PAGE_SIZE = 24;
+    let currentPage = 1;
+    let filteredCards = [];
+
+    function getCards() {
+      return Array.from(document.querySelectorAll('.game-card'));
     }
+
+    function updatePagination() {
+      const totalItems = filteredCards.length;
+      const totalPages = Math.max(1, Math.ceil(totalItems / PAGE_SIZE));
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      const startIndex = (currentPage - 1) * PAGE_SIZE;
+      const endIndex = startIndex + PAGE_SIZE;
+
+      const allCards = getCards();
+      allCards.forEach(c => c.style.display = 'none');
+      filteredCards.slice(startIndex, endIndex).forEach(c => c.style.display = 'flex');
+
+      const controls = document.getElementById('paginationControls');
+      const info = document.getElementById('pageInfo');
+      if (!controls || !info) return;
+
+      controls.innerHTML = '';
+      if (totalItems === 0) {
+        info.textContent = 'No matching games found.';
+        return;
+      }
+
+      const startNum = startIndex + 1;
+      const endNum = Math.min(endIndex, totalItems);
+      info.textContent = `Showing ${startNum} - ${endNum} of ${totalItems} games (Page ${currentPage} of ${totalPages})`;
+
+      // Prev button
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'page-btn';
+      prevBtn.innerHTML = '&larr; Prev';
+      prevBtn.disabled = (currentPage === 1);
+      prevBtn.onclick = () => { currentPage--; updatePagination(); scrollToGrid(); };
+      controls.appendChild(prevBtn);
+
+      // Page number buttons
+      let startP = Math.max(1, currentPage - 2);
+      let endP = Math.min(totalPages, currentPage + 2);
+      if (currentPage <= 3) endP = Math.min(totalPages, 5);
+      if (currentPage >= totalPages - 2) startP = Math.max(1, totalPages - 4);
+
+      if (startP > 1) {
+        addPageBtn(1, controls);
+        if (startP > 2) addEllipsis(controls);
+      }
+
+      for (let p = startP; p <= endP; p++) {
+        addPageBtn(p, controls);
+      }
+
+      if (endP < totalPages) {
+        if (endP < totalPages - 1) addEllipsis(controls);
+        addPageBtn(totalPages, controls);
+      }
+
+      // Next button
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'page-btn';
+      nextBtn.innerHTML = 'Next &rarr;';
+      nextBtn.disabled = (currentPage === totalPages);
+      nextBtn.onclick = () => { currentPage++; updatePagination(); scrollToGrid(); };
+      controls.appendChild(nextBtn);
+    }
+
+    function addPageBtn(p, container) {
+      const btn = document.createElement('button');
+      btn.className = 'page-btn' + (p === currentPage ? ' active' : '');
+      btn.textContent = p;
+      btn.onclick = () => { currentPage = p; updatePagination(); scrollToGrid(); };
+      container.appendChild(btn);
+    }
+
+    function addEllipsis(container) {
+      const span = document.createElement('span');
+      span.style.color = 'var(--text-muted)';
+      span.style.padding = '0 4px';
+      span.textContent = '...';
+      container.appendChild(span);
+    }
+
+    function scrollToGrid() {
+      const grid = document.getElementById('gamesContainer');
+      if (grid) {
+        const yOffset = -120;
+        const y = grid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+
+    function filterGames() {
+      const q = document.getElementById('gameSearch').value.toLowerCase().trim();
+      const allCards = getCards();
+      filteredCards = allCards.filter(card => {
+        const title = card.getAttribute('data-title');
+        return title && title.includes(q);
+      });
+      currentPage = 1;
+      updatePagination();
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      filteredCards = getCards();
+      updatePagination();
+    });
   </script>
 </body>
 </html>
