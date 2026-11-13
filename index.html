@@ -257,9 +257,9 @@
         <a href="tools/" style="color:#38bdf8; font-weight:700; text-decoration:none; font-size:0.85rem; display:flex; align-items:center; gap:4px; padding:5px 12px; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.3); border-radius:8px;">🛠️ Free AI Tools</a>
         <div class="status-badge" style="display:flex; align-items:center; gap:8px;">
           <span class="status-dot"></span> 100% Automated pSEO Engine Live
-          <a href="https://hits.sh/sroon13432.github.io/SROON12323/" target="_blank" title="Live Visitor Counter" style="display:inline-flex; align-items:center; text-decoration:none;">
-            <img alt="Hits" src="https://hits.sh/sroon13432.github.io/SROON12323.svg?label=Visitors&color=10b981&labelColor=131b2e" style="height:18px; border-radius:3px;">
-          </a>
+          <span id="navVisitorContainer" style="display:inline-flex; align-items:center;">
+            <img id="navVisitorBadge" alt="Unique Visitors" src="https://visitor-badge.one9x.com/badge?page_id=canmyspec_uv&unique=true&timeframe=86400&left_text=Unique+Visitors&left_color=131b2e&right_color=10b981" style="height:18px; border-radius:3px;">
+          </span>
         </div>
       </div>
     </div>
@@ -287,11 +287,9 @@
       </div>
       <div class="stat-card">
         <div class="stat-num" style="display:flex; justify-content:center; align-items:center; min-height:32px;">
-          <a href="https://hits.sh/sroon13432.github.io/SROON12323/" target="_blank" title="Live Visitor Counter" style="display:inline-flex; align-items:center; text-decoration:none;">
-            <img alt="Visitors" src="https://hits.sh/sroon13432.github.io/SROON12323.svg?label=Live+Visitors&color=6366f1&labelColor=131b2e" style="height:24px; border-radius:4px;">
-          </a>
+          <img id="statVisitorBadge" alt="Unique Visitors" src="https://visitor-badge.one9x.com/badge?page_id=canmyspec_uv&unique=true&timeframe=86400&left_text=Unique+Visitors&left_color=131b2e&right_color=6366f1" style="height:24px; border-radius:4px;">
         </div>
-        <div class="stat-label">Total Verified Visits</div>
+        <div class="stat-label">Real Unique Visitors (24h Dedup)</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">0.05s</div>
@@ -17591,6 +17589,34 @@
       filteredCards = getCards();
       updatePagination();
     });
+  </script>
+  <script>
+    // Real Unique Visitor & Admin/Bot Protection
+    (function() {
+      try {
+        const isBot = /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
+        const isAutomated = navigator.webdriver === true;
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('admin') || urlParams.has('master') || urlParams.has('owner')) {
+          localStorage.setItem('canmyspec_admin', 'true');
+        }
+        const isAdmin = localStorage.getItem('canmyspec_admin') === 'true';
+
+        // If automated test, crawler, or admin/owner: switch to read-only badge (no count increase)
+        if (isBot || isAutomated || isAdmin) {
+          const navImg = document.getElementById('navVisitorBadge');
+          if (navImg) {
+            navImg.src = 'https://visitor-badge.one9x.com/badge?page_id=canmyspec_uv&read=true&left_text=Unique+Visitors' + (isAdmin ? '+(Admin)' : '') + '&left_color=131b2e&right_color=10b981';
+          }
+          const statImg = document.getElementById('statVisitorBadge');
+          if (statImg) {
+            statImg.src = 'https://visitor-badge.one9x.com/badge?page_id=canmyspec_uv&read=true&left_text=Unique+Visitors' + (isAdmin ? '+(Admin)' : '') + '&left_color=131b2e&right_color=6366f1';
+          }
+        }
+      } catch (e) {
+        // Fallback gracefully
+      }
+    })();
   </script>
 </body>
 </html>
