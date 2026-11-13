@@ -105,40 +105,6 @@
       font-size: 18px;
     }
 
-    /* Ad Banner */
-    .ad-banner {
-      background: #0f172a;
-      border: 1px dashed #334155;
-      border-radius: 8px;
-      padding: 18px;
-      text-align: center;
-      color: #64748b;
-      font-size: 12px;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      margin: 36px 0;
-    }
-
-    /* Stats Bar */
-    .stats-bar {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-bottom: 40px;
-    }
-    @media (max-width: 768px) {
-      .stats-bar { grid-template-columns: 1fr; }
-    }
-    .stat-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
-      padding: 18px;
-      text-align: center;
-    }
-    .stat-num { font-size: 24px; font-weight: 800; color: #fff; margin-bottom: 4px; }
-    .stat-label { font-size: 13px; color: var(--text-muted); }
-
     /* Pagination */
     .pagination-wrapper {
       display: flex;
@@ -262,28 +228,16 @@
         <span class="search-icon">🔍</span>
         <input type="text" id="gameSearch" class="search-input" placeholder="Search game (e.g. Cyberpunk, Wukong, Elden Ring...)" onkeyup="filterGames()">
       </div>
+      <div style="margin-top: 16px; font-size: 13px; color: var(--text-muted); display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
+        <span>🎮 <strong>1,859</strong> Benchmarked Games</span>
+        <span>•</span>
+        <span>⚡ 60 FPS Target Guides</span>
+        <span>•</span>
+        <span>🔍 Live Instant Filter</span>
+      </div>
     </section>
 
-    <div class="ad-banner">
-      Advertisement — Google AdSense High-CPM In-Feed Unit
-    </div>
-
-    <div class="stats-bar">
-      <div class="stat-card">
-        <div class="stat-num">1,859 Games</div>
-        <div class="stat-label">Verified Benchmarks</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">0.05s</div>
-        <div class="stat-label">Ultra-Fast Static SSG</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num">100/100</div>
-        <div class="stat-label">Google SEO Score</div>
-      </div>
-    </div>
-
-    <section>
+    <section style="margin-top: 10px;">
       <div class="grid-header">
         <h2 class="grid-title">Featured Trending PC Games</h2>
         <span style="font-size: 13px; color: var(--text-muted);">Instant Search Enabled</span>
@@ -20751,9 +20705,9 @@
 
   <footer>
     <div class="container">
-      <p>© 2026 CanMySpec.com · Automated Programmatic SEO Engine · Free Open Static Site</p>
+      <p>© 2026 CanMySpec.com · PC System Requirements & Hardware Benchmarks Database</p>
       <p style="margin-top: 8px;">
-        <a href="tools/" style="color:#38bdf8; font-weight:600;">🛠️ Free AI Tools</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="about.html">About & Contact</a> | <a href="sitemap.xml">XML Sitemap</a> | <a href="robots.txt">Robots.txt</a>
+        <a href="tools/" style="color:#38bdf8; font-weight:600;">🛠️ Free AI Tools</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="about.html">About & Contact</a> | <a href="sitemap.xml">XML Sitemap</a>
       </p>
     </div>
   </footer>
