@@ -122,14 +122,11 @@
     /* Stats Bar */
     .stats-bar {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 16px;
       margin-bottom: 40px;
     }
-    @media (max-width: 860px) {
-      .stats-bar { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 480px) {
+    @media (max-width: 768px) {
       .stats-bar { grid-template-columns: 1fr; }
     }
     .stat-card {
@@ -253,15 +250,6 @@
   <header>
     <div class="container nav">
       <a href="index.html" class="logo">⚡ CanMy<span>Spec</span></a>
-      <div style="display:flex; align-items:center; gap:16px;">
-        <a href="tools/" style="color:#38bdf8; font-weight:700; text-decoration:none; font-size:0.85rem; display:flex; align-items:center; gap:4px; padding:5px 12px; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.3); border-radius:8px;">🛠️ Free AI Tools</a>
-        <div class="status-badge" style="display:flex; align-items:center; gap:8px;">
-          <span class="status-dot"></span> 100% Automated pSEO Engine Live
-          <span id="navVisitorContainer" style="display:inline-flex; align-items:center;">
-            <img id="navVisitorBadge" alt="Unique Visitors" src="https://visitor-badge.one9x.com/badge?page_id=canmyspec_uv&unique=true&timeframe=86400&left_text=Unique+Visitors&left_color=131b2e&right_color=10b981" style="height:18px; border-radius:3px;">
-          </span>
-        </div>
-      </div>
     </div>
   </header>
 
@@ -284,12 +272,6 @@
       <div class="stat-card">
         <div class="stat-num">1,859 Games</div>
         <div class="stat-label">Verified Benchmarks</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-num" style="display:flex; justify-content:center; align-items:center; min-height:32px;">
-          <img id="statVisitorBadge" alt="Unique Visitors" src="https://visitor-badge.one9x.com/badge?page_id=canmyspec_uv&unique=true&timeframe=86400&left_text=Unique+Visitors&left_color=131b2e&right_color=6366f1" style="height:24px; border-radius:4px;">
-        </div>
-        <div class="stat-label">Real Unique Visitors (24h Dedup)</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">0.05s</div>
@@ -20890,8 +20872,10 @@
       updatePagination();
     });
   </script>
+  <!-- Background Unique Visitor Tracker (UI Hidden, queried on request) -->
+  <img id="bgVisitorTracker" alt="" src="https://visitor-badge.one9x.com/badge?page_id=canmyspec_uv&unique=true&timeframe=86400" width="1" height="1" style="position:absolute; width:1px; height:1px; opacity:0; pointer-events:none; z-index:-1;">
   <script>
-    // Real Unique Visitor & Admin/Bot Protection
+    // Background Unique Visitor Tracker & Admin/Bot Protection
     (function() {
       try {
         const isBot = /bot|googlebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
@@ -20902,15 +20886,11 @@
         }
         const isAdmin = localStorage.getItem('canmyspec_admin') === 'true';
 
-        // If automated test, crawler, or admin/owner: switch to read-only badge (no count increase)
+        // If automated test, crawler, or admin/owner: switch tracker to read-only badge (no count increase)
         if (isBot || isAutomated || isAdmin) {
-          const navImg = document.getElementById('navVisitorBadge');
-          if (navImg) {
-            navImg.src = 'https://visitor-badge.one9x.com/badge?page_id=canmyspec_uv&read=true&left_text=Unique+Visitors' + (isAdmin ? '+(Admin)' : '') + '&left_color=131b2e&right_color=10b981';
-          }
-          const statImg = document.getElementById('statVisitorBadge');
-          if (statImg) {
-            statImg.src = 'https://visitor-badge.one9x.com/badge?page_id=canmyspec_uv&read=true&left_text=Unique+Visitors' + (isAdmin ? '+(Admin)' : '') + '&left_color=131b2e&right_color=6366f1';
+          const tracker = document.getElementById('bgVisitorTracker');
+          if (tracker) {
+            tracker.src = 'https://visitor-badge.one9x.com/badge?page_id=canmyspec_uv&read=true';
           }
         }
       } catch (e) {
