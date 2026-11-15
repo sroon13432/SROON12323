@@ -511,7 +511,7 @@
           <div class="filter-field">
             <label for="gpuSelect" data-i18n="index.labelGpu">Graphics card (GPU)</label>
             <select id="gpuSelect" class="filter-select" onchange="onGpuChange()">
-              <option value="">Select your GPU…</option>
+              <option value="" data-i18n="index.gpuPlaceholder">Select your GPU…</option>
             </select>
           </div>
           <div class="filter-field">
@@ -28316,7 +28316,7 @@
       $('gridTitle').textContent = hw.gpu ? T('index.gridTitleGpu', { gpu: hw.gpu.name })
         : T(state.q ? 'index.gridTitleSearch' : 'index.gridTitleFiltered');
       var n = activeFilterCount();
-      $('gridSubtitle').textContent = n ? T('index.gridSubActive', { n: fmt(n) }) : T('index.gridSubFiltered');
+      $('gridSubtitle').textContent = n ? T(n === 1 ? 'index.gridSubActive' : 'index.gridSubActivePlural', { n: fmt(n) }) : T('index.gridSubFiltered');
       renderActiveFilters();
       updatePresetChips();
     }

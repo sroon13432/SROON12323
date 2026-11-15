@@ -46,7 +46,7 @@
     'index.presetTiny': '\ud83e\udeb6 Under 5 GB',
     'index.presetAction': '\u2694\ufe0f Action',
     'index.presetLowend': '\ud83d\udcbb Low-spec friendly',
-    'index.statGames': '<strong>{n}</strong> Benchmarked Games',
+    'index.statGames': '🎮 <strong>{n}</strong> Benchmarked Games',
     'index.statFps': '\u26a1 60 FPS Target Guides',
     'index.statLive': '\ud83d\udd0d Live Instant Filter',
     'index.filterTitle': '\ud83c\udfaf Find games my PC can run',
@@ -95,6 +95,7 @@
     'index.gridTitleGpu': 'Games {gpu} can run',
     'index.gridSubDefault': 'Instant Search Enabled',
     'index.gridSubActive': '{n} filter active',
+    'index.gridSubActivePlural': '{n} filters active',
     'index.gridSubActivePlural': '{n} filters active',
     'index.gridSubFiltered': 'Filtered from the full database',
     'index.pageInfo': 'Showing {from} - {to} of {total} games (Page {page} of {pages})',
@@ -169,6 +170,7 @@
     'hub.chipGpus': 'Graphics cards',
     'hub.chipSpecs': 'Laptops, handhelds & budget builds',
     'hub.guidesCrumb': 'GPU & PC Spec Guides',
+    'hub.h1': 'Games You Can Run on {full}',
 
     /* ---------------- hardware guide index ---------------- */
     'hubIndex.title': 'Games by GPU & PC Spec',
@@ -284,7 +286,7 @@
     'index.presetTiny': '\ud83e\udeb6 5 GB \ubbf8\ub9cc',
     'index.presetAction': '\u2694\ufe0f \uc561\uc158',
     'index.presetLowend': '\ud83d\udcbb \uc800\uc0ac\uc591\uc5d0 \uac15\ud55c',
-    'index.statGames': '<strong>{n}</strong>\uac1c \uac8c\uc784 \ubca4\uce58\ub9c8\ud06c',
+    'index.statGames': '\ud83c\udfae <strong>{n}</strong>\uac1c \uac8c\uc784 \ubca4\uce58\ub9c8\ud06c',
     'index.statFps': '\u26a1 60 FPS \ubaa9\ud45c \uac00\uc774\ub4dc',
     'index.statLive': '\ud83d\udd0d \uc2e4\uc2dc\uac04 \uc989\uc2dc \ud544\ud130',
     'index.filterTitle': '\ud83c\udfaf \ub0b4 PC\ub85c \ub3cc\ub9ac\ub294 \uac8c\uc784 \ucc3e\uae30',
@@ -325,7 +327,7 @@
     'index.copied': '\u2705 \ub9c1\ud06c \ubcf5\uc0ac\ub428',
     'index.copyPrompt': '\uc774 \ub9c1\ud06c\ub97c \ubcf5\uc0ac\ud558\uc138\uc694:',
     'index.resetAll': '\uc804\uccb4 \ucd08\uae30\ud654',
-    'index.filterNote': 'OS\uc640 Steam Deck \uc815\ubcf4\ub294 Steam \uc2a4\ud1a0\uc5b4\uc758 \uc2e4\uc2dc\uac04 \ud50c\ub7ab\ud3fc \ub370\uc774\ud130\ub97c \ub530\ub985\ub2c8\ub2e4. macOS\u00b7Linux\ub294 \ub124\uc774\ud2f0\ube0c \ubc0c\ub4dc\uac00 \ub4f1\ub85d\ub41c \uacbd\uc6b0\ub9cc \ud45c\uc2dc\ud558\uace0(Proton \ud638\ud658\uc740 \uc81c\uc678), Deck \ub4f1\uae09\uc740 Steam \uacf5\uc2dd Verified\u00b7Playable\u00b7Unsupported \ud310\uc815\uc785\ub2c8\ub2e4. \uc124\uce58 \uc6a9\ub7c9\uc740 \uc804\uccb4 {total}\uac1c \uc911 {sized}\uac1c \uac8c\uc784\uc5d0\ub9cc \uacf5\uac1c\ub418\uc5b4, \uc6a9\ub7c9 \ud544\ud130\ub97c \ucf1c\uba74 \uc6a9\ub7c9 \ubbf8\uacf5\uac1c \uac8c\uc784\uc740 \ubaa9\ub85d\uc5d0\uc11c \ube60\uc9d1\ub2c8\ub2e4.',
+    'index.filterNote': 'OS\uc640 Steam Deck \uc815\ubcf4\ub294 Steam \uc2a4\ud1a0\uc5b4\uc758 \uc2e4\uc2dc\uac04 \ud50c\ub7ab\ud3fc \ub370\uc774\ud130\ub97c \ub530\ub985\ub2c8\ub2e4. macOS\u00b7Linux\ub294 \ub124\uc774\ud2f0\ube0c \ube4c\ub4dc\uac00 \ub4f1\ub85d\ub41c \uacbd\uc6b0\ub9cc \ud45c\uc2dc\ud558\uace0(Proton \ud638\ud658\uc740 \uc81c\uc678), Deck \ub4f1\uae09\uc740 Steam \uacf5\uc2dd Verified\u00b7Playable\u00b7Unsupported \ud310\uc815\uc785\ub2c8\ub2e4. \uc124\uce58 \uc6a9\ub7c9\uc740 \uc804\uccb4 {total}\uac1c \uc911 {sized}\uac1c \uac8c\uc784\uc5d0\ub9cc \uacf5\uac1c\ub418\uc5b4, \uc6a9\ub7c9 \ud544\ud130\ub97c \ucf1c\uba74 \uc6a9\ub7c9 \ubbf8\uacf5\uac1c \uac8c\uc784\uc740 \ubaa9\ub85d\uc5d0\uc11c \ube60\uc9d1\ub2c8\ub2e4.',
     'index.quickHubs': '\uc778\uae30 \uac00\uc774\ub4dc:',
     'index.gridTitleDefault': '\ucd94\ucc9c \uc778\uae30 PC \uac8c\uc784',
     'index.gridTitleSearch': '\uac80\uc0c9 \uacb0\uacfc',
@@ -333,6 +335,7 @@
     'index.gridTitleGpu': '{gpu}\ub85c \ub3cc\ub9ac\ub294 \uac8c\uc784',
     'index.gridSubDefault': '\uc989\uc2dc \uac80\uc0c9 \uc0ac\uc6a9 \uac00\ub2a5',
     'index.gridSubActive': '\ud544\ud130 {n}\uac1c \uc801\uc6a9 \uc911',
+    'index.gridSubActivePlural': '\ud544\ud130 {n}\uac1c \uc801\uc6a9 \uc911',
     'index.gridSubActivePlural': '\ud544\ud130 {n}\uac1c \uc801\uc6a9 \uc911',
     'index.gridSubFiltered': '\uc804\uccb4 \ub370\uc774\ud130\ubca0\uc774\uc2a4\uc5d0\uc11c \ud544\ud130\ub9c1',
     'index.pageInfo': '{total}\uac1c \uc911 {from} - {to}\ubc88 \ud45c\uc2dc (\ud398\uc774\uc9c0 {page} / {pages})',
@@ -405,6 +408,7 @@
     'hub.chipGpus': '\uadf8\ub798\ud53d\uce74\ub4dc',
     'hub.chipSpecs': '\ub178\ud2b8\ubd81\u00b7\ud578\ub4dc\ud5ec\ub4dc\u00b7\ubcf4\uae09\ud615 PC',
     'hub.guidesCrumb': 'GPU\u00b7PC \uc0ac\uc591 \uac00\uc774\ub4dc',
+    'hub.h1': '{name}\uc5d0\uc11c \ub3cc\ub9ac\ub294 \uac8c\uc784',
 
     'hubIndex.title': 'GPU\u00b7PC \uc0ac\uc591\ubcc4 \uac8c\uc784',
     'hubIndex.lead': '\ucd94\uc801 \uc911\uc778 \ubaa8\ub4e0 \uadf8\ub798\ud53d\uce74\ub4dc \ub4f1\uae09\uacfc \ub178\ud2b8\ubd81\u00b7\ud578\ub4dc\ud5ec\ub4dc\u00b7\ubcf4\uae09\ud615 PC\ub97c \ub2f4\uc740 \uac00\uc774\ub4dc {hubs}\uac1c\uc785\ub2c8\ub2e4. \uac01 \ud398\uc774\uc9c0\ub294 \ud574\ub2f9 \ud558\ub4dc\uc6e8\uc5b4\ub85c \uad8c\uc7a5 \uc124\uc815 60 FPS\ub85c \ub3cc\ub9ac\ub294 \uac8c\uc784\uacfc \ucd5c\uc18c \uc0ac\uc591\ub9cc \ub9cc\uc871\ud558\ub294 \uac8c\uc784\uc744 \ub098\ub204\uc5b4 \ubcf4\uc5ec \uc8fc\uba70, \ubaa8\ub450 {total}\uac1c \uac8c\uc784\uc758 Steam \uacf5\uc2dd \uc0ac\uc591\uc5d0\uc11c \ub9e4\uce6d\ud55c \uac83\uc785\ub2c8\ub2e4.',
@@ -425,7 +429,7 @@
     'game.vram': 'VRAM',
     'game.storage': '\uc800\uc7a5\uacf5\uac04',
     'game.directx': 'DirectX',
-    'game.hwTitle': '{title}\uc744(\ub97c) \ub3cc\ub9ac\ub294 GPU\ub294?',
+    'game.hwTitle': '{title} \u2014 \uc5b4\ub290 GPU\uc5d0\uc11c \ub3cc\uc544\uac08\uae4c?',
     'game.hwLabelMin': '\ucd5c\uc18c GPU',
     'game.hwLabelRec': '\uad8c\uc7a5 GPU (60 FPS)',
     'game.hwLabelMemory': '\uba54\ubaa8\ub9ac',
@@ -438,12 +442,12 @@
     'game.hwMinText': '\uad8c\uc7a5 \uce74\ub4dc\ubcf4\ub2e4 \ub0ae\uc74c \u2014 \uac00\uc774\ub4dc:',
     'game.hwAllGuides': '\ubaa8\ub4e0 GPU\u00b7PC \uc0ac\uc591 \uac00\uc774\ub4dc',
     'game.hwFilterMine': '\ub0b4 \ud558\ub4dc\uc6e8\uc5b4\ub85c \uc804\uccb4 \uac8c\uc784 \ud544\ud130\ud558\uae30',
-    'game.checkerTitle': '\u26a1 {title} \ub0b4 PC\uc5d0\uc11c \ub3cc\uc544\uac08\uae4c? \uc989\uc2dd \ud558\ub4dc\uc6e8\uc5b4 \uccb4\ud06c',
+    'game.checkerTitle': '\u26a1 {title} \ub0b4 PC\uc5d0\uc11c \ub3cc\uc544\uac08\uae4c? \uc989\uc2dc \ud558\ub4dc\uc6e8\uc5b4 \uccb4\ud06c',
     'game.checkerDesc': '\uadf8\ub798\ud53d\uce74\ub4dc\uc640 RAM\uc744 \uace0\ub974\uba74 \uc704\uc758 \uacf5\uc2dd \uc0ac\uc591\uacfc \ube44\uad50\ud574 \uc90d\ub2c8\ub2e4.',
     'game.checkerBtn': '\ud638\ud658\uc131 \ud655\uc778',
     'game.seeAll': '\ub0b4 PC\ub85c \ub3cc\ub9ac\ub294 \ubaa8\ub4e0 \uac8c\uc784 \ubcf4\uae30 \u2192',
     'game.optTitle': '\ucd5c\uc801 \uadf8\ub798\ud53d \uc124\uc815\uacfc FPS \ud5a5\uc0c1 \ud301',
-    'game.affTitle': '{title}\uc744(\ub97c) \uc704\ud55c \ud558\ub4dc\uc6e8\uc5b4 \uc5c5\uadf8\ub808\uc774\ub4dc\uac00 \ud544\uc694\ud558\uc2e0\uac00\uc694?',
+    'game.affTitle': '{title} \u2014 \ud558\ub4dc\uc6e8\uc5b4 \uc5c5\uadf8\ub808\uc774\ub4dc\uac00 \ud544\uc694\ud558\uc2e0\uac00\uc694?',
     'game.affText': 'RTX 40 \uc2dc\ub9ac\uc988 GPU, \uac8c\uc774\ubc0d \ub178\ud2b8\ubd81, \uace0\uc18d NVMe SSD\uc758 \ucd5c\uc800\uac00\ub97c \ube44\uad50\ud574 \ubcf4\uc138\uc694.',
     'game.affBtn': '\ucd5c\uc800\uac00 \ud655\uc778 \ud83d\udc49',
     'game.faqTitle': '\uc790\uc8fc \ubb3b\ub294 \uc9c8\ubb38',
@@ -517,7 +521,7 @@
     'index.presetTiny': '\ud83e\udeb6 5GB\u672a\u6e80',
     'index.presetAction': '\u2694\ufe0f \u30a2\u30af\u30b7\u30e7\u30f3',
     'index.presetLowend': '\ud83d\udcbb \u4f4e\u30b9\u30da\u30c3\u30af\u5411\u3051',
-    'index.statGames': '<strong>{n}</strong>\u672c\u306e\u30d9\u30f3\u30c1\u30de\u30fc\u30af\u6e08\u307f',
+    'index.statGames': '\ud83c\udfae <strong>{n}</strong>\u672c\u306e\u30d9\u30f3\u30c1\u30de\u30fc\u30af\u6e08\u307f',
     'index.statFps': '\u26a1 60FPS\u76ee\u6a19\u30ac\u30a4\u30c9',
     'index.statLive': '\ud83d\udd0d \u30ea\u30a2\u30eb\u30bf\u30a4\u30e0\u5373\u6642\u30d5\u30a3\u30eb\u30bf\u30fc',
     'index.filterTitle': '\ud83c\udfaf \u81ea\u5206\u306ePC\u3067\u52d5\u304f\u30b2\u30fc\u30e0\u3092\u63a2\u3059',
@@ -566,6 +570,7 @@
     'index.gridTitleGpu': '{gpu}\u3067\u52d5\u304f\u30b2\u30fc\u30e0',
     'index.gridSubDefault': '\u5373\u6642\u691c\u7d22\u5bfe\u5fdc',
     'index.gridSubActive': '\u30d5\u30a3\u30eb\u30bf\u30fc{n}\u4ef6\u3092\u9069\u7528\u4e2d',
+    'index.gridSubActivePlural': '\u30d5\u30a3\u30eb\u30bf\u30fc{n}\u4ef6\u3092\u9069\u7528\u4e2d',
     'index.gridSubActivePlural': '\u30d5\u30a3\u30eb\u30bf\u30fc{n}\u4ef6\u3092\u9069\u7528\u4e2d',
     'index.gridSubFiltered': '\u5168\u30c7\u30fc\u30bf\u30d9\u30fc\u30b9\u304b\u3089\u7d5e\u8fbc\u307f',
     'index.pageInfo': '{total}\u4ef6\u4e2d {from} - {to}\u4ef6\u3092\u8868\u793a\uff08{page} / {pages} \u30da\u30fc\u30b8\uff09',
@@ -638,6 +643,7 @@
     'hub.chipGpus': '\u30b0\u30e9\u30d5\u30a3\u30c3\u30af\u30ab\u30fc\u30c9',
     'hub.chipSpecs': '\u30ce\u30fc\u30c8PC\u30fb\u30cf\u30f3\u30c9\u30d8\u30eb\u30c9\u30fb\u4f4e\u4e88\u7b97PC',
     'hub.guidesCrumb': 'GPU\u30fbPC\u30b9\u30da\u30c3\u30af\u30ac\u30a4\u30c9',
+    'hub.h1': '{name}\u3067\u904a\u3079\u308b\u30b2\u30fc\u30e0',
 
     'hubIndex.title': 'GPU\u30fbPC\u30b9\u30da\u30c3\u30af\u5225\u30b2\u30fc\u30e0',
     'hubIndex.lead': '\u8ffd\u8de1\u3057\u3066\u3044\u308b\u3059\u3079\u3066\u306eGPU\u30c6\u30a3\u30a2\u3068\u3001\u30ce\u30fc\u30c8PC\u30fb\u30cf\u30f3\u30c9\u30d8\u30eb\u30c9\u30fb\u4f4e\u4e88\u7b97PC\u3092\u7db2\u7f85\u3059\u308b{hubs}\u4ef6\u306e\u30ac\u30a4\u30c9\u3067\u3059\u3002\u5404\u30da\u30fc\u30b8\u3067\u306f\u3001\u305d\u306e\u30cf\u30fc\u30c9\u30a6\u30a7\u30a2\u3067\u63a8\u5968\u8a2d\u5b9a60FPS\u306b\u9054\u3059\u308b\u30b2\u30fc\u30e0\u3068\u3001\u6700\u4f4e\u8981\u4ef6\u306e\u307f\u306e\u30b2\u30fc\u30e0\u3092\u5206\u3051\u3066\u8868\u793a\u3057\u307e\u3059 \u2014 \u3059\u3079\u3066{total}\u4ef6\u306eSteam\u516c\u5f0f\u52d5\u4f5c\u74b0\u5883\u304b\u3089\u7167\u5408\u3057\u305f\u3082\u306e\u3067\u3059\u3002',
@@ -704,7 +710,7 @@
     'detect.gpuUnknown': 'GPU: \u300c{raw}\u300d\u306f\u8ffd\u8de1\u5bfe\u8c61\u306e\u30ab\u30fc\u30c9\u3067\u306f\u306a\u3044\u305f\u3081GPU\u30d5\u30a3\u30eb\u30bf\u30fc\u306f\u7a7a\u306e\u307e\u307e\u3067\u3059 \u2014 \u4e0a\u3067\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002',
     'detect.gpuApple': 'GPU: Apple\u30b7\u30ea\u30b3\u30f3\uff08{raw}\uff09 \u2014 \u5f53\u30b5\u30a4\u30c8\u306e\u30ea\u30b9\u30c8\u306fNVIDIA\u30fbAMD\u30fbIntel\u306e\u307f\u306a\u306e\u3067GPU\u306f\u9078\u629e\u305b\u305a\u3001macOS\u30d5\u30a3\u30eb\u30bf\u30fc\u3092\u9069\u7528\u3057\u307e\u3057\u305f\u3002',
     'detect.gpuNoWebgl': 'GPU: \u3053\u306e\u30d6\u30e9\u30a6\u30b6\u306fWebGL\u3092\u63d0\u4f9b\u3057\u306a\u3044\u305f\u3081\u30b0\u30e9\u30d5\u30a3\u30c3\u30af\u30ab\u30fc\u30c9\u3092\u8aad\u3081\u307e\u305b\u3093\u3067\u3057\u305f\u3002\u4e0a\u3067\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002',
-    'detect.gpuSoftware': 'GPU: \u30d6\u30e9\u30a6\u30b6\u304c\u30bd\u30d5\u30c8\u30a6\u30a7\u30a2\u63cf\u753b\uff08\u300c{raw}\u300d\uff09\u306e\u305f\u3081\u5b9f\u306e\u30ab\u30fc\u30c9\u304c\u96a0\u308c\u3066\u3044\u307e\u3059\u3002\u4e0a\u3067\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002',
+    'detect.gpuSoftware': 'GPU: \u30d6\u30e9\u30a6\u30b6\u304c\u30bd\u30d5\u30c8\u30a6\u30a7\u30a2\u63cf\u753b\uff08\u300c{raw}\u300d\uff09\u306e\u305f\u3081\u5b9f\u969b\u306e\u30ab\u30fc\u30c9\u304c\u96a0\u308c\u3066\u3044\u307e\u3059\u3002\u4e0a\u3067\u9078\u629e\u3057\u3066\u304f\u3060\u3055\u3044\u3002',
     'detect.osLine': 'OS: {os}',
     'detect.osUnknown': 'OS: \u5224\u5b9a\u3067\u304d\u306a\u304b\u3063\u305f\u305f\u3081OS\u30d5\u30a3\u30eb\u30bf\u30fc\u306f\u305d\u306e\u307e\u307e\u3067\u3059\u3002',
     'detect.osWindows': 'Windows',
@@ -829,10 +835,15 @@
     });
   }
 
-  function t(key, vars) {
+  function known(key) {
     var table = DICT[current] || EN;
     var text = table[key];
     if (text === undefined) text = EN[key];
+    return text;
+  }
+
+  function t(key, vars) {
+    var text = known(key);
     if (text === undefined) return key;
     return fill(text, vars);
   }
@@ -860,7 +871,9 @@
       if (!node.hasAttribute || !node.hasAttribute(attr)) continue;
       var key = node.getAttribute(attr);
       if (!key) continue;
-      var text = t(key, varsOf(node));
+      var text = known(key);
+      if (text === undefined) continue;
+      text = fill(text, varsOf(node));
       if (prop === 'placeholder') node.setAttribute('placeholder', text);
       else if (prop === 'title') node.setAttribute('title', text);
       else if (prop === 'aria-label') node.setAttribute('aria-label', text);
