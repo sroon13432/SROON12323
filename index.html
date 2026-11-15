@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CanMySpec.com — Can My PC Run It? (PC System Requirements & FPS Database)</title>
-  <meta name="description" content="Check official PC system requirements and benchmarks for the latest Steam games. Instant compatibility check, minimum vs recommended specs, and 60 FPS settings.">
+  <meta name="description" content="Pick your graphics card and RAM to see every PC game your build can run. Official Steam system requirements, minimum vs recommended specs (CPU, GPU, RAM) and 60 FPS targets for 2,459 games.">
   <link rel="canonical" href="https://canmyspec.com/">
   <!-- Google AdSense Official Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3774179792647771" crossorigin="anonymous"></script>
@@ -16,6 +16,7 @@
       --accent: #6366f1;
       --accent-hover: #4f46e5;
       --success: #10b981;
+      --warning: #f59e0b;
       --text: #f8fafc;
       --text-muted: #94a3b8;
     }
@@ -28,7 +29,7 @@
       padding-bottom: 60px;
     }
     .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
-    
+
     header {
       background: rgba(11, 15, 25, 0.85);
       backdrop-filter: blur(12px);
@@ -41,23 +42,11 @@
     .nav { display: flex; justify-content: space-between; align-items: center; }
     .logo { font-size: 22px; font-weight: 800; color: #fff; text-decoration: none; }
     .logo span { color: var(--accent); }
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      background: rgba(16, 185, 129, 0.15);
-      color: #34d399;
-      padding: 4px 10px;
-      border-radius: 20px;
-      border: 1px solid rgba(16, 185, 129, 0.3);
-    }
-    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; }
 
     /* Hero */
     .hero-banner {
       text-align: center;
-      padding: 60px 20px 40px;
+      padding: 60px 20px 36px;
     }
     .hero-title {
       font-size: 42px;
@@ -104,6 +93,60 @@
       color: var(--text-muted);
       font-size: 18px;
     }
+
+    /* Hardware filter */
+    .filter-panel {
+      max-width: 940px;
+      margin: 26px auto 0;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: left;
+    }
+    .filter-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 16px; }
+    .filter-head h2 { font-size: 18px; font-weight: 800; }
+    .filter-head span { font-size: 12px; color: var(--text-muted); }
+    .filter-row { display: grid; grid-template-columns: 1.3fr 0.9fr 1fr; gap: 12px; }
+    .filter-field label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.4px; }
+    .filter-select {
+      width: 100%;
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #fff;
+      padding: 11px 12px;
+      border-radius: 9px;
+      font-size: 14px;
+      outline: none;
+    }
+    .filter-select:focus { border-color: var(--accent); }
+    .filter-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 14px; }
+    .seg-btn {
+      background: #0f172a;
+      border: 1px solid #334155;
+      color: #cbd5e1;
+      padding: 9px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .seg-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .reset-btn {
+      margin-left: auto;
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .reset-btn:hover { color: #fff; }
+    .filter-result { margin-top: 14px; font-size: 13px; color: var(--text-muted); min-height: 20px; }
+    .filter-result strong { color: #34d399; }
+    .quick-hubs { margin-top: 12px; font-size: 13px; color: var(--text-muted); }
+    .quick-hubs a { color: #a5b4fc; text-decoration: none; margin-right: 12px; white-space: nowrap; }
+    .quick-hubs a:hover { text-decoration: underline; }
 
     /* Pagination */
     .pagination-wrapper {
@@ -179,7 +222,7 @@
       border-color: var(--accent);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
     }
-    .game-img { width: 100%; height: 135px; object-fit: cover; }
+    .game-img { width: 100%; height: 135px; object-fit: cover; background: #0f172a; }
     .game-body { padding: 18px; flex-grow: 1; display: flex; flex-direction: column; }
     .game-title { font-size: 16px; font-weight: 800; margin-bottom: 8px; line-height: 1.3; }
     .game-genre { font-size: 12px; color: var(--text-muted); margin-bottom: 14px; }
@@ -190,10 +233,28 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
       font-size: 12px;
     }
-    .gpu-badge { background: rgba(99, 102, 241, 0.15); color: #818cf8; padding: 3px 8px; border-radius: 6px; font-weight: 600; }
-    .fps-badge { color: #34d399; font-weight: 700; }
+    .gpu-badge { background: rgba(99, 102, 241, 0.15); color: #818cf8; padding: 3px 8px; border-radius: 6px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 66%; }
+    .fps-badge { color: #34d399; font-weight: 700; white-space: nowrap; }
+    .min-badge { color: #fbbf24; font-weight: 700; white-space: nowrap; }
+
+    /* Hardware hubs */
+    .hub-section { margin-top: 64px; }
+    .hub-groups { display: flex; flex-direction: column; gap: 14px; margin-top: 18px; }
+    .hub-group-name { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+    .chip-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 13px;
+      padding: 7px 12px;
+      border-radius: 20px;
+    }
+    .chip:hover { border-color: var(--accent); color: #fff; }
 
     footer {
       border-top: 1px solid var(--card-border);
@@ -207,7 +268,7 @@
 
     @media (max-width: 640px) {
       .hero-title { font-size: 30px; }
-      .stats-bar { grid-template-columns: 1fr; }
+      .filter-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -223,10 +284,10 @@
     <section class="hero-banner">
       <h1 class="hero-title">Can My PC Run It?</h1>
       <p class="hero-subtitle">Official PC system requirements, GPU benchmarks, and optimal 60 FPS graphics settings for thousands of PC games.</p>
-      
+
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="gameSearch" class="search-input" placeholder="Search game (e.g. Cyberpunk, Wukong, Elden Ring...)" onkeyup="filterGames()">
+        <input type="text" id="gameSearch" class="search-input" placeholder="Search game (e.g. Cyberpunk, Wukong, Elden Ring...)" oninput="onSearchInput()">
       </div>
       <div style="margin-top: 16px; font-size: 13px; color: var(--text-muted); display: flex; justify-content: center; gap: 14px; flex-wrap: wrap;">
         <span>🎮 <strong>2,459</strong> Benchmarked Games</span>
@@ -235,12 +296,53 @@
         <span>•</span>
         <span>🔍 Live Instant Filter</span>
       </div>
+
+      <div class="filter-panel">
+        <div class="filter-head">
+          <h2>🎯 Find games my PC can run</h2>
+          <span>Pick your GPU and RAM — the whole database filters instantly</span>
+        </div>
+        <div class="filter-row">
+          <div class="filter-field">
+            <label for="gpuSelect">Graphics card (GPU)</label>
+            <select id="gpuSelect" class="filter-select" onchange="onGpuChange()">
+              <option value="">Select your GPU…</option>
+            </select>
+          </div>
+          <div class="filter-field">
+            <label for="ramSelect">System RAM</label>
+            <select id="ramSelect" class="filter-select" onchange="onRamChange()">
+              <option value="">Any RAM</option>
+              <option value="4">4 GB</option>
+              <option value="8">8 GB</option>
+              <option value="16">16 GB</option>
+              <option value="32">32 GB+</option>
+            </select>
+          </div>
+          <div class="filter-field">
+            <label for="modeSelect">Show</label>
+            <select id="modeSelect" class="filter-select" onchange="onModeChange()">
+              <option value="all">Every game it can run</option>
+              <option value="rec">Only 60 FPS recommended</option>
+            </select>
+          </div>
+        </div>
+        <div class="filter-actions">
+          <button class="seg-btn" id="copyLinkBtn" onclick="copyShareLink()">🔗 Copy link to this filter</button>
+          <button class="reset-btn" onclick="resetFilter()">Reset filter</button>
+        </div>
+        <div class="filter-result" id="filterResult"></div>
+        <div class="quick-hubs">
+          Popular guides:
+          <a href="gpu/rtx-4060.html">RTX 4060</a><a href="gpu/gtx-1650.html">GTX 1650</a><a href="gpu/gtx-1060.html">GTX 1060</a><a href="gpu/rx-6600.html">RX 6600</a><a href="gpu/rx-580.html">RX 580</a><a href="gpu/intel-iris-xe.html">Iris Xe</a><a href="gpu/steam-deck-handheld.html">Steam Deck</a><a href="gpu/8gb-ram-laptop.html">8 GB RAM laptop</a><a href="gpu/low-end-potato-pc.html">Potato PC</a>
+        </div>
+      </div>
     </section>
 
-    <section style="margin-top: 10px;">
+    <section style="margin-top: 34px;">
       <div class="grid-header">
-        <h2 class="grid-title">Featured Trending PC Games</h2>
-        <span style="font-size: 13px; color: var(--text-muted);">Instant Search Enabled</span>
+        <h2 class="grid-title" id="gridTitle">Featured Trending PC Games</h2>
+        <span style="font-size: 13px; color: var(--text-muted);" id="gridSubtitle">Instant Search Enabled</span>
       </div>
 
       <div class="game-grid" id="gamesContainer">
@@ -299,10 +401,10 @@
     </div>
   </div>
 </a>
-<a href="games/baldurs-gate-3.html" class="game-card" data-title="baldur's gate 3">
-  <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" alt="Baldur's Gate 3 PC Specs" class="game-img" loading="lazy">
+<a href="games/baldurs-gate-3.html" class="game-card" data-title="baldur&#x27;s gate 3">
+  <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" alt="Baldur&#x27;s Gate 3 PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Baldur's Gate 3</h3>
+    <h3 class="game-title">Baldur&#x27;s Gate 3</h3>
     <div class="game-genre">CRPG, Story Rich, Turn-Based Combat, Choices Matter</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce RTX 2060 SUPER</span>
@@ -750,10 +852,10 @@
     </div>
   </div>
 </a>
-<a href="games/dragon-s-dogma-2.html" class="game-card" data-title="dragon's dogma 2">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2054970/header.jpg?t=1791504871" alt="Dragon's Dogma 2 PC Specs" class="game-img" loading="lazy">
+<a href="games/dragon-s-dogma-2.html" class="game-card" data-title="dragon&#x27;s dogma 2">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2054970/header.jpg?t=1791504871" alt="Dragon&#x27;s Dogma 2 PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Dragon's Dogma 2</h3>
+    <h3 class="game-title">Dragon&#x27;s Dogma 2</h3>
     <div class="game-genre">Action, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce RTX 2070 Super</span>
@@ -805,10 +907,10 @@
     </div>
   </div>
 </a>
-<a href="games/tom-clancy-s-rainbow-six-siege.html" class="game-card" data-title="tom clancy's rainbow six siege">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359550/1c7b1ea3405a69c54429e2aa3dc31f3cbbeaa456/header_alt_assets_28.jpg?t=1792001976" alt="Tom Clancy's Rainbow Six Siege PC Specs" class="game-img" loading="lazy">
+<a href="games/tom-clancy-s-rainbow-six-siege.html" class="game-card" data-title="tom clancy&#x27;s rainbow six siege">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/359550/1c7b1ea3405a69c54429e2aa3dc31f3cbbeaa456/header_alt_assets_28.jpg?t=1792001976" alt="Tom Clancy&#x27;s Rainbow Six Siege PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Tom Clancy's Rainbow Six Siege</h3>
+    <h3 class="game-title">Tom Clancy&#x27;s Rainbow Six Siege</h3>
     <div class="game-genre">Action, Free To Play</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA RTX 2060 6GB</span>
@@ -844,7 +946,7 @@
     <h3 class="game-title">PAYDAY 2</h3>
     <div class="game-genre">Action, RPG</div>
     <div class="spec-badge-box">
-      <span class="gpu-badge">GPU: NVIDIA & AMD (2GB VRAM)</span>
+      <span class="gpu-badge">GPU: NVIDIA &amp; AMD (2GB VRAM)</span>
       <span class="fps-badge">60 FPS</span>
     </div>
   </div>
@@ -926,10 +1028,10 @@
     </div>
   </div>
 </a>
-<a href="games/don-t-starve-together.html" class="game-card" data-title="don't starve together">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322330/050ea9c51a4e96f707309d33b7cdd38e0a6cbfff/header_alt_assets_51.jpg?t=1793044716" alt="Don't Starve Together PC Specs" class="game-img" loading="lazy">
+<a href="games/don-t-starve-together.html" class="game-card" data-title="don&#x27;t starve together">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322330/050ea9c51a4e96f707309d33b7cdd38e0a6cbfff/header_alt_assets_51.jpg?t=1793044716" alt="Don&#x27;t Starve Together PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Don't Starve Together</h3>
+    <h3 class="game-title">Don&#x27;t Starve Together</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Radeon HD5450</span>
@@ -970,10 +1072,10 @@
     </div>
   </div>
 </a>
-<a href="games/garry-s-mod.html" class="game-card" data-title="garry's mod">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4000/header.jpg?t=1776868682" alt="Garry's Mod PC Specs" class="game-img" loading="lazy">
+<a href="games/garry-s-mod.html" class="game-card" data-title="garry&#x27;s mod">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4000/header.jpg?t=1776868682" alt="Garry&#x27;s Mod PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Garry's Mod</h3>
+    <h3 class="game-title">Garry&#x27;s Mod</h3>
     <div class="game-genre">Casual, Indie, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 4GB dedicated VRAM</span>
@@ -1069,10 +1171,10 @@
     </div>
   </div>
 </a>
-<a href="games/assassin-s-creed-odyssey.html" class="game-card" data-title="assassin's creed® odyssey">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/812140/header.jpg?t=1793886405" alt="Assassin's Creed® Odyssey PC Specs" class="game-img" loading="lazy">
+<a href="games/assassin-s-creed-odyssey.html" class="game-card" data-title="assassin&#x27;s creed® odyssey">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/812140/header.jpg?t=1793886405" alt="Assassin&#x27;s Creed® Odyssey PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Assassin's Creed® Odyssey</h3>
+    <h3 class="game-title">Assassin&#x27;s Creed® Odyssey</h3>
     <div class="game-genre">Action, Adventure, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: AMD Radeon R9 290, NVIDIA GeForce GTX 970…</span>
@@ -1080,10 +1182,10 @@
     </div>
   </div>
 </a>
-<a href="games/assassin-s-creed-origins.html" class="game-card" data-title="assassin's creed® origins">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582160/header.jpg?t=1793886930" alt="Assassin's Creed® Origins PC Specs" class="game-img" loading="lazy">
+<a href="games/assassin-s-creed-origins.html" class="game-card" data-title="assassin&#x27;s creed® origins">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/582160/header.jpg?t=1793886930" alt="Assassin&#x27;s Creed® Origins PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Assassin's Creed® Origins</h3>
+    <h3 class="game-title">Assassin&#x27;s Creed® Origins</h3>
     <div class="game-genre">Action, Adventure, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GTX 760</span>
@@ -1091,10 +1193,10 @@
     </div>
   </div>
 </a>
-<a href="games/assassin-s-creed-valhalla.html" class="game-card" data-title="assassin's creed valhalla">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2208920/6946e6ea6cfe63a38865de5858a15170c8b80258/header_alt_assets_0.jpg?t=1793391396" alt="Assassin's Creed Valhalla PC Specs" class="game-img" loading="lazy">
+<a href="games/assassin-s-creed-valhalla.html" class="game-card" data-title="assassin&#x27;s creed valhalla">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2208920/6946e6ea6cfe63a38865de5858a15170c8b80258/header_alt_assets_0.jpg?t=1793391396" alt="Assassin&#x27;s Creed Valhalla PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Assassin's Creed Valhalla</h3>
+    <h3 class="game-title">Assassin&#x27;s Creed Valhalla</h3>
     <div class="game-genre">Action, Adventure, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: AMD R9 380 /NVIDIA GeForce GTX 960</span>
@@ -1102,10 +1204,10 @@
     </div>
   </div>
 </a>
-<a href="games/ghost-of-tsushima-director-s-cut.html" class="game-card" data-title="ghost of tsushima director's cut">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg?t=1763409398" alt="Ghost of Tsushima DIRECTOR'S CUT PC Specs" class="game-img" loading="lazy">
+<a href="games/ghost-of-tsushima-director-s-cut.html" class="game-card" data-title="ghost of tsushima director&#x27;s cut">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2215430/header.jpg?t=1763409398" alt="Ghost of Tsushima DIRECTOR&#x27;S CUT PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Ghost of Tsushima DIRECTOR'S CUT</h3>
+    <h3 class="game-title">Ghost of Tsushima DIRECTOR&#x27;S CUT</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce RTX 2060</span>
@@ -1135,10 +1237,10 @@
     </div>
   </div>
 </a>
-<a href="games/no-man-s-sky.html" class="game-card" data-title="no man's sky">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/275850/9f1ca9e3b7d1dccb7b5af404a6739ddc1118ef32/header_alt_assets_26.jpg?t=1793196605" alt="No Man's Sky PC Specs" class="game-img" loading="lazy">
+<a href="games/no-man-s-sky.html" class="game-card" data-title="no man&#x27;s sky">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/275850/9f1ca9e3b7d1dccb7b5af404a6739ddc1118ef32/header_alt_assets_26.jpg?t=1793196605" alt="No Man&#x27;s Sky PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">No Man's Sky</h3>
+    <h3 class="game-title">No Man&#x27;s Sky</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia GTX 1060 3GB, AMD RX 470 4GB…</span>
@@ -1163,7 +1265,7 @@
     <h3 class="game-title">Sid Meier’s Civilization® VI</h3>
     <div class="game-genre">Strategy</div>
     <div class="spec-badge-box">
-      <span class="gpu-badge">GPU: 2GB & AMD 7970</span>
+      <span class="gpu-badge">GPU: 2GB &amp; AMD 7970</span>
       <span class="fps-badge">60 FPS</span>
     </div>
   </div>
@@ -1674,10 +1776,10 @@
     </div>
   </div>
 </a>
-<a href="games/assassin-s-creed-mirage.html" class="game-card" data-title="assassin's creed mirage">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3035570/header.jpg?t=1792777978" alt="Assassin's Creed Mirage PC Specs" class="game-img" loading="lazy">
+<a href="games/assassin-s-creed-mirage.html" class="game-card" data-title="assassin&#x27;s creed mirage">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3035570/header.jpg?t=1792777978" alt="Assassin&#x27;s Creed Mirage PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Assassin's Creed Mirage</h3>
+    <h3 class="game-title">Assassin&#x27;s Creed Mirage</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Intel® Arc™ A750 (8 GB)</span>
@@ -2433,10 +2535,10 @@
     </div>
   </div>
 </a>
-<a href="games/don-t-starve.html" class="game-card" data-title="don't starve">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/219740/88641e235d75934ea9f7ed4e947edfd9da682732/header.jpg?t=1790876891" alt="Don't Starve PC Specs" class="game-img" loading="lazy">
+<a href="games/don-t-starve.html" class="game-card" data-title="don&#x27;t starve">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/219740/88641e235d75934ea9f7ed4e947edfd9da682732/header.jpg?t=1790876891" alt="Don&#x27;t Starve PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Don't Starve</h3>
+    <h3 class="game-title">Don&#x27;t Starve</h3>
     <div class="game-genre">Adventure, Indie, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Radeon HD5450</span>
@@ -2466,10 +2568,10 @@
     </div>
   </div>
 </a>
-<a href="games/deus-ex-human-revolution-director-s-cut.html" class="game-card" data-title="deus ex: human revolution - director's cut">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238010/header.jpg?t=1779722099" alt="Deus Ex: Human Revolution - Director's Cut PC Specs" class="game-img" loading="lazy">
+<a href="games/deus-ex-human-revolution-director-s-cut.html" class="game-card" data-title="deus ex: human revolution - director&#x27;s cut">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238010/header.jpg?t=1779722099" alt="Deus Ex: Human Revolution - Director&#x27;s Cut PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Deus Ex: Human Revolution - Director's Cut</h3>
+    <h3 class="game-title">Deus Ex: Human Revolution - Director&#x27;s Cut</h3>
     <div class="game-genre">Action, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: AMD Radeon HD 5850</span>
@@ -2510,10 +2612,10 @@
     </div>
   </div>
 </a>
-<a href="games/marvel-s-guardians-of-the-galaxy.html" class="game-card" data-title="marvel's guardians of the galaxy">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1088850/bdbf8be37e665ba0e6f44111e3665d280f13ed16/header.jpg?t=1780588517" alt="Marvel's Guardians of the Galaxy PC Specs" class="game-img" loading="lazy">
+<a href="games/marvel-s-guardians-of-the-galaxy.html" class="game-card" data-title="marvel&#x27;s guardians of the galaxy">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1088850/bdbf8be37e665ba0e6f44111e3665d280f13ed16/header.jpg?t=1780588517" alt="Marvel&#x27;s Guardians of the Galaxy PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Marvel's Guardians of the Galaxy</h3>
+    <h3 class="game-title">Marvel&#x27;s Guardians of the Galaxy</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA® GeForce® GTX 1660 Super</span>
@@ -2675,10 +2777,10 @@
     </div>
   </div>
 </a>
-<a href="games/dragon-s-dogma-dark-arisen.html" class="game-card" data-title="dragon's dogma: dark arisen">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367500/header.jpg?t=1768870344" alt="Dragon's Dogma: Dark Arisen PC Specs" class="game-img" loading="lazy">
+<a href="games/dragon-s-dogma-dark-arisen.html" class="game-card" data-title="dragon&#x27;s dogma: dark arisen">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/367500/header.jpg?t=1768870344" alt="Dragon&#x27;s Dogma: Dark Arisen PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Dragon's Dogma: Dark Arisen</h3>
+    <h3 class="game-title">Dragon&#x27;s Dogma: Dark Arisen</h3>
     <div class="game-genre">Action, Adventure, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GTX 760</span>
@@ -2785,10 +2887,10 @@
     </div>
   </div>
 </a>
-<a href="games/ratchet-clank-rift-apart.html" class="game-card" data-title="ratchet & clank: rift apart">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1895880/header.jpg?t=1787838873" alt="Ratchet & Clank: Rift Apart PC Specs" class="game-img" loading="lazy">
+<a href="games/ratchet-clank-rift-apart.html" class="game-card" data-title="ratchet &amp; clank: rift apart">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1895880/header.jpg?t=1787838873" alt="Ratchet &amp; Clank: Rift Apart PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Ratchet & Clank: Rift Apart</h3>
+    <h3 class="game-title">Ratchet &amp; Clank: Rift Apart</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce RTX 2060</span>
@@ -2818,10 +2920,10 @@
     </div>
   </div>
 </a>
-<a href="games/death-stranding-director-s-cut.html" class="game-card" data-title="death stranding director's cut">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1850570/header.jpg?t=1793287496" alt="DEATH STRANDING DIRECTOR'S CUT PC Specs" class="game-img" loading="lazy">
+<a href="games/death-stranding-director-s-cut.html" class="game-card" data-title="death stranding director&#x27;s cut">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1850570/header.jpg?t=1793287496" alt="DEATH STRANDING DIRECTOR&#x27;S CUT PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">DEATH STRANDING DIRECTOR'S CUT</h3>
+    <h3 class="game-title">DEATH STRANDING DIRECTOR&#x27;S CUT</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce GTX 1060 6 GB</span>
@@ -2983,10 +3085,10 @@
     </div>
   </div>
 </a>
-<a href="games/mount-blade-ii-bannerlord.html" class="game-card" data-title="mount & blade ii: bannerlord">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261550/header.jpg?t=1764252300" alt="Mount & Blade II: Bannerlord PC Specs" class="game-img" loading="lazy">
+<a href="games/mount-blade-ii-bannerlord.html" class="game-card" data-title="mount &amp; blade ii: bannerlord">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/261550/header.jpg?t=1764252300" alt="Mount &amp; Blade II: Bannerlord PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Mount & Blade II: Bannerlord</h3>
+    <h3 class="game-title">Mount &amp; Blade II: Bannerlord</h3>
     <div class="game-genre">Action, Indie, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA® GeForce® GTX 1060 3GB</span>
@@ -3489,10 +3591,10 @@
     </div>
   </div>
 </a>
-<a href="games/sid-meier-s-civilization-vii.html" class="game-card" data-title="sid meier's civilization vii">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1295660/header.jpg?t=1792718077" alt="Sid Meier's Civilization VII PC Specs" class="game-img" loading="lazy">
+<a href="games/sid-meier-s-civilization-vii.html" class="game-card" data-title="sid meier&#x27;s civilization vii">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1295660/header.jpg?t=1792718077" alt="Sid Meier&#x27;s Civilization VII PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Sid Meier's Civilization VII</h3>
+    <h3 class="game-title">Sid Meier&#x27;s Civilization VII</h3>
     <div class="game-genre">Simulation, Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA RTX 2060</span>
@@ -3698,10 +3800,10 @@
     </div>
   </div>
 </a>
-<a href="games/five-nights-at-freddy-s.html" class="game-card" data-title="five nights at freddy's">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/319510/header.jpg?t=1666889251" alt="Five Nights at Freddy's PC Specs" class="game-img" loading="lazy">
+<a href="games/five-nights-at-freddy-s.html" class="game-card" data-title="five nights at freddy&#x27;s">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/319510/header.jpg?t=1666889251" alt="Five Nights at Freddy&#x27;s PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Five Nights at Freddy's</h3>
+    <h3 class="game-title">Five Nights at Freddy&#x27;s</h3>
     <div class="game-genre">Indie, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 1 GB</span>
@@ -3973,10 +4075,10 @@
     </div>
   </div>
 </a>
-<a href="games/liar-s-bar.html" class="game-card" data-title="liar's bar">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3097560/054cf90dfb2e0de8bf595fcd2cfd1b6853bf2556/header.jpg?t=1794409990" alt="Liar's Bar PC Specs" class="game-img" loading="lazy">
+<a href="games/liar-s-bar.html" class="game-card" data-title="liar&#x27;s bar">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3097560/054cf90dfb2e0de8bf595fcd2cfd1b6853bf2556/header.jpg?t=1794409990" alt="Liar&#x27;s Bar PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Liar's Bar</h3>
+    <h3 class="game-title">Liar&#x27;s Bar</h3>
     <div class="game-genre">Casual, Indie, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA® GeForce® GTX 2060 (6 GB)</span>
@@ -4875,10 +4977,10 @@
     </div>
   </div>
 </a>
-<a href="games/sid-meier-s-civilization-v.html" class="game-card" data-title="sid meier's civilization® v">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/8930/header.jpg?t=1724341158" alt="Sid Meier's Civilization® V PC Specs" class="game-img" loading="lazy">
+<a href="games/sid-meier-s-civilization-v.html" class="game-card" data-title="sid meier&#x27;s civilization® v">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/8930/header.jpg?t=1724341158" alt="Sid Meier&#x27;s Civilization® V PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Sid Meier's Civilization® V</h3>
+    <h3 class="game-title">Sid Meier&#x27;s Civilization® V</h3>
     <div class="game-genre">Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 512 MB ATI 4800 series</span>
@@ -5403,10 +5505,10 @@
     </div>
   </div>
 </a>
-<a href="games/mount-blade-warband.html" class="game-card" data-title="mount & blade: warband">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/48700/header.jpg?t=1750147149" alt="Mount & Blade: Warband PC Specs" class="game-img" loading="lazy">
+<a href="games/mount-blade-warband.html" class="game-card" data-title="mount &amp; blade: warband">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/48700/header.jpg?t=1750147149" alt="Mount &amp; Blade: Warband PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Mount & Blade: Warband</h3>
+    <h3 class="game-title">Mount &amp; Blade: Warband</h3>
     <div class="game-genre">Action, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce FX 5200, ATI Radeon 9600,</span>
@@ -5865,10 +5967,10 @@
     </div>
   </div>
 </a>
-<a href="games/tom-clancy-s-ghost-recon-wildlands.html" class="game-card" data-title="tom clancy's ghost recon® wildlands">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/460930/36ca0e082902bb8b6f4f0f3ae20de41b1a3c54c6/header.jpg?t=1790268185" alt="Tom Clancy's Ghost Recon® Wildlands PC Specs" class="game-img" loading="lazy">
+<a href="games/tom-clancy-s-ghost-recon-wildlands.html" class="game-card" data-title="tom clancy&#x27;s ghost recon® wildlands">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/460930/36ca0e082902bb8b6f4f0f3ae20de41b1a3c54c6/header.jpg?t=1790268185" alt="Tom Clancy&#x27;s Ghost Recon® Wildlands PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Tom Clancy's Ghost Recon® Wildlands</h3>
+    <h3 class="game-title">Tom Clancy&#x27;s Ghost Recon® Wildlands</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GTX970/GTX 1060</span>
@@ -5964,10 +6066,10 @@
     </div>
   </div>
 </a>
-<a href="games/the-witcher-enhanced-edition-director-s-cut.html" class="game-card" data-title="the witcher: enhanced edition director's cut">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20900/header.jpg?t=1749200362" alt="The Witcher: Enhanced Edition Director's Cut PC Specs" class="game-img" loading="lazy">
+<a href="games/the-witcher-enhanced-edition-director-s-cut.html" class="game-card" data-title="the witcher: enhanced edition director&#x27;s cut">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/20900/header.jpg?t=1749200362" alt="The Witcher: Enhanced Edition Director&#x27;s Cut PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">The Witcher: Enhanced Edition Director's Cut</h3>
+    <h3 class="game-title">The Witcher: Enhanced Edition Director&#x27;s Cut</h3>
     <div class="game-genre">Action, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce 6600</span>
@@ -5975,10 +6077,10 @@
     </div>
   </div>
 </a>
-<a href="games/assassin-s-creed-unity.html" class="game-card" data-title="assassin's creed® unity">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/289650/header.jpg?t=1786632648" alt="Assassin's Creed® Unity PC Specs" class="game-img" loading="lazy">
+<a href="games/assassin-s-creed-unity.html" class="game-card" data-title="assassin&#x27;s creed® unity">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/289650/header.jpg?t=1786632648" alt="Assassin&#x27;s Creed® Unity PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Assassin's Creed® Unity</h3>
+    <h3 class="game-title">Assassin&#x27;s Creed® Unity</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GTX 780</span>
@@ -6129,10 +6231,10 @@
     </div>
   </div>
 </a>
-<a href="games/mirror-s-edge.html" class="game-card" data-title="mirror's edge™">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17410/header.jpg?t=1777394972" alt="Mirror's Edge™ PC Specs" class="game-img" loading="lazy">
+<a href="games/mirror-s-edge.html" class="game-card" data-title="mirror&#x27;s edge™">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/17410/header.jpg?t=1777394972" alt="Mirror&#x27;s Edge™ PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Mirror's Edge™</h3>
+    <h3 class="game-title">Mirror&#x27;s Edge™</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX® 9.0c compatible video card…</span>
@@ -6140,10 +6242,10 @@
     </div>
   </div>
 </a>
-<a href="games/assassin-s-creed-2.html" class="game-card" data-title="assassin's creed 2">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/33230/header.jpg?t=1794343819" alt="Assassin's Creed 2 PC Specs" class="game-img" loading="lazy">
+<a href="games/assassin-s-creed-2.html" class="game-card" data-title="assassin&#x27;s creed 2">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/33230/header.jpg?t=1794343819" alt="Assassin&#x27;s Creed 2 PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Assassin's Creed 2</h3>
+    <h3 class="game-title">Assassin&#x27;s Creed 2</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce 8800 GT</span>
@@ -6327,10 +6429,10 @@
     </div>
   </div>
 </a>
-<a href="games/who-s-your-daddy.html" class="game-card" data-title="who's your daddy?!">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427730/header.jpg?t=1773896104" alt="Who's Your Daddy?! PC Specs" class="game-img" loading="lazy">
+<a href="games/who-s-your-daddy.html" class="game-card" data-title="who&#x27;s your daddy?!">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/427730/header.jpg?t=1773896104" alt="Who&#x27;s Your Daddy?! PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Who's Your Daddy?!</h3>
+    <h3 class="game-title">Who&#x27;s Your Daddy?!</h3>
     <div class="game-genre">Action, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce 460/Radeon HD 5850/Intel HD 4600…</span>
@@ -6421,7 +6523,7 @@
     <h3 class="game-title">STAR WARS™ Knights of the Old Republic™</h3>
     <div class="game-genre">Adventure, RPG</div>
     <div class="spec-badge-box">
-      <span class="gpu-badge">GPU: 32 MB with Hardware T&L</span>
+      <span class="gpu-badge">GPU: 32 MB with Hardware T&amp;L</span>
       <span class="fps-badge">60 FPS</span>
     </div>
   </div>
@@ -6635,10 +6737,10 @@
     </div>
   </div>
 </a>
-<a href="games/baldur-s-gate-ii-enhanced-edition.html" class="game-card" data-title="baldur's gate ii: enhanced edition">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/257350/486ef7ce52fdb1ee5d2909ac97f26d4e26da18d3/header.jpg?t=1793821593" alt="Baldur's Gate II: Enhanced Edition PC Specs" class="game-img" loading="lazy">
+<a href="games/baldur-s-gate-ii-enhanced-edition.html" class="game-card" data-title="baldur&#x27;s gate ii: enhanced edition">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/257350/486ef7ce52fdb1ee5d2909ac97f26d4e26da18d3/header.jpg?t=1793821593" alt="Baldur&#x27;s Gate II: Enhanced Edition PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Baldur's Gate II: Enhanced Edition</h3>
+    <h3 class="game-title">Baldur&#x27;s Gate II: Enhanced Edition</h3>
     <div class="game-genre">Adventure, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: OpenGL 2.0 compatible</span>
@@ -6943,10 +7045,10 @@
     </div>
   </div>
 </a>
-<a href="games/marvel-s-midnight-suns.html" class="game-card" data-title="marvel's midnight suns">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/368260/header.jpg?t=1793747209" alt="Marvel's Midnight Suns PC Specs" class="game-img" loading="lazy">
+<a href="games/marvel-s-midnight-suns.html" class="game-card" data-title="marvel&#x27;s midnight suns">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/368260/header.jpg?t=1793747209" alt="Marvel&#x27;s Midnight Suns PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Marvel's Midnight Suns</h3>
+    <h3 class="game-title">Marvel&#x27;s Midnight Suns</h3>
     <div class="game-genre">RPG, Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: AMD RX 5700</span>
@@ -7229,10 +7331,10 @@
     </div>
   </div>
 </a>
-<a href="games/hellblade-senua-s-sacrifice.html" class="game-card" data-title="hellblade: senua's sacrifice">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414340/header.jpg?t=1776350290" alt="Hellblade: Senua's Sacrifice PC Specs" class="game-img" loading="lazy">
+<a href="games/hellblade-senua-s-sacrifice.html" class="game-card" data-title="hellblade: senua&#x27;s sacrifice">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/414340/header.jpg?t=1776350290" alt="Hellblade: Senua&#x27;s Sacrifice PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Hellblade: Senua's Sacrifice</h3>
+    <h3 class="game-title">Hellblade: Senua&#x27;s Sacrifice</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GTX 770 with 2GB VRAM</span>
@@ -7449,10 +7551,10 @@
     </div>
   </div>
 </a>
-<a href="games/america-s-army-proving-grounds.html" class="game-card" data-title="america's army: proving grounds">
-  <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/203290/header.jpg" alt="America's Army: Proving Grounds PC Specs" class="game-img" loading="lazy">
+<a href="games/america-s-army-proving-grounds.html" class="game-card" data-title="america&#x27;s army: proving grounds">
+  <img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/203290/header.jpg" alt="America&#x27;s Army: Proving Grounds PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">America's Army: Proving Grounds</h3>
+    <h3 class="game-title">America&#x27;s Army: Proving Grounds</h3>
     <div class="game-genre">Action, Free To Play</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Direct X 9.0c compliant, Shader 3.0…</span>
@@ -7609,7 +7711,7 @@
     <h3 class="game-title">Mafia III: Definitive Edition</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
-      <span class="gpu-badge">GPU: 4GB of Video Memory & NVIDIA Geforce GTX…</span>
+      <span class="gpu-badge">GPU: 4GB of Video Memory &amp; NVIDIA Geforce GTX…</span>
       <span class="fps-badge">60 FPS</span>
     </div>
   </div>
@@ -8263,10 +8365,10 @@
     </div>
   </div>
 </a>
-<a href="games/assassin-s-creed-syndicate.html" class="game-card" data-title="assassin's creed® syndicate">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/368500/header.jpg?t=1786632690" alt="Assassin's Creed® Syndicate PC Specs" class="game-img" loading="lazy">
+<a href="games/assassin-s-creed-syndicate.html" class="game-card" data-title="assassin&#x27;s creed® syndicate">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/368500/header.jpg?t=1786632690" alt="Assassin&#x27;s Creed® Syndicate PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Assassin's Creed® Syndicate</h3>
+    <h3 class="game-title">Assassin&#x27;s Creed® Syndicate</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GTX 760 (4GB)</span>
@@ -8351,10 +8453,10 @@
     </div>
   </div>
 </a>
-<a href="games/dungeons-dragons-online.html" class="game-card" data-title="dungeons & dragons online®">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/206480/8d12e548ec3af349f6d7643522b55308f264c261/header_alt_assets_8.jpg?t=1793820247" alt="Dungeons & Dragons Online® PC Specs" class="game-img" loading="lazy">
+<a href="games/dungeons-dragons-online.html" class="game-card" data-title="dungeons &amp; dragons online®">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/206480/8d12e548ec3af349f6d7643522b55308f264c261/header_alt_assets_8.jpg?t=1793820247" alt="Dungeons &amp; Dragons Online® PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Dungeons & Dragons Online®</h3>
+    <h3 class="game-title">Dungeons &amp; Dragons Online®</h3>
     <div class="game-genre">Action, Adventure, Massively Multiplayer</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia Geforce 8XXX</span>
@@ -8373,10 +8475,10 @@
     </div>
   </div>
 </a>
-<a href="games/draw-guess.html" class="game-card" data-title="draw & guess">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1483870/6b1d49c6152f3b9eeaa3c59b39202c9382e6fd90/header.jpg?t=1789996291" alt="Draw & Guess PC Specs" class="game-img" loading="lazy">
+<a href="games/draw-guess.html" class="game-card" data-title="draw &amp; guess">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1483870/6b1d49c6152f3b9eeaa3c59b39202c9382e6fd90/header.jpg?t=1789996291" alt="Draw &amp; Guess PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Draw & Guess</h3>
+    <h3 class="game-title">Draw &amp; Guess</h3>
     <div class="game-genre">Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Graphics card with DX10 (shader model…)</span>
@@ -8505,10 +8607,10 @@
     </div>
   </div>
 </a>
-<a href="games/command-conquer-remastered-collection.html" class="game-card" data-title="command & conquer™ remastered collection">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1213210/header.jpg?t=1779987581" alt="Command & Conquer™ Remastered Collection PC Specs" class="game-img" loading="lazy">
+<a href="games/command-conquer-remastered-collection.html" class="game-card" data-title="command &amp; conquer™ remastered collection">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1213210/header.jpg?t=1779987581" alt="Command &amp; Conquer™ Remastered Collection PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Command & Conquer™ Remastered Collection</h3>
+    <h3 class="game-title">Command &amp; Conquer™ Remastered Collection</h3>
     <div class="game-genre">Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GTX 660</span>
@@ -8626,10 +8728,10 @@
     </div>
   </div>
 </a>
-<a href="games/baldur-s-gate-enhanced-edition.html" class="game-card" data-title="baldur's gate: enhanced edition">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/228280/9761e1ed90324b2102ffc3dac295eeabf03bea55/header.jpg?t=1793821665" alt="Baldur's Gate: Enhanced Edition PC Specs" class="game-img" loading="lazy">
+<a href="games/baldur-s-gate-enhanced-edition.html" class="game-card" data-title="baldur&#x27;s gate: enhanced edition">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/228280/9761e1ed90324b2102ffc3dac295eeabf03bea55/header.jpg?t=1793821665" alt="Baldur&#x27;s Gate: Enhanced Edition PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Baldur's Gate: Enhanced Edition</h3>
+    <h3 class="game-title">Baldur&#x27;s Gate: Enhanced Edition</h3>
     <div class="game-genre">Adventure, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: OpenGL 2.0 compatible</span>
@@ -9418,10 +9520,10 @@
     </div>
   </div>
 </a>
-<a href="games/tiny-tina-s-wonderlands.html" class="game-card" data-title="tiny tina's wonderlands">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1286680/header.jpg?t=1737970341" alt="Tiny Tina's Wonderlands PC Specs" class="game-img" loading="lazy">
+<a href="games/tiny-tina-s-wonderlands.html" class="game-card" data-title="tiny tina&#x27;s wonderlands">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1286680/header.jpg?t=1737970341" alt="Tiny Tina&#x27;s Wonderlands PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Tiny Tina's Wonderlands</h3>
+    <h3 class="game-title">Tiny Tina&#x27;s Wonderlands</h3>
     <div class="game-genre">Action, Adventure, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: AMD Radeon™ RX 590 8GB (NVIDIA GeForce…)</span>
@@ -9495,10 +9597,10 @@
     </div>
   </div>
 </a>
-<a href="games/assassin-s-creed-director-s-cut-edition.html" class="game-card" data-title="assassin's creed™: director's cut edition">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/15100/9b3395c1e8d808897d7adf8f400a9efd5b63eecd/header.jpg?t=1789591653" alt="Assassin's Creed™: Director's Cut Edition PC Specs" class="game-img" loading="lazy">
+<a href="games/assassin-s-creed-director-s-cut-edition.html" class="game-card" data-title="assassin&#x27;s creed™: director&#x27;s cut edition">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/15100/9b3395c1e8d808897d7adf8f400a9efd5b63eecd/header.jpg?t=1789591653" alt="Assassin&#x27;s Creed™: Director&#x27;s Cut Edition PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Assassin's Creed™: Director's Cut Edition</h3>
+    <h3 class="game-title">Assassin&#x27;s Creed™: Director&#x27;s Cut Edition</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 256 MB DirectX® 10.0-compliant video card</span>
@@ -9759,10 +9861,10 @@
     </div>
   </div>
 </a>
-<a href="games/five-nights-at-freddy-s-security-breach.html" class="game-card" data-title="five nights at freddy's: security breach">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/747660/header.jpg?t=1686587905" alt="Five Nights at Freddy's: Security Breach PC Specs" class="game-img" loading="lazy">
+<a href="games/five-nights-at-freddy-s-security-breach.html" class="game-card" data-title="five nights at freddy&#x27;s: security breach">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/747660/header.jpg?t=1686587905" alt="Five Nights at Freddy&#x27;s: Security Breach PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Five Nights at Freddy's: Security Breach</h3>
+    <h3 class="game-title">Five Nights at Freddy&#x27;s: Security Breach</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia GeForce GTX 1050 Ti</span>
@@ -9847,10 +9949,10 @@
     </div>
   </div>
 </a>
-<a href="games/alan-wake-s-american-nightmare.html" class="game-card" data-title="alan wake's american nightmare">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/202750/c776879ae6a5754294b1fe9e18564ac3545e856b/header.jpg?t=1769717428" alt="Alan Wake's American Nightmare PC Specs" class="game-img" loading="lazy">
+<a href="games/alan-wake-s-american-nightmare.html" class="game-card" data-title="alan wake&#x27;s american nightmare">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/202750/c776879ae6a5754294b1fe9e18564ac3545e856b/header.jpg?t=1769717428" alt="Alan Wake&#x27;s American Nightmare PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Alan Wake's American Nightmare</h3>
+    <h3 class="game-title">Alan Wake&#x27;s American Nightmare</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX 10 compatible</span>
@@ -10452,10 +10554,10 @@
     </div>
   </div>
 </a>
-<a href="games/sultan-s-game.html" class="game-card" data-title="sultan's game">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3117820/header.jpg?t=1794301529" alt="Sultan's Game PC Specs" class="game-img" loading="lazy">
+<a href="games/sultan-s-game.html" class="game-card" data-title="sultan&#x27;s game">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3117820/header.jpg?t=1794301529" alt="Sultan&#x27;s Game PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Sultan's Game</h3>
+    <h3 class="game-title">Sultan&#x27;s Game</h3>
     <div class="game-genre">Adventure, Indie, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GTX 1070</span>
@@ -10661,10 +10763,10 @@
     </div>
   </div>
 </a>
-<a href="games/five-nights-at-freddy-s-2.html" class="game-card" data-title="five nights at freddy's 2">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/332800/header.jpg?t=1579635993" alt="Five Nights at Freddy's 2 PC Specs" class="game-img" loading="lazy">
+<a href="games/five-nights-at-freddy-s-2.html" class="game-card" data-title="five nights at freddy&#x27;s 2">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/332800/header.jpg?t=1579635993" alt="Five Nights at Freddy&#x27;s 2 PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Five Nights at Freddy's 2</h3>
+    <h3 class="game-title">Five Nights at Freddy&#x27;s 2</h3>
     <div class="game-genre">Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 1 GB</span>
@@ -10826,10 +10928,10 @@
     </div>
   </div>
 </a>
-<a href="games/assassin-s-creed-revelations.html" class="game-card" data-title="assassin's creed® revelations">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/201870/header.jpg?t=1739176298" alt="Assassin's Creed® Revelations PC Specs" class="game-img" loading="lazy">
+<a href="games/assassin-s-creed-revelations.html" class="game-card" data-title="assassin&#x27;s creed® revelations">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/201870/header.jpg?t=1739176298" alt="Assassin&#x27;s Creed® Revelations PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Assassin's Creed® Revelations</h3>
+    <h3 class="game-title">Assassin&#x27;s Creed® Revelations</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 512 MB DirectX® 9.0–compliant card with…</span>
@@ -10958,10 +11060,10 @@
     </div>
   </div>
 </a>
-<a href="games/just-shapes-beats.html" class="game-card" data-title="just shapes & beats">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531510/header.jpg?t=1738790023" alt="Just Shapes & Beats PC Specs" class="game-img" loading="lazy">
+<a href="games/just-shapes-beats.html" class="game-card" data-title="just shapes &amp; beats">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/531510/header.jpg?t=1738790023" alt="Just Shapes &amp; Beats PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Just Shapes & Beats</h3>
+    <h3 class="game-title">Just Shapes &amp; Beats</h3>
     <div class="game-genre">Action, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX 11-compatible graphics card with…</span>
@@ -11178,10 +11280,10 @@
     </div>
   </div>
 </a>
-<a href="games/marvel-s-spider-man-2.html" class="game-card" data-title="marvel's spider-man 2">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2651280/header.jpg?t=1763569811" alt="Marvel's Spider-Man 2 PC Specs" class="game-img" loading="lazy">
+<a href="games/marvel-s-spider-man-2.html" class="game-card" data-title="marvel&#x27;s spider-man 2">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2651280/header.jpg?t=1763569811" alt="Marvel&#x27;s Spider-Man 2 PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Marvel's Spider-Man 2</h3>
+    <h3 class="game-title">Marvel&#x27;s Spider-Man 2</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce RTX 3060</span>
@@ -12289,10 +12391,10 @@
     </div>
   </div>
 </a>
-<a href="games/death-s-door.html" class="game-card" data-title="death's door">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/894020/header.jpg?t=1788311627" alt="Death's Door PC Specs" class="game-img" loading="lazy">
+<a href="games/death-s-door.html" class="game-card" data-title="death&#x27;s door">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/894020/header.jpg?t=1788311627" alt="Death&#x27;s Door PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Death's Door</h3>
+    <h3 class="game-title">Death&#x27;s Door</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce GTX 1050 ( 2048 MB); Radeon RX…</span>
@@ -12344,10 +12446,10 @@
     </div>
   </div>
 </a>
-<a href="games/tom-clancy-s-ghost-recon-breakpoint.html" class="game-card" data-title="tom clancy's ghost recon® breakpoint">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2231380/3e05f31b9aa9fd29b9709f035e73761a908e9fbe/header.jpg?t=1790683796" alt="Tom Clancy's Ghost Recon® Breakpoint PC Specs" class="game-img" loading="lazy">
+<a href="games/tom-clancy-s-ghost-recon-breakpoint.html" class="game-card" data-title="tom clancy&#x27;s ghost recon® breakpoint">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2231380/3e05f31b9aa9fd29b9709f035e73761a908e9fbe/header.jpg?t=1790683796" alt="Tom Clancy&#x27;s Ghost Recon® Breakpoint PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Tom Clancy's Ghost Recon® Breakpoint</h3>
+    <h3 class="game-title">Tom Clancy&#x27;s Ghost Recon® Breakpoint</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: AMD Radeon RX 480</span>
@@ -12421,10 +12523,10 @@
     </div>
   </div>
 </a>
-<a href="games/sonic-all-stars-racing-transformed-collection.html" class="game-card" data-title="sonic & all-stars racing transformed collection">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/212480/header.jpg?t=1762752125" alt="Sonic & All-Stars Racing Transformed Collection PC Specs" class="game-img" loading="lazy">
+<a href="games/sonic-all-stars-racing-transformed-collection.html" class="game-card" data-title="sonic &amp; all-stars racing transformed collection">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/212480/header.jpg?t=1762752125" alt="Sonic &amp; All-Stars Racing Transformed Collection PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Sonic & All-Stars Racing Transformed Collection</h3>
+    <h3 class="game-title">Sonic &amp; All-Stars Racing Transformed Collection</h3>
     <div class="game-genre">Racing, Sports</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 512MB with Shader Model 3.0 support</span>
@@ -12828,10 +12930,10 @@
     </div>
   </div>
 </a>
-<a href="games/touhou-mystia-s-izakaya.html" class="game-card" data-title="touhou mystia's izakaya">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1584090/header.jpg?t=1788596587" alt="Touhou Mystia's Izakaya PC Specs" class="game-img" loading="lazy">
+<a href="games/touhou-mystia-s-izakaya.html" class="game-card" data-title="touhou mystia&#x27;s izakaya">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1584090/header.jpg?t=1788596587" alt="Touhou Mystia&#x27;s Izakaya PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Touhou Mystia's Izakaya</h3>
+    <h3 class="game-title">Touhou Mystia&#x27;s Izakaya</h3>
     <div class="game-genre">Casual, Indie, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GTX 1050</span>
@@ -13026,10 +13128,10 @@
     </div>
   </div>
 </a>
-<a href="games/tales-of-maj-eyal.html" class="game-card" data-title="tales of maj'eyal">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/259680/header.jpg?t=1790200302" alt="Tales of Maj'Eyal PC Specs" class="game-img" loading="lazy">
+<a href="games/tales-of-maj-eyal.html" class="game-card" data-title="tales of maj&#x27;eyal">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/259680/header.jpg?t=1790200302" alt="Tales of Maj&#x27;Eyal PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Tales of Maj'Eyal</h3>
+    <h3 class="game-title">Tales of Maj&#x27;Eyal</h3>
     <div class="game-genre">Adventure, Indie, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: OpenGL 2.1+</span>
@@ -13092,10 +13194,10 @@
     </div>
   </div>
 </a>
-<a href="games/workers-resources-soviet-republic.html" class="game-card" data-title="workers & resources: soviet republic">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/784150/header.jpg?t=1793714516" alt="Workers & Resources: Soviet Republic PC Specs" class="game-img" loading="lazy">
+<a href="games/workers-resources-soviet-republic.html" class="game-card" data-title="workers &amp; resources: soviet republic">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/784150/header.jpg?t=1793714516" alt="Workers &amp; Resources: Soviet Republic PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Workers & Resources: Soviet Republic</h3>
+    <h3 class="game-title">Workers &amp; Resources: Soviet Republic</h3>
     <div class="game-genre">Simulation, Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA® GeForce® GTX 760 (2 GB)</span>
@@ -13323,10 +13425,10 @@
     </div>
   </div>
 </a>
-<a href="games/kovaak-s.html" class="game-card" data-title="kovaak's">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/824270/header.jpg?t=1786726218" alt="KovaaK's PC Specs" class="game-img" loading="lazy">
+<a href="games/kovaak-s.html" class="game-card" data-title="kovaak&#x27;s">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/824270/header.jpg?t=1786726218" alt="KovaaK&#x27;s PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">KovaaK's</h3>
+    <h3 class="game-title">KovaaK&#x27;s</h3>
     <div class="game-genre">Action, Indie, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA® GeForce® GTX 660</span>
@@ -13367,10 +13469,10 @@
     </div>
   </div>
 </a>
-<a href="games/five-nights-at-freddy-s-sister-location.html" class="game-card" data-title="five nights at freddy's: sister location">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/506610/header.jpg?t=1579635985" alt="Five Nights at Freddy's: Sister Location PC Specs" class="game-img" loading="lazy">
+<a href="games/five-nights-at-freddy-s-sister-location.html" class="game-card" data-title="five nights at freddy&#x27;s: sister location">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/506610/header.jpg?t=1579635985" alt="Five Nights at Freddy&#x27;s: Sister Location PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Five Nights at Freddy's: Sister Location</h3>
+    <h3 class="game-title">Five Nights at Freddy&#x27;s: Sister Location</h3>
     <div class="game-genre">Action, Indie, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 2 GB</span>
@@ -13477,10 +13579,10 @@
     </div>
   </div>
 </a>
-<a href="games/hero-s-adventure-road-to-passion.html" class="game-card" data-title="hero's adventure: road to passion">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1948980/70d06e69886f0dd0fce3e73c453e6f886993bf55/header.jpg?t=1786720220" alt="Hero's Adventure: Road to Passion PC Specs" class="game-img" loading="lazy">
+<a href="games/hero-s-adventure-road-to-passion.html" class="game-card" data-title="hero&#x27;s adventure: road to passion">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1948980/70d06e69886f0dd0fce3e73c453e6f886993bf55/header.jpg?t=1786720220" alt="Hero&#x27;s Adventure: Road to Passion PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Hero's Adventure: Road to Passion</h3>
+    <h3 class="game-title">Hero&#x27;s Adventure: Road to Passion</h3>
     <div class="game-genre">Adventure, Indie, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia GTX 1050</span>
@@ -13598,10 +13700,10 @@
     </div>
   </div>
 </a>
-<a href="games/mirror-s-edge-catalyst.html" class="game-card" data-title="mirror's edge™ catalyst">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1233570/header.jpg?t=1777486496" alt="Mirror's Edge™ Catalyst PC Specs" class="game-img" loading="lazy">
+<a href="games/mirror-s-edge-catalyst.html" class="game-card" data-title="mirror&#x27;s edge™ catalyst">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1233570/header.jpg?t=1777486496" alt="Mirror&#x27;s Edge™ Catalyst PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Mirror's Edge™ Catalyst</h3>
+    <h3 class="game-title">Mirror&#x27;s Edge™ Catalyst</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce® GTX 970 4GB</span>
@@ -13796,10 +13898,10 @@
     </div>
   </div>
 </a>
-<a href="games/jack-orlando-director-s-cut.html" class="game-card" data-title="jack orlando: director's cut">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/253960/header.jpg?t=1622805247" alt="Jack Orlando: Director's Cut PC Specs" class="game-img" loading="lazy">
+<a href="games/jack-orlando-director-s-cut.html" class="game-card" data-title="jack orlando: director&#x27;s cut">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/253960/header.jpg?t=1622805247" alt="Jack Orlando: Director&#x27;s Cut PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Jack Orlando: Director's Cut</h3>
+    <h3 class="game-title">Jack Orlando: Director&#x27;s Cut</h3>
     <div class="game-genre">Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: nVidia GeForce,</span>
@@ -14071,10 +14173,10 @@
     </div>
   </div>
 </a>
-<a href="games/king-arthur-s-gold.html" class="game-card" data-title="king arthur's gold">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/219830/header.jpg?t=1756567409" alt="King Arthur's Gold PC Specs" class="game-img" loading="lazy">
+<a href="games/king-arthur-s-gold.html" class="game-card" data-title="king arthur&#x27;s gold">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/219830/header.jpg?t=1756567409" alt="King Arthur&#x27;s Gold PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">King Arthur's Gold</h3>
+    <h3 class="game-title">King Arthur&#x27;s Gold</h3>
     <div class="game-genre">Action, Indie, Free To Play</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 512MB Dedicated</span>
@@ -14203,10 +14305,10 @@
     </div>
   </div>
 </a>
-<a href="games/heroes-of-might-magic-iii-hd-edition.html" class="game-card" data-title="heroes® of might & magic® iii - hd edition">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/297000/header.jpg?t=1787846053" alt="Heroes® of Might & Magic® III - HD Edition PC Specs" class="game-img" loading="lazy">
+<a href="games/heroes-of-might-magic-iii-hd-edition.html" class="game-card" data-title="heroes® of might &amp; magic® iii - hd edition">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/297000/header.jpg?t=1787846053" alt="Heroes® of Might &amp; Magic® III - HD Edition PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Heroes® of Might & Magic® III - HD Edition</h3>
+    <h3 class="game-title">Heroes® of Might &amp; Magic® III - HD Edition</h3>
     <div class="game-genre">RPG, Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: nVidia GeForce 9800GT</span>
@@ -14478,10 +14580,10 @@
     </div>
   </div>
 </a>
-<a href="games/shadowrun-dragonfall-director-s-cut.html" class="game-card" data-title="shadowrun: dragonfall - director's cut">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/300550/header.jpg?t=1709819435" alt="Shadowrun: Dragonfall - Director's Cut PC Specs" class="game-img" loading="lazy">
+<a href="games/shadowrun-dragonfall-director-s-cut.html" class="game-card" data-title="shadowrun: dragonfall - director&#x27;s cut">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/300550/header.jpg?t=1709819435" alt="Shadowrun: Dragonfall - Director&#x27;s Cut PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Shadowrun: Dragonfall - Director's Cut</h3>
+    <h3 class="game-title">Shadowrun: Dragonfall - Director&#x27;s Cut</h3>
     <div class="game-genre">Adventure, Indie, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX compatible 3D graphics card with…</span>
@@ -14489,10 +14591,10 @@
     </div>
   </div>
 </a>
-<a href="games/might-magic-heroes-vii.html" class="game-card" data-title="might & magic® heroes® vii">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/321960/header.jpg?t=1692823130" alt="Might & Magic® Heroes® VII PC Specs" class="game-img" loading="lazy">
+<a href="games/might-magic-heroes-vii.html" class="game-card" data-title="might &amp; magic® heroes® vii">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/321960/header.jpg?t=1692823130" alt="Might &amp; Magic® Heroes® VII PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Might & Magic® Heroes® VII</h3>
+    <h3 class="game-title">Might &amp; Magic® Heroes® VII</h3>
     <div class="game-genre">RPG, Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: nVidia GeForce GTX670</span>
@@ -14632,10 +14734,10 @@
     </div>
   </div>
 </a>
-<a href="games/cosmoteer-starship-architect-commander.html" class="game-card" data-title="cosmoteer: starship architect & commander">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/799600/header.jpg?t=1794283439" alt="Cosmoteer: Starship Architect & Commander PC Specs" class="game-img" loading="lazy">
+<a href="games/cosmoteer-starship-architect-commander.html" class="game-card" data-title="cosmoteer: starship architect &amp; commander">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/799600/header.jpg?t=1794283439" alt="Cosmoteer: Starship Architect &amp; Commander PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Cosmoteer: Starship Architect & Commander</h3>
+    <h3 class="game-title">Cosmoteer: Starship Architect &amp; Commander</h3>
     <div class="game-genre">Simulation, Strategy, Early Access</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 2GB DirectX 11 Graphics Card</span>
@@ -14643,10 +14745,10 @@
     </div>
   </div>
 </a>
-<a href="games/rocksmith-2014-edition-remastered-learn-play.html" class="game-card" data-title="rocksmith® 2014 edition remastered learn & play">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221680/header.jpg?t=1738085431" alt="Rocksmith® 2014 Edition REMASTERED LEARN & PLAY PC Specs" class="game-img" loading="lazy">
+<a href="games/rocksmith-2014-edition-remastered-learn-play.html" class="game-card" data-title="rocksmith® 2014 edition remastered learn &amp; play">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/221680/header.jpg?t=1738085431" alt="Rocksmith® 2014 Edition REMASTERED LEARN &amp; PLAY PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Rocksmith® 2014 Edition REMASTERED LEARN & PLAY</h3>
+    <h3 class="game-title">Rocksmith® 2014 Edition REMASTERED LEARN &amp; PLAY</h3>
     <div class="game-genre">Casual, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 512MB Nvidia GT 240</span>
@@ -14786,10 +14888,10 @@
     </div>
   </div>
 </a>
-<a href="games/the-beginner-s-guide.html" class="game-card" data-title="the beginner's guide">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/303210/header.jpg?t=1781207118" alt="The Beginner's Guide PC Specs" class="game-img" loading="lazy">
+<a href="games/the-beginner-s-guide.html" class="game-card" data-title="the beginner&#x27;s guide">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/303210/header.jpg?t=1781207118" alt="The Beginner&#x27;s Guide PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">The Beginner's Guide</h3>
+    <h3 class="game-title">The Beginner&#x27;s Guide</h3>
     <div class="game-genre">Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Video card must be 128 MB</span>
@@ -14863,10 +14965,10 @@
     </div>
   </div>
 </a>
-<a href="games/five-nights-at-freddy-s-help-wanted.html" class="game-card" data-title="five nights at freddy's: help wanted">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/732690/header.jpg?t=1686587846" alt="FIVE NIGHTS AT FREDDY'S: HELP WANTED PC Specs" class="game-img" loading="lazy">
+<a href="games/five-nights-at-freddy-s-help-wanted.html" class="game-card" data-title="five nights at freddy&#x27;s: help wanted">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/732690/header.jpg?t=1686587846" alt="FIVE NIGHTS AT FREDDY&#x27;S: HELP WANTED PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">FIVE NIGHTS AT FREDDY'S: HELP WANTED</h3>
+    <h3 class="game-title">FIVE NIGHTS AT FREDDY&#x27;S: HELP WANTED</h3>
     <div class="game-genre">Action, Casual</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GTX 1070</span>
@@ -15171,10 +15273,10 @@
     </div>
   </div>
 </a>
-<a href="games/teenage-mutant-ninja-turtles-shredder-s-revenge.html" class="game-card" data-title="teenage mutant ninja turtles: shredder's revenge">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1361510/header.jpg?t=1782982752" alt="Teenage Mutant Ninja Turtles: Shredder's Revenge PC Specs" class="game-img" loading="lazy">
+<a href="games/teenage-mutant-ninja-turtles-shredder-s-revenge.html" class="game-card" data-title="teenage mutant ninja turtles: shredder&#x27;s revenge">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1361510/header.jpg?t=1782982752" alt="Teenage Mutant Ninja Turtles: Shredder&#x27;s Revenge PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Teenage Mutant Ninja Turtles: Shredder's Revenge</h3>
+    <h3 class="game-title">Teenage Mutant Ninja Turtles: Shredder&#x27;s Revenge</h3>
     <div class="game-genre">Action, Adventure, Casual</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GTS 450, 1 GB</span>
@@ -15413,10 +15515,10 @@
     </div>
   </div>
 </a>
-<a href="games/our-life-beginnings-always.html" class="game-card" data-title="our life: beginnings & always">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1129190/header.jpg?t=1745249279" alt="Our Life: Beginnings & Always PC Specs" class="game-img" loading="lazy">
+<a href="games/our-life-beginnings-always.html" class="game-card" data-title="our life: beginnings &amp; always">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1129190/header.jpg?t=1745249279" alt="Our Life: Beginnings &amp; Always PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Our Life: Beginnings & Always</h3>
+    <h3 class="game-title">Our Life: Beginnings &amp; Always</h3>
     <div class="game-genre">Casual, Indie, Free To Play</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX</span>
@@ -15688,10 +15790,10 @@
     </div>
   </div>
 </a>
-<a href="games/jojo-s-bizarre-adventure-all-star-battle-r.html" class="game-card" data-title="jojo's bizarre adventure: all-star battle r">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1372110/header.jpg?t=1720409046" alt="JoJo's Bizarre Adventure: All-Star Battle R PC Specs" class="game-img" loading="lazy">
+<a href="games/jojo-s-bizarre-adventure-all-star-battle-r.html" class="game-card" data-title="jojo&#x27;s bizarre adventure: all-star battle r">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1372110/header.jpg?t=1720409046" alt="JoJo&#x27;s Bizarre Adventure: All-Star Battle R PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">JoJo's Bizarre Adventure: All-Star Battle R</h3>
+    <h3 class="game-title">JoJo&#x27;s Bizarre Adventure: All-Star Battle R</h3>
     <div class="game-genre">Action</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia GeForce GTX 1060</span>
@@ -16106,10 +16208,10 @@
     </div>
   </div>
 </a>
-<a href="games/hot-dogs-horseshoes-hand-grenades.html" class="game-card" data-title="hot dogs, horseshoes & hand grenades">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/450540/header.jpg?t=1789742968" alt="Hot Dogs, Horseshoes & Hand Grenades PC Specs" class="game-img" loading="lazy">
+<a href="games/hot-dogs-horseshoes-hand-grenades.html" class="game-card" data-title="hot dogs, horseshoes &amp; hand grenades">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/450540/header.jpg?t=1789742968" alt="Hot Dogs, Horseshoes &amp; Hand Grenades PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Hot Dogs, Horseshoes & Hand Grenades</h3>
+    <h3 class="game-title">Hot Dogs, Horseshoes &amp; Hand Grenades</h3>
     <div class="game-genre">Action, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GTX 1080/980TI, Radeon RX Vega 4GB</span>
@@ -16304,10 +16406,10 @@
     </div>
   </div>
 </a>
-<a href="games/another-crab-s-treasure.html" class="game-card" data-title="another crab's treasure">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/header.jpg?t=1785949147" alt="Another Crab's Treasure PC Specs" class="game-img" loading="lazy">
+<a href="games/another-crab-s-treasure.html" class="game-card" data-title="another crab&#x27;s treasure">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1887840/header.jpg?t=1785949147" alt="Another Crab&#x27;s Treasure PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Another Crab's Treasure</h3>
+    <h3 class="game-title">Another Crab&#x27;s Treasure</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia GTX 970</span>
@@ -16447,10 +16549,10 @@
     </div>
   </div>
 </a>
-<a href="games/oddworld-new-n-tasty.html" class="game-card" data-title="oddworld: new 'n' tasty">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314660/header.jpg?t=1784816461" alt="Oddworld: New 'n' Tasty PC Specs" class="game-img" loading="lazy">
+<a href="games/oddworld-new-n-tasty.html" class="game-card" data-title="oddworld: new &#x27;n&#x27; tasty">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314660/header.jpg?t=1784816461" alt="Oddworld: New &#x27;n&#x27; Tasty PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Oddworld: New 'n' Tasty</h3>
+    <h3 class="game-title">Oddworld: New &#x27;n&#x27; Tasty</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Recommended Radeon HD 6850</span>
@@ -16535,10 +16637,10 @@
     </div>
   </div>
 </a>
-<a href="games/randal-s-monday.html" class="game-card" data-title="randal's monday">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314810/header.jpg?t=1789474698" alt="Randal's Monday PC Specs" class="game-img" loading="lazy">
+<a href="games/randal-s-monday.html" class="game-card" data-title="randal&#x27;s monday">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314810/header.jpg?t=1789474698" alt="Randal&#x27;s Monday PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Randal's Monday</h3>
+    <h3 class="game-title">Randal&#x27;s Monday</h3>
     <div class="game-genre">Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GTX 275, ATI Radeon 4</span>
@@ -16722,10 +16824,10 @@
     </div>
   </div>
 </a>
-<a href="games/castlevania-belmont-s-curse.html" class="game-card" data-title="castlevania: belmont's curse">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4231820/6b65aec2c398006aea8b76e1463cc34d0e4ba68b/header.jpg?t=1793067818" alt="Castlevania: Belmont's Curse PC Specs" class="game-img" loading="lazy">
+<a href="games/castlevania-belmont-s-curse.html" class="game-card" data-title="castlevania: belmont&#x27;s curse">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/4231820/6b65aec2c398006aea8b76e1463cc34d0e4ba68b/header.jpg?t=1793067818" alt="Castlevania: Belmont&#x27;s Curse PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Castlevania: Belmont's Curse</h3>
+    <h3 class="game-title">Castlevania: Belmont&#x27;s Curse</h3>
     <div class="game-genre">Action, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: nVidia Geforce RTX3060</span>
@@ -16887,10 +16989,10 @@
     </div>
   </div>
 </a>
-<a href="games/assassin-s-creed-freedom-cry.html" class="game-card" data-title="assassin's creed freedom cry">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/277590/header.jpg?t=1747656414" alt="Assassin's Creed Freedom Cry PC Specs" class="game-img" loading="lazy">
+<a href="games/assassin-s-creed-freedom-cry.html" class="game-card" data-title="assassin&#x27;s creed freedom cry">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/277590/header.jpg?t=1747656414" alt="Assassin&#x27;s Creed Freedom Cry PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Assassin's Creed Freedom Cry</h3>
+    <h3 class="game-title">Assassin&#x27;s Creed Freedom Cry</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia GeForce GTX 470</span>
@@ -17118,10 +17220,10 @@
     </div>
   </div>
 </a>
-<a href="games/heroine-s-quest-the-herald-of-ragnarok.html" class="game-card" data-title="heroine's quest: the herald of ragnarok">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/283880/header.jpg?t=1745510196" alt="Heroine's Quest: The Herald of Ragnarok PC Specs" class="game-img" loading="lazy">
+<a href="games/heroine-s-quest-the-herald-of-ragnarok.html" class="game-card" data-title="heroine&#x27;s quest: the herald of ragnarok">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/283880/header.jpg?t=1745510196" alt="Heroine&#x27;s Quest: The Herald of Ragnarok PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Heroine's Quest: The Herald of Ragnarok</h3>
+    <h3 class="game-title">Heroine&#x27;s Quest: The Herald of Ragnarok</h3>
     <div class="game-genre">Adventure, Indie, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX compatible graphics card</span>
@@ -17228,10 +17330,10 @@
     </div>
   </div>
 </a>
-<a href="games/strike-suit-zero-director-s-cut.html" class="game-card" data-title="strike suit zero: director's cut">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/288370/332f0cdc165963afd17b27793d516e12a033ddb9/header.jpg?t=1784300195" alt="Strike Suit Zero: Director's Cut PC Specs" class="game-img" loading="lazy">
+<a href="games/strike-suit-zero-director-s-cut.html" class="game-card" data-title="strike suit zero: director&#x27;s cut">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/288370/332f0cdc165963afd17b27793d516e12a033ddb9/header.jpg?t=1784300195" alt="Strike Suit Zero: Director&#x27;s Cut PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Strike Suit Zero: Director's Cut</h3>
+    <h3 class="game-title">Strike Suit Zero: Director&#x27;s Cut</h3>
     <div class="game-genre">Action, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX 11 graphics card with 2 GB Video…</span>
@@ -17250,10 +17352,10 @@
     </div>
   </div>
 </a>
-<a href="games/king-s-bounty-dark-side.html" class="game-card" data-title="king's bounty: dark side">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/289520/75a1ea9c85115ff7a05e01aa5925152a2133ae49/header.jpg?t=1783946342" alt="King's Bounty: Dark Side PC Specs" class="game-img" loading="lazy">
+<a href="games/king-s-bounty-dark-side.html" class="game-card" data-title="king&#x27;s bounty: dark side">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/289520/75a1ea9c85115ff7a05e01aa5925152a2133ae49/header.jpg?t=1783946342" alt="King&#x27;s Bounty: Dark Side PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">King's Bounty: Dark Side</h3>
+    <h3 class="game-title">King&#x27;s Bounty: Dark Side</h3>
     <div class="game-genre">RPG, Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: nVidia GeForce 6600 with 128 Mb VRAM</span>
@@ -17283,10 +17385,10 @@
     </div>
   </div>
 </a>
-<a href="games/guns-gore-cannoli.html" class="game-card" data-title="guns, gore & cannoli">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322210/header.jpg?t=1749489215" alt="Guns, Gore & Cannoli PC Specs" class="game-img" loading="lazy">
+<a href="games/guns-gore-cannoli.html" class="game-card" data-title="guns, gore &amp; cannoli">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/322210/header.jpg?t=1749489215" alt="Guns, Gore &amp; Cannoli PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Guns, Gore & Cannoli</h3>
+    <h3 class="game-title">Guns, Gore &amp; Cannoli</h3>
     <div class="game-genre">Action, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce GTX 550 Ti</span>
@@ -17740,7 +17842,7 @@
     <h3 class="game-title">BLACKHOLE</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
-      <span class="gpu-badge">GPU: NVIDIA GTX 560Ti & higher</span>
+      <span class="gpu-badge">GPU: NVIDIA GTX 560Ti &amp; higher</span>
       <span class="fps-badge">60 FPS</span>
     </div>
   </div>
@@ -17811,10 +17913,10 @@
     </div>
   </div>
 </a>
-<a href="games/king-s-bounty-ii.html" class="game-card" data-title="king's bounty ii">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1135300/header.jpg?t=1793381176" alt="King's Bounty II PC Specs" class="game-img" loading="lazy">
+<a href="games/king-s-bounty-ii.html" class="game-card" data-title="king&#x27;s bounty ii">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1135300/header.jpg?t=1793381176" alt="King&#x27;s Bounty II PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">King's Bounty II</h3>
+    <h3 class="game-title">King&#x27;s Bounty II</h3>
     <div class="game-genre">Adventure, RPG, Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce GTX 1060</span>
@@ -17921,10 +18023,10 @@
     </div>
   </div>
 </a>
-<a href="games/ys-i-ii-chronicles.html" class="game-card" data-title="ys i & ii chronicles+">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/223810/header.jpg?t=1740512356" alt="Ys I & II Chronicles+ PC Specs" class="game-img" loading="lazy">
+<a href="games/ys-i-ii-chronicles.html" class="game-card" data-title="ys i &amp; ii chronicles+">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/223810/header.jpg?t=1740512356" alt="Ys I &amp; II Chronicles+ PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Ys I & II Chronicles+</h3>
+    <h3 class="game-title">Ys I &amp; II Chronicles+</h3>
     <div class="game-genre">Action, Adventure, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 64 MB VRAM, 3D accelerator compatible w/…</span>
@@ -18097,10 +18199,10 @@
     </div>
   </div>
 </a>
-<a href="games/who-s-lila.html" class="game-card" data-title="who's lila?">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1697700/header.jpg?t=1725418523" alt="Who's Lila? PC Specs" class="game-img" loading="lazy">
+<a href="games/who-s-lila.html" class="game-card" data-title="who&#x27;s lila?">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1697700/header.jpg?t=1725418523" alt="Who&#x27;s Lila? PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Who's Lila?</h3>
+    <h3 class="game-title">Who&#x27;s Lila?</h3>
     <div class="game-genre">Adventure, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Intel HD Graphics Family</span>
@@ -18647,10 +18749,10 @@
     </div>
   </div>
 </a>
-<a href="games/dragon-s-prophet.html" class="game-card" data-title="dragon's prophet">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/259020/header.jpg?t=1530040584" alt="Dragon's Prophet PC Specs" class="game-img" loading="lazy">
+<a href="games/dragon-s-prophet.html" class="game-card" data-title="dragon&#x27;s prophet">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/259020/header.jpg?t=1530040584" alt="Dragon&#x27;s Prophet PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Dragon's Prophet</h3>
+    <h3 class="game-title">Dragon&#x27;s Prophet</h3>
     <div class="game-genre">Action, Free To Play, Massively Multiplayer</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia 560 TI</span>
@@ -18933,10 +19035,10 @@
     </div>
   </div>
 </a>
-<a href="games/lone-survivor-the-director-s-cut.html" class="game-card" data-title="lone survivor: the director's cut">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/209830/header.jpg?t=1771596375" alt="Lone Survivor: The Director's Cut PC Specs" class="game-img" loading="lazy">
+<a href="games/lone-survivor-the-director-s-cut.html" class="game-card" data-title="lone survivor: the director&#x27;s cut">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/209830/header.jpg?t=1771596375" alt="Lone Survivor: The Director&#x27;s Cut PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Lone Survivor: The Director's Cut</h3>
+    <h3 class="game-title">Lone Survivor: The Director&#x27;s Cut</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia 7900</span>
@@ -19439,10 +19541,10 @@
     </div>
   </div>
 </a>
-<a href="games/fight-n-rage.html" class="game-card" data-title="fight'n rage">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/674520/header.jpg?t=1676503282" alt="Fight'N Rage PC Specs" class="game-img" loading="lazy">
+<a href="games/fight-n-rage.html" class="game-card" data-title="fight&#x27;n rage">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/674520/header.jpg?t=1676503282" alt="Fight&#x27;N Rage PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Fight'N Rage</h3>
+    <h3 class="game-title">Fight&#x27;N Rage</h3>
     <div class="game-genre">Action, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVidia Geforce GTX 660</span>
@@ -19494,10 +19596,10 @@
     </div>
   </div>
 </a>
-<a href="games/nascar-15-victory-edition.html" class="game-card" data-title="nascar '15 victory edition">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/345890/header.jpg?t=1735581632" alt="NASCAR '15 Victory Edition PC Specs" class="game-img" loading="lazy">
+<a href="games/nascar-15-victory-edition.html" class="game-card" data-title="nascar &#x27;15 victory edition">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/345890/header.jpg?t=1735581632" alt="NASCAR &#x27;15 Victory Edition PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">NASCAR '15 Victory Edition</h3>
+    <h3 class="game-title">NASCAR &#x27;15 Victory Edition</h3>
     <div class="game-genre">Racing</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce GTX 260</span>
@@ -19967,10 +20069,10 @@
     </div>
   </div>
 </a>
-<a href="games/marvel-s-guardians-of-the-galaxy-the-telltale-series.html" class="game-card" data-title="marvel's guardians of the galaxy: the telltale series">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/579950/header.jpg?t=1560522214" alt="Marvel's Guardians of the Galaxy: The Telltale Series PC Specs" class="game-img" loading="lazy">
+<a href="games/marvel-s-guardians-of-the-galaxy-the-telltale-series.html" class="game-card" data-title="marvel&#x27;s guardians of the galaxy: the telltale series">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/579950/header.jpg?t=1560522214" alt="Marvel&#x27;s Guardians of the Galaxy: The Telltale Series PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Marvel's Guardians of the Galaxy: The Telltale Series</h3>
+    <h3 class="game-title">Marvel&#x27;s Guardians of the Galaxy: The Telltale Series</h3>
     <div class="game-genre">Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia GTS 450+ with 1024MB+ VRAM…</span>
@@ -20055,10 +20157,10 @@
     </div>
   </div>
 </a>
-<a href="games/might-magic-heroes-online.html" class="game-card" data-title="might & magic heroes online">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/336520/header.jpg?t=1680008593" alt="Might & Magic Heroes Online PC Specs" class="game-img" loading="lazy">
+<a href="games/might-magic-heroes-online.html" class="game-card" data-title="might &amp; magic heroes online">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/336520/header.jpg?t=1680008593" alt="Might &amp; Magic Heroes Online PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Might & Magic Heroes Online</h3>
+    <h3 class="game-title">Might &amp; Magic Heroes Online</h3>
     <div class="game-genre">Free To Play, Massively Multiplayer, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Hardware Accelerated Graphics with 1 GB…</span>
@@ -20297,10 +20399,10 @@
     </div>
   </div>
 </a>
-<a href="games/old-man-s-journey.html" class="game-card" data-title="old man's journey">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/581270/495e426f146fd1d0f8d86a8925c63b807c693033/header.jpg?t=1773750273" alt="Old Man's Journey PC Specs" class="game-img" loading="lazy">
+<a href="games/old-man-s-journey.html" class="game-card" data-title="old man&#x27;s journey">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/581270/495e426f146fd1d0f8d86a8925c63b807c693033/header.jpg?t=1773750273" alt="Old Man&#x27;s Journey PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Old Man's Journey</h3>
+    <h3 class="game-title">Old Man&#x27;s Journey</h3>
     <div class="game-genre">Adventure, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DX9 (shader model 3.0)</span>
@@ -20429,10 +20531,10 @@
     </div>
   </div>
 </a>
-<a href="games/tom-clancy-s-rainbow-six-vegas.html" class="game-card" data-title="tom clancy's rainbow six® vegas">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/13540/header.jpg?t=1765569332" alt="Tom Clancy's Rainbow Six® Vegas PC Specs" class="game-img" loading="lazy">
+<a href="games/tom-clancy-s-rainbow-six-vegas.html" class="game-card" data-title="tom clancy&#x27;s rainbow six® vegas">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/13540/header.jpg?t=1765569332" alt="Tom Clancy&#x27;s Rainbow Six® Vegas PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Tom Clancy's Rainbow Six® Vegas</h3>
+    <h3 class="game-title">Tom Clancy&#x27;s Rainbow Six® Vegas</h3>
     <div class="game-genre">Action</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 128 MB DirectX 9.0c-compliant, Shader…</span>
@@ -20924,10 +21026,10 @@
     </div>
   </div>
 </a>
-<a href="games/king-s-bounty-warriors-of-the-north.html" class="game-card" data-title="king's bounty: warriors of the north">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/203350/d33d73eedf25b652c9739449fabac7889c095a40/header.jpg?t=1783946407" alt="King's Bounty: Warriors of the North PC Specs" class="game-img" loading="lazy">
+<a href="games/king-s-bounty-warriors-of-the-north.html" class="game-card" data-title="king&#x27;s bounty: warriors of the north">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/203350/d33d73eedf25b652c9739449fabac7889c095a40/header.jpg?t=1783946407" alt="King&#x27;s Bounty: Warriors of the North PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">King's Bounty: Warriors of the North</h3>
+    <h3 class="game-title">King&#x27;s Bounty: Warriors of the North</h3>
     <div class="game-genre">RPG, Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: nVidia</span>
@@ -21034,10 +21136,10 @@
     </div>
   </div>
 </a>
-<a href="games/there-s-poop-in-my-soup.html" class="game-card" data-title="there's poop in my soup">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/449540/header.jpg?t=1631224545" alt="There's Poop In My Soup PC Specs" class="game-img" loading="lazy">
+<a href="games/there-s-poop-in-my-soup.html" class="game-card" data-title="there&#x27;s poop in my soup">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/449540/header.jpg?t=1631224545" alt="There&#x27;s Poop In My Soup PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">There's Poop In My Soup</h3>
+    <h3 class="game-title">There&#x27;s Poop In My Soup</h3>
     <div class="game-genre">Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 512MB</span>
@@ -21320,10 +21422,10 @@
     </div>
   </div>
 </a>
-<a href="games/yokai-s-secret.html" class="game-card" data-title="yokai's secret">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1146630/header.jpg?t=1703481180" alt="Yokai's Secret PC Specs" class="game-img" loading="lazy">
+<a href="games/yokai-s-secret.html" class="game-card" data-title="yokai&#x27;s secret">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1146630/header.jpg?t=1703481180" alt="Yokai&#x27;s Secret PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Yokai's Secret</h3>
+    <h3 class="game-title">Yokai&#x27;s Secret</h3>
     <div class="game-genre">Action, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA Gef</span>
@@ -21375,10 +21477,10 @@
     </div>
   </div>
 </a>
-<a href="games/geometry-may-i-swear-it-s-a-nice-free-game.html" class="game-card" data-title="geometry may. i swear it's a nice free game">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1057430/header.jpg?t=1761125336" alt="Geometry May. I swear it's a nice free game PC Specs" class="game-img" loading="lazy">
+<a href="games/geometry-may-i-swear-it-s-a-nice-free-game.html" class="game-card" data-title="geometry may. i swear it&#x27;s a nice free game">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1057430/header.jpg?t=1761125336" alt="Geometry May. I swear it&#x27;s a nice free game PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Geometry May. I swear it's a nice free game</h3>
+    <h3 class="game-title">Geometry May. I swear it&#x27;s a nice free game</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 2nd Generation Intel Core HD Graphics…</span>
@@ -21474,10 +21576,10 @@
     </div>
   </div>
 </a>
-<a href="games/king-s-guard-td.html" class="game-card" data-title="king's guard td">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/466730/header.jpg?t=1768141119" alt="King's Guard TD PC Specs" class="game-img" loading="lazy">
+<a href="games/king-s-guard-td.html" class="game-card" data-title="king&#x27;s guard td">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/466730/header.jpg?t=1768141119" alt="King&#x27;s Guard TD PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">King's Guard TD</h3>
+    <h3 class="game-title">King&#x27;s Guard TD</h3>
     <div class="game-genre">Casual, Indie, Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce 9600 GT</span>
@@ -21601,7 +21703,7 @@
     <h3 class="game-title">Timespinner</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
-      <span class="gpu-badge">GPU: DirectX 9.0c compatible, PixelShader &…</span>
+      <span class="gpu-badge">GPU: DirectX 9.0c compatible, PixelShader &amp;…</span>
       <span class="fps-badge">60 FPS</span>
     </div>
   </div>
@@ -21694,10 +21796,10 @@
     </div>
   </div>
 </a>
-<a href="games/vampires-melody.html" class="game-card" data-title="vampires' melody">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1377360/header.jpg?t=1791974180" alt="Vampires' Melody PC Specs" class="game-img" loading="lazy">
+<a href="games/vampires-melody.html" class="game-card" data-title="vampires&#x27; melody">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1377360/header.jpg?t=1791974180" alt="Vampires&#x27; Melody PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Vampires' Melody</h3>
+    <h3 class="game-title">Vampires&#x27; Melody</h3>
     <div class="game-genre">Adventure, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX 9.0c Compatible Graphics Card</span>
@@ -22123,10 +22225,10 @@
     </div>
   </div>
 </a>
-<a href="games/zuma-s-revenge.html" class="game-card" data-title="zuma's revenge!">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3620/header.jpg?t=1628007882" alt="Zuma's Revenge! PC Specs" class="game-img" loading="lazy">
+<a href="games/zuma-s-revenge.html" class="game-card" data-title="zuma&#x27;s revenge!">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3620/header.jpg?t=1628007882" alt="Zuma&#x27;s Revenge! PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Zuma's Revenge!</h3>
+    <h3 class="game-title">Zuma&#x27;s Revenge!</h3>
     <div class="game-genre">Action, Casual</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX-compatible; 16MB (minimum, lo-res…)</span>
@@ -22541,10 +22643,10 @@
     </div>
   </div>
 </a>
-<a href="games/king-s-bounty-crossworlds.html" class="game-card" data-title="king's bounty: crossworlds">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/63910/3bad0a971116bc033dda3ca4e15fcf40fe60a43a/header.jpg?t=1784021363" alt="King's Bounty: Crossworlds PC Specs" class="game-img" loading="lazy">
+<a href="games/king-s-bounty-crossworlds.html" class="game-card" data-title="king&#x27;s bounty: crossworlds">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/63910/3bad0a971116bc033dda3ca4e15fcf40fe60a43a/header.jpg?t=1784021363" alt="King&#x27;s Bounty: Crossworlds PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">King's Bounty: Crossworlds</h3>
+    <h3 class="game-title">King&#x27;s Bounty: Crossworlds</h3>
     <div class="game-genre">RPG, Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: nVidia GeForce 7950GT with 512 MB</span>
@@ -22574,10 +22676,10 @@
     </div>
   </div>
 </a>
-<a href="games/swords-n-magic-and-stuff.html" class="game-card" data-title="swords 'n magic and stuff">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/810040/header.jpg?t=1773190593" alt="Swords 'n Magic and Stuff PC Specs" class="game-img" loading="lazy">
+<a href="games/swords-n-magic-and-stuff.html" class="game-card" data-title="swords &#x27;n magic and stuff">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/810040/header.jpg?t=1773190593" alt="Swords &#x27;n Magic and Stuff PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Swords 'n Magic and Stuff</h3>
+    <h3 class="game-title">Swords &#x27;n Magic and Stuff</h3>
     <div class="game-genre">Adventure, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Geforce RTX 2070</span>
@@ -22728,10 +22830,10 @@
     </div>
   </div>
 </a>
-<a href="games/the-swords-of-ditto-mormo-s-curse.html" class="game-card" data-title="the swords of ditto: mormo's curse">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/619780/header.jpg?t=1728690242" alt="The Swords of Ditto: Mormo's Curse PC Specs" class="game-img" loading="lazy">
+<a href="games/the-swords-of-ditto-mormo-s-curse.html" class="game-card" data-title="the swords of ditto: mormo&#x27;s curse">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/619780/header.jpg?t=1728690242" alt="The Swords of Ditto: Mormo&#x27;s Curse PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">The Swords of Ditto: Mormo's Curse</h3>
+    <h3 class="game-title">The Swords of Ditto: Mormo&#x27;s Curse</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce GTX 460 (1024 MB)</span>
@@ -22750,10 +22852,10 @@
     </div>
   </div>
 </a>
-<a href="games/sam-max-the-devil-s-playhouse.html" class="game-card" data-title="sam & max: the devil’s playhouse">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/901399/header.jpg?t=1719435641" alt="Sam & Max: The Devil’s Playhouse PC Specs" class="game-img" loading="lazy">
+<a href="games/sam-max-the-devil-s-playhouse.html" class="game-card" data-title="sam &amp; max: the devil’s playhouse">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/901399/header.jpg?t=1719435641" alt="Sam &amp; Max: The Devil’s Playhouse PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Sam & Max: The Devil’s Playhouse</h3>
+    <h3 class="game-title">Sam &amp; Max: The Devil’s Playhouse</h3>
     <div class="game-genre">Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 128MB DirectX 8.1-compliant video card…</span>
@@ -22772,10 +22874,10 @@
     </div>
   </div>
 </a>
-<a href="games/melody-s-escape.html" class="game-card" data-title="melody's escape">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/270210/header.jpg?t=1669064914" alt="Melody's Escape PC Specs" class="game-img" loading="lazy">
+<a href="games/melody-s-escape.html" class="game-card" data-title="melody&#x27;s escape">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/270210/header.jpg?t=1669064914" alt="Melody&#x27;s Escape PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Melody's Escape</h3>
+    <h3 class="game-title">Melody&#x27;s Escape</h3>
     <div class="game-genre">Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA® GeForce 8800GTS</span>
@@ -22827,10 +22929,10 @@
     </div>
   </div>
 </a>
-<a href="games/the-excavation-of-hob-s-barrow.html" class="game-card" data-title="the excavation of hob's barrow">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1182310/header.jpg?t=1794387231" alt="The Excavation of Hob's Barrow PC Specs" class="game-img" loading="lazy">
+<a href="games/the-excavation-of-hob-s-barrow.html" class="game-card" data-title="the excavation of hob&#x27;s barrow">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1182310/header.jpg?t=1794387231" alt="The Excavation of Hob&#x27;s Barrow PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">The Excavation of Hob's Barrow</h3>
+    <h3 class="game-title">The Excavation of Hob&#x27;s Barrow</h3>
     <div class="game-genre">Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Direct3D, OpenGL, DirectX 5</span>
@@ -22838,10 +22940,10 @@
     </div>
   </div>
 </a>
-<a href="games/broken-sword-director-s-cut-2009.html" class="game-card" data-title="broken sword: director's cut (2009)">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/57640/header.jpg?t=1731664132" alt="Broken Sword: Director's Cut (2009) PC Specs" class="game-img" loading="lazy">
+<a href="games/broken-sword-director-s-cut-2009.html" class="game-card" data-title="broken sword: director&#x27;s cut (2009)">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/57640/header.jpg?t=1731664132" alt="Broken Sword: Director&#x27;s Cut (2009) PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Broken Sword: Director's Cut (2009)</h3>
+    <h3 class="game-title">Broken Sword: Director&#x27;s Cut (2009)</h3>
     <div class="game-genre">Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Any video card with 64 Mb video RAM…</span>
@@ -23168,10 +23270,10 @@
     </div>
   </div>
 </a>
-<a href="games/lego-builder-s-journey.html" class="game-card" data-title="lego® builder's journey">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1544360/header.jpg?t=1768472865" alt="LEGO® Builder's Journey PC Specs" class="game-img" loading="lazy">
+<a href="games/lego-builder-s-journey.html" class="game-card" data-title="lego® builder&#x27;s journey">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1544360/header.jpg?t=1768472865" alt="LEGO® Builder&#x27;s Journey PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">LEGO® Builder's Journey</h3>
+    <h3 class="game-title">LEGO® Builder&#x27;s Journey</h3>
     <div class="game-genre">Adventure, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce RTX 2060</span>
@@ -23179,10 +23281,10 @@
     </div>
   </div>
 </a>
-<a href="games/dragon-s-sin.html" class="game-card" data-title="dragon's sin">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/534220/header.jpg?t=1514899695" alt="Dragon's Sin PC Specs" class="game-img" loading="lazy">
+<a href="games/dragon-s-sin.html" class="game-card" data-title="dragon&#x27;s sin">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/534220/header.jpg?t=1514899695" alt="Dragon&#x27;s Sin PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Dragon's Sin</h3>
+    <h3 class="game-title">Dragon&#x27;s Sin</h3>
     <div class="game-genre">Gore, Action, Free To Play</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GTX 760</span>
@@ -23278,10 +23380,10 @@
     </div>
   </div>
 </a>
-<a href="games/zoop-hunter-s-grimm.html" class="game-card" data-title="zoop! - hunter's grimm">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/577460/8b5abe2456c6ef901ea3746cd2ed748a80fbca5d/header.jpg?t=1756074925" alt="Zoop! - Hunter's Grimm PC Specs" class="game-img" loading="lazy">
+<a href="games/zoop-hunter-s-grimm.html" class="game-card" data-title="zoop! - hunter&#x27;s grimm">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/577460/8b5abe2456c6ef901ea3746cd2ed748a80fbca5d/header.jpg?t=1756074925" alt="Zoop! - Hunter&#x27;s Grimm PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Zoop! - Hunter's Grimm</h3>
+    <h3 class="game-title">Zoop! - Hunter&#x27;s Grimm</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 1024 x 768 pixels</span>
@@ -23828,10 +23930,10 @@
     </div>
   </div>
 </a>
-<a href="games/penny-arcade-s-on-the-rain-slick-precipice-of-darkness-3.html" class="game-card" data-title="penny arcade's on the rain-slick precipice of darkness 3">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/213030/header.jpg?t=1682942622" alt="Penny Arcade's On the Rain-Slick Precipice of Darkness 3 PC Specs" class="game-img" loading="lazy">
+<a href="games/penny-arcade-s-on-the-rain-slick-precipice-of-darkness-3.html" class="game-card" data-title="penny arcade&#x27;s on the rain-slick precipice of darkness 3">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/213030/header.jpg?t=1682942622" alt="Penny Arcade&#x27;s On the Rain-Slick Precipice of Darkness 3 PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Penny Arcade's On the Rain-Slick Precipice of Darkness 3</h3>
+    <h3 class="game-title">Penny Arcade&#x27;s On the Rain-Slick Precipice of Darkness 3</h3>
     <div class="game-genre">Indie, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX 9.0c compatible</span>
@@ -24037,10 +24139,10 @@
     </div>
   </div>
 </a>
-<a href="games/sherlock-holmes-the-devil-s-daughter.html" class="game-card" data-title="sherlock holmes: the devil's daughter">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/350640/header.jpg?t=1758522993" alt="Sherlock Holmes: The Devil's Daughter PC Specs" class="game-img" loading="lazy">
+<a href="games/sherlock-holmes-the-devil-s-daughter.html" class="game-card" data-title="sherlock holmes: the devil&#x27;s daughter">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/350640/header.jpg?t=1758522993" alt="Sherlock Holmes: The Devil&#x27;s Daughter PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Sherlock Holmes: The Devil's Daughter</h3>
+    <h3 class="game-title">Sherlock Holmes: The Devil&#x27;s Daughter</h3>
     <div class="game-genre">Action, Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 2048MB 100% DirectX 11 compatible ATI R9…</span>
@@ -24191,10 +24293,10 @@
     </div>
   </div>
 </a>
-<a href="games/five-nights-at-freddy-s-3.html" class="game-card" data-title="five nights at freddy's 3">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/354140/header.jpg?t=1579635991" alt="Five Nights at Freddy's 3 PC Specs" class="game-img" loading="lazy">
+<a href="games/five-nights-at-freddy-s-3.html" class="game-card" data-title="five nights at freddy&#x27;s 3">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/354140/header.jpg?t=1579635991" alt="Five Nights at Freddy&#x27;s 3 PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Five Nights at Freddy's 3</h3>
+    <h3 class="game-title">Five Nights at Freddy&#x27;s 3</h3>
     <div class="game-genre">Action, Indie, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 1 GB</span>
@@ -24345,10 +24447,10 @@
     </div>
   </div>
 </a>
-<a href="games/rusty-s-retirement.html" class="game-card" data-title="rusty's retirement">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2666510/1b9c3e5c1a8a08354bed63fbeed798fcec74aff9/header.jpg?t=1793279402" alt="Rusty's Retirement PC Specs" class="game-img" loading="lazy">
+<a href="games/rusty-s-retirement.html" class="game-card" data-title="rusty&#x27;s retirement">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2666510/1b9c3e5c1a8a08354bed63fbeed798fcec74aff9/header.jpg?t=1793279402" alt="Rusty&#x27;s Retirement PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Rusty's Retirement</h3>
+    <h3 class="game-title">Rusty&#x27;s Retirement</h3>
     <div class="game-genre">Casual, Indie, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Graphics card with DX9</span>
@@ -24576,10 +24678,10 @@
     </div>
   </div>
 </a>
-<a href="games/king-s-quest.html" class="game-card" data-title="king's quest">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/345390/header.jpg?t=1773763933" alt="King's Quest PC Specs" class="game-img" loading="lazy">
+<a href="games/king-s-quest.html" class="game-card" data-title="king&#x27;s quest">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/345390/header.jpg?t=1773763933" alt="King&#x27;s Quest PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">King's Quest</h3>
+    <h3 class="game-title">King&#x27;s Quest</h3>
     <div class="game-genre">Adventure</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce 8800 GT</span>
@@ -24752,10 +24854,10 @@
     </div>
   </div>
 </a>
-<a href="games/anna-s-quest.html" class="game-card" data-title="anna's quest">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/327220/header.jpg?t=1793976902" alt="Anna's Quest PC Specs" class="game-img" loading="lazy">
+<a href="games/anna-s-quest.html" class="game-card" data-title="anna&#x27;s quest">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/327220/header.jpg?t=1793976902" alt="Anna&#x27;s Quest PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Anna's Quest</h3>
+    <h3 class="game-title">Anna&#x27;s Quest</h3>
     <div class="game-genre">Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia GeForce 405, AMD Radeon HD 5400…</span>
@@ -25005,10 +25107,10 @@
     </div>
   </div>
 </a>
-<a href="games/death-s-gambit-afterlife.html" class="game-card" data-title="death's gambit: afterlife">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/356650/header.jpg?t=1782417440" alt="Death's Gambit: Afterlife PC Specs" class="game-img" loading="lazy">
+<a href="games/death-s-gambit-afterlife.html" class="game-card" data-title="death&#x27;s gambit: afterlife">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/356650/header.jpg?t=1782417440" alt="Death&#x27;s Gambit: Afterlife PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Death's Gambit: Afterlife</h3>
+    <h3 class="game-title">Death&#x27;s Gambit: Afterlife</h3>
     <div class="game-genre">Action, Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia Geforce GT520</span>
@@ -25126,10 +25228,10 @@
     </div>
   </div>
 </a>
-<a href="games/papa-s-freezeria-deluxe.html" class="game-card" data-title="papa's freezeria deluxe">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2291760/header.jpg?t=1700157490" alt="Papa's Freezeria Deluxe PC Specs" class="game-img" loading="lazy">
+<a href="games/papa-s-freezeria-deluxe.html" class="game-card" data-title="papa&#x27;s freezeria deluxe">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2291760/header.jpg?t=1700157490" alt="Papa&#x27;s Freezeria Deluxe PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Papa's Freezeria Deluxe</h3>
+    <h3 class="game-title">Papa&#x27;s Freezeria Deluxe</h3>
     <div class="game-genre">Action, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX 9.0c Compatible Video Card</span>
@@ -25137,10 +25239,10 @@
     </div>
   </div>
 </a>
-<a href="games/yoku-s-island-express.html" class="game-card" data-title="yoku's island express">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/334940/header.jpg?t=1763040310" alt="Yoku's Island Express PC Specs" class="game-img" loading="lazy">
+<a href="games/yoku-s-island-express.html" class="game-card" data-title="yoku&#x27;s island express">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/334940/header.jpg?t=1763040310" alt="Yoku&#x27;s Island Express PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Yoku's Island Express</h3>
+    <h3 class="game-title">Yoku&#x27;s Island Express</h3>
     <div class="game-genre">Adventure, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Nvidia GeForce GT 630 1GB</span>
@@ -25610,10 +25712,10 @@
     </div>
   </div>
 </a>
-<a href="games/axis-allies-1942-online.html" class="game-card" data-title="axis & allies 1942 online">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/898920/header.jpg?t=1746125912" alt="Axis & Allies 1942 Online PC Specs" class="game-img" loading="lazy">
+<a href="games/axis-allies-1942-online.html" class="game-card" data-title="axis &amp; allies 1942 online">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/898920/header.jpg?t=1746125912" alt="Axis &amp; Allies 1942 Online PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Axis & Allies 1942 Online</h3>
+    <h3 class="game-title">Axis &amp; Allies 1942 Online</h3>
     <div class="game-genre">Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: Intel HD 3000 Integrated Video Card</span>
@@ -25687,10 +25789,10 @@
     </div>
   </div>
 </a>
-<a href="games/might-magic-x-legacy.html" class="game-card" data-title="might & magic x - legacy">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238750/header.jpg?t=1765228976" alt="Might & Magic X - Legacy PC Specs" class="game-img" loading="lazy">
+<a href="games/might-magic-x-legacy.html" class="game-card" data-title="might &amp; magic x - legacy">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/238750/header.jpg?t=1765228976" alt="Might &amp; Magic X - Legacy PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Might & Magic X - Legacy</h3>
+    <h3 class="game-title">Might &amp; Magic X - Legacy</h3>
     <div class="game-genre">RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: nVidia GeForce GTX470</span>
@@ -25786,10 +25888,10 @@
     </div>
   </div>
 </a>
-<a href="games/rooftops-alleys-the-parkour-game.html" class="game-card" data-title="rooftops & alleys: the parkour game">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2703850/7a62174321720853b2b79ab1dfd554e8f0a491f7/header.jpg?t=1794306343" alt="Rooftops & Alleys: The Parkour Game PC Specs" class="game-img" loading="lazy">
+<a href="games/rooftops-alleys-the-parkour-game.html" class="game-card" data-title="rooftops &amp; alleys: the parkour game">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2703850/7a62174321720853b2b79ab1dfd554e8f0a491f7/header.jpg?t=1794306343" alt="Rooftops &amp; Alleys: The Parkour Game PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Rooftops & Alleys: The Parkour Game</h3>
+    <h3 class="game-title">Rooftops &amp; Alleys: The Parkour Game</h3>
     <div class="game-genre">Indie, Simulation, Sports</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce GTX 950</span>
@@ -25874,10 +25976,10 @@
     </div>
   </div>
 </a>
-<a href="games/onimusha-2-samurai-s-destiny.html" class="game-card" data-title="onimusha 2: samurai's destiny">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3046600/header.jpg?t=1763712388" alt="Onimusha 2: Samurai's Destiny PC Specs" class="game-img" loading="lazy">
+<a href="games/onimusha-2-samurai-s-destiny.html" class="game-card" data-title="onimusha 2: samurai&#x27;s destiny">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3046600/header.jpg?t=1763712388" alt="Onimusha 2: Samurai&#x27;s Destiny PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Onimusha 2: Samurai's Destiny</h3>
+    <h3 class="game-title">Onimusha 2: Samurai&#x27;s Destiny</h3>
     <div class="game-genre">Action</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA® GeForce® GTX 1060 (VRAM6GB)</span>
@@ -26072,10 +26174,10 @@
     </div>
   </div>
 </a>
-<a href="games/otaku-s-fantasy.html" class="game-card" data-title="otaku's fantasy">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/712050/header.jpg?t=1645623527" alt="Otaku's Fantasy PC Specs" class="game-img" loading="lazy">
+<a href="games/otaku-s-fantasy.html" class="game-card" data-title="otaku&#x27;s fantasy">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/712050/header.jpg?t=1645623527" alt="Otaku&#x27;s Fantasy PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Otaku's Fantasy</h3>
+    <h3 class="game-title">Otaku&#x27;s Fantasy</h3>
     <div class="game-genre">Adventure, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX 9 compatible graphics card</span>
@@ -26094,10 +26196,10 @@
     </div>
   </div>
 </a>
-<a href="games/sonic-sega-all-stars-racing.html" class="game-card" data-title="sonic & sega all-stars racing">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/34190/header.jpg?t=1762752545" alt="Sonic & SEGA All-Stars Racing PC Specs" class="game-img" loading="lazy">
+<a href="games/sonic-sega-all-stars-racing.html" class="game-card" data-title="sonic &amp; sega all-stars racing">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/34190/header.jpg?t=1762752545" alt="Sonic &amp; SEGA All-Stars Racing PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Sonic & SEGA All-Stars Racing</h3>
+    <h3 class="game-title">Sonic &amp; SEGA All-Stars Racing</h3>
     <div class="game-genre">Racing</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce 8800</span>
@@ -26347,10 +26449,10 @@
     </div>
   </div>
 </a>
-<a href="games/the-life-and-suffering-of-sir-brante-chapter-1-2.html" class="game-card" data-title="the life and suffering of sir brante — chapter 1&2">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1460090/header.jpg?t=1784577776" alt="The Life and Suffering of Sir Brante — Chapter 1&2 PC Specs" class="game-img" loading="lazy">
+<a href="games/the-life-and-suffering-of-sir-brante-chapter-1-2.html" class="game-card" data-title="the life and suffering of sir brante — chapter 1&amp;2">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1460090/header.jpg?t=1784577776" alt="The Life and Suffering of Sir Brante — Chapter 1&amp;2 PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">The Life and Suffering of Sir Brante — Chapter 1&2</h3>
+    <h3 class="game-title">The Life and Suffering of Sir Brante — Chapter 1&amp;2</h3>
     <div class="game-genre">Adventure, Indie, RPG</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: DirectX® 9.0c compatible</span>
@@ -26501,10 +26603,10 @@
     </div>
   </div>
 </a>
-<a href="games/evan-s-remains.html" class="game-card" data-title="evan's remains">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1110050/header.jpg?t=1750953380" alt="Evan's Remains PC Specs" class="game-img" loading="lazy">
+<a href="games/evan-s-remains.html" class="game-card" data-title="evan&#x27;s remains">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1110050/header.jpg?t=1750953380" alt="Evan&#x27;s Remains PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Evan's Remains</h3>
+    <h3 class="game-title">Evan&#x27;s Remains</h3>
     <div class="game-genre">Adventure, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: GeForce GTS 450 (1024 MB)</span>
@@ -26622,10 +26724,10 @@
     </div>
   </div>
 </a>
-<a href="games/tom-clancy-s-ghost-recon.html" class="game-card" data-title="tom clancy's ghost recon®">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/15300/header.jpg?t=1764776400" alt="Tom Clancy's Ghost Recon® PC Specs" class="game-img" loading="lazy">
+<a href="games/tom-clancy-s-ghost-recon.html" class="game-card" data-title="tom clancy&#x27;s ghost recon®">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/15300/header.jpg?t=1764776400" alt="Tom Clancy&#x27;s Ghost Recon® PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Tom Clancy's Ghost Recon®</h3>
+    <h3 class="game-title">Tom Clancy&#x27;s Ghost Recon®</h3>
     <div class="game-genre">Action</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 16 MB DirectX®-compliant 3D card (see…)</span>
@@ -26710,10 +26812,10 @@
     </div>
   </div>
 </a>
-<a href="games/tom-clancy-s-endwar.html" class="game-card" data-title="tom clancy's endwar™">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/21800/header.jpg?t=1777996306" alt="Tom Clancy's EndWar™ PC Specs" class="game-img" loading="lazy">
+<a href="games/tom-clancy-s-endwar.html" class="game-card" data-title="tom clancy&#x27;s endwar™">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/21800/header.jpg?t=1777996306" alt="Tom Clancy&#x27;s EndWar™ PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Tom Clancy's EndWar™</h3>
+    <h3 class="game-title">Tom Clancy&#x27;s EndWar™</h3>
     <div class="game-genre">Strategy</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: 512 MB DirectX® 9.0c–compliant video card…</span>
@@ -26732,10 +26834,10 @@
     </div>
   </div>
 </a>
-<a href="games/thank-goodness-you-re-here.html" class="game-card" data-title="thank goodness you're here!">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2366980/header.jpg?t=1733154706" alt="Thank Goodness You're Here! PC Specs" class="game-img" loading="lazy">
+<a href="games/thank-goodness-you-re-here.html" class="game-card" data-title="thank goodness you&#x27;re here!">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2366980/header.jpg?t=1733154706" alt="Thank Goodness You&#x27;re Here! PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Thank Goodness You're Here!</h3>
+    <h3 class="game-title">Thank Goodness You&#x27;re Here!</h3>
     <div class="game-genre">Adventure, Casual, Indie</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA GeForce GT 520, 1 GB</span>
@@ -26743,10 +26845,10 @@
     </div>
   </div>
 </a>
-<a href="games/kid-napper-gosh-i-m-kidnapped-by-a-pupil.html" class="game-card" data-title="kid,napper: gosh, i'm kidnapped by a pupil">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/862690/header.jpg?t=1622124498" alt="Kid,napper: Gosh, I'm Kidnapped by a Pupil PC Specs" class="game-img" loading="lazy">
+<a href="games/kid-napper-gosh-i-m-kidnapped-by-a-pupil.html" class="game-card" data-title="kid,napper: gosh, i&#x27;m kidnapped by a pupil">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/862690/header.jpg?t=1622124498" alt="Kid,napper: Gosh, I&#x27;m Kidnapped by a Pupil PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Kid,napper: Gosh, I'm Kidnapped by a Pupil</h3>
+    <h3 class="game-title">Kid,napper: Gosh, I&#x27;m Kidnapped by a Pupil</h3>
     <div class="game-genre">Adventure, Casual, Free To Play</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: OpenGL 2.0</span>
@@ -27128,10 +27230,10 @@
     </div>
   </div>
 </a>
-<a href="games/heroes-vow-three-kingdoms.html" class="game-card" data-title="heroes' vow: three kingdoms">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3020510/4e3b3b9676fd500df19bc2cfa0e69f9e3d744989/header.jpg?t=1793698016" alt="Heroes' Vow: Three Kingdoms PC Specs" class="game-img" loading="lazy">
+<a href="games/heroes-vow-three-kingdoms.html" class="game-card" data-title="heroes&#x27; vow: three kingdoms">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3020510/4e3b3b9676fd500df19bc2cfa0e69f9e3d744989/header.jpg?t=1793698016" alt="Heroes&#x27; Vow: Three Kingdoms PC Specs" class="game-img" loading="lazy">
   <div class="game-body">
-    <h3 class="game-title">Heroes' Vow: Three Kingdoms</h3>
+    <h3 class="game-title">Heroes&#x27; Vow: Three Kingdoms</h3>
     <div class="game-genre">Indie, RPG, Simulation</div>
     <div class="spec-badge-box">
       <span class="gpu-badge">GPU: NVIDIA RTX2060 6G</span>
@@ -27296,9 +27398,21 @@
 
       </div>
 
+      <div class="game-grid" id="dynamicGrid" style="display:none;"></div>
+
       <div class="pagination-wrapper" id="paginationWrapper">
         <div class="pagination-controls" id="paginationControls"></div>
         <div class="page-info" id="pageInfo"></div>
+      </div>
+    </section>
+
+    <section class="hub-section">
+      <h2 class="grid-title">Browse games by GPU &amp; PC specs</h2>
+      <p style="font-size: 14px; color: var(--text-muted); margin-top: 6px;">Every guide lists the games that hardware runs at 60 FPS, matched from official Steam requirements.</p>
+      <div class="hub-groups">
+        <div><div class="hub-group-name">Graphics cards</div><div class="chip-grid"><a class="chip" href="gpu/rtx-5090.html">RTX 5090</a><a class="chip" href="gpu/rtx-4090.html">RTX 4090</a><a class="chip" href="gpu/rtx-4080.html">RTX 4080</a><a class="chip" href="gpu/rtx-4070.html">RTX 4070</a><a class="chip" href="gpu/rtx-4060.html">RTX 4060</a><a class="chip" href="gpu/rtx-3070.html">RTX 3070</a><a class="chip" href="gpu/rtx-3060.html">RTX 3060</a><a class="chip" href="gpu/rtx-3050.html">RTX 3050</a><a class="chip" href="gpu/rtx-2060.html">RTX 2060</a><a class="chip" href="gpu/gtx-1660-super.html">GTX 1660 Super</a><a class="chip" href="gpu/gtx-1650.html">GTX 1650</a><a class="chip" href="gpu/gtx-1060.html">GTX 1060</a><a class="chip" href="gpu/gtx-1050-ti.html">GTX 1050 Ti</a><a class="chip" href="gpu/gtx-970.html">GTX 970</a><a class="chip" href="gpu/gtx-750-ti.html">GTX 750 Ti</a><a class="chip" href="gpu/rx-7800-xt.html">RX 7800 XT</a><a class="chip" href="gpu/rx-7600.html">RX 7600</a><a class="chip" href="gpu/rx-6600.html">RX 6600</a><a class="chip" href="gpu/rx-580.html">RX 580</a><a class="chip" href="gpu/rx-570.html">RX 570</a><a class="chip" href="gpu/intel-arc-a750.html">Arc A750</a><a class="chip" href="gpu/intel-iris-xe.html">Iris Xe</a></div></div>
+        <div><div class="hub-group-name">Laptops, handhelds &amp; budget builds</div><div class="chip-grid"><a class="chip" href="gpu/steam-deck-handheld.html">Steam Deck</a><a class="chip" href="gpu/8gb-ram-laptop.html">8 GB RAM laptop</a><a class="chip" href="gpu/16gb-ram-gaming-pc.html">16 GB RAM PC</a><a class="chip" href="gpu/4gb-vram-gpu.html">4 GB VRAM GPU</a><a class="chip" href="gpu/2gb-vram-gpu.html">2 GB VRAM GPU</a><a class="chip" href="gpu/low-end-potato-pc.html">Potato PC</a><a class="chip" href="gpu/integrated-graphics-only.html">Integrated graphics</a></div></div>
+        <div><a class="chip" href="gpu/index.html" style="border-color:#6366f1;color:#fff;">See all GPU &amp; PC spec guides →</a></div>
       </div>
     </section>
   </main>
@@ -27307,94 +27421,252 @@
     <div class="container">
       <p>© 2026 CanMySpec.com · PC System Requirements & Hardware Benchmarks Database</p>
       <p style="margin-top: 8px;">
-        <a href="tools/" style="color:#38bdf8; font-weight:600;">🛠️ Free AI Tools</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="about.html">About & Contact</a> | <a href="sitemap.xml">XML Sitemap</a>
+        <a href="gpu/index.html">GPU &amp; Spec Guides</a> | <a href="tools/">🛠️ Free AI Tools</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="about.html">About & Contact</a> | <a href="sitemap.xml">XML Sitemap</a>
       </p>
     </div>
   </footer>
 
   <script>
-    const PAGE_SIZE = 24;
-    let currentPage = 1;
-    let filteredCards = [];
+    var PAGE_SIZE = 24;
+    var GPUS = [];
+    var IDX = null;
+    var staticCards = [];
+    var staticFiltered = [];
+    var dynMatches = [];
+    var viewMode = 'static';
+    var page = 1;
+    var state = { gpu: '', ram: '', mode: 'all', q: '' };
+    var F = { t: 0, s: 1, min: 2, rec: 3, minL: 4, recL: 5, minRam: 6, recRam: 7, rev: 8, rt: 9, g: 10, img: 11 };
 
-    function getCards() {
-      return Array.from(document.querySelectorAll('.game-card'));
+    function $(id) { return document.getElementById(id); }
+
+    function esc(v) {
+      return String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    function updatePagination() {
-      const totalItems = filteredCards.length;
-      const totalPages = Math.max(1, Math.ceil(totalItems / PAGE_SIZE));
-      if (currentPage > totalPages) currentPage = totalPages;
-      if (currentPage < 1) currentPage = 1;
+    function fmt(n) { return (n || 0).toLocaleString('en-US'); }
 
-      const startIndex = (currentPage - 1) * PAGE_SIZE;
-      const endIndex = startIndex + PAGE_SIZE;
+    function selectedHardware() {
+      var g = null;
+      for (var i = 0; i < GPUS.length; i++) { if (GPUS[i].slug === state.gpu) g = GPUS[i]; }
+      var ram = state.ram ? parseInt(state.ram, 10) : null;
+      return { gpu: g, ram: ram };
+    }
 
-      const allCards = getCards();
-      allCards.forEach(c => c.style.display = 'none');
-      filteredCards.slice(startIndex, endIndex).forEach(c => c.style.display = 'flex');
+    function loadScript(url, cb) {
+      var s = document.createElement('script');
+      s.src = url;
+      s.onload = cb;
+      document.head.appendChild(s);
+    }
 
-      const controls = document.getElementById('paginationControls');
-      const info = document.getElementById('pageInfo');
-      if (!controls || !info) return;
+    function loadData() {
+      return Promise.all([
+        fetch('data/gpus.json').then(function (r) { return r.json(); }),
+        fetch('data/spec_index.json').then(function (r) { return r.json(); })
+      ]).then(function (res) {
+        GPUS = res[0];
+        IDX = res[1];
+      }).catch(function () {
+        GPUS = [];
+        IDX = null;
+      });
+    }
 
-      controls.innerHTML = '';
-      if (totalItems === 0) {
-        info.textContent = 'No matching games found.';
-        return;
+    function buildGpuSelect() {
+      var sel = $('gpuSelect');
+      var byGroup = {};
+      var order = [];
+      GPUS.forEach(function (g) {
+        if (!byGroup[g.group]) { byGroup[g.group] = []; order.push(g.group); }
+        byGroup[g.group].push(g);
+      });
+      order.forEach(function (groupName) {
+        var og = document.createElement('optgroup');
+        og.label = groupName;
+        byGroup[groupName].forEach(function (g) {
+          var o = document.createElement('option');
+          o.value = g.slug;
+          o.textContent = g.name;
+          og.appendChild(o);
+        });
+        sel.appendChild(og);
+      });
+    }
+
+    function readUrlState() {
+      var p = new URLSearchParams(window.location.search);
+      state.gpu = p.get('gpu') || '';
+      state.ram = p.get('ram') || '';
+      state.mode = p.get('mode') === 'rec' ? 'rec' : 'all';
+      state.q = p.get('q') || '';
+      if (state.q) { $('gameSearch').value = state.q; }
+    }
+
+    function writeUrlState() {
+      var p = new URLSearchParams();
+      if (state.gpu) p.set('gpu', state.gpu);
+      if (state.ram) p.set('ram', state.ram);
+      if (state.mode === 'rec') p.set('mode', 'rec');
+      if (state.q) p.set('q', state.q);
+      var qs = p.toString();
+      history.replaceState(null, '', qs ? '?' + qs : window.location.pathname);
+    }
+
+    function syncControls() {
+      $('gpuSelect').value = state.gpu || '';
+      $('ramSelect').value = state.ram || '';
+      $('modeSelect').value = state.mode;
+    }
+
+    function onSearchInput() {
+      state.q = $('gameSearch').value.trim();
+      page = 1;
+      writeUrlState();
+      render();
+    }
+
+    function onGpuChange() {
+      var slug = $('gpuSelect').value;
+      state.gpu = slug;
+      for (var i = 0; i < GPUS.length; i++) {
+        if (GPUS[i].slug === slug && GPUS[i].presetRam) {
+          state.ram = String(GPUS[i].presetRam);
+          $('ramSelect').value = state.ram;
+        }
       }
+      page = 1;
+      writeUrlState();
+      render();
+    }
 
-      const startNum = startIndex + 1;
-      const endNum = Math.min(endIndex, totalItems);
-      info.textContent = `Showing ${startNum} - ${endNum} of ${totalItems} games (Page ${currentPage} of ${totalPages})`;
+    function onRamChange() { state.ram = $('ramSelect').value; page = 1; writeUrlState(); render(); }
+    function onModeChange() { state.mode = $('modeSelect').value; page = 1; writeUrlState(); render(); }
 
-      // Prev button
-      const prevBtn = document.createElement('button');
-      prevBtn.className = 'page-btn';
-      prevBtn.innerHTML = '&larr; Prev';
-      prevBtn.disabled = (currentPage === 1);
-      prevBtn.onclick = () => { currentPage--; updatePagination(); scrollToGrid(); };
-      controls.appendChild(prevBtn);
+    function resetFilter() {
+      state = { gpu: '', ram: '', mode: 'all', q: '' };
+      $('gameSearch').value = '';
+      syncControls();
+      page = 1;
+      writeUrlState();
+      render();
+    }
 
-      // Page number buttons
-      let startP = Math.max(1, currentPage - 2);
-      let endP = Math.min(totalPages, currentPage + 2);
-      if (currentPage <= 3) endP = Math.min(totalPages, 5);
-      if (currentPage >= totalPages - 2) startP = Math.max(1, totalPages - 4);
+    function copyShareLink() {
+      var btn = $('copyLinkBtn');
+      var url = window.location.href;
+      var done = function () {
+        btn.textContent = '✅ Link copied';
+        setTimeout(function () { btn.textContent = '🔗 Copy link to this filter'; }, 1800);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(done, function () { window.prompt('Copy this link:', url); });
+      } else {
+        window.prompt('Copy this link:', url);
+      }
+    }
 
+    function matchesQuery(item, q) {
+      if (!q) return true;
+      return String(item[F.t] || '').toLowerCase().indexOf(q) !== -1;
+    }
+
+    function computeMatches() {
+      var hw = selectedHardware();
+      var H = hw.gpu ? hw.gpu.score : null;
+      var R = hw.ram;
+      var q = state.q.toLowerCase();
+      var out = [];
+      var games = IDX.games;
+      for (var i = 0; i < games.length; i++) {
+        var a = games[i];
+        if (!matchesQuery(a, q)) continue;
+        var recPass = true, minPass = true;
+        if (H != null) {
+          recPass = a[F.rec] != null && a[F.rec] <= H;
+          minPass = a[F.min] != null && a[F.min] <= H;
+        }
+        if (R != null) {
+          if (recPass && a[F.recRam] != null && a[F.recRam] > R) recPass = false;
+          if (minPass && a[F.minRam] != null && a[F.minRam] > R) minPass = false;
+        }
+        if (state.mode === 'rec' && !recPass) continue;
+        if (!recPass && !minPass) continue;
+        out.push({ a: a, rec: recPass });
+      }
+      out.sort(function (x, y) {
+        var d = (y.a[F.rev] || 0) - (x.a[F.rev] || 0);
+        if (d !== 0) return d;
+        var r = (y.a[F.rt] || 0) - (x.a[F.rt] || 0);
+        if (r !== 0) return r;
+        return String(x.a[F.t]).localeCompare(String(y.a[F.t]));
+      });
+      return out;
+    }
+
+    function cardHtml(rec, a) {
+      var reqLabel = (rec ? a[F.recL] : a[F.minL]) || 'See Steam page';
+      var badge = 'GPU: ' + reqLabel;
+      var status = rec
+        ? '<span class="fps-badge">60 FPS</span>'
+        : '<span class="min-badge">Minimum</span>';
+      return '<a href="games/' + esc(a[F.s]) + '.html" class="game-card" data-title="' + esc(String(a[F.t]).toLowerCase()) + '">' +
+        '<img src="' + esc(a[F.img]) + '" alt="' + esc(a[F.t]) + ' PC specs" class="game-img" loading="lazy">' +
+        '<div class="game-body"><h3 class="game-title">' + esc(a[F.t]) + '</h3>' +
+        '<div class="game-genre">' + esc(a[F.g]) + '</div>' +
+        '<div class="spec-badge-box"><span class="gpu-badge">' + esc(badge) + '</span>' + status + '</div>' +
+        '</div></a>';
+    }
+
+    function drawPager(total, goTo) {
+      var controls = $('paginationControls');
+      var info = $('pageInfo');
+      controls.innerHTML = '';
+      var totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+      if (page > totalPages) page = totalPages;
+      var start = (page - 1) * PAGE_SIZE;
+      if (total === 0) { info.textContent = 'No matching games found.'; return; }
+      info.textContent = 'Showing ' + (start + 1) + ' - ' + Math.min(start + PAGE_SIZE, total) + ' of ' + fmt(total) + ' games (Page ' + page + ' of ' + fmt(totalPages) + ')';
+
+      var prev = document.createElement('button');
+      prev.className = 'page-btn';
+      prev.innerHTML = '&larr; Prev';
+      prev.disabled = page === 1;
+      prev.onclick = function () { page--; goTo(); scrollToGrid(); };
+      controls.appendChild(prev);
+
+      var startP = Math.max(1, page - 2), endP = Math.min(totalPages, page + 2);
+      if (page <= 3) endP = Math.min(totalPages, 5);
+      if (page >= totalPages - 2) startP = Math.max(1, totalPages - 4);
       if (startP > 1) {
-        addPageBtn(1, controls);
+        addPageBtn(1, controls, goTo);
         if (startP > 2) addEllipsis(controls);
       }
-
-      for (let p = startP; p <= endP; p++) {
-        addPageBtn(p, controls);
-      }
-
+      for (var p = startP; p <= endP; p++) addPageBtn(p, controls, goTo);
       if (endP < totalPages) {
         if (endP < totalPages - 1) addEllipsis(controls);
-        addPageBtn(totalPages, controls);
+        addPageBtn(totalPages, controls, goTo);
       }
 
-      // Next button
-      const nextBtn = document.createElement('button');
-      nextBtn.className = 'page-btn';
-      nextBtn.innerHTML = 'Next &rarr;';
-      nextBtn.disabled = (currentPage === totalPages);
-      nextBtn.onclick = () => { currentPage++; updatePagination(); scrollToGrid(); };
-      controls.appendChild(nextBtn);
+      var next = document.createElement('button');
+      next.className = 'page-btn';
+      next.innerHTML = 'Next &rarr;';
+      next.disabled = page === totalPages;
+      next.onclick = function () { page++; goTo(); scrollToGrid(); };
+      controls.appendChild(next);
     }
 
-    function addPageBtn(p, container) {
-      const btn = document.createElement('button');
-      btn.className = 'page-btn' + (p === currentPage ? ' active' : '');
+    function addPageBtn(p, container, goTo) {
+      var btn = document.createElement('button');
+      btn.className = 'page-btn' + (p === page ? ' active' : '');
       btn.textContent = p;
-      btn.onclick = () => { currentPage = p; updatePagination(); scrollToGrid(); };
+      btn.onclick = function () { page = p; goTo(); scrollToGrid(); };
       container.appendChild(btn);
     }
 
     function addEllipsis(container) {
-      const span = document.createElement('span');
+      var span = document.createElement('span');
       span.style.color = 'var(--text-muted)';
       span.style.padding = '0 4px';
       span.textContent = '...';
@@ -27402,28 +27674,84 @@
     }
 
     function scrollToGrid() {
-      const grid = document.getElementById('gamesContainer');
+      var grid = $('dynamicGrid').style.display === 'none' ? $('gamesContainer') : $('dynamicGrid');
       if (grid) {
-        const yOffset = -120;
-        const y = grid.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        var y = grid.getBoundingClientRect().top + window.pageYOffset - 120;
         window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
 
-    function filterGames() {
-      const q = document.getElementById('gameSearch').value.toLowerCase().trim();
-      const allCards = getCards();
-      filteredCards = allCards.filter(card => {
-        const title = card.getAttribute('data-title');
-        return title && title.includes(q);
+    function renderStatic() {
+      var q = state.q.toLowerCase();
+      staticFiltered = staticCards.filter(function (c) {
+        return !q || (c.getAttribute('data-title') || '').indexOf(q) !== -1;
       });
-      currentPage = 1;
-      updatePagination();
+      $('gamesContainer').style.display = 'grid';
+      $('dynamicGrid').style.display = 'none';
+      var pages = Math.max(1, Math.ceil(staticFiltered.length / PAGE_SIZE));
+      if (page > pages) page = pages;
+      staticCards.forEach(function (c) { c.style.display = 'none'; });
+      var start = (page - 1) * PAGE_SIZE;
+      staticFiltered.slice(start, start + PAGE_SIZE).forEach(function (c) { c.style.display = 'flex'; });
+      $('gridTitle').textContent = q ? 'Search results' : 'Featured Trending PC Games';
+      $('gridSubtitle').textContent = 'Instant Search Enabled';
+      var total = staticFiltered.length;
+      drawPager(total, renderStatic);
+      $('filterResult').textContent = '';
     }
 
-    window.addEventListener('DOMContentLoaded', () => {
-      filteredCards = getCards();
-      updatePagination();
+    function renderDynamic() {
+      dynMatches = computeMatches();
+      var hw = selectedHardware();
+      $('gamesContainer').style.display = 'none';
+      $('dynamicGrid').style.display = 'grid';
+      var pages = Math.max(1, Math.ceil(dynMatches.length / PAGE_SIZE));
+      if (page > pages) page = pages;
+      var start = (page - 1) * PAGE_SIZE;
+      var slice = dynMatches.slice(start, start + PAGE_SIZE);
+      $('dynamicGrid').innerHTML = slice.map(function (m) { return cardHtml(m.rec, m.a); }).join('');
+      drawPager(dynMatches.length, renderDynamic);
+
+      var recCount = 0;
+      dynMatches.forEach(function (m) { if (m.rec) recCount++; });
+      var label = hw.gpu ? hw.gpu.name : 'your PC';
+      var parts = [];
+      parts.push('<strong>' + fmt(dynMatches.length) + '</strong> games run on ' + esc(label));
+      if (hw.ram) parts.push('with ' + hw.ram + ' GB RAM');
+      parts.push('· <strong>' + fmt(recCount) + '</strong> at 60 FPS on recommended settings');
+      if (state.mode === 'all' && recCount < dynMatches.length) parts.push('· ' + fmt(dynMatches.length - recCount) + ' at minimum settings only');
+      $('filterResult').innerHTML = parts.join(' ');
+      $('gridTitle').textContent = hw.gpu ? 'Games ' + hw.gpu.name + ' can run' : 'Games for your PC';
+      $('gridSubtitle').textContent = state.q ? 'Matching "' + state.q + '"' : 'Filtered from the full database';
+    }
+
+    function render() {
+      var needsData = !!(state.gpu || state.ram || state.q);
+      if (needsData && IDX) { renderDynamic(); return; }
+      if (needsData && !IDX) {
+        $('filterResult').textContent = 'Loading the full game index…';
+        return;
+      }
+      viewMode = 'static';
+      renderStatic();
+    }
+
+    // The visitor tracker decides between write and read mode; this tab never displays a count.
+
+    document.addEventListener('DOMContentLoaded', function () {
+      staticCards = Array.prototype.slice.call(document.querySelectorAll('#gamesContainer .game-card'));
+      readUrlState();
+      render();
+      loadData().then(function () {
+        if (GPUS.length) buildGpuSelect();
+        // A link from an old guide may name a card this build no longer lists.
+        if (state.gpu && !GPUS.some(function (g) { return g.slug === state.gpu; })) {
+          state.gpu = '';
+          writeUrlState();
+        }
+        syncControls();
+        render();
+      });
     });
   </script>
   <!-- Background Unique Visitor Tracker (UI Hidden, queried on request) -->

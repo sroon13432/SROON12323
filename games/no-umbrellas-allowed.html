@@ -15,6 +15,7 @@
   
   <!-- Schema.org JSON-LD for Google Rich Results (generated from this page's own data) -->
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "No Umbrellas Allowed", "description": "Reveal the true value of the items coming into the shop. Each item has their own history. Dig deep to see what is behind them and become an expert appraiser. Begin a tug of war with customers. With their own expectations and knowledge, they never give up on money.", "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1301390/header.jpg?t=1733738851", "genre": ["Indie", "Simulation", "Strategy"], "gamePlatform": ["PC", "Steam", "Windows"], "author": {"@type": "Organization", "name": "Hoochoo Game Studios"}, "publisher": {"@type": "Organization", "name": "Hoochoo Game Studios"}, "datePublished": "2021-09-03", "aggregateRating": {"@type": "AggregateRating", "ratingValue": 80, "bestRating": 100, "worstRating": 0, "ratingCount": 1411}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can my PC run No Umbrellas Allowed?", "acceptedAnswer": {"@type": "Answer", "text": "No Umbrellas Allowed lists Nvidia GTX 960 and 8 GB RAM as its minimum, and Nvidia GTX 1660S with 8 GB RAM as its recommended specification."}}, {"@type": "Question", "name": "What GPU do I need for No Umbrellas Allowed at 60 FPS?", "acceptedAnswer": {"@type": "Answer", "text": "The recommended GPU is Nvidia GTX 1660S. That is the configuration the publisher targets for 1080p @ 60 FPS (High Settings)."}}, {"@type": "Question", "name": "How much RAM does No Umbrellas Allowed need?", "acceptedAnswer": {"@type": "Answer", "text": "8 GB of memory at minimum and 8 GB at recommended settings."}}, {"@type": "Question", "name": "How much storage does No Umbrellas Allowed need?", "acceptedAnswer": {"@type": "Answer", "text": "1 GB available space."}}]}</script>
 
   <style>
     :root {
@@ -177,6 +178,45 @@
     }
     .spec-label { color: var(--text-muted); font-weight: 500; }
     .spec-val { font-weight: 600; text-align: right; max-width: 60%; }
+
+    /* Hardware tier summary */
+    .hw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .hw-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .hw-card.highlight { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+    .hw-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 700; }
+    .hw-value { font-size: 16px; font-weight: 800; margin: 7px 0 4px; }
+    .hw-tier { font-size: 12px; color: #a5b4fc; font-weight: 600; }
+    .hw-note { font-size: 14px; color: var(--text-muted); margin-top: 6px; }
+    .hw-note strong { color: var(--text); }
+    .hw-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .hw-chip {
+      background: rgba(99, 102, 241, 0.14);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #c7d2fe;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 18px;
+    }
+    .hw-chip:hover { background: rgba(99, 102, 241, 0.3); color: #fff; }
+    .hw-chip.min-only { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.4); color: #fcd34d; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 16px 20px; }
+    .faq-item summary { cursor: pointer; font-weight: 700; font-size: 15px; }
+    .faq-item p { color: var(--text-muted); font-size: 14px; margin-top: 10px; }
 
     /* Interactive Checker Widget */
     .checker-box {
@@ -376,18 +416,41 @@
       </div>
     </section>
 
+    <!-- Hardware tier summary and GPU guide links -->
+    <section id="gpu-tiers">
+      <h2 class="section-title">Which GPUs Run No Umbrellas Allowed?</h2>
+      <div class="hw-grid">
+<div class="hw-card"><div class="hw-label">Minimum GPU</div><div class="hw-value">Nvidia GTX 960</div><div class="hw-tier">Low-end tier</div></div>
+<div class="hw-card highlight"><div class="hw-label">Recommended GPU (60 FPS)</div><div class="hw-value">Nvidia GTX 1660S</div><div class="hw-tier">Legacy tier</div></div>
+<div class="hw-card"><div class="hw-label">Memory</div><div class="hw-value">8 GB</div><div class="hw-tier">Recommended: 8 GB</div></div>
+      </div>
+<p class="hw-note"><strong>60 FPS on recommended settings:</strong> this card and everything above it — guides for</p><div class="hw-chips"><a class="hw-chip" href="../gpu/gtx-750-ti.html">GTX 750 Ti</a><a class="hw-chip" href="../gpu/rx-6600.html">RX 6600</a><a class="hw-chip" href="../gpu/rtx-5090.html">RTX 5090</a></div>
+<p class="hw-note" style="margin-top:16px;"><a class="hw-chip" href="../gpu/index.html">All GPU &amp; PC spec guides</a> <a class="hw-chip" href="../index.html?gpu=gtx-750-ti">Filter all games by your own hardware</a></p>
+    </section>
+
     <!-- Interactive Can My PC Run It Checker -->
-    <section class="checker-box">
+    <section class="checker-box" id="specChecker"
+             data-rec="20" data-min="140"
+             data-reclabel="Nvidia GTX 1660S" data-minlabel="Nvidia GTX 960"
+             data-recram="8" data-minram="8"
+             data-rectarget="1080p @ 60 FPS (High Settings)" data-mintarget="1080p @ 30 FPS (Low Settings)">
       <h3>⚡ Can My PC Run No Umbrellas Allowed? Instant Hardware Checker</h3>
-      <p>Enter your GPU and CPU model below to instantly check if your hardware meets the 60 FPS benchmark.</p>
+      <p>Choose your graphics card and RAM to compare them with the official requirements above.</p>
       <div class="checker-form">
-        <input type="text" id="userGpu" class="checker-input" placeholder="e.g. RTX 3060 / GTX 1660 / RX 6600">
-        <input type="text" id="userRam" class="checker-input" placeholder="e.g. 16 GB RAM">
+        <select id="userGpu" class="checker-input"><option value="">Select your GPU…</option></select>
+        <select id="userRam" class="checker-input">
+          <option value="">Any RAM</option>
+          <option value="4">4 GB</option>
+          <option value="8">8 GB</option>
+          <option value="16">16 GB</option>
+          <option value="32">32 GB+</option>
+        </select>
         <button class="checker-btn" onclick="checkSpecs()">Check Compatibility</button>
       </div>
-      <div id="checkResult" class="checker-result">
-        ✅ <strong>Great news!</strong> Your hardware exceeds Recommended Requirements. You can play No Umbrellas Allowed at 1080p/1440p High 60 FPS!
-      </div>
+      <div id="checkResult" class="checker-result"></div>
+      <p style="margin-top: 14px; margin-bottom: 0; font-size: 13px;">
+        <a id="seeAllLink" href="../index.html" style="color:#a5b4fc; font-weight:600;">See every game your PC can run →</a>
+      </p>
     </section>
 
     <!-- Optimization Guide -->
@@ -408,6 +471,17 @@
       </div>
       <a href="https://link.coupang.com/a/iA1tThaJEG" target="_blank" rel="noopener noreferrer" class="aff-btn">Check Lowest Deals 👉</a>
     </div>
+
+    <!-- FAQ (matches the FAQPage structured data in the head) -->
+    <section id="faq">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item"><summary>Can my PC run No Umbrellas Allowed?</summary><p>No Umbrellas Allowed lists Nvidia GTX 960 and 8 GB RAM as its minimum, and Nvidia GTX 1660S with 8 GB RAM as its recommended specification.</p></details>
+        <details class="faq-item"><summary>What GPU do I need for No Umbrellas Allowed at 60 FPS?</summary><p>The recommended GPU is Nvidia GTX 1660S. That is the configuration the publisher targets for 1080p @ 60 FPS (High Settings).</p></details>
+        <details class="faq-item"><summary>How much RAM does No Umbrellas Allowed need?</summary><p>8 GB of memory at minimum and 8 GB at recommended settings.</p></details>
+        <details class="faq-item"><summary>How much storage does No Umbrellas Allowed need?</summary><p>1 GB available space.</p></details>
+      </div>
+    </section>
 
     <!-- Related Games for Internal Link Juice -->
     <section>
@@ -443,17 +517,91 @@
   </footer>
 
   <script>
-    function checkSpecs() {
-      const gpu = document.getElementById('userGpu').value.trim();
-      const ram = document.getElementById('userRam').value.trim();
-      const res = document.getElementById('checkResult');
-      if (!gpu) {
-        alert('Please enter your graphics card (GPU) model!');
-        return;
+    // The checker compares the visitor's GPU tier and RAM with this game's own
+    // published requirements, loaded from the same index the home page filter uses.
+    (function () {
+      var box = document.getElementById('specChecker');
+      var gpuSel = document.getElementById('userGpu');
+      var ramSel = document.getElementById('userRam');
+      var res = document.getElementById('checkResult');
+      var bySlug = {};
+      var loaded = null;
+
+      function num(v) { return v === '' || v === null || v === undefined ? null : parseFloat(v); }
+
+      function loadGpus() {
+        if (loaded) return loaded;
+        loaded = fetch('../data/gpus.json').then(function (r) { return r.json(); }).catch(function () { return []; });
+        return loaded;
       }
-      res.style.display = 'block';
-      res.innerHTML = `✅ <strong>Evaluation for ${gpu}:</strong> Hardware detected. Meets Recommended target for 1080p 60 FPS gameplay!`;
-    }
+
+      loadGpus().then(function (list) {
+        var og = document.createElement('optgroup');
+        og.label = 'Graphics cards';
+        var presets = document.createElement('optgroup');
+        presets.label = 'Laptops, handhelds & budget builds';
+        list.forEach(function (g) {
+          bySlug[g.slug] = g;
+          var o = document.createElement('option');
+          o.value = g.slug;
+          o.textContent = g.name;
+          (g.kind === 'preset' ? presets : og).appendChild(o);
+        });
+        if (og.children.length) gpuSel.appendChild(og);
+        if (presets.children.length) gpuSel.appendChild(presets);
+      });
+
+      window.checkSpecs = function () {
+        var g = bySlug[gpuSel.value];
+        if (!g) {
+          res.style.display = 'block';
+          res.style.background = 'rgba(245, 158, 11, 0.12)';
+          res.style.borderColor = '#f59e0b';
+          res.style.color = '#fcd34d';
+          res.textContent = 'Pick your graphics card first, then check again.';
+          return;
+        }
+        var ram = num(ramSel.value);
+        var recScore = num(box.dataset.rec), minScore = num(box.dataset.min);
+        var recRam = num(box.dataset.recram), minRam = num(box.dataset.minram);
+        var gpuOkRec = recScore !== null && g.score >= recScore;
+        var gpuOkMin = minScore !== null && g.score >= minScore;
+        var ramOkRec = recRam === null || (ram !== null && ram >= recRam);
+        var ramOkMin = minRam === null || (ram !== null && ram >= minRam);
+        var recOk = gpuOkRec && ramOkRec;
+        var minOk = gpuOkMin && ramOkMin;
+        if (recScore === null && minScore === null) {
+          res.style.display = 'block';
+          res.style.background = 'rgba(99, 102, 241, 0.12)';
+          res.style.borderColor = '#6366f1';
+          res.style.color = '#c7d2fe';
+          res.textContent = 'This store page does not publish a GPU requirement we can compare against, so there is nothing to check here.';
+          return;
+        }
+        var label = g.name + (ram ? ' with ' + ram + ' GB RAM' : '');
+        var html;
+        if (recOk) {
+          html = '✅ <strong>60 FPS recommended:</strong> ' + label + ' meets the recommended requirement' +
+            ' (' + box.dataset.reclabel + '). The publisher\u2019s target is ' + box.dataset.rectarget + '.';
+          res.style.background = 'rgba(16, 185, 129, 0.15)'; res.style.borderColor = '#10b981'; res.style.color = '#34d399';
+        } else if (minOk) {
+          var why = !gpuOkRec ? 'The recommended GPU is ' + (box.dataset.reclabel || 'not stated') + '.' : '';
+          if (!ramOkRec) why += (why ? ' ' : '') + 'The recommended RAM is ' + box.dataset.recram + ' GB.';
+          html = '⚠️ <strong>Minimum only:</strong> ' + label + ' meets the minimum requirement (' + (box.dataset.minlabel || 'as published') +
+            '), so expect ' + box.dataset.mintarget + ' at low settings. ' + why;
+          res.style.background = 'rgba(245, 158, 11, 0.12)'; res.style.borderColor = '#f59e0b'; res.style.color = '#fcd34d';
+        } else {
+          html = '❌ <strong>Below minimum:</strong> ' + label + ' is under the published minimum' +
+            ' (' + box.dataset.minlabel + (minRam ? ' / ' + minRam + ' GB RAM' : '') + '). ' +
+            'The game will not reach playable frame rates on this hardware.';
+          res.style.background = 'rgba(239, 68, 68, 0.12)'; res.style.borderColor = '#ef4444'; res.style.color = '#fca5a5';
+        }
+        res.innerHTML = html;
+        res.style.display = 'block';
+        var link = document.getElementById('seeAllLink');
+        if (link) link.href = '../index.html?gpu=' + encodeURIComponent(g.slug) + (ram ? '&ram=' + ram : '');
+      };
+    })();
   </script>
 </body>
 </html>

@@ -15,6 +15,7 @@
   
   <!-- Schema.org JSON-LD for Google Rich Results (generated from this page's own data) -->
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "VideoGame", "name": "Realm of the Mad God Exalt", "description": "Embark on an exhilarating journey into the pixelated Realm of the Mad God! Join, an action-packed, free-to-play MMO bullet hell game. Discover a world with danger, challenges, and hidden treasures as you battle through waves of enemies. Team up with players and conquer dungeons to become a legend!", "image": "https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/200210/33ad01fe9223a7a117ff7de46d4b0443354c4f67/header.jpg?t=1793718218", "genre": ["Action", "Adventure", "Indie"], "gamePlatform": ["PC", "Steam", "Windows"], "author": {"@type": "Organization", "name": "Wild Shadow Studios"}, "publisher": {"@type": "Organization", "name": "Deca Live Operations GmbH"}, "datePublished": "2012-02-20", "aggregateRating": {"@type": "AggregateRating", "ratingValue": 80, "bestRating": 100, "worstRating": 0, "ratingCount": 32885}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can my PC run Realm of the Mad God Exalt?", "acceptedAnswer": {"@type": "Answer", "text": "Realm of the Mad God Exalt lists NVIDIA GeForce GTX 650 / AMD Radeon HD 7750 (1GB VRAM) and 8GB RAM as its minimum, and NVIDIA GeForce GTX 1060 / AMD Radeon RX 580 (6GB VRAM) with 16GB RAM as its recommended specification."}}, {"@type": "Question", "name": "What GPU do I need for Realm of the Mad God Exalt at 60 FPS?", "acceptedAnswer": {"@type": "Answer", "text": "The recommended GPU is NVIDIA GeForce GTX 1060 / AMD Radeon RX 580 (6GB VRAM). That is the configuration the publisher targets for 1080p @ 60 FPS (High Settings)."}}, {"@type": "Question", "name": "How much RAM does Realm of the Mad God Exalt need?", "acceptedAnswer": {"@type": "Answer", "text": "8GB of memory at minimum and 16GB at recommended settings."}}, {"@type": "Question", "name": "How much storage does Realm of the Mad God Exalt need?", "acceptedAnswer": {"@type": "Answer", "text": "350MB available space Resolution: 800x600 Avg. FPS: 30."}}]}</script>
 
   <style>
     :root {
@@ -177,6 +178,45 @@
     }
     .spec-label { color: var(--text-muted); font-weight: 500; }
     .spec-val { font-weight: 600; text-align: right; max-width: 60%; }
+
+    /* Hardware tier summary */
+    .hw-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .hw-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+    .hw-card.highlight { border-color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+    .hw-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); font-weight: 700; }
+    .hw-value { font-size: 16px; font-weight: 800; margin: 7px 0 4px; }
+    .hw-tier { font-size: 12px; color: #a5b4fc; font-weight: 600; }
+    .hw-note { font-size: 14px; color: var(--text-muted); margin-top: 6px; }
+    .hw-note strong { color: var(--text); }
+    .hw-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .hw-chip {
+      background: rgba(99, 102, 241, 0.14);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #c7d2fe;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 18px;
+    }
+    .hw-chip:hover { background: rgba(99, 102, 241, 0.3); color: #fff; }
+    .hw-chip.min-only { background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.4); color: #fcd34d; }
+
+    /* FAQ */
+    .faq-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 16px 20px; }
+    .faq-item summary { cursor: pointer; font-weight: 700; font-size: 15px; }
+    .faq-item p { color: var(--text-muted); font-size: 14px; margin-top: 10px; }
 
     /* Interactive Checker Widget */
     .checker-box {
@@ -374,18 +414,42 @@
       </div>
     </section>
 
+    <!-- Hardware tier summary and GPU guide links -->
+    <section id="gpu-tiers">
+      <h2 class="section-title">Which GPUs Run Realm of the Mad God Exalt?</h2>
+      <div class="hw-grid">
+<div class="hw-card"><div class="hw-label">Minimum GPU</div><div class="hw-value">NVIDIA GeForce GTX 650</div><div class="hw-tier">Very low-end tier</div></div>
+<div class="hw-card highlight"><div class="hw-label">Recommended GPU (60 FPS)</div><div class="hw-value">NVIDIA GeForce GTX 1060</div><div class="hw-tier">Entry-level gaming tier</div></div>
+<div class="hw-card"><div class="hw-label">Memory</div><div class="hw-value">8GB</div><div class="hw-tier">Recommended: 16GB</div></div>
+      </div>
+<p class="hw-note"><strong>60 FPS on recommended settings:</strong> this card and everything above it — guides for</p><div class="hw-chips"><a class="hw-chip" href="../gpu/rx-580.html">RX 580</a><a class="hw-chip" href="../gpu/rtx-3060.html">RTX 3060</a><a class="hw-chip" href="../gpu/rtx-5090.html">RTX 5090</a></div>
+<p class="hw-note" style="margin-top:16px;"><strong>Minimum settings only:</strong> below the recommended card — guides for</p><div class="hw-chips"><a class="hw-chip min-only" href="../gpu/gtx-1050-ti.html">GTX 1050 Ti</a><a class="hw-chip min-only" href="../gpu/gtx-970.html">GTX 970</a><a class="hw-chip min-only" href="../gpu/rx-570.html">RX 570</a></div>
+<p class="hw-note" style="margin-top:16px;"><a class="hw-chip" href="../gpu/index.html">All GPU &amp; PC spec guides</a> <a class="hw-chip" href="../index.html?gpu=rx-580">Filter all games by your own hardware</a></p>
+    </section>
+
     <!-- Interactive Can My PC Run It Checker -->
-    <section class="checker-box">
+    <section class="checker-box" id="specChecker"
+             data-rec="225" data-min="45"
+             data-reclabel="NVIDIA GeForce GTX 1060" data-minlabel="NVIDIA GeForce GTX 650"
+             data-recram="16" data-minram="8"
+             data-rectarget="1080p @ 60 FPS (High Settings)" data-mintarget="1080p @ 30 FPS (Low Settings)">
       <h3>⚡ Can My PC Run Realm of the Mad God Exalt? Instant Hardware Checker</h3>
-      <p>Enter your GPU and CPU model below to instantly check if your hardware meets the 60 FPS benchmark.</p>
+      <p>Choose your graphics card and RAM to compare them with the official requirements above.</p>
       <div class="checker-form">
-        <input type="text" id="userGpu" class="checker-input" placeholder="e.g. RTX 3060 / GTX 1660 / RX 6600">
-        <input type="text" id="userRam" class="checker-input" placeholder="e.g. 16 GB RAM">
+        <select id="userGpu" class="checker-input"><option value="">Select your GPU…</option></select>
+        <select id="userRam" class="checker-input">
+          <option value="">Any RAM</option>
+          <option value="4">4 GB</option>
+          <option value="8">8 GB</option>
+          <option value="16">16 GB</option>
+          <option value="32">32 GB+</option>
+        </select>
         <button class="checker-btn" onclick="checkSpecs()">Check Compatibility</button>
       </div>
-      <div id="checkResult" class="checker-result">
-        ✅ <strong>Great news!</strong> Your hardware exceeds Recommended Requirements. You can play Realm of the Mad God Exalt at 1080p/1440p High 60 FPS!
-      </div>
+      <div id="checkResult" class="checker-result"></div>
+      <p style="margin-top: 14px; margin-bottom: 0; font-size: 13px;">
+        <a id="seeAllLink" href="../index.html" style="color:#a5b4fc; font-weight:600;">See every game your PC can run →</a>
+      </p>
     </section>
 
     <!-- Optimization Guide -->
@@ -406,6 +470,17 @@
       </div>
       <a href="https://link.coupang.com/a/iA1tThaJEG" target="_blank" rel="noopener noreferrer" class="aff-btn">Check Lowest Deals 👉</a>
     </div>
+
+    <!-- FAQ (matches the FAQPage structured data in the head) -->
+    <section id="faq">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="faq-list">
+        <details class="faq-item"><summary>Can my PC run Realm of the Mad God Exalt?</summary><p>Realm of the Mad God Exalt lists NVIDIA GeForce GTX 650 / AMD Radeon HD 7750 (1GB VRAM) and 8GB RAM as its minimum, and NVIDIA GeForce GTX 1060 / AMD Radeon RX 580 (6GB VRAM) with 16GB RAM as its recommended specification.</p></details>
+        <details class="faq-item"><summary>What GPU do I need for Realm of the Mad God Exalt at 60 FPS?</summary><p>The recommended GPU is NVIDIA GeForce GTX 1060 / AMD Radeon RX 580 (6GB VRAM). That is the configuration the publisher targets for 1080p @ 60 FPS (High Settings).</p></details>
+        <details class="faq-item"><summary>How much RAM does Realm of the Mad God Exalt need?</summary><p>8GB of memory at minimum and 16GB at recommended settings.</p></details>
+        <details class="faq-item"><summary>How much storage does Realm of the Mad God Exalt need?</summary><p>350MB available space Resolution: 800x600 Avg. FPS: 30.</p></details>
+      </div>
+    </section>
 
     <!-- Related Games for Internal Link Juice -->
     <section>
@@ -441,17 +516,91 @@
   </footer>
 
   <script>
-    function checkSpecs() {
-      const gpu = document.getElementById('userGpu').value.trim();
-      const ram = document.getElementById('userRam').value.trim();
-      const res = document.getElementById('checkResult');
-      if (!gpu) {
-        alert('Please enter your graphics card (GPU) model!');
-        return;
+    // The checker compares the visitor's GPU tier and RAM with this game's own
+    // published requirements, loaded from the same index the home page filter uses.
+    (function () {
+      var box = document.getElementById('specChecker');
+      var gpuSel = document.getElementById('userGpu');
+      var ramSel = document.getElementById('userRam');
+      var res = document.getElementById('checkResult');
+      var bySlug = {};
+      var loaded = null;
+
+      function num(v) { return v === '' || v === null || v === undefined ? null : parseFloat(v); }
+
+      function loadGpus() {
+        if (loaded) return loaded;
+        loaded = fetch('../data/gpus.json').then(function (r) { return r.json(); }).catch(function () { return []; });
+        return loaded;
       }
-      res.style.display = 'block';
-      res.innerHTML = `✅ <strong>Evaluation for ${gpu}:</strong> Hardware detected. Meets Recommended target for 1080p 60 FPS gameplay!`;
-    }
+
+      loadGpus().then(function (list) {
+        var og = document.createElement('optgroup');
+        og.label = 'Graphics cards';
+        var presets = document.createElement('optgroup');
+        presets.label = 'Laptops, handhelds & budget builds';
+        list.forEach(function (g) {
+          bySlug[g.slug] = g;
+          var o = document.createElement('option');
+          o.value = g.slug;
+          o.textContent = g.name;
+          (g.kind === 'preset' ? presets : og).appendChild(o);
+        });
+        if (og.children.length) gpuSel.appendChild(og);
+        if (presets.children.length) gpuSel.appendChild(presets);
+      });
+
+      window.checkSpecs = function () {
+        var g = bySlug[gpuSel.value];
+        if (!g) {
+          res.style.display = 'block';
+          res.style.background = 'rgba(245, 158, 11, 0.12)';
+          res.style.borderColor = '#f59e0b';
+          res.style.color = '#fcd34d';
+          res.textContent = 'Pick your graphics card first, then check again.';
+          return;
+        }
+        var ram = num(ramSel.value);
+        var recScore = num(box.dataset.rec), minScore = num(box.dataset.min);
+        var recRam = num(box.dataset.recram), minRam = num(box.dataset.minram);
+        var gpuOkRec = recScore !== null && g.score >= recScore;
+        var gpuOkMin = minScore !== null && g.score >= minScore;
+        var ramOkRec = recRam === null || (ram !== null && ram >= recRam);
+        var ramOkMin = minRam === null || (ram !== null && ram >= minRam);
+        var recOk = gpuOkRec && ramOkRec;
+        var minOk = gpuOkMin && ramOkMin;
+        if (recScore === null && minScore === null) {
+          res.style.display = 'block';
+          res.style.background = 'rgba(99, 102, 241, 0.12)';
+          res.style.borderColor = '#6366f1';
+          res.style.color = '#c7d2fe';
+          res.textContent = 'This store page does not publish a GPU requirement we can compare against, so there is nothing to check here.';
+          return;
+        }
+        var label = g.name + (ram ? ' with ' + ram + ' GB RAM' : '');
+        var html;
+        if (recOk) {
+          html = '✅ <strong>60 FPS recommended:</strong> ' + label + ' meets the recommended requirement' +
+            ' (' + box.dataset.reclabel + '). The publisher\u2019s target is ' + box.dataset.rectarget + '.';
+          res.style.background = 'rgba(16, 185, 129, 0.15)'; res.style.borderColor = '#10b981'; res.style.color = '#34d399';
+        } else if (minOk) {
+          var why = !gpuOkRec ? 'The recommended GPU is ' + (box.dataset.reclabel || 'not stated') + '.' : '';
+          if (!ramOkRec) why += (why ? ' ' : '') + 'The recommended RAM is ' + box.dataset.recram + ' GB.';
+          html = '⚠️ <strong>Minimum only:</strong> ' + label + ' meets the minimum requirement (' + (box.dataset.minlabel || 'as published') +
+            '), so expect ' + box.dataset.mintarget + ' at low settings. ' + why;
+          res.style.background = 'rgba(245, 158, 11, 0.12)'; res.style.borderColor = '#f59e0b'; res.style.color = '#fcd34d';
+        } else {
+          html = '❌ <strong>Below minimum:</strong> ' + label + ' is under the published minimum' +
+            ' (' + box.dataset.minlabel + (minRam ? ' / ' + minRam + ' GB RAM' : '') + '). ' +
+            'The game will not reach playable frame rates on this hardware.';
+          res.style.background = 'rgba(239, 68, 68, 0.12)'; res.style.borderColor = '#ef4444'; res.style.color = '#fca5a5';
+        }
+        res.innerHTML = html;
+        res.style.display = 'block';
+        var link = document.getElementById('seeAllLink');
+        if (link) link.href = '../index.html?gpu=' + encodeURIComponent(g.slug) + (ram ? '&ram=' + ram : '');
+      };
+    })();
   </script>
 </body>
 </html>
