@@ -550,48 +550,54 @@
 
       window.checkSpecs = function () {
         var g = bySlug[gpuSel.value];
+        var res_style = function (bg, border, color) {
+          res.style.background = bg; res.style.borderColor = border; res.style.color = color;
+        };
         if (!g) {
           res.style.display = 'block';
-          res.style.background = 'rgba(245, 158, 11, 0.12)';
-          res.style.borderColor = '#f59e0b';
-          res.style.color = '#fcd34d';
+          res_style('rgba(245, 158, 11, 0.12)', '#f59e0b', '#fcd34d');
           res.textContent = 'Pick your graphics card first, then check again.';
           return;
         }
         var ram = num(ramSel.value);
         var recScore = num(box.dataset.rec), minScore = num(box.dataset.min);
         var recRam = num(box.dataset.recram), minRam = num(box.dataset.minram);
-        var gpuOkRec = recScore !== null && g.score >= recScore;
-        var gpuOkMin = minScore !== null && g.score >= minScore;
-        var ramOkRec = recRam === null || (ram !== null && ram >= recRam);
-        var ramOkMin = minRam === null || (ram !== null && ram >= minRam);
-        var recOk = gpuOkRec && ramOkRec;
-        var minOk = gpuOkMin && ramOkMin;
         if (recScore === null && minScore === null) {
           res.style.display = 'block';
-          res.style.background = 'rgba(99, 102, 241, 0.12)';
-          res.style.borderColor = '#6366f1';
-          res.style.color = '#c7d2fe';
+          res_style('rgba(99, 102, 241, 0.12)', '#6366f1', '#c7d2fe');
           res.textContent = 'This store page does not publish a GPU requirement we can compare against, so there is nothing to check here.';
           return;
         }
         var label = g.name + (ram ? ' with ' + ram + ' GB RAM' : '');
+        var gpuOkRec = recScore !== null && g.score >= recScore;
+        var gpuOkMin = minScore !== null && g.score >= minScore;
+        // RAM is only a limit when the visitor told us how much they have.
+        var ramOkRec = recRam === null || ram === null || ram >= recRam;
+        var ramOkMin = minRam === null || ram === null || ram >= minRam;
+        var recOk = gpuOkRec && ramOkRec;
+        var minOk = gpuOkMin && ramOkMin;
+        var recLabel = box.dataset.reclabel || 'not stated';
+        var minLabel = box.dataset.minlabel || 'not stated';
         var html;
         if (recOk) {
-          html = '✅ <strong>60 FPS recommended:</strong> ' + label + ' meets the recommended requirement' +
-            ' (' + box.dataset.reclabel + '). The publisher\u2019s target is ' + box.dataset.rectarget + '.';
-          res.style.background = 'rgba(16, 185, 129, 0.15)'; res.style.borderColor = '#10b981'; res.style.color = '#34d399';
+          html = '✅ <strong>60 FPS recommended:</strong> ' + label + ' meets the recommended requirement (' +
+            recLabel + '). The publisher\u2019s target is ' + box.dataset.rectarget + '.';
+          res_style('rgba(16, 185, 129, 0.15)', '#10b981', '#34d399');
         } else if (minOk) {
-          var why = !gpuOkRec ? 'The recommended GPU is ' + (box.dataset.reclabel || 'not stated') + '.' : '';
-          if (!ramOkRec) why += (why ? ' ' : '') + 'The recommended RAM is ' + box.dataset.recram + ' GB.';
-          html = '⚠️ <strong>Minimum only:</strong> ' + label + ' meets the minimum requirement (' + (box.dataset.minlabel || 'as published') +
-            '), so expect ' + box.dataset.mintarget + ' at low settings. ' + why;
-          res.style.background = 'rgba(245, 158, 11, 0.12)'; res.style.borderColor = '#f59e0b'; res.style.color = '#fcd34d';
+          var why = [];
+          if (!gpuOkRec) why.push('the recommended GPU is ' + recLabel);
+          if (!ramOkRec) why.push('the recommended RAM is ' + recRam + ' GB');
+          html = '⚠️ <strong>Minimum only:</strong> ' + label + ' meets the minimum requirement (' + minLabel +
+            ') and should hold ' + box.dataset.mintarget + ' at low settings. For the 60 FPS target, ' +
+            why.join(' and ') + '.';
+          res_style('rgba(245, 158, 11, 0.12)', '#f59e0b', '#fcd34d');
         } else {
-          html = '❌ <strong>Below minimum:</strong> ' + label + ' is under the published minimum' +
-            ' (' + box.dataset.minlabel + (minRam ? ' / ' + minRam + ' GB RAM' : '') + '). ' +
-            'The game will not reach playable frame rates on this hardware.';
-          res.style.background = 'rgba(239, 68, 68, 0.12)'; res.style.borderColor = '#ef4444'; res.style.color = '#fca5a5';
+          var short = [];
+          if (!gpuOkMin) short.push('the GPU is below the minimum (' + minLabel + ')');
+          if (!ramOkMin) short.push('the RAM is below the minimum (' + minRam + ' GB)');
+          html = '❌ <strong>Below minimum:</strong> ' + label + ' — ' + short.join(' and ') +
+            '. Expect frame rates well under the publisher\u2019s minimum target.';
+          res_style('rgba(239, 68, 68, 0.12)', '#ef4444', '#fca5a5');
         }
         res.innerHTML = html;
         res.style.display = 'block';
