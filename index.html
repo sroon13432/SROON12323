@@ -149,7 +149,6 @@
     }
     .seg-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
     .reset-btn {
-      margin-left: auto;
       background: none;
       border: none;
       color: var(--text-muted);
@@ -163,6 +162,72 @@
     .quick-hubs { margin-top: 12px; font-size: 13px; color: var(--text-muted); line-height: 1.9; }
     .quick-hubs a { color: #a5b4fc; text-decoration: none; margin-right: 12px; white-space: nowrap; display: inline-block; }
     .quick-hubs a:hover { text-decoration: underline; }
+
+    /* Search extras: clear button + live suggestion list */
+    .search-input { padding-right: 54px; }
+    .search-clear {
+      position: absolute; right: 9px; top: 50%; transform: translateY(-50%);
+      width: 34px; height: 34px; border-radius: 50%;
+      background: #1e293b; border: 1px solid #334155; color: #cbd5e1;
+      font-size: 14px; line-height: 1; cursor: pointer; display: none;
+      align-items: center; justify-content: center; padding: 0;
+    }
+    .search-clear:hover { background: #334155; color: #fff; }
+    .search-suggest {
+      position: absolute; left: 0; right: 0; top: calc(100% + 6px);
+      background: #0f172a; border: 1px solid #334155; border-radius: 12px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55); overflow: hidden;
+      z-index: 60; text-align: left; display: none;
+    }
+    .suggest-item {
+      display: flex; gap: 10px; align-items: center; padding: 9px 12px;
+      background: none; border: none; width: 100%; text-align: left;
+      color: inherit; text-decoration: none; cursor: pointer; font: inherit;
+    }
+    .suggest-item:hover, .suggest-item:focus { background: rgba(99, 102, 241, 0.16); outline: none; }
+    .suggest-thumb { width: 56px; height: 32px; object-fit: cover; border-radius: 5px; flex: 0 0 auto; background: #131b2e; }
+    .suggest-main { display: block; min-width: 0; flex: 1 1 auto; }
+    .suggest-title { display: block; font-size: 14px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .suggest-meta { display: block; font-size: 11.5px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .suggest-all {
+      display: block; width: 100%; padding: 11px 12px; background: rgba(99, 102, 241, 0.12);
+      border: none; border-top: 1px solid #334155; color: #a5b4fc;
+      font-size: 13px; font-weight: 700; cursor: pointer; text-align: center; font-family: inherit;
+    }
+    .suggest-all:hover { background: rgba(99, 102, 241, 0.22); color: #fff; }
+    .suggest-empty { padding: 12px; font-size: 13px; color: var(--text-muted); }
+
+    /* Quick-pick presets */
+    .preset-row { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; margin: 16px auto 0; max-width: 760px; }
+    .preset-label { font-size: 12px; color: var(--text-muted); }
+    .preset-chip {
+      background: rgba(99, 102, 241, 0.12); border: 1px solid rgba(99, 102, 241, 0.45);
+      color: #c7d2fe; border-radius: 20px; padding: 7px 13px; font-size: 13px;
+      font-weight: 600; cursor: pointer; font-family: inherit; white-space: nowrap;
+    }
+    .preset-chip:hover { background: rgba(99, 102, 241, 0.28); color: #fff; }
+    .preset-chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+    /* Extra filter row (OS / genre / install size / Steam Deck) */
+    .filter-row-2 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 12px; }
+    .more-filters-btn { display: none; }
+    .sort-field { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+    .sort-field label { margin: 0; white-space: nowrap; }
+    .sort-field .filter-select { width: auto; min-width: 200px; }
+    .filter-note { font-size: 11.5px; color: #64748b; margin-top: 10px; line-height: 1.65; }
+
+    /* Active filter badges */
+    .active-filters { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 12px; }
+    .af-badge {
+      display: inline-flex; align-items: center; gap: 6px; max-width: 100%; min-width: 0;
+      background: rgba(52, 211, 153, 0.12); border: 1px solid rgba(52, 211, 153, 0.45);
+      color: #a7f3d0; border-radius: 18px; padding: 5px 11px;
+      font-size: 12.5px; font-weight: 600; cursor: pointer; font-family: inherit;
+    }
+    .af-badge:hover { background: rgba(52, 211, 153, 0.22); color: #fff; }
+    .af-badge .af-t { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+    .af-badge .af-x { font-size: 11px; opacity: 0.8; flex: 0 0 auto; }
+    .af-badge .af-strong { font-weight: 800; }
 
     /* Pagination */
     .pagination-wrapper {
@@ -320,6 +385,33 @@
       .quick-hubs { font-size: 12.5px; line-height: 1.85; margin-top: 10px; }
       .quick-hubs a { white-space: normal; margin-right: 12px; }
 
+      .preset-row { justify-content: flex-start; margin-top: 12px; gap: 7px; }
+      .preset-label { width: 100%; }
+      .preset-chip { font-size: 12.5px; padding: 9px 13px; min-height: 38px; }
+
+      .more-filters-btn {
+        display: flex; align-items: center; justify-content: center; gap: 6px;
+        width: 100%; min-height: 44px; margin-top: 12px; padding: 11px 14px;
+        background: #0f172a; border: 1px solid #334155; border-radius: 9px;
+        color: #cbd5e1; font-size: 13.5px; font-weight: 700; cursor: pointer;
+        font-family: inherit;
+      }
+      .more-filters-btn .chev { transition: transform 0.2s; font-size: 12px; }
+      .filter-panel.expanded .more-filters-btn .chev { transform: rotate(180deg); }
+      .filter-panel.expanded .more-filters-btn { border-color: var(--accent); color: #fff; }
+      .extra-filters { display: none; }
+      .filter-panel.expanded .extra-filters { display: grid; }
+      .filter-row-2 { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+      .sort-field { display: block; width: 100%; margin-left: 0; }
+      .sort-field label { display: block; font-size: 11.5px; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.4px; }
+      .sort-field .filter-select { width: 100%; min-width: 0; }
+      .filter-note { font-size: 11.5px; line-height: 1.6; margin-top: 9px; }
+      .active-filters { margin-top: 10px; gap: 6px; }
+      .af-badge { min-height: 34px; padding: 7px 12px; font-size: 12.5px; }
+      .search-clear { right: 8px; width: 40px; height: 40px; font-size: 15px; }
+      .search-suggest { max-height: 62vh; overflow-y: auto; }
+      .suggest-item { padding: 10px 12px; min-height: 48px; }
+
       .grid-header { flex-wrap: wrap; gap: 2px; margin-bottom: 16px; }
       .grid-title { font-size: 20px; }
       .game-grid { gap: 16px; }
@@ -352,6 +444,8 @@
       .filter-head h2 { font-size: 16px; }
       .seg-btn, .reset-btn { flex: 1 1 100%; }
       .reset-btn { padding: 8px 0; }
+      .filter-row-2 { grid-template-columns: 1fr 1fr; }
+      .preset-chip { font-size: 12px; padding: 8px 11px; }
       .game-grid { gap: 14px; }
       .page-btn { min-width: 40px; padding: 10px; }
     }
@@ -372,7 +466,17 @@
 
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="gameSearch" class="search-input" placeholder="Search game (e.g. Cyberpunk, Wukong, Elden Ring...)" oninput="onSearchInput()">
+        <input type="text" id="gameSearch" class="search-input" placeholder="Search game (e.g. Cyberpunk, Wukong, Elden Ring...)" oninput="onSearchInput()" onkeydown="onSearchKey(event)" onfocus="renderSuggest()" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search games" aria-autocomplete="list">
+        <button type="button" class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Clear search">✕</button>
+        <div class="search-suggest" id="searchSuggest" role="listbox" aria-label="Game suggestions"></div>
+      </div>
+      <div class="preset-row" id="presetRow">
+        <span class="preset-label">Quick picks:</span>
+        <button type="button" class="preset-chip" id="presetDeck" onclick="applyPreset('deck')">🎮 Deck Verified</button>
+        <button type="button" class="preset-chip" id="presetSmall" onclick="applyPreset('small')">💾 Under 15 GB</button>
+        <button type="button" class="preset-chip" id="presetTiny" onclick="applyPreset('tiny')">🪶 Under 5 GB</button>
+        <button type="button" class="preset-chip" id="presetAction" onclick="applyPreset('action')">⚔️ Action</button>
+        <button type="button" class="preset-chip" id="presetLowend" onclick="applyPreset('lowend')">💻 Low-spec friendly</button>
       </div>
       <div class="hero-stats">
         <span>🎮 <strong>2,459</strong> Benchmarked Games</span>
@@ -382,10 +486,10 @@
         <span>🔍 Live Instant Filter</span>
       </div>
 
-      <div class="filter-panel">
+      <div class="filter-panel" id="filterPanel">
         <div class="filter-head">
           <h2>🎯 Find games my PC can run</h2>
-          <span>Pick your GPU and RAM — the whole database filters instantly</span>
+          <span>Pick your GPU and RAM, then narrow by OS, genre or install size — every filter combines</span>
         </div>
         <div class="filter-row">
           <div class="filter-field">
@@ -412,11 +516,74 @@
             </select>
           </div>
         </div>
+        <button type="button" class="more-filters-btn" id="moreFiltersBtn" onclick="toggleMoreFilters()" aria-expanded="false" aria-controls="extraFilters">
+          <span id="moreFiltersLabel">More filters</span> <span class="chev">▼</span>
+        </button>
+        <div class="filter-row filter-row-2 extra-filters" id="extraFilters">
+          <div class="filter-field">
+            <label for="osSelect">Operating system</label>
+            <select id="osSelect" class="filter-select" onchange="onOsChange()">
+              <option value="">Any OS (2,459)</option>
+              <option value="windows">Windows (2,459)</option>
+              <option value="mac">macOS (827)</option>
+              <option value="linux">Linux / SteamOS (579)</option>
+            </select>
+          </div>
+          <div class="filter-field">
+            <label for="genreSelect">Genre</label>
+            <select id="genreSelect" class="filter-select" onchange="onGenreChange()">
+              <option value="">Any genre</option>
+              <option value="action">Action (1,395)</option>
+              <option value="indie">Indie (1,200)</option>
+              <option value="adventure">Adventure (1,073)</option>
+              <option value="rpg">RPG (478)</option>
+              <option value="casual">Casual (463)</option>
+              <option value="simulation">Simulation (400)</option>
+              <option value="strategy">Strategy (365)</option>
+              <option value="free-to-play">Free To Play (167)</option>
+              <option value="massively-multiplayer">Massively Multiplayer (122)</option>
+              <option value="racing">Racing (62)</option>
+              <option value="sports">Sports (55)</option>
+            </select>
+          </div>
+          <div class="filter-field">
+            <label for="storageSelect">Install size</label>
+            <select id="storageSelect" class="filter-select" onchange="onStorageChange()">
+              <option value="">Any install size</option>
+              <option value="5">Under 5 GB (1,124)</option>
+              <option value="15">Under 15 GB (1,632)</option>
+              <option value="30">Under 30 GB (1,916)</option>
+              <option value="50">Under 50 GB (2,092)</option>
+              <option value="100">Under 100 GB (2,290)</option>
+            </select>
+          </div>
+          <div class="filter-field">
+            <label for="deckSelect">Steam Deck</label>
+            <select id="deckSelect" class="filter-select" onchange="onDeckChange()">
+              <option value="">Any Steam Deck status</option>
+              <option value="verified">★ Deck Verified (794)</option>
+              <option value="playable">Verified or Playable (1,896)</option>
+              <option value="unsupported">Deck Unsupported (563)</option>
+            </select>
+          </div>
+        </div>
         <div class="filter-actions">
           <button class="seg-btn" id="copyLinkBtn" onclick="copyShareLink()">🔗 Copy link to this filter</button>
-          <button class="reset-btn" onclick="resetFilter()">Reset filter</button>
+          <button class="reset-btn" onclick="resetFilter()">Reset all</button>
+          <div class="sort-field">
+            <label for="sortSelect">Sort</label>
+            <select id="sortSelect" class="filter-select" onchange="onSortChange()">
+              <option value="popular">Most popular (reviews)</option>
+              <option value="rated">Highest rated (% positive)</option>
+              <option value="lowspec">Lowest spec (easy to run)</option>
+              <option value="newest">Newest first</option>
+              <option value="az">A – Z</option>
+            </select>
+          </div>
         </div>
+        <div class="active-filters" id="activeFilters"></div>
         <div class="filter-result" id="filterResult"></div>
+        <p class="filter-note">OS and Steam Deck status come from Steam's live store platform data (macOS and Linux support, Deck Verified / Playable / Unsupported). Install sizes are listed for 2,371 of 2,459 games — titles without a listed size are hidden while an install-size filter is on.</p>
         <div class="quick-hubs">
           Popular guides:
           <a href="gpu/rtx-4060.html">RTX 4060</a><a href="gpu/gtx-1650.html">GTX 1650</a><a href="gpu/gtx-1060.html">GTX 1060</a><a href="gpu/rx-6600.html">RX 6600</a><a href="gpu/rx-580.html">RX 580</a><a href="gpu/intel-iris-xe.html">Iris Xe</a><a href="gpu/steam-deck-handheld.html">Steam Deck</a><a href="gpu/8gb-ram-laptop.html">8 GB RAM laptop</a><a href="gpu/low-end-potato-pc.html">Potato PC</a>
@@ -27520,8 +27687,18 @@
     var dynMatches = [];
     var viewMode = 'static';
     var page = 1;
-    var state = { gpu: '', ram: '', mode: 'all', q: '' };
-    var F = { t: 0, s: 1, min: 2, rec: 3, minL: 4, recL: 5, minRam: 6, recRam: 7, rev: 8, rt: 9, g: 10, img: 11 };
+    var state = { gpu: '', ram: '', mode: 'all', os: '', genre: '', storage: '', deck: '', sort: 'popular', q: '' };
+    var F = { t: 0, s: 1, min: 2, rec: 3, minL: 4, recL: 5, minRam: 6, recRam: 7, rev: 8, rt: 9, g: 10, img: 11, gb: 12, os: 13, deck: 14, yr: 15 };
+    var TITLES = [];
+    var GENRE_NAMES = {};
+    var hiddenNoSize = 0;
+    var PRESETS = {
+      deck: { deck: 'verified' },
+      small: { storage: '15' },
+      tiny: { storage: '5' },
+      action: { genre: 'action' },
+      lowend: { gpu: 'gtx-1650', ram: '8' }
+    };
 
     function $(id) { return document.getElementById(id); }
 
@@ -27531,6 +27708,58 @@
     }
 
     function fmt(n) { return (n || 0).toLocaleString('en-US'); }
+
+    function genreText(raw) {
+      return String(raw || '').split('|').slice(0, 2).join(', ');
+    }
+
+    function activeFilterCount() {
+      var n = 0;
+      if (state.gpu) n++;
+      if (state.ram) n++;
+      if (state.mode === 'rec') n++;
+      if (state.os) n++;
+      if (state.genre) n++;
+      if (state.storage) n++;
+      if (state.deck) n++;
+      if (state.sort !== 'popular') n++;
+      if (state.q) n++;
+      return n;
+    }
+
+    function renderActiveFilters() {
+      var box = $('activeFilters');
+      if (!box) return;
+      var chips = [];
+      function chip(key, label) {
+        chips.push('<button type="button" class="af-badge" onclick="removeFilter(\'' + key + '\')" title="Remove this filter">' +
+          '<span class="af-t">' + esc(label) + '</span> <span class="af-x">✕</span></button>');
+      }
+      if (state.q) chip('q', '“' + state.q + '”');
+      if (state.gpu) {
+        var gname = state.gpu;
+        for (var i = 0; i < GPUS.length; i++) { if (GPUS[i].slug === state.gpu) gname = GPUS[i].name; }
+        chip('gpu', gname);
+      }
+      if (state.ram) chip('ram', state.ram + ' GB RAM');
+      if (state.mode === 'rec') chip('mode', '60 FPS recommended only');
+      if (state.os) chip('os', optionLabel('osSelect', state.os));
+      if (state.genre) chip('genre', optionLabel('genreSelect', state.genre));
+      if (state.storage) chip('storage', optionLabel('storageSelect', state.storage));
+      if (state.deck) chip('deck', optionLabel('deckSelect', state.deck));
+      if (state.sort !== 'popular') chip('sort', 'Sort: ' + optionLabel('sortSelect', state.sort));
+      box.innerHTML = chips.length
+        ? '<span class="af-strong" style="font-size:12px;color:var(--text-muted);align-self:center;">Active:</span>' + chips.join('')
+        : '';
+    }
+
+    function updatePresetChips() {
+      var map = { deck: 'presetDeck', small: 'presetSmall', tiny: 'presetTiny', action: 'presetAction', lowend: 'presetLowend' };
+      for (var k in map) {
+        var el = $(map[k]);
+        if (el) el.className = 'preset-chip' + (presetActive(k) ? ' on' : '');
+      }
+    }
 
     function selectedHardware() {
       var g = null;
@@ -27585,6 +27814,11 @@
       state.gpu = p.get('gpu') || '';
       state.ram = p.get('ram') || '';
       state.mode = p.get('mode') === 'rec' ? 'rec' : 'all';
+      state.os = ['windows', 'mac', 'linux'].indexOf(p.get('os')) > -1 ? p.get('os') : '';
+      state.genre = p.get('genre') || '';
+      state.storage = ['5', '15', '30', '50', '100'].indexOf(p.get('storage')) > -1 ? p.get('storage') : '';
+      state.deck = ['verified', 'playable', 'unsupported'].indexOf(p.get('deck')) > -1 ? p.get('deck') : '';
+      state.sort = ['popular', 'rated', 'lowspec', 'newest', 'az'].indexOf(p.get('sort')) > -1 ? p.get('sort') : 'popular';
       state.q = p.get('q') || '';
       if (state.q) { $('gameSearch').value = state.q; }
     }
@@ -27594,6 +27828,11 @@
       if (state.gpu) p.set('gpu', state.gpu);
       if (state.ram) p.set('ram', state.ram);
       if (state.mode === 'rec') p.set('mode', 'rec');
+      if (state.os) p.set('os', state.os);
+      if (state.genre) p.set('genre', state.genre);
+      if (state.storage) p.set('storage', state.storage);
+      if (state.deck) p.set('deck', state.deck);
+      if (state.sort !== 'popular') p.set('sort', state.sort);
       if (state.q) p.set('q', state.q);
       var qs = p.toString();
       history.replaceState(null, '', qs ? '?' + qs : window.location.pathname);
@@ -27603,7 +27842,49 @@
       $('gpuSelect').value = state.gpu || '';
       $('ramSelect').value = state.ram || '';
       $('modeSelect').value = state.mode;
+      $('osSelect').value = state.os;
+      $('genreSelect').value = state.genre;
+      $('storageSelect').value = state.storage;
+      $('deckSelect').value = state.deck;
+      $('sortSelect').value = state.sort;
+      $('gameSearch').value = state.q;
+      updateClearButton();
     }
+
+    function updateClearButton() {
+      $('searchClear').style.display = state.q ? 'flex' : 'none';
+    }
+
+    function hasOption(selId, value) {
+      var sel = $(selId);
+      if (!sel) return false;
+      for (var i = 0; i < sel.options.length; i++) { if (sel.options[i].value === value) return true; }
+      return false;
+    }
+
+    function optionLabel(selId, value) {
+      var sel = $(selId);
+      if (!sel) return value;
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value === value) {
+          return sel.options[i].textContent.replace(/\s*\([\d,]+\)\s*$/, '').trim();
+        }
+      }
+      return value;
+    }
+
+    // Genre slugs from the menu are matched against the names stored in the index.
+    function buildGenreMap() {
+      GENRE_NAMES = {};
+      var sel = $('genreSelect');
+      for (var i = 0; i < sel.options.length; i++) {
+        var v = sel.options[i].value;
+        if (!v) continue;
+        GENRE_NAMES[v] = sel.options[i].textContent.replace(/\s*\([\d,]+\)\s*$/, '').trim();
+      }
+    }
+
+    function onFilterChange() { page = 1; writeUrlState(); render(); }
 
     function onSearchInput() {
       state.q = $('gameSearch').value.trim();
@@ -27613,9 +27894,22 @@
         state.mode = 'all';
         $('modeSelect').value = 'all';
       }
+      updateClearButton();
+      renderSuggest();
       page = 1;
       writeUrlState();
       render();
+    }
+
+    function onSearchKey(e) {
+      if (e.key === 'Escape') { hideSuggest(); return; }
+      if (e.key !== 'Enter') return;
+      e.preventDefault();
+      hideSuggest();
+      page = 1;
+      writeUrlState();
+      render();
+      scrollToGrid();
     }
 
     function onGpuChange() {
@@ -27627,21 +27921,145 @@
           $('ramSelect').value = state.ram;
         }
       }
+      onFilterChange();
+    }
+
+    function onRamChange() { state.ram = $('ramSelect').value; onFilterChange(); }
+    function onModeChange() { state.mode = $('modeSelect').value; onFilterChange(); }
+    function onOsChange() { state.os = $('osSelect').value; onFilterChange(); }
+    function onGenreChange() { state.genre = $('genreSelect').value; onFilterChange(); }
+    function onStorageChange() { state.storage = $('storageSelect').value; onFilterChange(); }
+    function onDeckChange() { state.deck = $('deckSelect').value; onFilterChange(); }
+    function onSortChange() { state.sort = $('sortSelect').value; onFilterChange(); }
+
+    function clearSearch() {
+      state.q = '';
+      $('gameSearch').value = '';
+      hideSuggest();
+      updateClearButton();
+      page = 1;
+      writeUrlState();
+      render();
+      $('gameSearch').focus();
+    }
+
+    function resetFilter() {
+      state = { gpu: '', ram: '', mode: 'all', os: '', genre: '', storage: '', deck: '', sort: 'popular', q: '' };
+      $('gameSearch').value = '';
+      hideSuggest();
+      syncControls();
       page = 1;
       writeUrlState();
       render();
     }
 
-    function onRamChange() { state.ram = $('ramSelect').value; page = 1; writeUrlState(); render(); }
-    function onModeChange() { state.mode = $('modeSelect').value; page = 1; writeUrlState(); render(); }
-
-    function resetFilter() {
-      state = { gpu: '', ram: '', mode: 'all', q: '' };
-      $('gameSearch').value = '';
+    function removeFilter(key) {
+      if (key === 'q') { clearSearch(); return; }
+      if (key === 'mode') state.mode = 'all';
+      else if (key === 'sort') state.sort = 'popular';
+      else state[key] = '';
       syncControls();
       page = 1;
       writeUrlState();
       render();
+    }
+
+    function toggleMoreFilters() {
+      expandMoreFilters(!$('filterPanel').classList.contains('expanded'));
+    }
+
+    function expandMoreFilters(open) {
+      var panel = $('filterPanel');
+      if (!panel) return;
+      if (open) panel.classList.add('expanded'); else panel.classList.remove('expanded');
+      $('moreFiltersBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
+      $('moreFiltersLabel').textContent = open ? 'Hide extra filters' : 'More filters';
+    }
+
+    function presetActive(kind) {
+      var p = PRESETS[kind];
+      if (!p) return false;
+      for (var k in p) {
+        if (Object.prototype.hasOwnProperty.call(p, k) && String(state[k]) !== String(p[k])) return false;
+      }
+      return true;
+    }
+
+    function applyPreset(kind) {
+      var p = PRESETS[kind];
+      if (!p) return;
+      var off = presetActive(kind);
+      for (var k in p) {
+        if (!Object.prototype.hasOwnProperty.call(p, k)) continue;
+        state[k] = off ? '' : p[k];
+      }
+      if (state.genre && !hasOption('genreSelect', state.genre)) state.genre = '';
+      if (state.gpu && !hasOption('gpuSelect', state.gpu)) { state.gpu = ''; state.ram = ''; }
+      if (state.os || state.genre || state.storage || state.deck) expandMoreFilters(true);
+      syncControls();
+      page = 1;
+      writeUrlState();
+      render();
+      scrollToGrid();
+    }
+
+    // ---------------------------------------------------------------- suggestions
+    function buildTitleIndex() {
+      if (!IDX) return;
+      TITLES = IDX.games.map(function (a) {
+        return { a: a, key: String(a[F.t]).toLowerCase(), slug: String(a[F.s]) };
+      });
+    }
+
+    function suggestMatches(q, limit) {
+      var starts = [], contains = [];
+      for (var i = 0; i < TITLES.length; i++) {
+        var item = TITLES[i];
+        var at = item.key.indexOf(q);
+        if (at === 0) starts.push(item);
+        else if (at > 0) contains.push(item);
+        if (starts.length >= limit) break;
+      }
+      return starts.concat(contains).slice(0, limit);
+    }
+
+    function hideSuggest() {
+      var box = $('searchSuggest');
+      if (box) box.style.display = 'none';
+    }
+
+    function renderSuggest() {
+      var box = $('searchSuggest');
+      if (!box) return;
+      var q = state.q.toLowerCase();
+      if (q.length < 2 || !IDX || !TITLES.length) { box.style.display = 'none'; return; }
+
+      var hits = suggestMatches(q, 6);
+      var totalTitles = 0;
+      for (var i = 0; i < TITLES.length; i++) { if (TITLES[i].key.indexOf(q) !== -1) totalTitles++; }
+
+      var html = '';
+      if (!hits.length) {
+        html = '<div class="suggest-empty">No game title contains "' + esc(state.q) + '". Try a shorter word.</div>';
+      } else {
+        hits.forEach(function (hit) {
+          var a = hit.a;
+          html += '<a class="suggest-item" href="games/' + esc(hit.slug) + '.html" role="option">' +
+            '<img class="suggest-thumb" src="' + esc(a[F.img]) + '" alt="" loading="lazy">' +
+            '<span class="suggest-main"><span class="suggest-title">' + esc(a[F.t]) + '</span>' +
+            '<span class="suggest-meta">' + esc(String(a[F.g] || '').split('|').join(', ')) + ' · GPU: ' + esc(a[F.recL] || 'see Steam') + '</span></span></a>';
+        });
+        html += '<button type="button" class="suggest-all" onclick="showAllResults()">Show ' + fmt(totalTitles) + ' match' + (totalTitles === 1 ? '' : 'es') + ' in the grid →</button>';
+      }
+      box.innerHTML = html;
+      box.style.display = 'block';
+    }
+
+    function showAllResults() {
+      hideSuggest();
+      page = 1;
+      render();
+      scrollToGrid();
     }
 
     function copyShareLink() {
@@ -27663,16 +28081,55 @@
       return String(item[F.t] || '').toLowerCase().indexOf(q) !== -1;
     }
 
+    function sortMatches(out) {
+      var s = state.sort || 'popular';
+      out.sort(function (x, y) {
+        var a = x.a, b = y.a;
+        if (s === 'rated') {
+          var r = (b[F.rt] || 0) - (a[F.rt] || 0);
+          if (r !== 0) return r;
+        } else if (s === 'lowspec') {
+          var ra = a[F.rec] == null ? 9999 : a[F.rec];
+          var rb = b[F.rec] == null ? 9999 : b[F.rec];
+          if (ra !== rb) return ra - rb;
+        } else if (s === 'newest') {
+          var ya = a[F.yr] || 0, yb = b[F.yr] || 0;
+          if (ya !== yb) return yb - ya;
+        } else if (s === 'az') {
+          return String(a[F.t]).localeCompare(String(b[F.t]));
+        }
+        var d = (b[F.rev] || 0) - (a[F.rev] || 0);
+        if (d !== 0) return d;
+        var t = (b[F.rt] || 0) - (a[F.rt] || 0);
+        if (t !== 0) return t;
+        return String(a[F.t]).localeCompare(String(b[F.t]));
+      });
+      return out;
+    }
+
     function computeMatches() {
       var hw = selectedHardware();
       var H = hw.gpu ? hw.gpu.score : null;
       var R = hw.ram;
       var q = state.q.toLowerCase();
+      var osBit = state.os === 'windows' ? 1 : state.os === 'mac' ? 2 : state.os === 'linux' ? 4 : 0;
+      var genreName = state.genre ? GENRE_NAMES[state.genre] : '';
+      var sizeLimit = state.storage ? parseFloat(state.storage) : null;
       var out = [];
+      hiddenNoSize = 0;
       var games = IDX.games;
       for (var i = 0; i < games.length; i++) {
         var a = games[i];
         if (!matchesQuery(a, q)) continue;
+        if (osBit && !(a[F.os] & osBit)) continue;
+        if (genreName && String(a[F.g] || '').split('|').indexOf(genreName) === -1) continue;
+        if (sizeLimit != null) {
+          if (a[F.gb] == null) { hiddenNoSize++; continue; }
+          if (a[F.gb] >= sizeLimit) continue;
+        }
+        if (state.deck === 'verified' && a[F.deck] !== 3) continue;
+        if (state.deck === 'playable' && (a[F.deck] || 0) < 2) continue;
+        if (state.deck === 'unsupported' && a[F.deck] !== 1) continue;
         var recPass = true, minPass = true;
         if (H != null) {
           recPass = a[F.rec] != null && a[F.rec] <= H;
@@ -27686,14 +28143,7 @@
         if (!recPass && !minPass) continue;
         out.push({ a: a, rec: recPass });
       }
-      out.sort(function (x, y) {
-        var d = (y.a[F.rev] || 0) - (x.a[F.rev] || 0);
-        if (d !== 0) return d;
-        var r = (y.a[F.rt] || 0) - (x.a[F.rt] || 0);
-        if (r !== 0) return r;
-        return String(x.a[F.t]).localeCompare(String(y.a[F.t]));
-      });
-      return out;
+      return sortMatches(out);
     }
 
     function cardHtml(rec, a) {
@@ -27705,7 +28155,7 @@
       return '<a href="games/' + esc(a[F.s]) + '.html" class="game-card" data-title="' + esc(String(a[F.t]).toLowerCase()) + '">' +
         '<img src="' + esc(a[F.img]) + '" alt="' + esc(a[F.t]) + ' PC specs" class="game-img" loading="lazy">' +
         '<div class="game-body"><h3 class="game-title">' + esc(a[F.t]) + '</h3>' +
-        '<div class="game-genre">' + esc(a[F.g]) + '</div>' +
+        '<div class="game-genre">' + esc(genreText(a[F.g])) + '</div>' +
         '<div class="spec-badge-box"><span class="gpu-badge">' + esc(badge) + '</span>' + status + '</div>' +
         '</div></a>';
     }
@@ -27794,6 +28244,8 @@
       var total = staticFiltered.length;
       drawPager(total, renderStatic);
       $('filterResult').textContent = '';
+      renderActiveFilters();
+      updatePresetChips();
     }
 
     function renderDynamic() {
@@ -27808,31 +28260,43 @@
       $('dynamicGrid').innerHTML = slice.map(function (m) { return cardHtml(m.rec, m.a); }).join('');
       var emptyMsg = 'No matching games found.';
       if (dynMatches.length === 0) {
-        emptyMsg = state.q
-          ? 'No games matching "' + state.q + '" run on ' + (hw.gpu ? hw.gpu.name : 'this hardware') +
-            '. Reset the filter to search the whole database.'
-          : 'No games match this hardware combination. Try a different GPU or RAM size.';
+        emptyMsg = 'No games match this combination. ' +
+          (activeFilterCount() > 1 ? 'Remove a filter from the row above to widen the list.' : 'Try a different setting.');
       }
       drawPager(dynMatches.length, renderDynamic, emptyMsg);
 
       var recCount = 0;
       dynMatches.forEach(function (m) { if (m.rec) recCount++; });
-      var label = hw.gpu ? hw.gpu.name : 'your PC';
       var parts = [];
-      parts.push('<strong>' + fmt(dynMatches.length) + '</strong> games run on ' + esc(label));
-      if (hw.ram) parts.push('with ' + hw.ram + ' GB RAM');
-      parts.push('· <strong>' + fmt(recCount) + '</strong> at 60 FPS on recommended settings');
-      if (state.mode === 'all' && recCount < dynMatches.length) parts.push('· ' + fmt(dynMatches.length - recCount) + ' at minimum settings only');
+      if (hw.gpu) {
+        parts.push('<strong>' + fmt(dynMatches.length) + '</strong> games run on ' + esc(hw.gpu.name) +
+          (hw.ram ? ' with ' + hw.ram + ' GB RAM' : ''));
+        parts.push('· <strong>' + fmt(recCount) + '</strong> at 60 FPS on recommended settings');
+        if (state.mode === 'all' && recCount < dynMatches.length) parts.push('· ' + fmt(dynMatches.length - recCount) + ' at minimum settings only');
+      } else {
+        parts.push('<strong>' + fmt(dynMatches.length) + '</strong> games match these filters');
+        if (state.mode === 'rec') parts.push('· pick a GPU to see which reach 60 FPS on it');
+      }
+      if (hiddenNoSize) parts.push('· ' + fmt(hiddenNoSize) + ' games without a listed install size aren\'t shown');
       $('filterResult').innerHTML = parts.join(' ');
-      $('gridTitle').textContent = hw.gpu ? 'Games ' + hw.gpu.name + ' can run' : 'Games for your PC';
-      $('gridSubtitle').textContent = state.q ? 'Matching "' + state.q + '"' : 'Filtered from the full database';
+      $('gridTitle').textContent = hw.gpu ? 'Games ' + hw.gpu.name + ' can run'
+        : (state.q ? 'Search results' : 'Filtered games');
+      var n = activeFilterCount();
+      $('gridSubtitle').textContent = n ? n + ' filter' + (n === 1 ? '' : 's') + ' active' : 'Filtered from the full database';
+      renderActiveFilters();
+      updatePresetChips();
+    }
+
+    function needsData() {
+      return !!(state.gpu || state.ram || state.q || state.os || state.genre || state.storage ||
+        state.deck || state.mode === 'rec' || state.sort !== 'popular');
     }
 
     function render() {
-      var needsData = !!(state.gpu || state.ram || state.q);
-      if (needsData && IDX) { renderDynamic(); return; }
-      if (needsData && !IDX) {
+      if (needsData() && IDX) { renderDynamic(); return; }
+      if (needsData() && !IDX) {
         $('filterResult').textContent = 'Loading the full game index…';
+        renderActiveFilters();
         return;
       }
       viewMode = 'static';
@@ -27844,6 +28308,7 @@
     document.addEventListener('DOMContentLoaded', function () {
       staticCards = Array.prototype.slice.call(document.querySelectorAll('#gamesContainer .game-card'));
       readUrlState();
+      updateClearButton();
       render();
       loadData().then(function () {
         if (GPUS.length) buildGpuSelect();
@@ -27852,8 +28317,19 @@
           state.gpu = '';
           writeUrlState();
         }
+        buildGenreMap();
+        if (state.genre && !hasOption('genreSelect', state.genre)) {
+          state.genre = '';
+          writeUrlState();
+        }
+        buildTitleIndex();
         syncControls();
+        if (state.os || state.genre || state.storage || state.deck) expandMoreFilters(true);
         render();
+        renderSuggest();
+      });
+      document.addEventListener('click', function (e) {
+        if (e.target && e.target.closest && !e.target.closest('.search-wrapper')) hideSuggest();
       });
     });
   </script>
