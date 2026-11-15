@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0f19">
   <title>Arizona Sunshine® VR Legacy System Requirements: Can I Run It? (PC Specs & Best Settings)</title>
   <meta name="description" content="Check official Arizona Sunshine® VR Legacy PC system requirements. Compare minimum vs recommended specs (CPU, GPU, RAM) and discover the best graphics settings for locked 60 FPS.">
   <link rel="canonical" href="https://canmyspec.com/games/arizona-sunshine-vr-legacy.html">
@@ -31,6 +32,11 @@
       --text-muted: #94a3b8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    img { max-width: 100%; }
+    .hero-content h1, .hero-summary, .spec-val, .hw-value, .hw-note, .breadcrumbs,
+    .faq-item summary, .faq-item p, .tips-item, .checker-box h3, .checker-result,
+    .aff-left h4, .aff-left p, .related-card-title { overflow-wrap: anywhere; }
     body {
       background-color: var(--bg);
       color: var(--text);
@@ -331,9 +337,92 @@
     footer a { color: #94a3b8; text-decoration: none; margin: 0 10px; }
 
     @media (max-width: 768px) {
-      .hero { grid-template-columns: 1fr; }
-      .checker-form { grid-template-columns: 1fr; }
-      .affiliate-banner { flex-direction: column; text-align: center; }
+      body { padding-bottom: 40px; }
+      .container { padding: 0 16px; }
+      header { padding: 11px 0; }
+      .logo { font-size: 19px; }
+
+      .breadcrumbs { margin: 16px 0 12px; font-size: 12px; line-height: 1.7; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        padding: 18px 16px;
+        border-radius: 14px;
+        margin-bottom: 26px;
+      }
+      .hero-img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: cover;
+        border-radius: 10px;
+      }
+      .hero-content h1 { font-size: 24px; line-height: 1.25; margin-bottom: 10px; }
+      .hero-meta { gap: 6px; margin-bottom: 12px; }
+      .badge { font-size: 11.5px; padding: 4px 9px; }
+      .hero-summary { font-size: 14px; margin-bottom: 16px; }
+      .verdict-box { flex-wrap: wrap; gap: 8px; padding: 12px 14px; }
+      .verdict-text { font-size: 13px; line-height: 1.5; flex: 1 1 100%; }
+      .verdict-tag { font-size: 11px; padding: 4px 10px; }
+
+      .section-title { font-size: 19px; margin: 30px 0 14px; gap: 8px; }
+      .section-title::before { height: 19px; }
+
+      .spec-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 24px; }
+      .spec-card { padding: 18px 16px; border-radius: 12px; }
+      .spec-title { font-size: 17px; }
+      .spec-target { font-size: 12.5px; }
+      .spec-row { font-size: 13.5px; gap: 12px; padding: 9px 0; align-items: baseline; }
+      .spec-label { flex: 0 0 30%; }
+      .spec-val { flex: 1 1 auto; max-width: none; text-align: right; }
+
+      .hw-grid { grid-template-columns: 1fr; gap: 12px; }
+      .hw-card { padding: 16px; }
+      .hw-value { font-size: 15px; }
+      .hw-note { font-size: 13px; line-height: 1.6; }
+      .hw-chips { gap: 7px; }
+      .hw-chip { font-size: 12.5px; padding: 8px 12px; }
+
+      .checker-box { padding: 20px 16px; margin: 26px 0; border-radius: 12px; }
+      .checker-box h3 { font-size: 17px; line-height: 1.35; }
+      .checker-box p { font-size: 13px; margin-bottom: 16px; }
+      .checker-form { grid-template-columns: 1fr; gap: 10px; }
+      .checker-input { font-size: 16px; min-height: 48px; padding: 13px 12px; }
+      .checker-btn { min-height: 48px; padding: 14px; font-size: 15px; }
+      .checker-result { font-size: 13px; line-height: 1.55; padding: 12px; }
+
+      .tips-list { gap: 10px; }
+      .tips-item { padding: 14px 16px; gap: 10px; font-size: 14px; }
+
+      .affiliate-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 16px;
+        gap: 14px;
+        margin: 30px 0;
+      }
+      .aff-left h4 { font-size: 16px; }
+      .aff-left p { font-size: 13px; }
+      .aff-btn { width: 100%; text-align: center; padding: 14px 18px; display: block; }
+
+      .faq-list { gap: 8px; }
+      .faq-item { padding: 14px 16px; }
+      .faq-item summary { font-size: 14.5px; line-height: 1.45; }
+      .faq-item p { font-size: 13.5px; margin-top: 8px; }
+
+      .related-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+      .related-card img { height: auto; aspect-ratio: 16 / 9; }
+      .related-card-title { padding: 9px 10px; font-size: 12.5px; }
+
+      footer { margin-top: 40px; padding: 24px 0 10px; font-size: 12.5px; }
+      footer p { line-height: 2; }
+      footer a { display: inline-block; margin: 2px 8px; }
+    }
+
+    @media (max-width: 380px) {
+      .hero-content h1 { font-size: 22px; }
+      .related-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -489,19 +578,19 @@
       <h2 class="section-title">Explore More PC Benchmarks</h2>
       <div class="related-grid">
         <a href="terraria.html" class="related-card">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1792530636" alt="Terraria specs">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/105600/header.jpg?t=1792530636" alt="Terraria specs" loading="lazy" decoding="async">
   <div class="related-card-title">Terraria</div>
 </a>
 <a href="rust.html" class="related-card">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/header.jpg?t=1781536981" alt="Rust specs">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/252490/header.jpg?t=1781536981" alt="Rust specs" loading="lazy" decoding="async">
   <div class="related-card-title">Rust</div>
 </a>
 <a href="lethal-company.html" class="related-card">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg?t=1775380053" alt="Lethal Company specs">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1966720/header.jpg?t=1775380053" alt="Lethal Company specs" loading="lazy" decoding="async">
   <div class="related-card-title">Lethal Company</div>
 </a>
 <a href="valheim.html" class="related-card">
-  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/892970/df65cafab20dae97a243c7cc988e8bf959e4b906/header.jpg?t=1791544831" alt="Valheim specs">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/892970/df65cafab20dae97a243c7cc988e8bf959e4b906/header.jpg?t=1791544831" alt="Valheim specs" loading="lazy" decoding="async">
   <div class="related-card-title">Valheim</div>
 </a>
       </div>

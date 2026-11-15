@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090d16">
   <title>CleanAsset AI — Free In-Browser AI Background Remover & 4K Image Studio</title>
   <meta name="description" content="Free online AI background remover, 4K upscaler, and studio drop shadow tool for creators, gamers, and developers. 100% client-side, zero server uploads, unlimited private exports.">
   <meta name="keywords" content="background remover, remove bg free, 4k image upscaler, webp converter, game asset studio, drop shadow generator">
@@ -49,6 +50,8 @@
       --text-muted: #94a3b8;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    img, canvas, svg { max-width: 100%; }
     body { background: var(--bg); color: var(--text); min-height: 100vh; display: flex; flex-direction: column; }
     
     /* Header */
@@ -134,6 +137,51 @@
     /* Footer */
     footer { border-top: 1px solid var(--border); padding: 30px 20px; text-align: center; font-size: 0.85rem; color: var(--text-muted); background: #050811; }
     footer a { color: var(--accent); text-decoration: none; }
+
+    /* ---------------- Mobile (phones, 320px - 768px) ---------------- */
+    @media (max-width: 768px) {
+      .header-inner { padding: 11px 16px; }
+      .logo { font-size: 1.08rem; }
+
+      .hero { padding: 28px 16px 16px; }
+      .hero h1 { font-size: 1.85rem; letter-spacing: -0.3px; }
+      .hero p { font-size: 0.95rem; }
+      .hero-tag { font-size: 0.72rem; padding: 6px 11px; line-height: 1.4; }
+      .features-row { gap: 8px; margin-bottom: 20px; }
+      .feat-pill { font-size: 0.75rem; padding: 6px 10px; }
+
+      .ad-slot { margin: 16px 12px; padding: 12px; }
+
+      .app-container { padding: 0 16px; gap: 16px; margin-bottom: 40px; }
+      .preview-card { min-height: 0; border-radius: 14px; }
+      .preview-toolbar { padding: 10px 12px; gap: 8px; }
+      .canvas-wrapper { min-height: 300px; padding: 14px; }
+      #previewCanvas { max-height: 320px; }
+      .upload-dropzone { padding: 30px 16px; }
+
+      .controls-card { padding: 18px 16px; gap: 18px; border-radius: 14px; }
+      .control-slider { height: 34px; }
+      .color-swatches { gap: 10px; }
+      .swatch { width: 36px; height: 36px; }
+      .btn-action { min-height: 48px; font-size: 0.95rem; }
+      #exportFormat { font-size: 16px !important; min-height: 48px; width: 100%; }
+
+      .api-card { padding: 20px 16px; margin: 0 16px 40px; border-radius: 14px; }
+      pre { font-size: 0.75rem; padding: 12px; -webkit-overflow-scrolling: touch; }
+
+      .modal-overlay { padding: 14px; }
+      .modal-box { padding: 24px 18px; border-radius: 16px; max-height: 90vh; overflow-y: auto; }
+      .modal-box div { flex-wrap: wrap; }
+
+      footer { padding: 24px 16px; }
+      footer > div { justify-content: center !important; text-align: center; }
+    }
+
+    @media (max-width: 420px) {
+      .hero h1 { font-size: 1.65rem; }
+      .features-row .feat-pill { flex: 1 1 46%; justify-content: center; }
+      .api-card { margin-left: 12px; margin-right: 12px; }
+    }
   </style>
 </head>
 <body>
@@ -186,7 +234,7 @@
       <div class="canvas-wrapper checker-bg" id="dropArea">
         <div class="upload-dropzone" id="uploadPrompt" onclick="document.getElementById('fileInput').click()">
           <svg width="48" height="48" fill="none" stroke="#38bdf8" stroke-width="2" viewBox="0 0 24 24" style="margin: 0 auto;"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"/></svg>
-          <h3 style="margin-top: 14px; font-size: 1.1rem; color: #fff;">Drop your image here</h3>
+          <h3 style="margin-top: 14px; font-size: 1rem; color: #fff;">Drop your image here</h3>
           <p>or click to browse from device (PNG, JPG, WebP)</p>
           <div style="margin-top: 16px; display:flex; gap:8px; justify-content:center;">
             <button class="btn-action btn-secondary" style="font-size:0.75rem; padding:4px 8px; width:auto;" onclick="loadSample(event)">Load Sample Avatar</button>
