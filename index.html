@@ -27619,14 +27619,14 @@
         '</div></a>';
     }
 
-    function drawPager(total, goTo) {
+    function drawPager(total, goTo, emptyMsg) {
       var controls = $('paginationControls');
       var info = $('pageInfo');
       controls.innerHTML = '';
       var totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
       if (page > totalPages) page = totalPages;
       var start = (page - 1) * PAGE_SIZE;
-      if (total === 0) { info.textContent = 'No matching games found.'; return; }
+      if (total === 0) { info.textContent = emptyMsg || 'No matching games found.'; return; }
       info.textContent = 'Showing ' + (start + 1) + ' - ' + Math.min(start + PAGE_SIZE, total) + ' of ' + fmt(total) + ' games (Page ' + page + ' of ' + fmt(totalPages) + ')';
 
       var prev = document.createElement('button');
@@ -27710,7 +27710,14 @@
       var start = (page - 1) * PAGE_SIZE;
       var slice = dynMatches.slice(start, start + PAGE_SIZE);
       $('dynamicGrid').innerHTML = slice.map(function (m) { return cardHtml(m.rec, m.a); }).join('');
-      drawPager(dynMatches.length, renderDynamic);
+      var emptyMsg = 'No matching games found.';
+      if (dynMatches.length === 0) {
+        emptyMsg = state.q
+          ? 'No games matching "' + state.q + '" run on ' + (hw.gpu ? hw.gpu.name : 'this hardware') +
+            '. Reset the filter to search the whole database.'
+          : 'No games match this hardware combination. Try a different GPU or RAM size.';
+      }
+      drawPager(dynMatches.length, renderDynamic, emptyMsg);
 
       var recCount = 0;
       dynMatches.forEach(function (m) { if (m.rec) recCount++; });
