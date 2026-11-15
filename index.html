@@ -27522,6 +27522,12 @@
 
     function onSearchInput() {
       state.q = $('gameSearch').value.trim();
+      // A title search asks "does this game run?", so the 60 FPS-only view is
+      // lifted while searching; each card still carries its own badge.
+      if (state.q && state.mode === 'rec') {
+        state.mode = 'all';
+        $('modeSelect').value = 'all';
+      }
       page = 1;
       writeUrlState();
       render();
