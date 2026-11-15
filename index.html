@@ -387,7 +387,7 @@
 
       .preset-row { justify-content: flex-start; margin-top: 12px; gap: 7px; }
       .preset-label { width: 100%; }
-      .preset-chip { font-size: 12.5px; padding: 9px 13px; min-height: 38px; }
+      .preset-chip { font-size: 12.5px; padding: 9px 13px; min-height: 44px; display: inline-flex; align-items: center; }
 
       .more-filters-btn {
         display: flex; align-items: center; justify-content: center; gap: 6px;
@@ -445,7 +445,7 @@
       .seg-btn, .reset-btn { flex: 1 1 100%; }
       .reset-btn { padding: 8px 0; }
       .filter-row-2 { grid-template-columns: 1fr 1fr; }
-      .preset-chip { font-size: 12px; padding: 8px 11px; }
+      .preset-chip { font-size: 12px; padding: 8px 11px; min-height: 44px; }
       .game-grid { gap: 14px; }
       .page-btn { min-width: 40px; padding: 10px; }
     }
@@ -560,10 +560,10 @@
           <div class="filter-field">
             <label for="deckSelect">Steam Deck</label>
             <select id="deckSelect" class="filter-select" onchange="onDeckChange()">
-              <option value="">Any Steam Deck status</option>
-              <option value="verified">★ Deck Verified (794)</option>
-              <option value="playable">Verified or Playable (1,896)</option>
-              <option value="unsupported">Deck Unsupported (563)</option>
+              <option value="">Any status</option>
+              <option value="verified">★ Verified (794)</option>
+              <option value="playable">Playable or better (1,896)</option>
+              <option value="unsupported">Unsupported (563)</option>
             </select>
           </div>
         </div>
@@ -28049,7 +28049,7 @@
             '<span class="suggest-main"><span class="suggest-title">' + esc(a[F.t]) + '</span>' +
             '<span class="suggest-meta">' + esc(String(a[F.g] || '').split('|').join(', ')) + ' · GPU: ' + esc(a[F.recL] || 'see Steam') + '</span></span></a>';
         });
-        html += '<button type="button" class="suggest-all" onclick="showAllResults()">Show ' + fmt(totalTitles) + ' match' + (totalTitles === 1 ? '' : 'es') + ' in the grid →</button>';
+        html += '<button type="button" class="suggest-all" onclick="showAllResults()">Show ' + fmt(totalTitles) + ' title match' + (totalTitles === 1 ? '' : 'es') + ' in the grid →</button>';
       }
       box.innerHTML = html;
       box.style.display = 'block';
@@ -28260,8 +28260,11 @@
       $('dynamicGrid').innerHTML = slice.map(function (m) { return cardHtml(m.rec, m.a); }).join('');
       var emptyMsg = 'No matching games found.';
       if (dynMatches.length === 0) {
-        emptyMsg = 'No games match this combination. ' +
-          (activeFilterCount() > 1 ? 'Remove a filter from the row above to widen the list.' : 'Try a different setting.');
+        emptyMsg = state.q
+          ? 'No game matching "' + state.q + '" also matches the other filters. Remove one of them, or clear the search, to widen the list.'
+          : (activeFilterCount() > 1
+            ? 'No games match this combination. Remove a filter from the row above to widen the list.'
+            : 'No games match this filter. Try a different setting.');
       }
       drawPager(dynMatches.length, renderDynamic, emptyMsg);
 
