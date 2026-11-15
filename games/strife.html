@@ -7,6 +7,8 @@
   <title>Strife® System Requirements: Can I Run It? (PC Specs & Best Settings)</title>
   <meta name="description" content="Check official Strife® PC system requirements. Compare minimum vs recommended specs (CPU, GPU, RAM) and discover the best graphics settings for locked 60 FPS.">
   <link rel="canonical" href="https://canmyspec.com/games/strife.html">
+  <script src="../assets/i18n.js"></script>
+  <script src="../assets/detect.js"></script>
   <meta property="og:title" content="Strife® System Requirements & PC Benchmark">
   <meta property="og:description" content="Can your PC run Strife®? Check verified minimum & recommended requirements, storage, and 60 FPS optimization guide.">
   <meta property="og:image" content="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/339280/header.jpg?t=1731597026">
@@ -117,6 +119,9 @@
     }
     .verdict-text { font-size: 14px; font-weight: 600; }
     .verdict-tag { background: var(--accent); color: #fff; padding: 4px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+
+    .checker-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+    .checker-head h3 { margin-bottom: 10px; }
 
     /* Ad Slot Placeholder */
     .ad-banner {
@@ -387,6 +392,7 @@
       .hw-chip { font-size: 12.5px; padding: 8px 12px; }
 
       .checker-box { padding: 20px 16px; margin: 26px 0; border-radius: 12px; }
+      .checker-head { display: block; }
       .checker-box h3 { font-size: 17px; line-height: 1.35; }
       .checker-box p { font-size: 13px; margin-bottom: 16px; }
       .checker-form { grid-template-columns: 1fr; gap: 10px; }
@@ -438,7 +444,7 @@
 
   <main class="container">
     <div class="breadcrumbs">
-      <a href="../index.html">Home</a> &gt; <a href="../index.html">PC Games</a> &gt; <span>Strife®</span>
+      <a href="../index.html" data-i18n="common.home">Home</a> &gt; <a href="../index.html" data-i18n="common.pcGames">PC Games</a> &gt; <span>Strife®</span>
     </div>
 
     <!-- Hero Section -->
@@ -452,71 +458,71 @@
         </div>
         <p class="hero-summary">Strife® is a truly free to play, competitive, MOBA that features non-stop action and engaging combat. Take control of powerful and versatile heroes, each capable of dominating in unique ways, and exert your will in an epic battle between two teams.</p>
         <div class="verdict-box">
-          <div class="verdict-text">🚀 Recommended GPU: <strong>NVIDIA GeForce 8600 or higher, ATI/AMD Radeon HD 2600 or higher, Intel HD 2000 or higher</strong></div>
-          <div class="verdict-tag">Target: 60 FPS</div>
+          <div class="verdict-text"><span data-i18n="game.verdictLabel">🚀 Recommended GPU:</span> <strong>NVIDIA GeForce 8600 or higher, ATI/AMD Radeon HD 2600 or higher, Intel HD 2000 or higher</strong></div>
+          <div class="verdict-tag" data-i18n="game.verdictTarget">Target: 60 FPS</div>
         </div>
       </div>
     </section>
 
     <!-- Spec Matrix -->
     <section id="specs">
-      <h2 class="section-title">Official PC System Requirements</h2>
+      <h2 class="section-title" data-i18n="game.specsTitle">Official PC System Requirements</h2>
       <div class="spec-grid">
         <!-- Minimum -->
         <div class="spec-card">
           <div class="spec-header">
-            <div class="spec-title">Minimum Requirements</div>
+            <div class="spec-title" data-i18n="game.minTitle">Minimum Requirements</div>
             <div class="spec-target">1080p @ 30 FPS (Low Settings)</div>
           </div>
-          <div class="spec-row"><span class="spec-label">OS</span><span class="spec-val">Windows XP Service Pack 3</span></div>
-          <div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">Dual-core Intel or AMD at 2.4 GHz</span></div>
-          <div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA GeForce 8600 or higher, ATI/AMD Radeon HD 2600 or higher, Intel HD 2000 or higher</span></div>
-          <div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">4 GB RAM</span></div>
-          <div class="spec-row"><span class="spec-label">Storage</span><span class="spec-val">4 GB available space</span></div>
-          <div class="spec-row"><span class="spec-label">DirectX</span><span class="spec-val">Version 9.0</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.os">OS</span><span class="spec-val">Windows XP Service Pack 3</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.cpu">CPU</span><span class="spec-val">Dual-core Intel or AMD at 2.4 GHz</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.gpu">GPU</span><span class="spec-val">NVIDIA GeForce 8600 or higher, ATI/AMD Radeon HD 2600 or higher, Intel HD 2000 or higher</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.ram">RAM</span><span class="spec-val">4 GB RAM</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.storage">Storage</span><span class="spec-val">4 GB available space</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.directx">DirectX</span><span class="spec-val">Version 9.0</span></div>
         </div>
 
         <!-- Recommended (Highlighted) -->
         <div class="spec-card highlight">
           <div class="spec-header">
-            <div class="spec-title">Recommended Requirements</div>
+            <div class="spec-title" data-i18n="game.recTitle">Recommended Requirements</div>
             <div class="spec-target">1080p @ 60 FPS (High Settings)</div>
           </div>
-          <div class="spec-row"><span class="spec-label">OS</span><span class="spec-val">Windows XP Service Pack 3</span></div>
-          <div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">Dual-core Intel or AMD at 2.4 GHz</span></div>
-          <div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA GeForce 8600 or higher, ATI/AMD Radeon HD 2600 or higher, Intel HD 2000 or higher</span></div>
-          <div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">4 GB RAM</span></div>
-          <div class="spec-row"><span class="spec-label">Storage</span><span class="spec-val">4 GB available space</span></div>
-          <div class="spec-row"><span class="spec-label">DirectX</span><span class="spec-val">Version 9.0</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.os">OS</span><span class="spec-val">Windows XP Service Pack 3</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.cpu">CPU</span><span class="spec-val">Dual-core Intel or AMD at 2.4 GHz</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.gpu">GPU</span><span class="spec-val">NVIDIA GeForce 8600 or higher, ATI/AMD Radeon HD 2600 or higher, Intel HD 2000 or higher</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.ram">RAM</span><span class="spec-val">4 GB RAM</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.storage">Storage</span><span class="spec-val">4 GB available space</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.directx">DirectX</span><span class="spec-val">Version 9.0</span></div>
         </div>
 
         <!-- 4K Ultra -->
         <div class="spec-card">
           <div class="spec-header">
-            <div class="spec-title">4K Ultra / Enthusiast</div>
+            <div class="spec-title" data-i18n="game.ultraTitle">4K Ultra / Enthusiast</div>
             <div class="spec-target">1440p / 4K @ 60+ FPS (Ultra Settings) — editorial estimate, not an official figure</div>
           </div>
-          <div class="spec-row"><span class="spec-label">OS</span><span class="spec-val">Windows 11 64-bit</span></div>
-          <div class="spec-row"><span class="spec-label">CPU</span><span class="spec-val">Intel Core i7-13700 / AMD Ryzen 7 7800X3D</span></div>
-          <div class="spec-row"><span class="spec-label">GPU</span><span class="spec-val">NVIDIA GeForce RTX 4070 / RTX 4080</span></div>
-          <div class="spec-row"><span class="spec-label">RAM</span><span class="spec-val">32 GB RAM</span></div>
-          <div class="spec-row"><span class="spec-label">VRAM</span><span class="spec-val">12 GB+ VRAM</span></div>
-          <div class="spec-row"><span class="spec-label">Storage</span><span class="spec-val">4 GB available space</span></div>
-          <div class="spec-row"><span class="spec-label">DirectX</span><span class="spec-val">Version 12</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.os">OS</span><span class="spec-val">Windows 11 64-bit</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.cpu">CPU</span><span class="spec-val">Intel Core i7-13700 / AMD Ryzen 7 7800X3D</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.gpu">GPU</span><span class="spec-val">NVIDIA GeForce RTX 4070 / RTX 4080</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.ram">RAM</span><span class="spec-val">32 GB RAM</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.vram">VRAM</span><span class="spec-val">12 GB+ VRAM</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.storage">Storage</span><span class="spec-val">4 GB available space</span></div>
+          <div class="spec-row"><span class="spec-label" data-i18n="game.directx">DirectX</span><span class="spec-val">Version 12</span></div>
         </div>
       </div>
     </section>
 
     <!-- Hardware tier summary and GPU guide links -->
     <section id="gpu-tiers">
-      <h2 class="section-title">Which GPUs Run Strife®?</h2>
+      <h2 class="section-title" data-i18n="game.hwTitle" data-vars='{"title":"Strife®"}'>Which GPUs Run Strife®?</h2>
       <div class="hw-grid">
-<div class="hw-card"><div class="hw-label">Minimum GPU</div><div class="hw-value">NVIDIA GeForce 8600</div><div class="hw-tier">Legacy tier</div></div>
-<div class="hw-card highlight"><div class="hw-label">Recommended GPU (60 FPS)</div><div class="hw-value">NVIDIA GeForce 8600</div><div class="hw-tier">Legacy tier</div></div>
-<div class="hw-card"><div class="hw-label">Memory</div><div class="hw-value">4 GB</div><div class="hw-tier">Recommended: 4 GB</div></div>
+<div class="hw-card"><div class="hw-label" data-i18n="game.hwLabelMin">Minimum GPU</div><div class="hw-value">NVIDIA GeForce 8600</div><div class="hw-tier" data-i18n="game.tierLegacy">Legacy tier</div></div>
+<div class="hw-card highlight"><div class="hw-label" data-i18n="game.hwLabelRec">Recommended GPU (60 FPS)</div><div class="hw-value">NVIDIA GeForce 8600</div><div class="hw-tier" data-i18n="game.tierLegacy">Legacy tier</div></div>
+<div class="hw-card"><div class="hw-label" data-i18n="game.hwLabelMemory">Memory</div><div class="hw-value">4 GB</div><div class="hw-tier" data-i18n="game.hwTierRecommended" data-vars='{"v":"4 GB"}'>Recommended: 4 GB</div></div>
       </div>
-<p class="hw-note"><strong>60 FPS on recommended settings:</strong> this card and everything above it — guides for</p><div class="hw-chips"><a class="hw-chip" href="../gpu/gtx-750-ti.html">GTX 750 Ti</a><a class="hw-chip" href="../gpu/rx-6600.html">RX 6600</a><a class="hw-chip" href="../gpu/rtx-5090.html">RTX 5090</a></div>
-<p class="hw-note" style="margin-top:16px;"><a class="hw-chip" href="../gpu/index.html">All GPU &amp; PC spec guides</a> <a class="hw-chip" href="../index.html?gpu=gtx-750-ti">Filter all games by your own hardware</a></p>
+<p class="hw-note"><strong data-i18n="game.hwRecLabel">60 FPS on recommended settings:</strong> <span data-i18n="game.hwRecText">this card and everything above it — guides for</span></p><div class="hw-chips"><a class="hw-chip" href="../gpu/gtx-750-ti.html">GTX 750 Ti</a><a class="hw-chip" href="../gpu/rx-6600.html">RX 6600</a><a class="hw-chip" href="../gpu/rtx-5090.html">RTX 5090</a></div>
+<p class="hw-note" style="margin-top:16px;"><a class="hw-chip" href="../gpu/index.html" data-i18n="game.hwAllGuides">All GPU &amp; PC spec guides</a> <a class="hw-chip" href="../index.html?gpu=gtx-750-ti" data-i18n="game.hwFilterMine">Filter all games by your own hardware</a></p>
     </section>
 
     <!-- Interactive Can My PC Run It Checker -->
@@ -525,28 +531,35 @@
              data-reclabel="NVIDIA GeForce 8600" data-minlabel="NVIDIA GeForce 8600"
              data-recram="4" data-minram="4"
              data-rectarget="1080p @ 60 FPS (High Settings)" data-mintarget="1080p @ 30 FPS (Low Settings)">
-      <h3>⚡ Can My PC Run Strife®? Instant Hardware Checker</h3>
-      <p>Choose your graphics card and RAM to compare them with the official requirements above.</p>
+      <div class="checker-head">
+        <h3 data-i18n="game.checkerTitle" data-vars='{"title":"Strife®"}'>⚡ Can My PC Run Strife®? Instant Hardware Checker</h3>
+        <div data-lang-mount></div>
+      </div>
+      <p data-i18n="game.checkerDesc">Choose your graphics card and RAM to compare them with the official requirements above.</p>
+      <div class="detect-bar">
+        <button type="button" class="detect-btn" id="detectBtn" onclick="detectPcForChecker()" data-i18n="detect.btn">🖥️ Detect My PC</button>
+      </div>
+      <div class="detect-panel" id="detectPanel" role="status" aria-live="polite"></div>
       <div class="checker-form">
-        <select id="userGpu" class="checker-input"><option value="">Select your GPU…</option></select>
+        <select id="userGpu" class="checker-input"><option value="" data-i18n="index.gpuPlaceholder">Select your GPU…</option></select>
         <select id="userRam" class="checker-input">
-          <option value="">Any RAM</option>
-          <option value="4">4 GB</option>
-          <option value="8">8 GB</option>
-          <option value="16">16 GB</option>
-          <option value="32">32 GB+</option>
+          <option value="" data-i18n="game.anyRam">Any RAM</option>
+          <option value="4" data-i18n="index.ramGb" data-vars='{"n":"4"}'>4 GB</option>
+          <option value="8" data-i18n="index.ramGb" data-vars='{"n":"8"}'>8 GB</option>
+          <option value="16" data-i18n="index.ramGb" data-vars='{"n":"16"}'>16 GB</option>
+          <option value="32" data-i18n="index.ramGbPlus" data-vars='{"n":"32"}'>32 GB+</option>
         </select>
-        <button class="checker-btn" onclick="checkSpecs()">Check Compatibility</button>
+        <button class="checker-btn" onclick="checkSpecs()" data-i18n="game.checkerBtn">Check Compatibility</button>
       </div>
       <div id="checkResult" class="checker-result"></div>
       <p style="margin-top: 14px; margin-bottom: 0; font-size: 13px;">
-        <a id="seeAllLink" href="../index.html" style="color:#a5b4fc; font-weight:600;">See every game your PC can run →</a>
+        <a id="seeAllLink" href="../index.html" style="color:#a5b4fc; font-weight:600;" data-i18n="game.seeAll">See every game your PC can run →</a>
       </p>
     </section>
 
     <!-- Optimization Guide -->
     <section id="optimization">
-      <h2 class="section-title">Best Graphic Settings & FPS Boost Tips</h2>
+      <h2 class="section-title" data-i18n="game.optTitle">Best Graphic Settings & FPS Boost Tips</h2>
       <ul class="tips-list">
         <li class="tips-item"><span class="tips-icon">💡</span><div>Keep your GPU driver on the latest Game Ready / Adrenalin branch before comparing frame rates.</div></li>
 <li class="tips-item"><span class="tips-icon">💡</span><div>If frame pacing stutters, lower Shadows, Volumetric Lighting and Ambient Occlusion one step each.</div></li>
@@ -557,15 +570,15 @@
     <!-- Hardware & Game Deal Affiliate Banner -->
     <div class="affiliate-banner">
       <div class="aff-left">
-        <h4>Need a Hardware Upgrade for Strife®?</h4>
-        <p>Compare lowest prices on RTX 40-Series GPUs, gaming laptops, and high-speed NVMe SSDs.</p>
+        <h4 data-i18n="game.affTitle" data-vars='{"title":"Strife®"}'>Need a Hardware Upgrade for Strife®?</h4>
+        <p data-i18n="game.affText">Compare lowest prices on RTX 40-Series GPUs, gaming laptops, and high-speed NVMe SSDs.</p>
       </div>
-      <a href="https://link.coupang.com/a/iA1tThaJEG" target="_blank" rel="noopener noreferrer" class="aff-btn">Check Lowest Deals 👉</a>
+      <a href="https://link.coupang.com/a/iA1tThaJEG" target="_blank" rel="noopener noreferrer" class="aff-btn" data-i18n="game.affBtn">Check Lowest Deals 👉</a>
     </div>
 
     <!-- FAQ (matches the FAQPage structured data in the head) -->
     <section id="faq">
-      <h2 class="section-title">Frequently Asked Questions</h2>
+      <h2 class="section-title" data-i18n="game.faqTitle">Frequently Asked Questions</h2>
       <div class="faq-list">
         <details class="faq-item"><summary>Can my PC run Strife®?</summary><p>Strife® lists NVIDIA GeForce 8600 or higher, ATI/AMD Radeon HD 2600 or higher, Intel HD 2000 or higher and 4 GB RAM as its minimum, and NVIDIA GeForce 8600 or higher, ATI/AMD Radeon HD 2600 or higher, Intel HD 2000 or higher with 4 GB RAM as its recommended specification.</p></details>
         <details class="faq-item"><summary>What GPU do I need for Strife® at 60 FPS?</summary><p>The recommended GPU is NVIDIA GeForce 8600 or higher, ATI/AMD Radeon HD 2600 or higher, Intel HD 2000 or higher. That is the configuration the publisher targets for 1080p @ 60 FPS (High Settings).</p></details>
@@ -576,7 +589,7 @@
 
     <!-- Related Games for Internal Link Juice -->
     <section>
-      <h2 class="section-title">Explore More PC Benchmarks</h2>
+      <h2 class="section-title" data-i18n="game.relatedTitle">Explore More PC Benchmarks</h2>
       <div class="related-grid">
         <a href="valkyria-chronicles.html" class="related-card">
   <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/294860/header.jpg?t=1769644498" alt="Valkyria Chronicles™ specs" loading="lazy" decoding="async">
@@ -600,10 +613,11 @@
 
   <footer>
     <div class="container">
-      <p>© 2026 CanMySpec.com · All game trademarks and assets belong to their respective publishers.</p>
+      <p data-i18n="common.footerGame">© 2026 CanMySpec.com · All game trademarks and assets belong to their respective publishers.</p>
       <p style="margin-top: 8px;">
-        <a href="../privacy.html">Privacy Policy</a> | <a href="../terms.html">Terms of Service</a> | <a href="../about.html">About & Contact</a> | <a href="../sitemap.xml">XML Sitemap</a>
+        <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About & Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
       </p>
+      <p style="margin-top: 10px;"><span data-lang-mount></span></p>
     </div>
   </footer>
 
@@ -617,8 +631,17 @@
       var res = document.getElementById('checkResult');
       var bySlug = {};
       var loaded = null;
+      var lastDetect = null;
+      var ogCards = null;
+      var ogPresets = null;
 
+      function T(key, vars) { return window.CMS ? CMS.t(key, vars) : key; }
+      function esc(v) {
+        return String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+      }
       function num(v) { return v === '' || v === null || v === undefined ? null : parseFloat(v); }
+      function and() { return T('common.and'); }
 
       function loadGpus() {
         if (loaded) return loaded;
@@ -626,21 +649,59 @@
         return loaded;
       }
 
+      function labelGroups() {
+        if (ogCards) ogCards.label = T('game.optGroupCards');
+        if (ogPresets) ogPresets.label = T('game.optGroupPresets');
+      }
+
       loadGpus().then(function (list) {
-        var og = document.createElement('optgroup');
-        og.label = 'Graphics cards';
-        var presets = document.createElement('optgroup');
-        presets.label = 'Laptops, handhelds & budget builds';
+        ogCards = document.createElement('optgroup');
+        ogCards.label = T('game.optGroupCards');
+        ogPresets = document.createElement('optgroup');
+        ogPresets.label = T('game.optGroupPresets');
         list.forEach(function (g) {
           bySlug[g.slug] = g;
           var o = document.createElement('option');
           o.value = g.slug;
           o.textContent = g.name;
-          (g.kind === 'preset' ? presets : og).appendChild(o);
+          (g.kind === 'preset' ? ogPresets : ogCards).appendChild(o);
         });
-        if (og.children.length) gpuSel.appendChild(og);
-        if (presets.children.length) gpuSel.appendChild(presets);
+        if (ogCards.children.length) gpuSel.appendChild(ogCards);
+        if (ogPresets.children.length) gpuSel.appendChild(ogPresets);
+        if (lastDetect) renderDetect(lastDetect);
       });
+
+      function renderDetect(result) {
+        var panel = document.getElementById('detectPanel');
+        if (!panel) return;
+        if (!result) { panel.classList.remove('on'); panel.innerHTML = ''; return; }
+        var lines = window.CMSDetect ? CMSDetect.lines(result) : [];
+        var html = lines.map(function (line, i) {
+          return '<p' + (i === lines.length - 1 ? ' class="dp-note"' : '') + '>' + line + '</p>';
+        }).join('');
+        if (gpuSel.value) html += '<p class="dp-ok">' + esc(T('detect.checkerApplied')) + '</p>';
+        panel.innerHTML = html;
+        panel.classList.add('on');
+      }
+
+      window.detectPcForChecker = function () {
+        var btn = document.getElementById('detectBtn');
+        var panel = document.getElementById('detectPanel');
+        if (panel) { panel.innerHTML = '<p>' + esc(T('detect.working')) + '</p>'; panel.classList.add('on'); }
+        if (btn) btn.disabled = true;
+        loadGpus().then(function (list) {
+          var found = null;
+          try { found = window.CMSDetect ? CMSDetect.sniff(list) : null; } catch (e) { found = null; }
+          if (found) {
+            if (found.gpu && bySlug[found.gpu.slug]) gpuSel.value = found.gpu.slug;
+            if (found.ram) ramSel.value = String(found.ram);
+            lastDetect = found;
+            renderDetect(found);
+            if (gpuSel.value) window.checkSpecs();
+          }
+          if (btn) btn.disabled = false;
+        });
+      };
 
       window.checkSpecs = function () {
         var g = bySlug[gpuSel.value];
@@ -650,7 +711,7 @@
         if (!g) {
           res.style.display = 'block';
           res_style('rgba(245, 158, 11, 0.12)', '#f59e0b', '#fcd34d');
-          res.textContent = 'Pick your graphics card first, then check again.';
+          res.textContent = T('game.pickGpu');
           return;
         }
         var ram = num(ramSel.value);
@@ -659,10 +720,10 @@
         if (recScore === null && minScore === null) {
           res.style.display = 'block';
           res_style('rgba(99, 102, 241, 0.12)', '#6366f1', '#c7d2fe');
-          res.textContent = 'This store page does not publish a GPU requirement we can compare against, so there is nothing to check here.';
+          res.textContent = T('game.noRequirement');
           return;
         }
-        var label = g.name + (ram ? ' with ' + ram + ' GB RAM' : '');
+        var label = g.name + (ram ? T('game.withRam', { n: ram }) : '');
         var gpuOkRec = recScore !== null && g.score >= recScore;
         var gpuOkMin = minScore !== null && g.score >= minScore;
         // RAM is only a limit when the visitor told us how much they have.
@@ -670,27 +731,23 @@
         var ramOkMin = minRam === null || ram === null || ram >= minRam;
         var recOk = gpuOkRec && ramOkRec;
         var minOk = gpuOkMin && ramOkMin;
-        var recLabel = box.dataset.reclabel || 'not stated';
-        var minLabel = box.dataset.minlabel || 'not stated';
+        var recLabel = box.dataset.reclabel || 'n/a';
+        var minLabel = box.dataset.minlabel || 'n/a';
         var html;
         if (recOk) {
-          html = '✅ <strong>60 FPS recommended:</strong> ' + label + ' meets the recommended requirement (' +
-            recLabel + '). The publisher\u2019s target is ' + box.dataset.rectarget + '.';
+          html = T('game.resultRec', { label: esc(label), req: esc(recLabel), target: esc(box.dataset.rectarget) });
           res_style('rgba(16, 185, 129, 0.15)', '#10b981', '#34d399');
         } else if (minOk) {
           var why = [];
-          if (!gpuOkRec) why.push('the recommended GPU is ' + recLabel);
-          if (!ramOkRec) why.push('the recommended RAM is ' + recRam + ' GB');
-          html = '⚠️ <strong>Minimum only:</strong> ' + label + ' meets the minimum requirement (' + minLabel +
-            ') and should hold ' + box.dataset.mintarget + ' at low settings. For the 60 FPS target, ' +
-            why.join(' and ') + '.';
+          if (!gpuOkRec) why.push(T('game.whyGpuRec', { label: esc(recLabel) }));
+          if (!ramOkRec) why.push(T('game.whyRamRec', { n: recRam }));
+          html = T('game.resultMin', { label: esc(label), min: esc(minLabel), target: esc(box.dataset.mintarget), why: why.join(and()) });
           res_style('rgba(245, 158, 11, 0.12)', '#f59e0b', '#fcd34d');
         } else {
           var short = [];
-          if (!gpuOkMin) short.push('the GPU is below the minimum (' + minLabel + ')');
-          if (!ramOkMin) short.push('the RAM is below the minimum (' + minRam + ' GB)');
-          html = '❌ <strong>Below minimum:</strong> ' + label + ' — ' + short.join(' and ') +
-            '. Expect frame rates well under the publisher\u2019s minimum target.';
+          if (!gpuOkMin) short.push(T('game.whyGpuMin', { label: esc(minLabel) }));
+          if (!ramOkMin) short.push(T('game.whyRamMin', { n: minRam }));
+          html = T('game.resultBelow', { label: esc(label), why: short.join(and()) });
           res_style('rgba(239, 68, 68, 0.12)', '#ef4444', '#fca5a5');
         }
         res.innerHTML = html;
@@ -698,6 +755,16 @@
         var link = document.getElementById('seeAllLink');
         if (link) link.href = '../index.html?gpu=' + encodeURIComponent(g.slug) + (ram ? '&ram=' + ram : '');
       };
+
+      // Language switch: relabel the select groups, the check result and the
+      // detection panel, all of which this script rebuilt in English.
+      if (window.CMS) {
+        CMS.onChange(function () {
+          labelGroups();
+          if (lastDetect) renderDetect(lastDetect);
+          if (res.style.display === 'block' && gpuSel.value) window.checkSpecs();
+        });
+      }
     })();
   </script>
 </body>

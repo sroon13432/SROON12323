@@ -7,6 +7,11 @@
   <title>CanMySpec.com — Can My PC Run It? (PC System Requirements & FPS Database)</title>
   <meta name="description" content="Pick your graphics card and RAM to see every PC game your build can run. Official Steam system requirements, minimum vs recommended specs (CPU, GPU, RAM) and 60 FPS targets for 2,459 games.">
   <link rel="canonical" href="https://canmyspec.com/">
+  <link rel="alternate" hreflang="en" href="https://canmyspec.com/?lang=en">
+  <link rel="alternate" hreflang="ko" href="https://canmyspec.com/?lang=ko">
+  <link rel="alternate" hreflang="ja" href="https://canmyspec.com/?lang=ja">
+  <script src="assets/i18n.js"></script>
+  <script src="assets/detect.js"></script>
   <!-- Google AdSense Official Script -->
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3774179792647771" crossorigin="anonymous"></script>
   <style>
@@ -123,6 +128,8 @@
     .filter-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 16px; }
     .filter-head h2 { font-size: 18px; font-weight: 800; }
     .filter-head span { font-size: 12px; color: var(--text-muted); }
+    .filter-head-side { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-end; gap: 10px; margin-left: auto; max-width: 100%; }
+    .filter-head-side > span { flex: 1 1 220px; min-width: 0; }
     .filter-row { display: grid; grid-template-columns: 1.3fr 0.9fr 1fr; gap: 12px; }
     .filter-field label { display: block; font-size: 12px; font-weight: 600; color: var(--text-muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.4px; }
     .filter-select {
@@ -375,6 +382,8 @@
       .filter-head { margin-bottom: 14px; gap: 4px; }
       .filter-head h2 { font-size: 17px; width: 100%; }
       .filter-head span { font-size: 12px; line-height: 1.5; }
+      .filter-head-side { width: 100%; justify-content: space-between; gap: 10px; margin-left: 0; }
+      .filter-head-side > span { flex: 1 1 100%; }
       .filter-row { grid-template-columns: 1fr; gap: 10px; }
       .filter-field label { font-size: 11.5px; margin-bottom: 5px; }
       .filter-select { font-size: 16px; min-height: 48px; padding: 12px; }
@@ -461,131 +470,138 @@
 
   <main class="container">
     <section class="hero-banner">
-      <h1 class="hero-title">Can My PC Run It?</h1>
-      <p class="hero-subtitle">Official PC system requirements, GPU benchmarks, and optimal 60 FPS graphics settings for thousands of PC games.</p>
+      <h1 class="hero-title" data-i18n="index.heroTitle">Can My PC Run It?</h1>
+      <p class="hero-subtitle" data-i18n="index.heroSubtitle">Official PC system requirements, GPU benchmarks, and optimal 60 FPS graphics settings for thousands of PC games.</p>
 
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="gameSearch" class="search-input" placeholder="Search game (e.g. Cyberpunk, Wukong, Elden Ring...)" oninput="onSearchInput()" onkeydown="onSearchKey(event)" onfocus="renderSuggest()" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search games" aria-autocomplete="list">
-        <button type="button" class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Clear search">✕</button>
+        <input type="text" id="gameSearch" class="search-input" placeholder="Search game (e.g. Cyberpunk, Wukong, Elden Ring...)" data-i18n-placeholder="index.searchPlaceholder" oninput="onSearchInput()" onkeydown="onSearchKey(event)" onfocus="renderSuggest()" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search games" data-i18n-aria="index.searchAria" aria-autocomplete="list">
+        <button type="button" class="search-clear" id="searchClear" onclick="clearSearch()" aria-label="Clear search" data-i18n-aria="index.searchClearAria">✕</button>
         <div class="search-suggest" id="searchSuggest" role="listbox" aria-label="Game suggestions"></div>
       </div>
       <div class="preset-row" id="presetRow">
-        <span class="preset-label">Quick picks:</span>
-        <button type="button" class="preset-chip" id="presetDeck" onclick="applyPreset('deck')">🎮 Deck Verified</button>
-        <button type="button" class="preset-chip" id="presetSmall" onclick="applyPreset('small')">💾 Under 15 GB</button>
-        <button type="button" class="preset-chip" id="presetTiny" onclick="applyPreset('tiny')">🪶 Under 5 GB</button>
-        <button type="button" class="preset-chip" id="presetAction" onclick="applyPreset('action')">⚔️ Action</button>
-        <button type="button" class="preset-chip" id="presetLowend" onclick="applyPreset('lowend')">💻 Low-spec friendly</button>
+        <span class="preset-label" data-i18n="index.quickPicks">Quick picks:</span>
+        <button type="button" class="preset-chip" id="presetDeck" onclick="applyPreset('deck')" data-i18n="index.presetDeck">🎮 Deck Verified</button>
+        <button type="button" class="preset-chip" id="presetSmall" onclick="applyPreset('small')" data-i18n="index.presetSmall">💾 Under 15 GB</button>
+        <button type="button" class="preset-chip" id="presetTiny" onclick="applyPreset('tiny')" data-i18n="index.presetTiny">🪶 Under 5 GB</button>
+        <button type="button" class="preset-chip" id="presetAction" onclick="applyPreset('action')" data-i18n="index.presetAction">⚔️ Action</button>
+        <button type="button" class="preset-chip" id="presetLowend" onclick="applyPreset('lowend')" data-i18n="index.presetLowend">💻 Low-spec friendly</button>
       </div>
       <div class="hero-stats">
-        <span>🎮 <strong>2,459</strong> Benchmarked Games</span>
+        <span data-i18n-html="index.statGames" data-vars='{"n":"2,459"}'>🎮 <strong>2,459</strong> Benchmarked Games</span>
         <span class="stat-dot">•</span>
-        <span>⚡ 60 FPS Target Guides</span>
+        <span data-i18n="index.statFps">⚡ 60 FPS Target Guides</span>
         <span class="stat-dot">•</span>
-        <span>🔍 Live Instant Filter</span>
+        <span data-i18n="index.statLive">🔍 Live Instant Filter</span>
       </div>
 
       <div class="filter-panel" id="filterPanel">
         <div class="filter-head">
-          <h2>🎯 Find games my PC can run</h2>
-          <span>Pick your GPU and RAM, then narrow by OS, genre or install size — every filter combines</span>
+          <h2 data-i18n="index.filterTitle">🎯 Find games my PC can run</h2>
+          <div class="filter-head-side">
+            <span data-i18n="index.filterDesc">Pick your GPU and RAM, then narrow by OS, genre or install size — every filter combines</span>
+            <div data-lang-mount></div>
+          </div>
         </div>
+        <div class="detect-bar">
+          <button type="button" class="detect-btn" id="detectBtn" onclick="detectMyPc()" data-i18n="detect.btn">🖥️ Detect My PC</button>
+        </div>
+        <div class="detect-panel" id="detectPanel" role="status" aria-live="polite"></div>
         <div class="filter-row">
           <div class="filter-field">
-            <label for="gpuSelect">Graphics card (GPU)</label>
+            <label for="gpuSelect" data-i18n="index.labelGpu">Graphics card (GPU)</label>
             <select id="gpuSelect" class="filter-select" onchange="onGpuChange()">
               <option value="">Select your GPU…</option>
             </select>
           </div>
           <div class="filter-field">
-            <label for="ramSelect">System RAM</label>
+            <label for="ramSelect" data-i18n="index.labelRam">System RAM</label>
             <select id="ramSelect" class="filter-select" onchange="onRamChange()">
-              <option value="">Any RAM</option>
-              <option value="4">4 GB</option>
-              <option value="8">8 GB</option>
-              <option value="16">16 GB</option>
-              <option value="32">32 GB+</option>
+              <option value="" data-i18n="index.anyRam">Any RAM</option>
+              <option value="4" data-i18n="index.ramGb" data-vars='{"n":"4"}'>4 GB</option>
+              <option value="8" data-i18n="index.ramGb" data-vars='{"n":"8"}'>8 GB</option>
+              <option value="16" data-i18n="index.ramGb" data-vars='{"n":"16"}'>16 GB</option>
+              <option value="32" data-i18n="index.ramGbPlus" data-vars='{"n":"32"}'>32 GB+</option>
             </select>
           </div>
           <div class="filter-field">
-            <label for="modeSelect">Show</label>
+            <label for="modeSelect" data-i18n="index.labelShow">Show</label>
             <select id="modeSelect" class="filter-select" onchange="onModeChange()">
-              <option value="all">Every game it can run</option>
-              <option value="rec">Only 60 FPS recommended</option>
+              <option value="all" data-i18n="index.modeAll">Every game it can run</option>
+              <option value="rec" data-i18n="index.modeRec">Only 60 FPS recommended</option>
             </select>
           </div>
         </div>
         <button type="button" class="more-filters-btn" id="moreFiltersBtn" onclick="toggleMoreFilters()" aria-expanded="false" aria-controls="extraFilters">
-          <span id="moreFiltersLabel">More filters</span> <span class="chev">▼</span>
+          <span id="moreFiltersLabel" data-i18n="index.moreFilters">More filters</span> <span class="chev">▼</span>
         </button>
         <div class="filter-row filter-row-2 extra-filters" id="extraFilters">
           <div class="filter-field">
-            <label for="osSelect">Operating system</label>
+            <label for="osSelect" data-i18n="index.labelOs">Operating system</label>
             <select id="osSelect" class="filter-select" onchange="onOsChange()">
-              <option value="">Any OS (2,459)</option>
-              <option value="windows">Windows (2,459)</option>
-              <option value="mac">macOS (827)</option>
-              <option value="linux">Linux / SteamOS (579)</option>
+              <option value="" data-i18n="index.anyOs" data-vars='{"n": "2,459"}'>Any OS (2,459)</option>
+              <option value="windows" data-i18n="index.osWindows" data-vars='{"n": "2,459"}'>Windows (2,459)</option>
+              <option value="mac" data-i18n="index.osMac" data-vars='{"n": "827"}'>macOS (827)</option>
+              <option value="linux" data-i18n="index.osLinux" data-vars='{"n": "579"}'>Linux / SteamOS (579)</option>
             </select>
           </div>
           <div class="filter-field">
-            <label for="genreSelect">Genre</label>
+            <label for="genreSelect" data-i18n="index.labelGenre">Genre</label>
             <select id="genreSelect" class="filter-select" onchange="onGenreChange()">
-              <option value="">Any genre</option>
-              <option value="action">Action (1,395)</option>
-              <option value="indie">Indie (1,200)</option>
-              <option value="adventure">Adventure (1,073)</option>
-              <option value="rpg">RPG (478)</option>
-              <option value="casual">Casual (463)</option>
-              <option value="simulation">Simulation (400)</option>
-              <option value="strategy">Strategy (365)</option>
-              <option value="free-to-play">Free To Play (167)</option>
-              <option value="massively-multiplayer">Massively Multiplayer (122)</option>
-              <option value="racing">Racing (62)</option>
-              <option value="sports">Sports (55)</option>
+              <option value="" data-i18n="index.anyGenre">Any genre</option>
+              <option value="action" data-i18n="genre.action" data-vars='{"n": "1,395"}' data-name="Action">Action (1,395)</option>
+              <option value="indie" data-i18n="genre.indie" data-vars='{"n": "1,200"}' data-name="Indie">Indie (1,200)</option>
+              <option value="adventure" data-i18n="genre.adventure" data-vars='{"n": "1,073"}' data-name="Adventure">Adventure (1,073)</option>
+              <option value="rpg" data-i18n="genre.rpg" data-vars='{"n": "478"}' data-name="RPG">RPG (478)</option>
+              <option value="casual" data-i18n="genre.casual" data-vars='{"n": "463"}' data-name="Casual">Casual (463)</option>
+              <option value="simulation" data-i18n="genre.simulation" data-vars='{"n": "400"}' data-name="Simulation">Simulation (400)</option>
+              <option value="strategy" data-i18n="genre.strategy" data-vars='{"n": "365"}' data-name="Strategy">Strategy (365)</option>
+              <option value="free-to-play" data-i18n="genre.free" data-vars='{"n": "167"}' data-name="Free To Play">Free To Play (167)</option>
+              <option value="massively-multiplayer" data-i18n="genre.mmo" data-vars='{"n": "122"}' data-name="Massively Multiplayer">Massively Multiplayer (122)</option>
+              <option value="racing" data-i18n="genre.racing" data-vars='{"n": "62"}' data-name="Racing">Racing (62)</option>
+              <option value="sports" data-i18n="genre.sports" data-vars='{"n": "55"}' data-name="Sports">Sports (55)</option>
             </select>
           </div>
           <div class="filter-field">
-            <label for="storageSelect">Install size</label>
+            <label for="storageSelect" data-i18n="index.labelStorage">Install size</label>
             <select id="storageSelect" class="filter-select" onchange="onStorageChange()">
-              <option value="">Any install size</option>
-              <option value="5">Under 5 GB (1,124)</option>
-              <option value="15">Under 15 GB (1,632)</option>
-              <option value="30">Under 30 GB (1,916)</option>
-              <option value="50">Under 50 GB (2,092)</option>
-              <option value="100">Under 100 GB (2,290)</option>
+              <option value="" data-i18n="index.anySize">Any install size</option>
+              <option value="5" data-i18n="index.sizeUnder" data-vars='{"n": "5", "c": "1,124"}'>Under 5 GB (1,124)</option>
+              <option value="15" data-i18n="index.sizeUnder" data-vars='{"n": "15", "c": "1,632"}'>Under 15 GB (1,632)</option>
+              <option value="30" data-i18n="index.sizeUnder" data-vars='{"n": "30", "c": "1,916"}'>Under 30 GB (1,916)</option>
+              <option value="50" data-i18n="index.sizeUnder" data-vars='{"n": "50", "c": "2,092"}'>Under 50 GB (2,092)</option>
+              <option value="100" data-i18n="index.sizeUnder" data-vars='{"n": "100", "c": "2,290"}'>Under 100 GB (2,290)</option>
             </select>
           </div>
           <div class="filter-field">
-            <label for="deckSelect">Steam Deck</label>
+            <label for="deckSelect" data-i18n="index.labelDeck">Steam Deck</label>
             <select id="deckSelect" class="filter-select" onchange="onDeckChange()">
-              <option value="">Any status</option>
-              <option value="verified">★ Verified (794)</option>
-              <option value="playable">Playable or better (1,896)</option>
-              <option value="unsupported">Unsupported (563)</option>
+              <option value="" data-i18n="index.anyDeck">Any status</option>
+              <option value="verified" data-i18n="index.deckVerified" data-vars='{"n": "794"}'>★ Verified (794)</option>
+              <option value="playable" data-i18n="index.deckPlayable" data-vars='{"n": "1,896"}'>Playable or better (1,896)</option>
+              <option value="unsupported" data-i18n="index.deckUnsupported" data-vars='{"n": "563"}'>Unsupported (563)</option>
             </select>
           </div>
         </div>
         <div class="filter-actions">
-          <button class="seg-btn" id="copyLinkBtn" onclick="copyShareLink()">🔗 Copy link to this filter</button>
-          <button class="reset-btn" onclick="resetFilter()">Reset all</button>
+          <button class="seg-btn" id="copyLinkBtn" onclick="copyShareLink()" data-i18n="index.copyLink">🔗 Copy link to this filter</button>
+          <button class="reset-btn" onclick="resetFilter()" data-i18n="index.resetAll">Reset all</button>
           <div class="sort-field">
-            <label for="sortSelect">Sort</label>
+            <label for="sortSelect" data-i18n="index.labelSort">Sort</label>
             <select id="sortSelect" class="filter-select" onchange="onSortChange()">
-              <option value="popular">Most popular (reviews)</option>
-              <option value="rated">Highest rated (% positive)</option>
-              <option value="lowspec">Lowest spec (easy to run)</option>
-              <option value="newest">Newest first</option>
-              <option value="az">A – Z</option>
+              <option value="popular" data-i18n="index.sortPopular">Most popular (reviews)</option>
+              <option value="rated" data-i18n="index.sortRated">Highest rated (% positive)</option>
+              <option value="lowspec" data-i18n="index.sortLowspec">Lowest spec (easy to run)</option>
+              <option value="newest" data-i18n="index.sortNewest">Newest first</option>
+              <option value="az" data-i18n="index.sortAz">A – Z</option>
             </select>
           </div>
         </div>
         <div class="active-filters" id="activeFilters"></div>
         <div class="filter-result" id="filterResult"></div>
-        <p class="filter-note">OS and Steam Deck status come from Steam's live store platform data: macOS and Linux mean a native build is listed (Proton playability is not counted), and Deck status is Steam's own Verified / Playable / Unsupported rating. Install sizes are listed for 2,371 of 2,459 games — titles without a listed size are hidden while an install-size filter is on.</p>
+        <p class="filter-note" data-i18n="index.filterNote" data-vars='{"sized":"2,371","total":"2,459"}'>OS and Steam Deck status come from Steam's live store platform data: macOS and Linux mean a native build is listed (Proton playability is not counted), and Deck status is Steam's own Verified / Playable / Unsupported rating. Install sizes are listed for 2,371 of 2,459 games — titles without a listed size are hidden while an install-size filter is on.</p>
         <div class="quick-hubs">
-          Popular guides:
+          <span data-i18n="index.quickHubs">Popular guides:</span>
           <a href="gpu/rtx-4060.html">RTX 4060</a><a href="gpu/gtx-1650.html">GTX 1650</a><a href="gpu/gtx-1060.html">GTX 1060</a><a href="gpu/rx-6600.html">RX 6600</a><a href="gpu/rx-580.html">RX 580</a><a href="gpu/intel-iris-xe.html">Iris Xe</a><a href="gpu/steam-deck-handheld.html">Steam Deck</a><a href="gpu/8gb-ram-laptop.html">8 GB RAM laptop</a><a href="gpu/low-end-potato-pc.html">Potato PC</a>
         </div>
       </div>
@@ -593,8 +609,8 @@
 
     <section style="margin-top: 34px;">
       <div class="grid-header">
-        <h2 class="grid-title" id="gridTitle">Featured Trending PC Games</h2>
-        <span style="font-size: 13px; color: var(--text-muted);" id="gridSubtitle">Instant Search Enabled</span>
+        <h2 class="grid-title" id="gridTitle" data-i18n="index.gridTitleDefault">Featured Trending PC Games</h2>
+        <span style="font-size: 13px; color: var(--text-muted);" id="gridSubtitle" data-i18n="index.gridSubDefault">Instant Search Enabled</span>
       </div>
 
       <div class="game-grid" id="gamesContainer">
@@ -27659,22 +27675,23 @@
     </section>
 
     <section class="hub-section">
-      <h2 class="grid-title">Browse games by GPU &amp; PC specs</h2>
-      <p style="font-size: 14px; color: var(--text-muted); margin-top: 6px;">Every guide lists the games that hardware runs at 60 FPS, matched from official Steam requirements.</p>
+      <h2 class="grid-title" data-i18n="index.hubTitle">Browse games by GPU &amp; PC specs</h2>
+      <p style="font-size: 14px; color: var(--text-muted); margin-top: 6px;" data-i18n="index.hubDesc">Every guide lists the games that hardware runs at 60 FPS, matched from official Steam requirements.</p>
       <div class="hub-groups">
-        <div><div class="hub-group-name">Graphics cards</div><div class="chip-grid"><a class="chip" href="gpu/rtx-5090.html">RTX 5090</a><a class="chip" href="gpu/rtx-4090.html">RTX 4090</a><a class="chip" href="gpu/rtx-4080.html">RTX 4080</a><a class="chip" href="gpu/rtx-4070.html">RTX 4070</a><a class="chip" href="gpu/rtx-4060.html">RTX 4060</a><a class="chip" href="gpu/rtx-3070.html">RTX 3070</a><a class="chip" href="gpu/rtx-3060.html">RTX 3060</a><a class="chip" href="gpu/rtx-3050.html">RTX 3050</a><a class="chip" href="gpu/rtx-2060.html">RTX 2060</a><a class="chip" href="gpu/gtx-1660-super.html">GTX 1660 Super</a><a class="chip" href="gpu/gtx-1650.html">GTX 1650</a><a class="chip" href="gpu/gtx-1060.html">GTX 1060</a><a class="chip" href="gpu/gtx-1050-ti.html">GTX 1050 Ti</a><a class="chip" href="gpu/gtx-970.html">GTX 970</a><a class="chip" href="gpu/gtx-750-ti.html">GTX 750 Ti</a><a class="chip" href="gpu/rx-7800-xt.html">RX 7800 XT</a><a class="chip" href="gpu/rx-7600.html">RX 7600</a><a class="chip" href="gpu/rx-6600.html">RX 6600</a><a class="chip" href="gpu/rx-580.html">RX 580</a><a class="chip" href="gpu/rx-570.html">RX 570</a><a class="chip" href="gpu/intel-arc-a750.html">Arc A750</a><a class="chip" href="gpu/intel-iris-xe.html">Iris Xe</a></div></div>
-        <div><div class="hub-group-name">Laptops, handhelds &amp; budget builds</div><div class="chip-grid"><a class="chip" href="gpu/steam-deck-handheld.html">Steam Deck</a><a class="chip" href="gpu/8gb-ram-laptop.html">8 GB RAM laptop</a><a class="chip" href="gpu/16gb-ram-gaming-pc.html">16 GB RAM PC</a><a class="chip" href="gpu/4gb-vram-gpu.html">4 GB VRAM GPU</a><a class="chip" href="gpu/2gb-vram-gpu.html">2 GB VRAM GPU</a><a class="chip" href="gpu/low-end-potato-pc.html">Potato PC</a><a class="chip" href="gpu/integrated-graphics-only.html">Integrated graphics</a></div></div>
-        <div><a class="chip" href="gpu/index.html" style="border-color:#6366f1;color:#fff;">See all GPU &amp; PC spec guides →</a></div>
+        <div><div class="hub-group-name" data-i18n="index.hubGpus">Graphics cards</div><div class="chip-grid"><a class="chip" href="gpu/rtx-5090.html">RTX 5090</a><a class="chip" href="gpu/rtx-4090.html">RTX 4090</a><a class="chip" href="gpu/rtx-4080.html">RTX 4080</a><a class="chip" href="gpu/rtx-4070.html">RTX 4070</a><a class="chip" href="gpu/rtx-4060.html">RTX 4060</a><a class="chip" href="gpu/rtx-3070.html">RTX 3070</a><a class="chip" href="gpu/rtx-3060.html">RTX 3060</a><a class="chip" href="gpu/rtx-3050.html">RTX 3050</a><a class="chip" href="gpu/rtx-2060.html">RTX 2060</a><a class="chip" href="gpu/gtx-1660-super.html">GTX 1660 Super</a><a class="chip" href="gpu/gtx-1650.html">GTX 1650</a><a class="chip" href="gpu/gtx-1060.html">GTX 1060</a><a class="chip" href="gpu/gtx-1050-ti.html">GTX 1050 Ti</a><a class="chip" href="gpu/gtx-970.html">GTX 970</a><a class="chip" href="gpu/gtx-750-ti.html">GTX 750 Ti</a><a class="chip" href="gpu/rx-7800-xt.html">RX 7800 XT</a><a class="chip" href="gpu/rx-7600.html">RX 7600</a><a class="chip" href="gpu/rx-6600.html">RX 6600</a><a class="chip" href="gpu/rx-580.html">RX 580</a><a class="chip" href="gpu/rx-570.html">RX 570</a><a class="chip" href="gpu/intel-arc-a750.html">Arc A750</a><a class="chip" href="gpu/intel-iris-xe.html">Iris Xe</a></div></div>
+        <div><div class="hub-group-name" data-i18n="index.hubSpecs">Laptops, handhelds &amp; budget builds</div><div class="chip-grid"><a class="chip" href="gpu/steam-deck-handheld.html">Steam Deck</a><a class="chip" href="gpu/8gb-ram-laptop.html">8 GB RAM laptop</a><a class="chip" href="gpu/16gb-ram-gaming-pc.html">16 GB RAM PC</a><a class="chip" href="gpu/4gb-vram-gpu.html">4 GB VRAM GPU</a><a class="chip" href="gpu/2gb-vram-gpu.html">2 GB VRAM GPU</a><a class="chip" href="gpu/low-end-potato-pc.html">Potato PC</a><a class="chip" href="gpu/integrated-graphics-only.html">Integrated graphics</a></div></div>
+        <div><a class="chip" href="gpu/index.html" style="border-color:#6366f1;color:#fff;" data-i18n="index.hubAll">See all GPU &amp; PC spec guides →</a></div>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container">
-      <p>© 2026 CanMySpec.com · PC System Requirements & Hardware Benchmarks Database</p>
+      <p data-i18n="common.footerIndex">© 2026 CanMySpec.com · PC System Requirements & Hardware Benchmarks Database</p>
       <p style="margin-top: 8px;">
-        <a href="gpu/index.html">GPU &amp; Spec Guides</a> | <a href="tools/">🛠️ Free AI Tools</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="about.html">About & Contact</a> | <a href="sitemap.xml">XML Sitemap</a>
+        <a href="gpu/index.html" data-i18n="common.gpuGuides">GPU &amp; Spec Guides</a> | <a href="tools/" data-i18n="common.freeTools">🛠️ Free AI Tools</a> | <a href="privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="about.html" data-i18n="common.about">About & Contact</a> | <a href="sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
       </p>
+      <p style="margin-top: 10px;"><span data-lang-mount></span></p>
     </div>
   </footer>
 
@@ -27707,7 +27724,15 @@
         .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
-    function fmt(n) { return (n || 0).toLocaleString('en-US'); }
+    function fmt(n) {
+      return window.CMS ? CMS.fmt(n || 0) : (n || 0).toLocaleString('en-US');
+    }
+
+    // Every UI string the page builds at runtime goes through here, so the
+    // language switch re-renders the grid in the chosen language.
+    function T(key, vars) {
+      return window.CMS ? CMS.t(key, vars) : key;
+    }
 
     function genreText(raw) {
       return String(raw || '').split('|').slice(0, 2).join(', ');
@@ -27732,7 +27757,7 @@
       if (!box) return;
       var chips = [];
       function chip(key, label) {
-        chips.push('<button type="button" class="af-badge" onclick="removeFilter(\'' + key + '\')" title="Remove this filter">' +
+        chips.push('<button type="button" class="af-badge" onclick="removeFilter(\'' + key + '\')" title="' + esc(T('index.removeFilter')) + '">' +
           '<span class="af-t">' + esc(label) + '</span> <span class="af-x">✕</span></button>');
       }
       if (state.q) chip('q', '“' + state.q + '”');
@@ -27741,15 +27766,15 @@
         for (var i = 0; i < GPUS.length; i++) { if (GPUS[i].slug === state.gpu) gname = GPUS[i].name; }
         chip('gpu', gname);
       }
-      if (state.ram) chip('ram', state.ram + ' GB RAM');
-      if (state.mode === 'rec') chip('mode', '60 FPS recommended only');
+      if (state.ram) chip('ram', T('index.ramChip', { n: state.ram }));
+      if (state.mode === 'rec') chip('mode', T('index.recOnlyChip'));
       if (state.os) chip('os', optionLabel('osSelect', state.os));
       if (state.genre) chip('genre', optionLabel('genreSelect', state.genre));
       if (state.storage) chip('storage', optionLabel('storageSelect', state.storage));
       if (state.deck) chip('deck', optionLabel('deckSelect', state.deck));
-      if (state.sort !== 'popular') chip('sort', 'Sort: ' + optionLabel('sortSelect', state.sort));
+      if (state.sort !== 'popular') chip('sort', T('index.sortChip', { label: optionLabel('sortSelect', state.sort) }));
       box.innerHTML = chips.length
-        ? '<span class="af-strong" style="font-size:12px;color:var(--text-muted);align-self:center;">Active:</span>' + chips.join('')
+        ? '<span class="af-strong" style="font-size:12px;color:var(--text-muted);align-self:center;">' + esc(T('index.active')) + '</span>' + chips.join('')
         : '';
     }
 
@@ -27834,6 +27859,7 @@
       if (state.deck) p.set('deck', state.deck);
       if (state.sort !== 'popular') p.set('sort', state.sort);
       if (state.q) p.set('q', state.q);
+      if (window.CMS) CMS.injectLang(p);
       var qs = p.toString();
       history.replaceState(null, '', qs ? '?' + qs : window.location.pathname);
     }
@@ -27880,7 +27906,7 @@
       for (var i = 0; i < sel.options.length; i++) {
         var v = sel.options[i].value;
         if (!v) continue;
-        GENRE_NAMES[v] = sel.options[i].textContent.replace(/\s*\([\d,]+\)\s*$/, '').trim();
+        GENRE_NAMES[v] = sel.options[i].getAttribute('data-name') || sel.options[i].textContent.replace(/\s*\([\d,]+\)\s*$/, '').trim();
       }
     }
 
@@ -27973,7 +27999,7 @@
       if (!panel) return;
       if (open) panel.classList.add('expanded'); else panel.classList.remove('expanded');
       $('moreFiltersBtn').setAttribute('aria-expanded', open ? 'true' : 'false');
-      $('moreFiltersLabel').textContent = open ? 'Hide extra filters' : 'More filters';
+      $('moreFiltersLabel').textContent = T(open ? 'index.hideFilters' : 'index.moreFilters');
     }
 
     function presetActive(kind) {
@@ -28040,16 +28066,17 @@
 
       var html = '';
       if (!hits.length) {
-        html = '<div class="suggest-empty">No game title contains "' + esc(state.q) + '". Try a shorter word.</div>';
+        html = '<div class="suggest-empty">' + esc(T('index.suggestEmpty', { q: state.q })) + '</div>';
       } else {
         hits.forEach(function (hit) {
           var a = hit.a;
           html += '<a class="suggest-item" href="games/' + esc(hit.slug) + '.html" role="option">' +
             '<img class="suggest-thumb" src="' + esc(a[F.img]) + '" alt="" loading="lazy">' +
             '<span class="suggest-main"><span class="suggest-title">' + esc(a[F.t]) + '</span>' +
-            '<span class="suggest-meta">' + esc(String(a[F.g] || '').split('|').join(', ')) + ' · GPU: ' + esc(a[F.recL] || 'see Steam') + '</span></span></a>';
+            '<span class="suggest-meta">' + esc(String(a[F.g] || '').split('|').join(', ')) + ' · GPU: ' + esc(a[F.recL] || T('index.seeSteam')) + '</span></span></a>';
         });
-        html += '<button type="button" class="suggest-all" onclick="showAllResults()">Show ' + fmt(totalTitles) + ' title match' + (totalTitles === 1 ? '' : 'es') + ' in the grid →</button>';
+        html += '<button type="button" class="suggest-all" onclick="showAllResults()">' +
+          esc(T(totalTitles === 1 ? 'index.suggestAll' : 'index.suggestAllPlural', { n: fmt(totalTitles) })) + '</button>';
       }
       box.innerHTML = html;
       box.style.display = 'block';
@@ -28066,13 +28093,13 @@
       var btn = $('copyLinkBtn');
       var url = window.location.href;
       var done = function () {
-        btn.textContent = '✅ Link copied';
-        setTimeout(function () { btn.textContent = '🔗 Copy link to this filter'; }, 1800);
+        btn.textContent = T('index.copied');
+        setTimeout(function () { btn.textContent = T('index.copyLink'); }, 1800);
       };
       if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(url).then(done, function () { window.prompt('Copy this link:', url); });
+        navigator.clipboard.writeText(url).then(done, function () { window.prompt(T('index.copyPrompt'), url); });
       } else {
-        window.prompt('Copy this link:', url);
+        window.prompt(T('index.copyPrompt'), url);
       }
     }
 
@@ -28147,11 +28174,11 @@
     }
 
     function cardHtml(rec, a) {
-      var reqLabel = (rec ? a[F.recL] : a[F.minL]) || 'See Steam page';
-      var badge = 'GPU: ' + reqLabel;
+      var reqLabel = (rec ? a[F.recL] : a[F.minL]) || T('index.seeSteam');
+      var badge = T('index.cardGpu', { label: reqLabel });
       var status = rec
-        ? '<span class="fps-badge">60 FPS</span>'
-        : '<span class="min-badge">Minimum</span>';
+        ? '<span class="fps-badge">' + esc(T('index.badgeFps')) + '</span>'
+        : '<span class="min-badge">' + esc(T('index.badgeMin')) + '</span>';
       return '<a href="games/' + esc(a[F.s]) + '.html" class="game-card" data-title="' + esc(String(a[F.t]).toLowerCase()) + '">' +
         '<img src="' + esc(a[F.img]) + '" alt="' + esc(a[F.t]) + ' PC specs" class="game-img" loading="lazy">' +
         '<div class="game-body"><h3 class="game-title">' + esc(a[F.t]) + '</h3>' +
@@ -28167,12 +28194,15 @@
       var totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
       if (page > totalPages) page = totalPages;
       var start = (page - 1) * PAGE_SIZE;
-      if (total === 0) { info.textContent = emptyMsg || 'No matching games found.'; return; }
-      info.textContent = 'Showing ' + (start + 1) + ' - ' + Math.min(start + PAGE_SIZE, total) + ' of ' + fmt(total) + ' games (Page ' + page + ' of ' + fmt(totalPages) + ')';
+      if (total === 0) { info.textContent = emptyMsg || T('index.noMatches'); return; }
+      info.textContent = T('index.pageInfo', {
+        from: fmt(start + 1), to: fmt(Math.min(start + PAGE_SIZE, total)),
+        total: fmt(total), page: fmt(page), pages: fmt(totalPages)
+      });
 
       var prev = document.createElement('button');
       prev.className = 'page-btn';
-      prev.innerHTML = '&larr; Prev';
+      prev.textContent = T('index.prev');
       prev.disabled = page === 1;
       prev.onclick = function () { page--; goTo(); scrollToGrid(); };
       controls.appendChild(prev);
@@ -28197,7 +28227,7 @@
 
       var next = document.createElement('button');
       next.className = 'page-btn';
-      next.innerHTML = 'Next &rarr;';
+      next.textContent = T('index.next');
       next.disabled = page === totalPages;
       next.onclick = function () { page++; goTo(); scrollToGrid(); };
       controls.appendChild(next);
@@ -28239,8 +28269,8 @@
       staticCards.forEach(function (c) { c.style.display = 'none'; });
       var start = (page - 1) * PAGE_SIZE;
       staticFiltered.slice(start, start + PAGE_SIZE).forEach(function (c) { c.style.display = 'flex'; });
-      $('gridTitle').textContent = q ? 'Search results' : 'Featured Trending PC Games';
-      $('gridSubtitle').textContent = 'Instant Search Enabled';
+      $('gridTitle').textContent = T(q ? 'index.gridTitleSearch' : 'index.gridTitleDefault');
+      $('gridSubtitle').textContent = T('index.gridSubDefault');
       var total = staticFiltered.length;
       drawPager(total, renderStatic);
       $('filterResult').textContent = '';
@@ -28258,13 +28288,13 @@
       var start = (page - 1) * PAGE_SIZE;
       var slice = dynMatches.slice(start, start + PAGE_SIZE);
       $('dynamicGrid').innerHTML = slice.map(function (m) { return cardHtml(m.rec, m.a); }).join('');
-      var emptyMsg = 'No matching games found.';
+      var emptyMsg = T('index.noMatches');
       if (dynMatches.length === 0) {
         emptyMsg = state.q
-          ? 'No game matching "' + state.q + '" also matches the other filters. Remove one of them, or clear the search, to widen the list.'
+          ? T('index.emptySearch', { q: state.q })
           : (activeFilterCount() > 1
-            ? 'No games match this combination. Remove a filter from the row above to widen the list.'
-            : 'No games match this filter. Try a different setting.');
+            ? T('index.emptyCombo')
+            : T('index.emptySingle'));
       }
       drawPager(dynMatches.length, renderDynamic, emptyMsg);
 
@@ -28272,20 +28302,21 @@
       dynMatches.forEach(function (m) { if (m.rec) recCount++; });
       var parts = [];
       if (hw.gpu) {
-        parts.push('<strong>' + fmt(dynMatches.length) + '</strong> games run on ' + esc(hw.gpu.name) +
-          (hw.ram ? ' with ' + hw.ram + ' GB RAM' : ''));
-        parts.push('· <strong>' + fmt(recCount) + '</strong> at 60 FPS on recommended settings');
-        if (state.mode === 'all' && recCount < dynMatches.length) parts.push('· ' + fmt(dynMatches.length - recCount) + ' at minimum settings only');
+        parts.push(hw.ram
+          ? T('index.resRunRam', { n: fmt(dynMatches.length), gpu: esc(hw.gpu.name), ram: hw.ram })
+          : T('index.resRun', { n: fmt(dynMatches.length), gpu: esc(hw.gpu.name) }));
+        parts.push(T('index.resFps', { n: fmt(recCount) }));
+        if (state.mode === 'all' && recCount < dynMatches.length) parts.push(T('index.resMinOnly', { n: fmt(dynMatches.length - recCount) }));
       } else {
-        parts.push('<strong>' + fmt(dynMatches.length) + '</strong> games match these filters');
-        if (state.mode === 'rec') parts.push('· pick a GPU to see which reach 60 FPS on it');
+        parts.push(T('index.resFiltered', { n: fmt(dynMatches.length) }));
+        if (state.mode === 'rec') parts.push(T('index.resPickGpu'));
       }
-      if (hiddenNoSize) parts.push('· ' + fmt(hiddenNoSize) + ' games without a listed install size aren\'t shown');
+      if (hiddenNoSize) parts.push(T('index.resNoSize', { n: fmt(hiddenNoSize) }));
       $('filterResult').innerHTML = parts.join(' ');
-      $('gridTitle').textContent = hw.gpu ? 'Games ' + hw.gpu.name + ' can run'
-        : (state.q ? 'Search results' : 'Filtered games');
+      $('gridTitle').textContent = hw.gpu ? T('index.gridTitleGpu', { gpu: hw.gpu.name })
+        : T(state.q ? 'index.gridTitleSearch' : 'index.gridTitleFiltered');
       var n = activeFilterCount();
-      $('gridSubtitle').textContent = n ? n + ' filter' + (n === 1 ? '' : 's') + ' active' : 'Filtered from the full database';
+      $('gridSubtitle').textContent = n ? T('index.gridSubActive', { n: fmt(n) }) : T('index.gridSubFiltered');
       renderActiveFilters();
       updatePresetChips();
     }
@@ -28298,12 +28329,67 @@
     function render() {
       if (needsData() && IDX) { renderDynamic(); return; }
       if (needsData() && !IDX) {
-        $('filterResult').textContent = 'Loading the full game index…';
+        $('filterResult').textContent = T('index.loading');
         renderActiveFilters();
         return;
       }
       viewMode = 'static';
       renderStatic();
+    }
+
+    // ---------------------------------------------------------------- detect my pc
+    var lastDetect = null;
+
+    function renderDetectPanel(res) {
+      var panel = $('detectPanel');
+      if (!panel) return;
+      if (!res) { panel.classList.remove('on'); panel.innerHTML = ''; return; }
+      var lines = window.CMSDetect ? CMSDetect.lines(res) : [];
+      panel.innerHTML = lines.map(function (line, i) {
+        return '<p' + (i === lines.length - 1 ? ' class="dp-note"' : '') + '>' + line + '</p>';
+      }).join('');
+      panel.classList.add('on');
+    }
+
+    function detectMyPc() {
+      var btn = $('detectBtn');
+      var panel = $('detectPanel');
+      if (panel) { panel.innerHTML = '<p>' + esc(T('detect.working')) + '</p>'; panel.classList.add('on'); }
+      if (btn) btn.disabled = true;
+      // One tick lets the "reading hardware" line paint before WebGL is queried.
+      setTimeout(function () {
+        var res = null;
+        try { res = window.CMSDetect ? CMSDetect.sniff(GPUS) : null; } catch (e) { res = null; }
+        if (res) {
+          if (res.gpu && hasOption('gpuSelect', res.gpu.slug)) {
+            state.gpu = res.gpu.slug;
+            for (var i = 0; i < GPUS.length; i++) {
+              if (GPUS[i].slug === state.gpu && GPUS[i].presetRam && !res.ram) state.ram = String(GPUS[i].presetRam);
+            }
+          }
+          if (res.ram) state.ram = String(res.ram);
+          if (res.osState === 'ok' && res.os) state.os = res.os;
+          if (state.os || state.genre || state.storage || state.deck) expandMoreFilters(true);
+          syncControls();
+          page = 1;
+          writeUrlState();
+          render();
+          lastDetect = res;
+          renderDetectPanel(res);
+        }
+        if (btn) btn.disabled = false;
+      }, 30);
+    }
+
+    // Re-render everything this page builds itself when the language changes.
+    if (window.CMS) {
+      CMS.onChange(function () {
+        var panel = $('filterPanel');
+        expandMoreFilters(panel && panel.classList.contains('expanded'));
+        updateClearButton();
+        render();
+        if (lastDetect) renderDetectPanel(lastDetect);
+      });
     }
 
     // The visitor tracker decides between write and read mode; this tab never displays a count.

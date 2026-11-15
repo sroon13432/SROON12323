@@ -7,6 +7,7 @@
   <title>Steam Deck Games: What Runs at 60 FPS on Valve&#x27;s Handheld</title>
   <meta name="description" content="PC games the Steam Deck and similar handheld PCs (ROG Ally, Legion Go) can run at 60 FPS, plus those that only meet minimum requirements.">
   <link rel="canonical" href="https://canmyspec.com/gpu/steam-deck-handheld.html">
+  <script src="../assets/i18n.js"></script>
   <meta property="og:title" content="Games You Can Run on a Steam Deck">
   <meta property="og:description" content="PC games the Steam Deck and similar handheld PCs (ROG Ally, Legion Go) can run at 60 FPS, plus those that only meet minimum requirements.">
   <meta property="og:type" content="website">
@@ -106,6 +107,7 @@
       white-space: nowrap;
     }
     .toolbar-link:hover { background: rgba(99,102,241,0.15); }
+    .toolbar .lang-switch-host { flex: 0 0 auto; }
 
     .section-title { font-size: 22px; font-weight: 800; margin: 40px 0 6px; display: flex; align-items: center; gap: 10px; }
     .section-title::before { content: ""; display: inline-block; width: 4px; height: 22px; background: var(--accent); border-radius: 2px; }
@@ -247,27 +249,28 @@
 
   <main class="container">
     <div class="breadcrumbs">
-      <a href="../index.html">Home</a> &gt; <a href="index.html">GPU &amp; PC Spec Guides</a> &gt; <span>Steam Deck</span>
+      <a href="../index.html" data-i18n="common.home">Home</a> &gt; <a href="index.html" data-i18n="hub.guidesCrumb">GPU &amp; PC Spec Guides</a> &gt; <span>Steam Deck</span>
     </div>
 
     <section class="hero">
       <h1>Games You Can Run on a Steam Deck</h1>
       <p class="lead">The Steam Deck sits around GTX 1050 Ti level in raw performance with 16 GB of shared memory, which is enough for a large share of the catalogue. These lists are matched from each game&#x27;s official GPU and RAM requirements, not from Valve&#x27;s verification program.</p>
       <div class="stat-strip">
-        <div class="stat fps"><b>1,730</b><span>Games at 60 FPS (recommended)</span></div>
-        <div class="stat min"><b>509</b><span>Playable at minimum specs</span></div>
-        <div class="stat"><b>2,459</b><span>Games in the database</span></div>
+        <div class="stat fps"><b>1,730</b><span data-i18n="hub.statFps">Games at 60 FPS (recommended)</span></div>
+        <div class="stat min"><b>509</b><span data-i18n="hub.statMin">Playable at minimum specs</span></div>
+        <div class="stat"><b>2,459</b><span data-i18n="hub.statTotal">Games in the database</span></div>
       </div>
     </section>
 
     <div class="toolbar">
-      <input type="text" id="hubSearch" class="hub-search" placeholder="Search the games on this page…" oninput="filterHubList()">
-      <a class="toolbar-link" href="../index.html?gpu=steam-deck-handheld&ram=16">Open this hardware in the full filter →</a>
+      <input type="text" id="hubSearch" class="hub-search" placeholder="Search the games on this page…" data-i18n-placeholder="hub.searchPlaceholder" oninput="filterHubList()">
+      <a class="toolbar-link" href="../index.html?gpu=steam-deck-handheld&ram=16" data-i18n="hub.openFilter">Open this hardware in the full filter →</a>
+      <div data-lang-mount></div>
     </div>
 
     <section>
-      <h2 class="section-title">Best games on this hardware at 60 FPS</h2>
-      <p class="section-note">Showing the 240 most reviewed of 1,730 games whose recommended requirements this hardware meets. Search the box above to narrow them.</p>
+      <h2 class="section-title" data-i18n="hub.recTitle">Best games on this hardware at 60 FPS</h2>
+      <p class="section-note"><span data-i18n="hub.recNoteLimited" data-vars='{"limit": "240", "n": "1,730"}'>Showing the 240 most reviewed of 1,730 games whose recommended requirements this hardware meets. Search the box above to narrow them.</span></p>
       <div class="game-grid" id="recGrid">
 <a href="../games/counter-strike-2.html" class="game-card" data-title="counter-strike 2">
   <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/162664aa5da85f418105350c5d67ca565f6c3713/header.jpg?t=1793054556" alt="Counter-Strike 2 PC specs" class="game-img" loading="lazy" decoding="async">
@@ -1710,12 +1713,12 @@
   <div class="spec-badge-box"><span class="gpu-badge">GPU: Any DirectX-capable GPU</span><span class="fps-badge">60 FPS</span></div></div>
 </a>
       </div>
-      <p class="empty-note" id="recEmpty" style="display:none;">No game on this page matches that search.</p>
+      <p class="empty-note" id="recEmpty" style="display:none;" data-i18n="hub.emptySearch">No game on this page matches that search.</p>
     </section>
 
     <section>
-      <h2 class="section-title">Playable at minimum settings</h2>
-      <p class="section-note">Showing the 120 most reviewed of 509 games that only meet the minimum requirement on this hardware.</p>
+      <h2 class="section-title" data-i18n="hub.minTitle">Playable at minimum settings</h2>
+      <p class="section-note"><span data-i18n="hub.minNoteLimited" data-vars='{"limit": "120", "n": "509"}'>Showing the 120 most reviewed of 509 games that only meet the minimum requirement on this hardware.</span></p>
       <div class="game-grid" id="minGrid">
 <a href="../games/helldivers-2.html" class="game-card" data-title="helldivers™ 2">
   <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553850/850e2f9e5bb15c5706bb9a1edc832f4f782e8be5/header.jpg?t=1793395133" alt="HELLDIVERS™ 2 PC specs" class="game-img" loading="lazy" decoding="async">
@@ -2438,26 +2441,26 @@
   <div class="spec-badge-box"><span class="gpu-badge">GPU: Intel HD 520</span><span class="min-badge">Minimum</span></div></div>
 </a>
       </div>
-      <p class="empty-note" id="minEmpty" style="display:none;">No game on this page matches that search.</p>
+      <p class="empty-note" id="minEmpty" style="display:none;" data-i18n="hub.emptySearch">No game on this page matches that search.</p>
     </section>
 
     <section class="how-box">
-      <h2>How this list is matched</h2>
-      <p>Every entry comes from the official minimum and recommended requirements published on each game's Steam store page. We compare the GPU and RAM each game asks for against the hardware in this guide, and mark a game <strong>60 FPS at recommended settings</strong> only when its recommended requirement is met, or <strong>playable at minimum</strong> when only the minimum is met.</p>
-      <p>GPU tiers are ordered by approximate 1080p relative performance, so a card is compared against the required card rather than by name. Requirements that only name a VRAM size ("2 GB VRAM") are placed on the same scale. Where Steam publishes no recommended GPU, the game is never marked as 60 FPS recommended.</p>
-      <p>Lists are sorted by Steam review count, so the most played games come first. Counts are rebuilt every time the database grows — see <a href="../index.html">the full hardware filter</a> for an exact match against your own GPU, RAM and frame target.</p>
+      <h2 data-i18n="hub.howTitle">How this list is matched</h2>
+      <p data-i18n-html="hub.howP1">Every entry comes from the official minimum and recommended requirements published on each game's Steam store page. We compare the GPU and RAM each game asks for against the hardware in this guide, and mark a game <strong>60 FPS at recommended settings</strong> only when its recommended requirement is met, or <strong>playable at minimum</strong> when only the minimum is met.</p>
+      <p data-i18n-html="hub.howP2">GPU tiers are ordered by approximate 1080p relative performance, so a card is compared against the required card rather than by name. Requirements that only name a VRAM size ("2 GB VRAM") are placed on the same scale. Where Steam publishes no recommended GPU, the game is never marked as 60 FPS recommended.</p>
+      <p data-i18n-html="hub.howP3">Lists are sorted by Steam review count, so the most played games come first. Counts are rebuilt every time the database grows — see <a href="../index.html">the full hardware filter</a> for an exact match against your own GPU, RAM and frame target.</p>
     </section>
 
     <section>
-      <h2 class="section-title">Other GPU &amp; PC spec guides</h2>
+      <h2 class="section-title" data-i18n="hub.chipsTitle">Other GPU &amp; PC spec guides</h2>
       <div class="chip-grid">
-<div><div style="font-size:12px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin:12px 0 8px;">Graphics cards</div><div class="chip-grid"><a class="chip" href="rtx-5090.html">RTX 5090</a><a class="chip" href="rtx-4090.html">RTX 4090</a><a class="chip" href="rtx-4080.html">RTX 4080</a><a class="chip" href="rtx-4070.html">RTX 4070</a><a class="chip" href="rtx-4060.html">RTX 4060</a><a class="chip" href="rtx-3070.html">RTX 3070</a><a class="chip" href="rtx-3060.html">RTX 3060</a><a class="chip" href="rtx-3050.html">RTX 3050</a><a class="chip" href="rtx-2060.html">RTX 2060</a><a class="chip" href="gtx-1660-super.html">GTX 1660 Super</a><a class="chip" href="gtx-1650.html">GTX 1650</a><a class="chip" href="gtx-1060.html">GTX 1060</a><a class="chip" href="gtx-1050-ti.html">GTX 1050 Ti</a><a class="chip" href="gtx-970.html">GTX 970</a><a class="chip" href="gtx-750-ti.html">GTX 750 Ti</a><a class="chip" href="rx-7800-xt.html">RX 7800 XT</a><a class="chip" href="rx-7600.html">RX 7600</a><a class="chip" href="rx-6600.html">RX 6600</a><a class="chip" href="rx-580.html">RX 580</a><a class="chip" href="rx-570.html">RX 570</a><a class="chip" href="intel-arc-a750.html">Arc A750</a><a class="chip" href="intel-iris-xe.html">Iris Xe</a></div></div>
-<div><div style="font-size:12px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin:12px 0 8px;">Laptops, handhelds &amp; budget builds</div><div class="chip-grid"><a class="chip current" href="steam-deck-handheld.html">Steam Deck</a><a class="chip" href="8gb-ram-laptop.html">8 GB RAM laptop</a><a class="chip" href="16gb-ram-gaming-pc.html">16 GB RAM PC</a><a class="chip" href="4gb-vram-gpu.html">4 GB VRAM GPU</a><a class="chip" href="2gb-vram-gpu.html">2 GB VRAM GPU</a><a class="chip" href="low-end-potato-pc.html">Potato PC</a><a class="chip" href="integrated-graphics-only.html">Integrated graphics</a></div></div>
+<div><div style="font-size:12px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin:12px 0 8px;" data-i18n="hub.chipGpus">Graphics cards</div><div class="chip-grid"><a class="chip" href="rtx-5090.html">RTX 5090</a><a class="chip" href="rtx-4090.html">RTX 4090</a><a class="chip" href="rtx-4080.html">RTX 4080</a><a class="chip" href="rtx-4070.html">RTX 4070</a><a class="chip" href="rtx-4060.html">RTX 4060</a><a class="chip" href="rtx-3070.html">RTX 3070</a><a class="chip" href="rtx-3060.html">RTX 3060</a><a class="chip" href="rtx-3050.html">RTX 3050</a><a class="chip" href="rtx-2060.html">RTX 2060</a><a class="chip" href="gtx-1660-super.html">GTX 1660 Super</a><a class="chip" href="gtx-1650.html">GTX 1650</a><a class="chip" href="gtx-1060.html">GTX 1060</a><a class="chip" href="gtx-1050-ti.html">GTX 1050 Ti</a><a class="chip" href="gtx-970.html">GTX 970</a><a class="chip" href="gtx-750-ti.html">GTX 750 Ti</a><a class="chip" href="rx-7800-xt.html">RX 7800 XT</a><a class="chip" href="rx-7600.html">RX 7600</a><a class="chip" href="rx-6600.html">RX 6600</a><a class="chip" href="rx-580.html">RX 580</a><a class="chip" href="rx-570.html">RX 570</a><a class="chip" href="intel-arc-a750.html">Arc A750</a><a class="chip" href="intel-iris-xe.html">Iris Xe</a></div></div>
+<div><div style="font-size:12px;font-weight:700;color:#94a3b8;text-transform:uppercase;letter-spacing:.5px;margin:12px 0 8px;" data-i18n="hub.chipSpecs">Laptops, handhelds &amp; budget builds</div><div class="chip-grid"><a class="chip current" href="steam-deck-handheld.html">Steam Deck</a><a class="chip" href="8gb-ram-laptop.html">8 GB RAM laptop</a><a class="chip" href="16gb-ram-gaming-pc.html">16 GB RAM PC</a><a class="chip" href="4gb-vram-gpu.html">4 GB VRAM GPU</a><a class="chip" href="2gb-vram-gpu.html">2 GB VRAM GPU</a><a class="chip" href="low-end-potato-pc.html">Potato PC</a><a class="chip" href="integrated-graphics-only.html">Integrated graphics</a></div></div>
       </div>
     </section>
 
     <section>
-      <h2 class="section-title">Frequently asked questions</h2>
+      <h2 class="section-title" data-i18n="hub.faqTitle">Frequently asked questions</h2>
       <div class="faq-list">
         <details class="faq-item"><summary>How is this Steam Deck list different from Valve&#x27;s Verified badge?</summary><p>Valve&#x27;s badge tests controls, text size and Proton compatibility. This list only compares the game&#x27;s published GPU and RAM requirements against the Deck&#x27;s hardware tier, so a title can appear here and still need control tweaks.</p></details>
         <details class="faq-item"><summary>What about the ROG Ally and Legion Go?</summary><p>Both are faster than the Steam Deck and use the same Windows requirements, so everything listed here runs on them as well, and the minimum-spec list is the part where they have real extra headroom.</p></details>
@@ -2468,9 +2471,9 @@
 
   <footer>
     <div class="container">
-      <p>© 2026 CanMySpec.com · Requirements are the official figures published by each game's publisher.</p>
+      <p data-i18n="common.footerGuides">© 2026 CanMySpec.com · Requirements are the official figures published by each game's publisher.</p>
       <p style="margin-top: 8px;">
-        <a href="../privacy.html">Privacy Policy</a> | <a href="../terms.html">Terms of Service</a> | <a href="../about.html">About &amp; Contact</a> | <a href="../sitemap.xml">XML Sitemap</a>
+        <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About &amp; Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
       </p>
     </div>
   </footer>
