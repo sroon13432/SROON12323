@@ -7,8 +7,8 @@
   <title>Moving Out System Requirements: Can I Run It? (PC Specs & Best Settings)</title>
   <meta name="description" content="Check official Moving Out PC system requirements. Compare minimum vs recommended specs (CPU, GPU, RAM) and discover the best graphics settings for locked 60 FPS.">
   <link rel="canonical" href="https://canmyspec.com/games/moving-out.html">
-  <script src="../assets/i18n.js?v=093bf0516c"></script>
-  <script src="../assets/detect.js?v=093bf0516c"></script>
+  <script src="../assets/i18n.js?v=81f4d89c93"></script>
+  <script src="../assets/detect.js?v=81f4d89c93"></script>
   <meta property="og:title" content="Moving Out System Requirements & PC Benchmark">
   <meta property="og:description" content="Can your PC run Moving Out? Check verified minimum & recommended requirements, storage, and 60 FPS optimization guide.">
   <meta property="og:image" content="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/996770/header.jpg?t=1781014487">
@@ -317,6 +317,28 @@
     }
     .aff-btn:hover { transform: translateY(-2px); }
 
+    /* Similar games (same genre or comparable GPU requirement) */
+    .similar-note { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .similar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .similar-card {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 9px 11px;
+      text-decoration: none;
+      color: inherit;
+      min-width: 0;
+      transition: border-color 0.2s;
+    }
+    .similar-card:hover { border-color: var(--accent); }
+    .similar-card img { width: 74px; height: 42px; object-fit: cover; border-radius: 6px; flex: 0 0 auto; background: #0f172a; }
+    .similar-body { min-width: 0; }
+    .similar-title { font-size: 13.5px; font-weight: 700; color: #f1f5f9; line-height: 1.3; }
+    .similar-meta { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
     /* Related Games */
     .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
     .related-card {
@@ -526,6 +548,56 @@
 <p class="hw-note" style="margin-top:18px;"><strong>📚 Related hardware guides</strong> <span>— the background to the specifications above:</span></p><div class="hw-chips"><a class="hw-chip guide-chip" href="../guides/best-games-low-end-laptop-integrated-graphics.html">Games for low-end laptops and iGPUs</a><a class="hw-chip guide-chip" href="../guides/how-much-vram-2026.html">How much VRAM you need in 2026</a><a class="hw-chip guide-chip" href="../guides/ssd-vs-hdd-for-gaming.html">SSD vs HDD for gaming</a></div>
     </section>
 
+    <!-- Similar games: same genre or a comparable GPU requirement -->
+    <section id="similar-games">
+      <h2 class="section-title" data-i18n="game.similarTitle">🎮 Similar Games You Can Check</h2>
+      <p class="similar-note" data-i18n="game.similarNote">Titles with the same genre or a comparable GPU requirement, so you can compare system requirements side by side.</p>
+      <div class="similar-grid">
+<a href="death-must-die.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2334730/70e0e4f26d9d6669fff784089ee35163c8401d0b/header.jpg?t=1744305567" alt="Death Must Die system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Death Must Die</div>
+    <div class="similar-meta">Action, Casual · GPU: NVIDIA GeForce GTX 660</div>
+  </div>
+</a>
+<a href="war-trigger-3.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/298240/header.jpg?t=1700589099" alt="War Trigger 3 system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">War Trigger 3</div>
+    <div class="similar-meta">Action, Casual · GPU: Nvidia GeForce GTX660</div>
+  </div>
+</a>
+<a href="axyos.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/318100/header.jpg?t=1728829751" alt="AXYOS system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">AXYOS</div>
+    <div class="similar-meta">Action, Casual · GPU: GeForce GTX 660 (Radeon HD 6850)</div>
+  </div>
+</a>
+<a href="sixtar-gate-startrail.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1802720/header.jpg?t=1787725607" alt="Sixtar Gate: STARTRAIL system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Sixtar Gate: STARTRAIL</div>
+    <div class="similar-meta">Action, Casual · GPU: Nvidia GeForce GTX 750, 2 GB</div>
+  </div>
+</a>
+<a href="warhammer-survivors.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/3669620/dc61fccdeec6b05a58fbcdd7b1d0bbbe1f6999ea/header.jpg?t=1794409627" alt="Warhammer Survivors system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Warhammer Survivors</div>
+    <div class="similar-meta">Action, Casual · GPU: GTX 750</div>
+  </div>
+</a>
+<a href="paint-warfare.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1190150/header.jpg?t=1785392418" alt="Paint Warfare system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Paint Warfare</div>
+    <div class="similar-meta">Action, Casual · GPU: Geforce GTX 750</div>
+  </div>
+</a>
+      </div>
+    </section>
+
     <!-- Interactive Can My PC Run It Checker -->
     <section class="checker-box" id="specChecker"
              data-rec="70" data-min="35"
@@ -616,7 +688,7 @@
     <div class="container">
       <p data-i18n="common.footerGame">© 2026 CanMySpec.com · All game trademarks and assets belong to their respective publishers.</p>
       <p style="margin-top: 8px;">
-        <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About & Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
+        <a href="../directory/index.html" data-i18n="common.directory">Game Directory</a> | <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About & Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
       </p>
       <p style="margin-top: 10px;"><span data-lang-mount></span></p>
     </div>

@@ -7,8 +7,8 @@
   <title>Hired Ops System Requirements: Can I Run It? (PC Specs & Best Settings)</title>
   <meta name="description" content="Check official Hired Ops PC system requirements. Compare minimum vs recommended specs (CPU, GPU, RAM) and discover the best graphics settings for locked 60 FPS.">
   <link rel="canonical" href="https://canmyspec.com/games/hired-ops.html">
-  <script src="../assets/i18n.js?v=093bf0516c"></script>
-  <script src="../assets/detect.js?v=093bf0516c"></script>
+  <script src="../assets/i18n.js?v=81f4d89c93"></script>
+  <script src="../assets/detect.js?v=81f4d89c93"></script>
   <meta property="og:title" content="Hired Ops System Requirements & PC Benchmark">
   <meta property="og:description" content="Can your PC run Hired Ops? Check verified minimum & recommended requirements, storage, and 60 FPS optimization guide.">
   <meta property="og:image" content="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/374280/header.jpg?t=1650735909">
@@ -317,6 +317,28 @@
     }
     .aff-btn:hover { transform: translateY(-2px); }
 
+    /* Similar games (same genre or comparable GPU requirement) */
+    .similar-note { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .similar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .similar-card {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 9px 11px;
+      text-decoration: none;
+      color: inherit;
+      min-width: 0;
+      transition: border-color 0.2s;
+    }
+    .similar-card:hover { border-color: var(--accent); }
+    .similar-card img { width: 74px; height: 42px; object-fit: cover; border-radius: 6px; flex: 0 0 auto; background: #0f172a; }
+    .similar-body { min-width: 0; }
+    .similar-title { font-size: 13.5px; font-weight: 700; color: #f1f5f9; line-height: 1.3; }
+    .similar-meta { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
     /* Related Games */
     .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
     .related-card {
@@ -527,6 +549,56 @@
 <p class="hw-note" style="margin-top:18px;"><strong>📚 Related hardware guides</strong> <span>— the background to the specifications above:</span></p><div class="hw-chips"><a class="hw-chip guide-chip" href="../guides/best-free-to-play-pc-games-low-end.html">Free-to-play games for low-end PCs</a><a class="hw-chip guide-chip" href="../guides/cpu-bottleneck-guide.html">CPU bottleneck guide</a><a class="hw-chip guide-chip" href="../guides/best-games-low-end-laptop-integrated-graphics.html">Games for low-end laptops and iGPUs</a></div>
     </section>
 
+    <!-- Similar games: same genre or a comparable GPU requirement -->
+    <section id="similar-games">
+      <h2 class="section-title" data-i18n="game.similarTitle">🎮 Similar Games You Can Check</h2>
+      <p class="similar-note" data-i18n="game.similarNote">Titles with the same genre or a comparable GPU requirement, so you can compare system requirements side by side.</p>
+      <div class="similar-grid">
+<a href="planetside-arena.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/987350/header.jpg?t=1578705567" alt="PlanetSide Arena system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">PlanetSide Arena</div>
+    <div class="similar-meta">Action, Free To Play · GPU: NVIDIA GeForce GTX 1060</div>
+  </div>
+</a>
+<a href="ninetrials-test-server.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1012730/header.jpg?t=1561694053" alt="九劫曲:诅咒之地 NineTrials Test Server system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">九劫曲:诅咒之地 NineTrials Test Server</div>
+    <div class="similar-meta">Action, Free To Play · GPU: NVIDIA Geforce GTX 1060 6GB</div>
+  </div>
+</a>
+<a href="valor-time.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/890820/header.jpg?t=1635981908" alt="Valor Time system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Valor Time</div>
+    <div class="similar-meta">Action, Free To Play · GPU: GeForce GTX 1060 3GB</div>
+  </div>
+</a>
+<a href="exotanks.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/731250/header.jpg?t=1680252794" alt="ExoTanks system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">ExoTanks</div>
+    <div class="similar-meta">Action, Free To Play · GPU: GeForce GTX 1050TI (4 ГБ)</div>
+  </div>
+</a>
+<a href="m-a-r-s.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314430/header.jpg?t=1771619940" alt="M.A.R.S. system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">M.A.R.S.</div>
+    <div class="similar-meta">Action, Massively Multiplayer · GPU: Nvidia GeForce GTX860</div>
+  </div>
+</a>
+<a href="dragon-s-prophet.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/259020/header.jpg?t=1530040584" alt="Dragon&#x27;s Prophet system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Dragon&#x27;s Prophet</div>
+    <div class="similar-meta">Action, Free To Play · GPU: Nvidia 560 TI</div>
+  </div>
+</a>
+      </div>
+    </section>
+
     <!-- Interactive Can My PC Run It Checker -->
     <section class="checker-box" id="specChecker"
              data-rec="230" data-min="45"
@@ -617,7 +689,7 @@
     <div class="container">
       <p data-i18n="common.footerGame">© 2026 CanMySpec.com · All game trademarks and assets belong to their respective publishers.</p>
       <p style="margin-top: 8px;">
-        <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About & Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
+        <a href="../directory/index.html" data-i18n="common.directory">Game Directory</a> | <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About & Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
       </p>
       <p style="margin-top: 10px;"><span data-lang-mount></span></p>
     </div>

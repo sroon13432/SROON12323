@@ -7,8 +7,8 @@
   <title>Blockbuster Inc. System Requirements: Can I Run It? (PC Specs & Best Settings)</title>
   <meta name="description" content="Check official Blockbuster Inc. PC system requirements. Compare minimum vs recommended specs (CPU, GPU, RAM) and discover the best graphics settings for locked 60 FPS.">
   <link rel="canonical" href="https://canmyspec.com/games/blockbuster-inc.html">
-  <script src="../assets/i18n.js?v=093bf0516c"></script>
-  <script src="../assets/detect.js?v=093bf0516c"></script>
+  <script src="../assets/i18n.js?v=81f4d89c93"></script>
+  <script src="../assets/detect.js?v=81f4d89c93"></script>
   <meta property="og:title" content="Blockbuster Inc. System Requirements & PC Benchmark">
   <meta property="og:description" content="Can your PC run Blockbuster Inc.? Check verified minimum & recommended requirements, storage, and 60 FPS optimization guide.">
   <meta property="og:image" content="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1793090/header.jpg?t=1781691395">
@@ -317,6 +317,28 @@
     }
     .aff-btn:hover { transform: translateY(-2px); }
 
+    /* Similar games (same genre or comparable GPU requirement) */
+    .similar-note { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .similar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .similar-card {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 9px 11px;
+      text-decoration: none;
+      color: inherit;
+      min-width: 0;
+      transition: border-color 0.2s;
+    }
+    .similar-card:hover { border-color: var(--accent); }
+    .similar-card img { width: 74px; height: 42px; object-fit: cover; border-radius: 6px; flex: 0 0 auto; background: #0f172a; }
+    .similar-body { min-width: 0; }
+    .similar-title { font-size: 13.5px; font-weight: 700; color: #f1f5f9; line-height: 1.3; }
+    .similar-meta { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
     /* Related Games */
     .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
     .related-card {
@@ -525,6 +547,56 @@
 <p class="hw-note" style="margin-top:18px;"><strong>📚 Related hardware guides</strong> <span>— the background to the specifications above:</span></p><div class="hw-chips"><a class="hw-chip guide-chip" href="../guides/cpu-bottleneck-guide.html">CPU bottleneck guide</a><a class="hw-chip guide-chip" href="../guides/best-games-low-end-laptop-integrated-graphics.html">Games for low-end laptops and iGPUs</a><a class="hw-chip guide-chip" href="../guides/8gb-vs-16gb-vs-32gb-ram-gaming.html">8GB vs 16GB vs 32GB RAM</a></div>
     </section>
 
+    <!-- Similar games: same genre or a comparable GPU requirement -->
+    <section id="similar-games">
+      <h2 class="section-title" data-i18n="game.similarTitle">🎮 Similar Games You Can Check</h2>
+      <p class="similar-note" data-i18n="game.similarNote">Titles with the same genre or a comparable GPU requirement, so you can compare system requirements side by side.</p>
+      <div class="similar-grid">
+<a href="pumping-simulator-2.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2499470/header.jpg?t=1771616358" alt="Pumping Simulator 2 system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Pumping Simulator 2</div>
+    <div class="similar-meta">Casual, Indie · GPU: Nvidia GeForce GTX 1060</div>
+  </div>
+</a>
+<a href="naheulbeuk-s-dungeon-master.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2005160/header.jpg?t=1726475577" alt="Naheulbeuk&#x27;s Dungeon Master system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Naheulbeuk&#x27;s Dungeon Master</div>
+    <div class="similar-meta">Casual, Indie · GPU: Nvidia GTX 1060</div>
+  </div>
+</a>
+<a href="simrail-the-railway-simulator.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1422130/b3bd6e423d47272710a55d9131def226979f179c/header.jpg?t=1790781426" alt="SimRail - The Railway Simulator system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">SimRail - The Railway Simulator</div>
+    <div class="similar-meta">Casual, Simulation · GPU: NVIDIA GTX 1060</div>
+  </div>
+</a>
+<a href="spaceengine.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/314650/header.jpg?t=1773943102" alt="SpaceEngine system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">SpaceEngine</div>
+    <div class="similar-meta">Casual, Indie · GPU: GeForce GTX 1060 (5/6 GB)</div>
+  </div>
+</a>
+<a href="cooking-simulator.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/641320/8e52427e8dfcfcd7f407fe1a82b19b2f46cd7ff7/header.jpg?t=1792319371" alt="Cooking Simulator system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Cooking Simulator</div>
+    <div class="similar-meta">Casual, Simulation · GPU: GTX 1060 6GB</div>
+  </div>
+</a>
+<a href="call-of-the-wild-the-angler.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1408610/header.jpg?t=1737626002" alt="Call of the Wild: The Angler™ system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Call of the Wild: The Angler™</div>
+    <div class="similar-meta">Adventure, Casual · GPU: Nvidia GTX 1070 8 GB</div>
+  </div>
+</a>
+      </div>
+    </section>
+
     <!-- Interactive Can My PC Run It Checker -->
     <section class="checker-box" id="specChecker"
              data-rec="250" data-min="70"
@@ -615,7 +687,7 @@
     <div class="container">
       <p data-i18n="common.footerGame">© 2026 CanMySpec.com · All game trademarks and assets belong to their respective publishers.</p>
       <p style="margin-top: 8px;">
-        <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About & Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
+        <a href="../directory/index.html" data-i18n="common.directory">Game Directory</a> | <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About & Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
       </p>
       <p style="margin-top: 10px;"><span data-lang-mount></span></p>
     </div>

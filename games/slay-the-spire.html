@@ -7,8 +7,8 @@
   <title>Slay the Spire System Requirements: Can I Run It? (PC Specs & Best Settings)</title>
   <meta name="description" content="Check official Slay the Spire PC system requirements. Compare minimum vs recommended specs (CPU, GPU, RAM) and discover the best graphics settings for locked 60 FPS.">
   <link rel="canonical" href="https://canmyspec.com/games/slay-the-spire.html">
-  <script src="../assets/i18n.js?v=093bf0516c"></script>
-  <script src="../assets/detect.js?v=093bf0516c"></script>
+  <script src="../assets/i18n.js?v=81f4d89c93"></script>
+  <script src="../assets/detect.js?v=81f4d89c93"></script>
   <meta property="og:title" content="Slay the Spire System Requirements & PC Benchmark">
   <meta property="og:description" content="Can your PC run Slay the Spire? Check verified minimum & recommended requirements, storage, and 60 FPS optimization guide.">
   <meta property="og:image" content="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/646570/header.jpg?t=1774015376">
@@ -317,6 +317,28 @@
     }
     .aff-btn:hover { transform: translateY(-2px); }
 
+    /* Similar games (same genre or comparable GPU requirement) */
+    .similar-note { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .similar-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; }
+    .similar-card {
+      display: flex;
+      gap: 11px;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 9px 11px;
+      text-decoration: none;
+      color: inherit;
+      min-width: 0;
+      transition: border-color 0.2s;
+    }
+    .similar-card:hover { border-color: var(--accent); }
+    .similar-card img { width: 74px; height: 42px; object-fit: cover; border-radius: 6px; flex: 0 0 auto; background: #0f172a; }
+    .similar-body { min-width: 0; }
+    .similar-title { font-size: 13.5px; font-weight: 700; color: #f1f5f9; line-height: 1.3; }
+    .similar-meta { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+
     /* Related Games */
     .related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; margin-top: 16px; }
     .related-card {
@@ -524,6 +546,56 @@
 <p class="hw-note" style="margin-top:18px;"><strong>📚 Related hardware guides</strong> <span>— the background to the specifications above:</span></p><div class="hw-chips"><a class="hw-chip guide-chip" href="../guides/cpu-bottleneck-guide.html">CPU bottleneck guide</a><a class="hw-chip guide-chip" href="../guides/best-games-low-end-laptop-integrated-graphics.html">Games for low-end laptops and iGPUs</a><a class="hw-chip guide-chip" href="../guides/how-to-check-if-your-pc-can-run-any-game.html">How to check if your PC can run any game</a></div>
     </section>
 
+    <!-- Similar games: same genre or a comparable GPU requirement -->
+    <section id="similar-games">
+      <h2 class="section-title" data-i18n="game.similarTitle">🎮 Similar Games You Can Check</h2>
+      <p class="similar-note" data-i18n="game.similarNote">Titles with the same genre or a comparable GPU requirement, so you can compare system requirements side by side.</p>
+      <div class="similar-grid">
+<a href="planetary-annihilation-titans.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/386070/header.jpg?t=1782341938" alt="Planetary Annihilation: TITANS system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Planetary Annihilation: TITANS</div>
+    <div class="similar-meta">Action, Indie · GPU: Dedicated Graphics Chip (Not…)</div>
+  </div>
+</a>
+<a href="awesomenauts.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/204300/f9e4fd882426cc2942ace7560492ad1d0e842ac6/header.jpg?t=1763057499" alt="Awesomenauts system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Awesomenauts</div>
+    <div class="similar-meta">Action, Indie · GPU: AMD</div>
+  </div>
+</a>
+<a href="airships-conquer-the-skies.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/342560/header.jpg?t=1782404233" alt="Airships: Conquer the Skies system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Airships: Conquer the Skies</div>
+    <div class="similar-meta">Action, Indie · GPU: 1 GB VRAM+</div>
+  </div>
+</a>
+<a href="yao-guai-hunter.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1915510/e9bd4c56f88da596de468c52b648fcf878de3956/header.jpg?t=1774814678" alt="Yao-Guai Hunter system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Yao-Guai Hunter</div>
+    <div class="similar-meta">Indie, RPG · GPU: Discrete graphics 1GB</div>
+  </div>
+</a>
+<a href="flotsam.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/821250/018fe10470e32dcafe517e002e271ece69508692/header.jpg?t=1782735785" alt="Flotsam system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Flotsam</div>
+    <div class="similar-meta">Indie, Simulation · GPU: NVIDIA GeForce GTX 650</div>
+  </div>
+</a>
+<a href="mr-hopp-s-playhouse.html" class="similar-card">
+  <img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/1182370/header.jpg?t=1605007063" alt="Mr. Hopp&#x27;s Playhouse system requirements" loading="lazy" decoding="async">
+  <div class="similar-body">
+    <div class="similar-title">Mr. Hopp&#x27;s Playhouse</div>
+    <div class="similar-meta">Free To Play, Indie · GPU: 1GB</div>
+  </div>
+</a>
+      </div>
+    </section>
+
     <!-- Interactive Can My PC Run It Checker -->
     <section class="checker-box" id="specChecker"
              data-rec="45" data-min="45"
@@ -614,7 +686,7 @@
     <div class="container">
       <p data-i18n="common.footerGame">© 2026 CanMySpec.com · All game trademarks and assets belong to their respective publishers.</p>
       <p style="margin-top: 8px;">
-        <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About & Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
+        <a href="../directory/index.html" data-i18n="common.directory">Game Directory</a> | <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About & Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
       </p>
       <p style="margin-top: 10px;"><span data-lang-mount></span></p>
     </div>

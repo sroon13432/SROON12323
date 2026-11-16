@@ -740,7 +740,16 @@
       'game.tierLowend': 'Low-end tier',
       'game.tierVerylow': 'Very low-end tier',
       'game.tierLegacy': 'Legacy tier',
-      'game.tierNot': 'Specification not stated'
+      'game.tierNot': 'Specification not stated',
+      'common.directory': 'Game Directory',
+      'common.guides': 'PC Gaming Guides',
+      'directory.crumb': 'Game Directory',
+      'directory.h1': 'All {n} PC Games: System Requirements Directory',
+      'directory.lead': 'Every game in the CanMySpec database, in one alphabetical index. Pick a title to see its official Steam minimum and recommended requirements, the GPUs that reach 60 FPS, and an instant hardware check against your own PC.',
+      'directory.filter': 'Filter games by name\u2026',
+      'directory.cta': 'Open the hardware filter \u2192',
+      'game.similarTitle': '\ud83c\udfae Similar Games You Can Check',
+      'game.similarNote': 'Titles with the same genre or a comparable GPU requirement, so you can compare system requirements side by side.'
     },
     ko: {
       'common.and': ' \uadf8\ub9ac\uace0 ',
@@ -752,7 +761,16 @@
       'game.tierLowend': '\uc800\uc0ac\uc591 \ud2f0\uc5b4',
       'game.tierVerylow': '\ucd08\uc800\uc0ac\uc591 \ud2f0\uc5b4',
       'game.tierLegacy': '\ub808\uac70\uc2dc \ud2f0\uc5b4',
-      'game.tierNot': '\uc0ac\uc591 \ubbf8\uacf5\uac1c'
+      'game.tierNot': '\uc0ac\uc591 \ubbf8\uacf5\uac1c',
+      'common.directory': '\uc804\uccb4 \uac8c\uc784 \ubaa9\ub85d',
+      'common.guides': 'PC \uac8c\uc784 \uac00\uc774\ub4dc',
+      'directory.crumb': '\uc804\uccb4 \uac8c\uc784 \ubaa9\ub85d',
+      'directory.h1': 'PC \uac8c\uc784 {n}\uc885 \uc804\uccb4 \ubaa9\ub85d \u00b7 \uc0ac\uc591 \ud55c\ub208\uc5d0 \ubcf4\uae30',
+      'directory.lead': 'CanMySpec \ub370\uc774\ud130\ubca0\uc774\uc2a4\uc758 \ubaa8\ub4e0 \uac8c\uc784\uc744 \uc54c\ud30c\ubcb3 \uc21c\uc11c\ub85c \ubaa8\uc558\uc2b5\ub2c8\ub2e4. \uac8c\uc784\uc744 \uace0\ub974\uba74 Steam \uacf5\uc2dd \ucd5c\uc18c\u00b7\uad8c\uc7a5 \uc0ac\uc591\uacfc 60FPS\uc5d0 \ub3c4\ub2ec\ud558\ub294 GPU, \ub0b4 PC\uc640 \ubc14\ub85c \ube44\uad50\ud558\ub294 \ud558\ub4dc\uc6e8\uc5b4 \uccb4\ud06c\uac00 \ub098\uc635\ub2c8\ub2e4.',
+      'directory.filter': '\uac8c\uc784 \uc774\ub984\uc73c\ub85c \ucc3e\uae30\u2026',
+      'directory.cta': '\ud558\ub4dc\uc6e8\uc5b4 \ud544\ud130 \uc5f4\uae30 \u2192',
+      'game.similarTitle': '\ud83c\udfae \ud568\uaed8 \ubcf4\uba74 \uc88b\uc740 \ube44\uc2b7\ud55c \uac8c\uc784',
+      'game.similarNote': '\uac19\uc740 \uc7a5\ub974\uc774\uac70\ub098 \uc694\uad6c \uc0ac\uc591\uc774 \ube44\uc2b7\ud55c \uac8c\uc784\uc785\ub2c8\ub2e4. \uc0ac\uc591\uc744 \ub098\ub780\ud788 \ube44\uad50\ud574 \ubcf4\uc138\uc694.'
     },
     ja: {
       'common.and': '\u3001',
@@ -764,7 +782,16 @@
       'game.tierLowend': '\u30ed\u30fc\u30a8\u30f3\u30c9\u30c6\u30a3\u30a2',
       'game.tierVerylow': '\u8d85\u30ed\u30fc\u30a8\u30f3\u30c9\u30c6\u30a3\u30a2',
       'game.tierLegacy': '\u30ec\u30ac\u30b7\u30fc\u30c6\u30a3\u30a2',
-      'game.tierNot': '\u4e0d\u660e'
+      'game.tierNot': '\u4e0d\u660e',
+      'common.directory': '\u30b2\u30fc\u30e0\u4e00\u89a7',
+      'common.guides': 'PC\u30b2\u30fc\u30e0\u30ac\u30a4\u30c9',
+      'directory.crumb': '\u30b2\u30fc\u30e0\u4e00\u89a7',
+      'directory.h1': 'PC\u30b2\u30fc\u30e0{n}\u672c\u306e\u5168\u30ea\u30b9\u30c8\u30fb\u52d5\u4f5c\u74b0\u5883\u4e00\u89a7',
+      'directory.lead': 'CanMySpec\u306e\u30c7\u30fc\u30bf\u30d9\u30fc\u30b9\u306b\u3042\u308b\u5168\u30b2\u30fc\u30e0\u3092\u30a2\u30eb\u30d5\u30a1\u30d9\u30c3\u30c8\u9806\u306b\u307e\u3068\u3081\u307e\u3057\u305f\u3002\u30bf\u30a4\u30c8\u30eb\u3092\u9078\u3076\u3068\u3001Steam\u516c\u5f0f\u306e\u6700\u5c0f\u30fb\u63a8\u5968\u52d5\u4f5c\u74b0\u5883\u300160FPS\u306b\u5c4a\u304fGPU\u3001\u81ea\u5206\u306ePC\u3068\u306e\u6bd4\u8f03\u30c1\u30a7\u30c3\u30af\u304c\u8868\u793a\u3055\u308c\u307e\u3059\u3002',
+      'directory.filter': '\u30b2\u30fc\u30e0\u540d\u3067\u7d5e\u308a\u8fbc\u3080\u2026',
+      'directory.cta': '\u30cf\u30fc\u30c9\u30a6\u30a7\u30a2\u30d5\u30a3\u30eb\u30bf\u30fc\u3092\u958b\u304f \u2192',
+      'game.similarTitle': '\ud83c\udfae \u3042\u308f\u305b\u3066\u898b\u305f\u3044\u985e\u4f3c\u30b2\u30fc\u30e0',
+      'game.similarNote': '\u540c\u3058\u30b8\u30e3\u30f3\u30eb\u3001\u307e\u305f\u306f\u5fc5\u8981\u30b9\u30da\u30c3\u30af\u304c\u8fd1\u3044\u30bf\u30a4\u30c8\u30eb\u3067\u3059\u3002\u52d5\u4f5c\u74b0\u5883\u3092\u4e26\u3079\u3066\u6bd4\u8f03\u3067\u304d\u307e\u3059\u3002'
     }
   };
 
