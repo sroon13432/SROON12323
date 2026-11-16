@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0f19">
+  <title>How to Check If Your PC Can Run Any Game (2026 Step-by-Step Guide)</title>
+  <meta name="description" content="A step-by-step 2026 method for checking any PC game against your own hardware: find your exact GPU, RAM and storage, read the Steam requirements properly, and know whether the minimum spec means 30 FPS or 60.">
+  <link rel="canonical" href="https://canmyspec.com/guides/how-to-check-if-your-pc-can-run-any-game.html">
+  <script src="../assets/i18n.js?v=093bf0516c"></script>
+  <meta property="og:title" content="How to Check If Your PC Can Run Any Game">
+  <meta property="og:description" content="A step-by-step 2026 method for checking any PC game against your own hardware: find your exact GPU, RAM and storage, read the Steam requirements properly, and know whether the minimum spec means 30 FPS or 60.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://canmyspec.com/guides/how-to-check-if-your-pc-can-run-any-game.html">
+  <meta property="og:site_name" content="CanMySpec">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How to Check If Your PC Can Run Any Game">
+  <meta name="twitter:description" content="A step-by-step 2026 method for checking any PC game against your own hardware: find your exact GPU, RAM and storage, read the Steam requirements properly, and know whether the minimum spec means 30 FPS or 60.">
+  <!-- Google AdSense Official Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3774179792647771" crossorigin="anonymous"></script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Article", "headline": "How to Check If Your PC Can Run Any Game (2026 Step-by-Step Guide)", "description": "A step-by-step 2026 method for checking any PC game against your own hardware: find your exact GPU, RAM and storage, read the Steam requirements properly, and know whether the minimum spec means 30 FPS or 60.", "datePublished": "2026-11-16", "dateModified": "2026-11-16", "inLanguage": "en", "articleSection": "Start here", "wordCount": 1642, "author": {"@type": "Organization", "name": "CanMySpec", "url": "https://canmyspec.com/"}, "publisher": {"@type": "Organization", "name": "CanMySpec", "url": "https://canmyspec.com/"}, "mainEntityOfPage": {"@type": "WebPage", "@id": "https://canmyspec.com/guides/how-to-check-if-your-pc-can-run-any-game.html"}, "isPartOf": {"@type": "CollectionPage", "@id": "https://canmyspec.com/guides/"}}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Can I run a game if I only meet the minimum requirements?", "acceptedAnswer": {"@type": "Answer", "text": "It will launch and be playable, but plan for the publisher's minimum target: usually 1080p at low settings around 30 FPS. Expect to lower the resolution or enable upscaling for a smoother frame rate, and expect it to look noticeably simpler than the screenshots."}}, {"@type": "Question", "name": "Is it worth upgrading a GPU that meets the minimum but not the recommended spec?", "acceptedAnswer": {"@type": "Answer", "text": "Only after checking what limits you. If GPU utilisation sits near 99 percent, the card is the limit and an upgrade helps. If it stays well below that while the frame rate is flat, the CPU or the memory is the limit and a new GPU will change very little."}}, {"@type": "Question", "name": "Does a higher number on the graphics card always mean faster?", "acceptedAnswer": {"@type": "Answer", "text": "No. An RTX 4060 outperforms an RTX 2070 despite the smaller number, and a GTX 1060 3 GB is slower than the 6 GB version of the same card. Compare cards by tier and by the memory they carry, not by the digits in the name."}}, {"@type": "Question", "name": "How accurate are the requirements on Steam?", "acceptedAnswer": {"@type": "Answer", "text": "They are the publisher's own figures and the best official source available, but they are written against one resolution and preset and rarely updated after launch. Treat them as a floor and a target rather than a measurement."}}]}</script>
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://canmyspec.com/"}, {"@type": "ListItem", "position": 2, "name": "PC Gaming Guides", "item": "https://canmyspec.com/guides/"}, {"@type": "ListItem", "position": 3, "name": "How to Check If Your PC Can Run Any Game", "item": "https://canmyspec.com/guides/how-to-check-if-your-pc-can-run-any-game.html"}]}</script>
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: #131b2e;
+      --card-border: #1e293b;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --table-head: #0f172a;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.65;
+      padding-bottom: 60px;
+      overflow-wrap: anywhere;
+    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 20px; }
+    header {
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 0;
+    }
+    .nav { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 22px; font-weight: 800; color: #fff; text-decoration: none; }
+    .logo span { color: var(--accent); }
+
+    .breadcrumbs { font-size: 13px; color: var(--text-muted); margin: 24px 0 0; }
+    .breadcrumbs a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: #fff; }
+
+    .article-head { padding: 26px 0 6px; max-width: 800px; }
+    .article-cat {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.6px;
+      text-transform: uppercase;
+      color: #a5b4fc;
+      background: rgba(99,102,241,0.15);
+      border: 1px solid rgba(99,102,241,0.35);
+      border-radius: 20px;
+      padding: 4px 11px;
+      margin-bottom: 14px;
+    }
+    .article-head h1 { font-size: 36px; font-weight: 900; letter-spacing: -0.6px; line-height: 1.18; margin-bottom: 14px; }
+    .article-meta { font-size: 13px; color: var(--text-muted); display: flex; flex-wrap: wrap; gap: 6px 16px; }
+    .article-lead { font-size: 17px; color: #cbd5e1; margin: 18px 0 0; max-width: 800px; }
+
+    .article-body { max-width: 800px; margin-top: 26px; }
+    .article-body h2 {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      margin: 40px 0 12px;
+      padding-left: 13px;
+      border-left: 4px solid var(--accent);
+      line-height: 1.3;
+    }
+    .article-body h3 { font-size: 18px; font-weight: 800; margin: 26px 0 8px; }
+    .article-body p { margin: 0 0 14px; color: #dbe2ef; font-size: 16px; }
+    .article-body ul, .article-body ol { margin: 0 0 16px; padding-left: 22px; color: #dbe2ef; font-size: 16px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body li::marker { color: #818cf8; }
+    .article-body strong { color: #fff; }
+    .article-body a { color: #a5b4fc; text-decoration: underline; text-decoration-color: rgba(165,180,252,0.4); }
+
+    .table-wrap { overflow-x: auto; margin: 18px 0 22px; border-radius: 12px; border: 1px solid var(--card-border); -webkit-overflow-scrolling: touch; }
+    table.guide-table { border-collapse: collapse; width: 100%; font-size: 14px; background: var(--card-bg); min-width: 420px; }
+    table.guide-table th {
+      text-align: left;
+      padding: 12px 14px;
+      background: var(--table-head);
+      color: #e2e8f0;
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      border-bottom: 1px solid var(--card-border);
+      white-space: nowrap;
+    }
+    table.guide-table td { padding: 11px 14px; border-top: 1px solid rgba(255,255,255,0.05); color: #cbd5e1; vertical-align: top; }
+    table.guide-table tr:first-child td { border-top: none; }
+    table.guide-table td:first-child { color: #f1f5f9; font-weight: 600; }
+
+    .callout {
+      background: rgba(99,102,241,0.09);
+      border: 1px solid rgba(99,102,241,0.3);
+      border-left: 4px solid var(--accent);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 20px 0 22px;
+    }
+    .callout-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: #a5b4fc; margin-bottom: 6px; }
+    .callout p { margin: 0; color: #e2e8f0; font-size: 15px; }
+
+    .toc {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin: 26px 0 0;
+      max-width: 800px;
+    }
+    .toc-title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.6px; color: var(--text-muted); margin-bottom: 8px; }
+    .toc ol { margin: 0; padding-left: 18px; }
+    .toc li { margin-bottom: 5px; font-size: 14px; }
+    .toc a { color: #cbd5e1; text-decoration: none; }
+    .toc a:hover { color: #fff; text-decoration: underline; }
+
+    .guide-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin: 14px 0 4px; }
+    .guide-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .guide-card:hover { border-color: var(--accent); }
+    .guide-card-emoji { font-size: 20px; }
+    .guide-card-title { font-size: 15px; font-weight: 800; line-height: 1.35; margin: 6px 0 6px; color: #fff; }
+    .guide-card-text { font-size: 13px; color: var(--text-muted); line-height: 1.5; }
+    .guide-card-meta { font-size: 11px; color: #818cf8; font-weight: 700; margin-top: 10px; text-transform: uppercase; letter-spacing: 0.4px; }
+
+    .game-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; margin: 14px 0 6px; }
+    .game-row {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      text-decoration: none;
+      color: inherit;
+    }
+    .game-row:hover { border-color: var(--accent); }
+    .game-row img { width: 64px; height: 36px; object-fit: cover; border-radius: 6px; flex: 0 0 auto; background: #0f172a; }
+    .game-row-name { font-size: 13.5px; font-weight: 700; color: #f1f5f9; line-height: 1.3; }
+    .game-row-spec { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+    .chip-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .chip {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 13px;
+      padding: 7px 12px;
+      border-radius: 20px;
+      display: inline-block;
+      max-width: 100%;
+    }
+    .chip:hover { border-color: var(--accent); color: #fff; }
+
+    .section-title { font-size: 20px; font-weight: 800; margin: 40px 0 10px; display: flex; align-items: center; gap: 10px; }
+    .section-title::before { content: ""; display: inline-block; width: 4px; height: 20px; background: var(--accent); border-radius: 2px; }
+    .section-note { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+
+    .faq-list { display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+    .faq-item { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 10px; padding: 15px 18px; }
+    .faq-item summary { cursor: pointer; font-weight: 700; font-size: 15px; }
+    .faq-item p { color: var(--text-muted); font-size: 14px; margin-top: 9px; margin-bottom: 0; }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(99,102,241,0.16), rgba(99,102,241,0.04));
+      border: 1px solid rgba(99,102,241,0.35);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin: 36px 0 8px;
+      max-width: 800px;
+    }
+    .cta-box h2 { font-size: 19px; font-weight: 800; margin-bottom: 8px; border: none; padding: 0; }
+    .cta-box p { color: var(--text-muted); font-size: 14px; margin-bottom: 14px; }
+    .cta-btn {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 11px 18px;
+      border-radius: 9px;
+    }
+    .cta-btn:hover { background: var(--accent-hover); }
+
+    footer { border-top: 1px solid var(--card-border); padding: 30px 0; color: #64748b; font-size: 13px; text-align: center; margin-top: 54px; }
+    footer a { color: #94a3b8; text-decoration: none; margin: 0 10px; }
+
+    @media (max-width: 768px) {
+      body { padding-bottom: 40px; }
+      .container { padding: 0 16px; }
+      header { padding: 11px 0; }
+      .logo { font-size: 20px; }
+      .breadcrumbs { margin: 16px 0 0; font-size: 12px; line-height: 1.6; }
+      .article-head { padding: 18px 0 4px; }
+      .article-head h1 { font-size: 26px; letter-spacing: -0.3px; }
+      .article-lead { font-size: 15px; }
+      .article-body { margin-top: 20px; }
+      .article-body h2 { font-size: 20px; margin: 30px 0 10px; padding-left: 11px; }
+      .article-body h3 { font-size: 16.5px; }
+      .article-body p, .article-body ul, .article-body ol { font-size: 15px; }
+      .table-wrap { margin: 14px 0 18px; border-radius: 10px; }
+      table.guide-table { font-size: 13px; min-width: 360px; }
+      table.guide-table th { padding: 10px 11px; font-size: 10.5px; }
+      table.guide-table td { padding: 9px 11px; }
+      .callout { padding: 14px 15px; margin: 16px 0 18px; }
+      .callout p { font-size: 14px; }
+      .toc { padding: 14px 16px; }
+      .toc li { font-size: 13.5px; }
+      .section-title { font-size: 18px; margin: 32px 0 8px; gap: 8px; }
+      .section-title::before { height: 18px; }
+      .cta-box { padding: 18px 16px; }
+      .cta-box h2 { font-size: 17px; }
+      .faq-item { padding: 13px 15px; }
+      .faq-item summary { font-size: 14.5px; }
+      .faq-item p { font-size: 13.5px; }
+      footer { margin-top: 40px; padding: 24px 0; font-size: 12.5px; }
+      footer p { line-height: 2; }
+      footer a { display: inline-block; margin: 2px 8px; }
+    }
+
+    @media (max-width: 420px) {
+      .article-head h1 { font-size: 23px; }
+      .game-list { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container nav">
+      <a href="../index.html" class="logo">⚡ CanMy<span>Spec</span></a>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="breadcrumbs">
+      <a href="../index.html" data-i18n="common.home">Home</a> &gt; <a href="index.html">PC Gaming Guides</a> &gt; <span>How to check if your PC can run any game</span>
+    </div>
+
+    <div class="article-head">
+      <span class="article-cat">Start here</span>
+      <h1>How to Check If Your PC Can Run Any Game</h1>
+      <div class="article-meta">
+        <span>Updated 16 November 2026</span>
+        <span>9 min read</span>
+        <span>1,642 words · data from 9,459 verified game requirement sets</span>
+      </div>
+      <p class="article-lead">Find your real GPU and RAM, read the requirements page the way a publisher writes it, and know whether you are buying a smooth 60 FPS or a 30 FPS compromise.</p>
+    </div>
+
+    <article class="article-body">
+<p>Every store page has a requirements block, and almost nobody reads it the way it was written. The minimum column is not a promise of 60 frames per second, the recommended column is not a promise of maximum settings, and the GPU you own is often a different card from the one the publisher named. That gap is where people waste money on an upgrade that changes nothing, or skip a game they could already run comfortably.</p>
+<p>Here is the method we use to answer the question for 9,459 games: identify the hardware you have, translate the requirement into a performance tier, then adjust for the resolution and settings you actually use. It takes ten minutes and needs nothing beyond Windows itself.</p>
+<h2 id="what-a-requirements-block-really-promises">What a requirements block really promises</h2>
+<p>Publishers write the minimum column for one target: a playable frame rate at low settings, usually 1080p and usually 30 FPS. The recommended column targets 1080p at 60 FPS on high or medium presets. Neither column states the resolution it was tested at, and when a page says nothing, assume 1080p, because that is what the overwhelming majority of requirement tables are written against.</p>
+<p>So a game whose minimum spec you just meet will run, but it will look worse than the screenshots and hover around 30 to 40 FPS. A game you clear at the recommended level is the one that feels like the marketing footage. Decide which of the two you want before comparing a single number.</p>
+<div class="callout"><div class="callout-title">The one-line rule</div><p>Minimum met means it runs. Recommended met means it runs well. Anything in between means low settings, a lower resolution, or an upscaler doing real work.</p></div>
+<h2 id="step-1-write-down-your-exact-hardware">Step 1 - Write down your exact hardware</h2>
+<p>You cannot compare hardware you have not identified, and the GPU name has to be exact: a laptop RTX 4060 and a desktop RTX 4060 do not perform alike, and a GTX 1060 with 3 GB is a different card from the 6 GB version despite sharing a name.</p>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th>Component</th><th>Windows 11</th><th>What to copy down</th></tr></thead><tbody><tr><td>GPU</td><td>Task Manager &gt; Performance &gt; GPU</td><td>Full chip name plus dedicated memory, e.g. RTX 4060 Laptop GPU, 8.0 GB</td></tr><tr><td>CPU</td><td>Settings &gt; System &gt; About</td><td>Model number, e.g. Ryzen 5 5600 or i5-12400F</td></tr><tr><td>RAM</td><td>Task Manager &gt; Performance &gt; Memory</td><td>Total capacity, slots used, and speed</td></tr><tr><td>Storage</td><td>Settings &gt; System &gt; Storage &gt; Advanced storage settings</td><td>Whether the install drive is an SSD, and its free space</td></tr></tbody></table></div>
+<p>For one screen with everything on it, press Win+R, type dxdiag and press Enter: the System tab lists the CPU and memory, the Display tab lists the GPU and its video memory. On Linux, lscpu and lspci -nn | grep VGA give the same picture; on a Mac, About This Mac reports the chip and unified memory.</p>
+<h2 id="step-2-compare-the-gpu-by-tier-not-by-name">Step 2 - Compare the GPU by tier, not by name</h2>
+<p>Requirement tables name a card from the year the game shipped, and that card is often three generations old by the time you read the page. Comparing names fails immediately: an RTX 2070 and an RTX 4060 share no numbers, but the newer 60-class card is comfortably faster. Compare position on a performance ladder instead.</p>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th>Tier</th><th>Cards that sit here</th><th>What it means for a 2026 release</th></tr></thead><tbody><tr><td>Entry gaming</td><td>GTX 1650 Super, RX 570, Iris Xe 96EU</td><td>Esports and indie at 1080p; AAA only with upscaling at low</td></tr><tr><td>Mainstream</td><td>GTX 1060 6GB, RX 580, RTX 3050</td><td>Older AAA at 1080p medium; 2026 AAA at minimum settings, 40 to 60 FPS</td></tr><tr><td>Upper mainstream</td><td>RTX 3060 12GB, RTX 4060, RX 6600 XT</td><td>1080p high at 60 FPS in most releases, 1440p with upscaling</td></tr><tr><td>Performance</td><td>RTX 3070, RTX 4060 Ti, RX 6800</td><td>1440p high at 60 FPS, 4K with upscaling</td></tr><tr><td>Enthusiast</td><td>RTX 4070 Super and up, RX 7800 XT and up</td><td>1440p maximum, 4K with upscaling and frame generation</td></tr></tbody></table></div>
+<p>Cards on the same row are roughly interchangeable for this purpose, give or take ten percent. When the requirement names a card one row above yours, expect to drop a preset or lean on an upscaler.</p>
+<h2 id="step-3-check-vram-and-system-ram-separately">Step 3 - Check VRAM and system RAM separately</h2>
+<p>These two get confused constantly and they fail differently. VRAM is the memory on the graphics card, and running out does not lower the frame rate politely: textures drop to mush and frame times spike whenever new assets stream in. System RAM is the memory Windows and the game share, and running out of it swaps to disk.</p>
+<ul><li>Match VRAM to the resolution and texture preset. An 8 GB card at 1080p high is fine in most releases; the same card at 1440p with ray tracing is where 8 GB bites.</li><li>Match system RAM to the requirement plus a couple of gigabytes. A 16 GB requirement means 16 GB for the game and Windows together.</li><li>Read the memory figure in Task Manager, not the marketing name. Cards were sold with two memory configurations under one name more than once, and the smaller one is slower in ways the name does not show.</li></ul>
+<h2 id="step-4-match-the-resolutions-and-settings-you-will-use">Step 4 - Match the resolutions and settings you will use</h2>
+<p>Requirements are written against one resolution and one preset, and every step away from that changes the verdict:</p>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th>Change from 1080p high</th><th>Approximate cost</th></tr></thead><tbody><tr><td>1080p high to 1440p high</td><td>30 to 40 percent fewer frames</td></tr><tr><td>1440p high to 4K high</td><td>roughly double the work of 1440p</td></tr><tr><td>High preset to ultra</td><td>10 to 20 percent, rarely worth it</td></tr><tr><td>Ray tracing on at 1080p</td><td>30 to 60 percent, more in the heaviest titles</td></tr><tr><td>DLSS or FSR quality mode</td><td>20 to 35 percent gained, small image cost</td></tr></tbody></table></div>
+<p>A game whose recommended card you exactly meet gives you 1080p high at 60 FPS. Move to a 1440p monitor and the same card is a 40 FPS card until you enable upscaling or drop a preset. Neither the store page nor a bottleneck calculator tells you that, because both ignore your display.</p>
+<h2 id="step-5-confirm-it-will-fit-and-load">Step 5 - Confirm it will fit and load</h2>
+<p>Storage is the requirement people skip and then discover the hard way. The listed figure is the installed size before patches, so leave fifteen percent headroom, and note that a growing number of 2026 releases list an SSD as required rather than recommended. A mechanical drive turns asset streaming into visible pop-in even when the frame counter looks healthy.</p>
+<ul><li>Check the drive type, not just the free space: Windows reports media type per drive under Storage &gt; Advanced storage settings.</li><li>If space is tight, install on a SATA SSD before a mechanical drive. SATA versus NVMe is a small difference; either versus a hard drive is not.</li></ul>
+<h2 id="the-five-mistakes-that-cost-people-money">The five mistakes that cost people money</h2>
+<ol><li>Upgrading the GPU when the CPU is the limit. If the GPU sits below 90 percent utilisation while the frame rate stays pinned, a new card adds very little.</li><li>Buying on the minimum column. Clearing the minimum gets you 30 to 40 FPS at low settings, not the game in the screenshots.</li><li>Ignoring the display. A 1440p or 4K panel multiplies the work without changing a number on the store page.</li><li>Trusting a bottleneck calculator that knows nothing about your resolution, your settings or the game you play.</li><li>Buying 32 GB of RAM before fixing a 4 GB VRAM bottleneck. Only one of those causes hitching.</li></ol>
+<h2 id="a-60-second-checklist-before-you-buy">A 60-second checklist before you buy</h2>
+<ul><li>I know my exact GPU, its dedicated memory, my CPU and my total RAM.</li><li>I know the resolution I will actually play at.</li><li>The game&#x27;s recommended GPU is at or below my card&#x27;s tier, not just the minimum.</li><li>My VRAM covers the texture preset I want, and the install drive is an SSD with room to spare.</li><li>I have checked the game&#x27;s own page here for its exact published figures.</li></ul>
+<p>If every line is true, buy it and expect the recommended experience. If only the minimum is true, expect low settings or a lower resolution. If neither is true, the game will not run at a frame rate you would call playable, and the cheapest fix is usually the display or the settings rather than the hardware.</p>
+<h2 id="where-the-tracked-cards-stand">Where the tracked cards stand</h2>
+<p>This table is rebuilt from our own database of official Steam requirements on every deployment, so the counts move as games are added. It answers the question a requirement page cannot: how much of the library a card clears at recommended settings.</p>
+<div class="table-wrap"><table class="guide-table"><thead><tr><th>Graphics card</th><th>Games at 60 FPS (recommended)</th><th>Minimum only</th><th>Total playable</th></tr></thead><tbody><tr><td><a href="../gpu/rtx-5090.html">RTX 5090</a></td><td>9,454</td><td>1</td><td>9,455</td></tr><tr><td><a href="../gpu/rtx-4090.html">RTX 4090</a></td><td>9,454</td><td>1</td><td>9,455</td></tr><tr><td><a href="../gpu/rtx-4080.html">RTX 4080</a></td><td>9,454</td><td>1</td><td>9,455</td></tr><tr><td><a href="../gpu/rx-7800-xt.html">RX 7800 XT</a></td><td>9,437</td><td>17</td><td>9,454</td></tr><tr><td><a href="../gpu/rtx-4070.html">RTX 4070</a></td><td>9,417</td><td>36</td><td>9,453</td></tr><tr><td><a href="../gpu/rtx-3070.html">RTX 3070</a></td><td>9,409</td><td>44</td><td>9,453</td></tr><tr><td><a href="../gpu/rtx-4060.html">RTX 4060</a></td><td>9,274</td><td>171</td><td>9,445</td></tr><tr><td><a href="../gpu/rx-7600.html">RX 7600</a></td><td>9,269</td><td>176</td><td>9,445</td></tr><tr><td><a href="../gpu/rtx-3060.html">RTX 3060</a></td><td>9,267</td><td>178</td><td>9,445</td></tr><tr><td><a href="../gpu/rtx-2060.html">RTX 2060</a></td><td>9,197</td><td>241</td><td>9,438</td></tr></tbody></table></div><p class="section-note" style="font-size:12.5px;">Counts are generated from the current database of 9,459 games, matched on each title's published GPU and RAM requirement, and rebuilt on every deployment. Open a card for the full list.</p>
+<div class="callout"><p>Pick your card in the hardware filter and the same matching runs against all 9,459 games, with your RAM and resolution target included.</p></div>
+    </article>
+
+    <nav class="toc" aria-label="On this page">
+      <div class="toc-title">On this page</div>
+<ol><li><a href="#what-a-requirements-block-really-promises">What a requirements block really promises</a></li><li><a href="#step-1-write-down-your-exact-hardware">Step 1 - Write down your exact hardware</a></li><li><a href="#step-2-compare-the-gpu-by-tier-not-by-name">Step 2 - Compare the GPU by tier, not by name</a></li><li><a href="#step-3-check-vram-and-system-ram-separately">Step 3 - Check VRAM and system RAM separately</a></li><li><a href="#step-4-match-the-resolutions-and-settings-you-will-use">Step 4 - Match the resolutions and settings you will use</a></li><li><a href="#step-5-confirm-it-will-fit-and-load">Step 5 - Confirm it will fit and load</a></li><li><a href="#the-five-mistakes-that-cost-people-money">The five mistakes that cost people money</a></li><li><a href="#a-60-second-checklist-before-you-buy">A 60-second checklist before you buy</a></li><li><a href="#where-the-tracked-cards-stand">Where the tracked cards stand</a></li></ol>
+    </nav>
+
+    <section>
+      <h2 class="section-title">Hardware guides for this topic</h2>
+      <p class="section-note">Every GPU and PC spec page lists the games that hardware runs at 60 FPS on recommended settings, matched from official Steam requirements.</p>
+      <div class="chip-grid"><a class="chip" href="../gpu/rtx-4060.html">RTX 4060</a><a class="chip" href="../gpu/rx-6600.html">RX 6600</a><a class="chip" href="../gpu/gtx-1650.html">GTX 1650</a><a class="chip" href="../gpu/gtx-1060.html">GTX 1060</a><a class="chip" href="../gpu/intel-iris-xe.html">Iris Xe</a><a class="chip" href="../gpu/8gb-ram-laptop.html">8 GB RAM laptop</a><a class="chip" href="../gpu/index.html">All GPU &amp; PC spec guides →</a></div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Games mentioned in this guide</h2>
+      <p class="section-note">Official minimum and recommended figures for each title, as published by the publisher.</p>
+      <div class="game-list"><div class="game-list"><a class="game-row" href="../games/cyberpunk-2077.html"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077 (Phantom Liberty) PC requirements" loading="lazy" decoding="async"><div><div class="game-row-name">Cyberpunk 2077 (Phantom Liberty)</div><div class="game-row-spec">Rec. GPU: RX 5700 XT</div></div></a><a class="game-row" href="../games/black-myth-wukong.html"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2358720/header.jpg" alt="Black Myth: Wukong PC requirements" loading="lazy" decoding="async"><div><div class="game-row-name">Black Myth: Wukong</div><div class="game-row-spec">Rec. GPU: RTX 2060</div></div></a><a class="game-row" href="../games/counter-strike-2.html"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/730/162664aa5da85f418105350c5d67ca565f6c3713/header.jpg?t=1793054556" alt="Counter-Strike 2 PC requirements" loading="lazy" decoding="async"><div><div class="game-row-name">Counter-Strike 2</div><div class="game-row-spec">Rec. GPU: 1 GB VRAM card</div></div></a><a class="game-row" href="../games/baldurs-gate-3.html"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1086940/header.jpg" alt="Baldur&#x27;s Gate 3 PC requirements" loading="lazy" decoding="async"><div><div class="game-row-name">Baldur&#x27;s Gate 3</div><div class="game-row-spec">Rec. GPU: RX 5700 XT</div></div></a><a class="game-row" href="../games/elden-ring.html"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/1245620/header.jpg" alt="ELDEN RING (Shadow of the Erdtree) PC requirements" loading="lazy" decoding="async"><div><div class="game-row-name">ELDEN RING (Shadow of the Erdtree)</div><div class="game-row-spec">Rec. GPU: RX Vega 56</div></div></a><a class="game-row" href="../games/helldivers-2.html"><img src="https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/553850/850e2f9e5bb15c5706bb9a1edc832f4f782e8be5/header.jpg?t=1793395133" alt="HELLDIVERS™ 2 PC requirements" loading="lazy" decoding="async"><div><div class="game-row-name">HELLDIVERS™ 2</div><div class="game-row-spec">Rec. GPU: RTX 2060</div></div></a></div></div>
+    </section>
+
+    <section>
+      <h2 class="section-title">Frequently asked questions</h2>
+      <div class="faq-list">
+        <details class="faq-item"><summary>Can I run a game if I only meet the minimum requirements?</summary><p>It will launch and be playable, but plan for the publisher&#x27;s minimum target: usually 1080p at low settings around 30 FPS. Expect to lower the resolution or enable upscaling for a smoother frame rate, and expect it to look noticeably simpler than the screenshots.</p></details>
+        <details class="faq-item"><summary>Is it worth upgrading a GPU that meets the minimum but not the recommended spec?</summary><p>Only after checking what limits you. If GPU utilisation sits near 99 percent, the card is the limit and an upgrade helps. If it stays well below that while the frame rate is flat, the CPU or the memory is the limit and a new GPU will change very little.</p></details>
+        <details class="faq-item"><summary>Does a higher number on the graphics card always mean faster?</summary><p>No. An RTX 4060 outperforms an RTX 2070 despite the smaller number, and a GTX 1060 3 GB is slower than the 6 GB version of the same card. Compare cards by tier and by the memory they carry, not by the digits in the name.</p></details>
+        <details class="faq-item"><summary>How accurate are the requirements on Steam?</summary><p>They are the publisher&#x27;s own figures and the best official source available, but they are written against one resolution and preset and rarely updated after launch. Treat them as a floor and a target rather than a measurement.</p></details>
+      </div>
+    </section>
+
+    <div class="cta-box">
+      <h2>Check your own PC against all 9,459 games</h2>
+      <p>Pick your graphics card and RAM in the hardware filter and see every game you can run at 60 FPS, plus the ones that only meet the minimum.</p>
+      <a class="cta-btn" href="../index.html?gpu=rtx-4060">Open the hardware filter →</a>
+    </div>
+
+    <section>
+      <h2 class="section-title">Keep reading</h2>
+      <div class="guide-cards"><a class="guide-card" href="minimum-vs-recommended-system-requirements.html"><span class="guide-card-emoji">📋</span><div class="guide-card-title">Minimum vs recommended requirements</div><div class="guide-card-text">Minimum is a target, not a measurement. Here is what each column is written for, which numbers to trust, and the naming traps that make people buy the wrong card.</div><div class="guide-card-meta">Start here · 9 min read</div></a><a class="guide-card" href="best-budget-gpu-1080p-60fps-2026.html"><span class="guide-card-emoji">💾</span><div class="guide-card-title">Best budget GPUs for 1080p 60 FPS</div><div class="guide-card-text">Three cards still define the budget tier in 2026. Here is the honest comparison: where each one wins, where 8 GB hurts, and which upgrade is worth the money.</div><div class="guide-card-meta">Buying guides · 10 min read</div></a><a class="guide-card" href="8gb-vs-16gb-vs-32gb-ram-gaming.html"><span class="guide-card-emoji">🧠</span><div class="guide-card-title">8GB vs 16GB vs 32GB RAM</div><div class="guide-card-text">Measured game usage, Windows overhead and the specific games that punish 8 GB: a practical guide to buying the right amount of RAM once.</div><div class="guide-card-meta">Hardware explained · 9 min read</div></a></div>
+      <p style="margin-top:18px;"><a style="color:#a5b4fc;font-weight:600;text-decoration:none;" href="index.html">← All PC gaming and hardware guides</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p data-i18n="common.footerGuides">© 2026 CanMySpec.com · Requirements are the official figures published by each game's publisher.</p>
+      <p style="margin-top: 8px;">
+        <a href="../index.html" data-i18n="common.hardwareFilter">Hardware filter</a> | <a href="../gpu/index.html" data-i18n="common.gpuGuides">GPU &amp; Spec Guides</a> | <a href="../privacy.html" data-i18n="common.privacy">Privacy Policy</a> | <a href="../terms.html" data-i18n="common.terms">Terms of Service</a> | <a href="../about.html" data-i18n="common.about">About &amp; Contact</a> | <a href="../sitemap.xml" data-i18n="common.sitemap">XML Sitemap</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

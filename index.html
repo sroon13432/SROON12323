@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="google-site-verification" content="piw8N1fyBAcOqBbFSyOOHka1Rwrc67taJ_ykIeEHJAc" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0b0f19">
   <title>CanMySpec.com — Can My PC Run It? (PC System Requirements & FPS Database)</title>
@@ -330,6 +331,39 @@
 
     /* Hardware hubs */
     .hub-section { margin-top: 64px; }
+
+    /* Long-form guides */
+    .guide-section { margin-top: 56px; }
+    .guide-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; margin-top: 18px; }
+    .guide-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px 18px;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .guide-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+    .guide-card-emoji { font-size: 20px; line-height: 1; }
+    .guide-card-title { font-size: 15px; font-weight: 800; color: #fff; line-height: 1.35; }
+    .guide-card-text { font-size: 12.5px; color: var(--text-muted); line-height: 1.5; }
+    .guide-card-meta { font-size: 11px; font-weight: 700; letter-spacing: 0.4px; text-transform: uppercase; color: #818cf8; margin-top: auto; padding-top: 8px; }
+    .guide-more {
+      display: inline-block;
+      margin-top: 20px;
+      color: #a5b4fc;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      border: 1px solid rgba(99,102,241,0.4);
+      border-radius: 9px;
+      padding: 10px 16px;
+    }
+    .guide-more:hover { background: rgba(99,102,241,0.15); color: #fff; }
     .hub-groups { display: flex; flex-direction: column; gap: 14px; margin-top: 18px; }
     .hub-group-name { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
     .chip-grid { display: flex; flex-wrap: wrap; gap: 8px; }
@@ -439,6 +473,13 @@
       .hub-section { margin-top: 44px; }
       .chip-grid { gap: 8px; }
       .chip { padding: 9px 13px; font-size: 12.5px; }
+
+      .guide-section { margin-top: 44px; }
+      .guide-cards { grid-template-columns: 1fr; gap: 10px; }
+      .guide-card { padding: 15px 16px; }
+      .guide-card:hover { transform: none; border-color: var(--card-border); }
+      .guide-card-title { font-size: 15px; }
+      .guide-more { min-height: 44px; display: flex; align-items: center; justify-content: center; }
 
       footer { margin-top: 40px; padding: 24px 0; font-size: 12.5px; }
       footer p { line-height: 2; }
@@ -104683,6 +104724,15 @@
         <div><div class="hub-group-name" data-i18n="index.hubSpecs">Laptops, handhelds &amp; budget builds</div><div class="chip-grid"><a class="chip" href="gpu/steam-deck-handheld.html">Steam Deck</a><a class="chip" href="gpu/8gb-ram-laptop.html">8 GB RAM laptop</a><a class="chip" href="gpu/16gb-ram-gaming-pc.html">16 GB RAM PC</a><a class="chip" href="gpu/4gb-vram-gpu.html">4 GB VRAM GPU</a><a class="chip" href="gpu/2gb-vram-gpu.html">2 GB VRAM GPU</a><a class="chip" href="gpu/low-end-potato-pc.html">Potato PC</a><a class="chip" href="gpu/integrated-graphics-only.html">Integrated graphics</a></div></div>
         <div><a class="chip" href="gpu/index.html" style="border-color:#6366f1;color:#fff;" data-i18n="index.hubAll">See all GPU &amp; PC spec guides →</a></div>
       </div>
+    </section>
+
+    <section class="guide-section">
+      <h2 class="grid-title">📚 PC Gaming &amp; Hardware Guides</h2>
+      <p style="font-size: 14px; color: var(--text-muted); margin-top: 6px;">How to check your PC against any game, which upgrade is worth the money, and the settings that keep a frame rate stable.</p>
+      <div class="guide-cards">
+<a class="guide-card" href="guides/how-to-check-if-your-pc-can-run-any-game.html"><span class="guide-card-emoji">🎮</span><div class="guide-card-title">How to check if your PC can run any game</div><div class="guide-card-text">Find your real GPU and RAM, read the requirements page the way a publisher writes it, and know whether you are buying a smooth 60 FPS or a 30 FPS compromise.</div><div class="guide-card-meta">9 min read</div></a><a class="guide-card" href="guides/best-budget-gpu-1080p-60fps-2026.html"><span class="guide-card-emoji">💾</span><div class="guide-card-title">Best budget GPUs for 1080p 60 FPS</div><div class="guide-card-text">Three cards still define the budget tier in 2026. Here is the honest comparison: where each one wins, where 8 GB hurts, and which upgrade is worth the money.</div><div class="guide-card-meta">10 min read</div></a><a class="guide-card" href="guides/8gb-vs-16gb-vs-32gb-ram-gaming.html"><span class="guide-card-emoji">🧠</span><div class="guide-card-title">8GB vs 16GB vs 32GB RAM</div><div class="guide-card-text">Measured game usage, Windows overhead and the specific games that punish 8 GB: a practical guide to buying the right amount of RAM once.</div><div class="guide-card-meta">9 min read</div></a><a class="guide-card" href="guides/how-much-vram-2026.html"><span class="guide-card-emoji">🧩</span><div class="guide-card-title">How much VRAM you need in 2026</div><div class="guide-card-text">VRAM is the specification that decides whether a card stays smooth in three years. Here is what each capacity buys at each resolution, and the symptoms to watch for.</div><div class="guide-card-meta">10 min read</div></a>
+      </div>
+      <a class="guide-more" href="guides/index.html">View All Guides →</a>
     </section>
   </main>
 
