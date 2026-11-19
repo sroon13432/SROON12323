@@ -1,0 +1,95 @@
+/* CanMySpec shared top bar: one header and one 5-link menu on every page type.
+   Loaded after each page's own stylesheet so it decides the bar's look. */
+.site-header {
+  background: rgba(11, 15, 25, 0.9);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid #1e293b;
+  position: sticky;
+  top: 0;
+  z-index: 120;
+  padding: 9px 0;
+}
+.site-header .nav-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+.site-header .logo {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  font-size: 21px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  line-height: 1.2;
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.site-header .logo span { color: #6366f1; }
+
+.site-nav {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  margin-left: auto;
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.site-nav::-webkit-scrollbar { display: none; }
+.site-nav a {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  color: #a8b3c7;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.15s, background 0.15s, border-color 0.15s;
+}
+.site-nav a:hover { color: #fff; background: rgba(148, 163, 184, 0.14); }
+.site-nav a:focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; }
+.site-nav a.is-active {
+  color: #fff;
+  background: rgba(99, 102, 241, 0.2);
+  border-color: rgba(99, 102, 241, 0.55);
+}
+
+/* Shared controls: one touch size for chips and page buttons on phones. */
+@media (max-width: 768px) {
+  .chip, .hw-chip, .page-btn { display: inline-flex; align-items: center; justify-content: center; }
+  .chip, .hw-chip { min-height: 38px; }
+  .page-btn { min-height: 44px; min-width: 44px; }
+}
+
+@media (max-width: 768px) {
+  .site-header { padding: 7px 0 7px; }
+  .site-header .nav-bar { flex-wrap: wrap; gap: 7px; }
+  .site-header .logo { font-size: 18px; }
+  .site-nav { width: 100%; margin-left: 0; gap: 4px; }
+  .site-nav a {
+    height: 32px;
+    padding: 0 10px;
+    font-size: 12.5px;
+    border-color: rgba(148, 163, 184, 0.18);
+    background: rgba(148, 163, 184, 0.06);
+  }
+  .site-nav a.is-active {
+    background: rgba(99, 102, 241, 0.22);
+    border-color: rgba(99, 102, 241, 0.55);
+  }
+}
