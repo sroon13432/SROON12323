@@ -7,7 +7,7 @@
     var viewMode = 'static';
     var page = 1;
     var state = { gpu: '', ram: '', mode: 'all', os: '', genre: '', storage: '', deck: '', sort: 'popular', q: '' };
-    var F = { t: 0, s: 1, min: 2, rec: 3, minL: 4, recL: 5, minRam: 6, recRam: 7, rev: 8, rt: 9, g: 10, img: 11, gb: 12, os: 13, deck: 14, yr: 15 };
+    var F = { t: 0, s: 1, min: 2, rec: 3, minL: 4, recL: 5, minRam: 6, recRam: 7, rev: 8, rt: 9, g: 10, img: 11, gb: 12, os: 13, deck: 14, yr: 15, mob: 16, mobSize: 17 };
     var TITLES = [];
     var GENRE_NAMES = {};
     var hiddenNoSize = 0;
@@ -141,7 +141,7 @@
       state.gpu = p.get('gpu') || '';
       state.ram = p.get('ram') || '';
       state.mode = p.get('mode') === 'rec' ? 'rec' : 'all';
-      state.os = ['windows', 'mac', 'linux'].indexOf(p.get('os')) > -1 ? p.get('os') : '';
+      state.os = ['windows', 'mac', 'linux', 'mobile'].indexOf(p.get('os')) > -1 ? p.get('os') : '';
       state.genre = p.get('genre') || '';
       state.storage = ['5', '15', '30', '50', '100'].indexOf(p.get('storage')) > -1 ? p.get('storage') : '';
       state.deck = ['verified', 'playable', 'unsupported'].indexOf(p.get('deck')) > -1 ? p.get('deck') : '';
@@ -375,7 +375,9 @@
           html += '<a class="suggest-item" href="games/' + esc(hit.slug) + '.html" role="option">' +
             '<img class="suggest-thumb" src="' + esc(a[F.img]) + '" alt="" loading="lazy">' +
             '<span class="suggest-main"><span class="suggest-title">' + esc(a[F.t]) + '</span>' +
-            '<span class="suggest-meta">' + esc(String(a[F.g] || '').split('|').join(', ')) + ' · GPU: ' + esc(a[F.recL] || T('index.seeSteam')) + '</span></span></a>';
+            '<span class="suggest-meta">' + esc(String(a[F.g] || '').split('|').join(', ')) +
+            (a[F.mob] ? ' · \ud83d\udcf1 ' + esc(a[F.mob]) : ' · GPU: ' + esc(a[F.recL] || T('index.seeSteam'))) +
+            '</span></span></a>';
         });
         html += '<button type="button" class="suggest-all" onclick="showAllResults()">' +
           esc(T(totalTitles === 1 ? 'index.suggestAll' : 'index.suggestAllPlural', { n: fmt(totalTitles) })) + '</button>';
@@ -441,7 +443,7 @@
       var H = hw.gpu ? hw.gpu.score : null;
       var R = hw.ram;
       var q = state.q.toLowerCase();
-      var osBit = state.os === 'windows' ? 1 : state.os === 'mac' ? 2 : state.os === 'linux' ? 4 : 0;
+      var osBit = state.os === 'windows' ? 1 : state.os === 'mac' ? 2 : state.os === 'linux' ? 4 : state.os === 'mobile' ? 8 : 0;
       var genreName = state.genre ? GENRE_NAMES[state.genre] : '';
       var sizeLimit = state.storage ? parseFloat(state.storage) : null;
       var out = [];
@@ -476,13 +478,23 @@
     }
 
     function cardHtml(rec, a) {
-      var reqLabel = (rec ? a[F.recL] : a[F.minL]) || T('index.seeSteam');
-      var badge = T('index.cardGpu', { label: reqLabel });
-      var status = rec
-        ? '<span class="fps-badge">' + esc(T('index.badgeFps')) + '</span>'
-        : '<span class="min-badge">' + esc(T('index.badgeMin')) + '</span>';
+      var badge, status, alt;
+      if (a[F.mob]) {
+        // A mobile title carries its system and download size instead of a GPU and
+        // a 60 FPS target, which it does not have.
+        badge = T('index.cardMobile', { label: a[F.mob] });
+        status = a[F.mobSize] ? '<span class="fps-badge">' + esc(a[F.mobSize]) + '</span>' : '';
+        alt = esc(a[F.t]) + ' mobile requirements';
+      } else {
+        var reqLabel = (rec ? a[F.recL] : a[F.minL]) || T('index.seeSteam');
+        badge = T('index.cardGpu', { label: reqLabel });
+        status = rec
+          ? '<span class="fps-badge">' + esc(T('index.badgeFps')) + '</span>'
+          : '<span class="min-badge">' + esc(T('index.badgeMin')) + '</span>';
+        alt = esc(a[F.t]) + ' PC specs';
+      }
       return '<a href="games/' + esc(a[F.s]) + '.html" class="game-card" data-title="' + esc(String(a[F.t]).toLowerCase()) + '">' +
-        '<img src="' + esc(a[F.img]) + '" alt="' + esc(a[F.t]) + ' PC specs" class="game-img" loading="lazy">' +
+        '<img src="' + esc(a[F.img]) + '" alt="' + alt + '" class="game-img" loading="lazy">' +
         '<div class="game-body"><h3 class="game-title">' + esc(a[F.t]) + '</h3>' +
         '<div class="game-genre">' + esc(genreText(a[F.g])) + '</div>' +
         '<div class="spec-badge-box"><span class="gpu-badge">' + esc(badge) + '</span>' + status + '</div>' +
