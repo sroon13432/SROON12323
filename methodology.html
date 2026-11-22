@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0f19">
+  <title>Editorial Methodology — How CanMySpec Builds Its Requirements Data</title>
+  <meta name="description" content="How CanMySpec collects system requirements, how the GPU tiers and FPS estimates are calculated, what the requirement rows really promise, and how the catalogue is kept up to date.">
+  <link rel="canonical" href="https://canmyspec.com/methodology.html">
+  <link rel="stylesheet" href="assets/nav.css?v=165a29afca">
+  <link rel="stylesheet" href="assets/legal.css?v=165a29afca">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3774179792647771" crossorigin="anonymous"></script>
+  <!-- Google Analytics 4 (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1F06LY5ZX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P1F06LY5ZX');</script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-bar">
+      <a href="index.html" class="logo">⚡ CanMy<span>Spec</span></a>
+      <nav class="site-nav" aria-label="Main sections">
+        <a href="index.html">Specs</a>
+        <a href="qa/index.html">Q&amp;A</a>
+        <a href="news/index.html">News</a>
+        <a href="guides/index.html">Guides</a>
+        <a href="directory/index.html">Directory</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <p class="eyebrow">Editorial standards</p>
+    <h1>Editorial methodology</h1>
+    <p class="lead">This page explains where every number on CanMySpec comes from, how the GPU tiers, the 60 FPS checker and the 4K estimates are calculated, and which questions the data can and cannot answer. It is written so that a reader can disagree with a verdict and see exactly why it was reached.</p>
+    <p class="meta">Last revised: November 23, 2026 · Applies to every game, Q&amp;A, news and guide page on this site.</p>
+
+    <div class="card">
+      <h2>1. What a requirement row actually promises</h2>
+      <p>Publishers write the minimum column for one target — usually a playable frame rate at low settings, at 1080p, and frequently 30 FPS. The recommended column is written for 1080p at 60 FPS on medium or high presets. Neither column states the resolution it was tested at, the upscaling it assumed, or the CPU it was paired with, and a great many store pages state no target at all.</p>
+      <p>CanMySpec keeps the publisher's wording, including the target string when there is one ("1080p @ 60 FPS (High Settings)"), and never converts a minimum requirement into a promise of 60 FPS. Where a page says "meets the minimum", it means the game should start and run at the publisher's own low target — not that every scene holds a frame rate.</p>
+      <div class="note">
+        <p><strong>The rule the whole site follows:</strong> a minimum that is met means "it runs"; a recommended that is met means "it runs the way the publisher intended". Anything above that is an estimate, and an estimate is labelled as one.</p>
+      </div>
+
+      <h2>2. Where the data comes from</h2>
+      <table>
+        <tr><th>Source</th><th>What it provides</th><th>Used for</th></tr>
+        <tr><td>Steam store app-details record</td><td>Minimum and recommended requirements, release date, genres, developer, publisher, supported platforms</td><td>About 27,500 Windows titles</td></tr>
+        <tr><td>Steam review summary</td><td>Review score and review count</td><td>Rating badge and schema rating on game pages</td></tr>
+        <tr><td>Steam Deck compatibility grade</td><td>Verified / Playable / Unsupported</td><td>Deck line in the analysis and the page meta description</td></tr>
+        <tr><td>Apple App Store listing</td><td>Download size, minimum iOS version, supported devices, price, screenshots, ratings</td><td>Around 600 mobile titles</td></tr>
+        <tr><td>PCGamingWiki, GOG, Epic Games Store</td><td>Requirement rows and store links</td><td>PC titles not sold on Steam</td></tr>
+        <tr><td>Publisher support pages</td><td>Official requirements for a few online games</td><td>Live-service titles with no store spec sheet</td></tr>
+      </table>
+      <p>Only figures that a source publishes are stored. A field with no value stays empty and the page hides that row; the site never fills a gap with a plausible-looking number, and no rating is displayed unless both a score and a review count exist.</p>
+
+      <h2>3. How the GPU tiers are calculated</h2>
+      <p>Every requirement string ("NVIDIA GeForce GTX 1060 (6GB) / AMD Radeon RX 580") is reduced to a single number so that two games can be compared. Each card in our table carries an approximate 1080p relative-performance index, scaled so that the RTX 4090 sits at 1000; the figures are derived from published third-party relative-performance charts, not from our own tests. A requirement that lists alternatives ("A or B") is read as the easiest listed option, because either card alone satisfies the requirement.</p>
+      <p>That index places a game in a band — Legacy, Very low-end, Low-end, Entry-level gaming, Mid-range, Upper mid-range, High-end or Flagship — and the bands, not the raw numbers, are what the site publishes. A card missing from the table (some integrated GPUs, very old or very new hardware) is read with the closest match, and a game whose requirement cannot be parsed at all is shown without a tier rather than with a guessed one.</p>
+      <p>The index is deliberately coarse. It is good enough to say that a GTX 1060 and an RTX 2060 are one class apart, or that a game's recommended tier is integrated graphics; it is not a benchmark, it does not model driver behaviour, and it cannot tell you the frame rate of a specific game on a specific machine.</p>
+
+      <h2>4. What the estimates mean</h2>
+      <p>Some entries on a page are editorial calculations rather than published figures. Each of them is labelled, and each is derived only from the game's own requirement row:</p>
+      <ul>
+        <li><strong>The 4K row.</strong> When a publisher lists no 4K or "ultra" tier, and the recommended tier is at least entry-level gaming class, the page shows a 4K estimate marked "editorial estimate, not an official figure". It is built by taking the recommended tier's index and requiring roughly 1.75× that index, then naming the closest card class at or above it, keeping the publisher's recommended CPU and storage and raising memory where the tier implies it. Games whose recommended tier sits below entry-level gaming class get no 4K row at all, because a 4K preset for hardware that light would be fiction.</li>
+        <li><strong>The FPS checker.</strong> The interactive checker compares your selected (or detected) GPU index and RAM with the game's two tiers and reports one of three outcomes: below the minimum, between the tiers, or above the recommended tier. It is a comparison of requirement levels, not a forecast of frames.</li>
+        <li><strong>The analysis paragraphs.</strong> The "Hardware &amp; Performance Analysis" section on each game page is written from that page's own rows: the distance between the two tiers in index terms, whether memory or storage is the binding constraint, the DirectX floor, the release year, the genre's cost profile, and the Steam Deck grade. It never quotes a frame rate the publisher did not publish.</li>
+      </ul>
+
+      <h2>5. How the catalogue is kept current</h2>
+      <p>The catalogue is re-read from its sources every morning (around 07:00 Korea Standard Time). Requirements that a publisher changed replace the old ones, newly released titles are added, and the sitemap is regenerated with every page that changed. A correction to a shared template — a wording fix, a new section, a tier adjustment — is applied by rebuilding every page from the same data, so a page cannot keep an older version of a calculation than its neighbour.</p>
+      <p>Pages carry the date the site last revised its editorial standard rather than a per-page "last checked" stamp, because the underlying store record, not a human visit, is what keeps a page current. If you need the exact date a particular requirement was read, ask and we will tell you.</p>
+
+      <h2>6. The limits, stated plainly</h2>
+      <ul>
+        <li>We do not run frame-time benchmarks. No performance figure on this site is a measurement we took.</li>
+        <li>Publisher requirement sheets are marketing documents as well as technical ones. They are often conservative, sometimes stale, and occasionally wrong.</li>
+        <li>The same card name can behave differently in a laptop and a desktop, and a laptop's power limit can change the answer more than the model number does.</li>
+        <li>Resolution, upscaling (DLSS, FSR, XeSS), ray tracing and the CPU pairing can each move performance further than the gap between two adjacent tiers.</li>
+        <li>Anti-cheat, launchers and regional builds can stop a game working on hardware its requirement sheet would happily accept.</li>
+      </ul>
+
+      <h2>7. Independence and funding</h2>
+      <p>CanMySpec is independent of every publisher, store and hardware vendor whose products it describes. Nobody can pay for inclusion, for a higher position in a list, or for a more favourable verdict. The site is funded by display advertising and by affiliate commission when a reader buys hardware through a link on a page; those links are disclosed where they appear and never affect a requirement figure or a recommendation. Game titles, screenshots and trademarks belong to their owners and are used to identify the product being described — see the <a href="terms.html">terms of use</a>.</p>
+
+      <h2>8. Corrections</h2>
+      <p>If a requirement, a release date, a rating or a verdict here is wrong, send the page address and the source that shows the correct figure to <strong>contact@canmyspec.com</strong>. Corrections are reviewed by hand, published on the page, and carried to the rest of the catalogue with the next build. The same address handles requests to remove a screenshot or a trademark we should not be displaying.</p>
+      <p>Related documents: <a href="about.html">about CanMySpec</a>, <a href="contact.html">contact and corrections</a>, <a href="privacy.html">privacy policy</a>, <a href="terms.html">terms of use</a>.</p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 CanMySpec.com · Independent PC game requirements reference</p>
+      <p class="foot-links">
+        <a href="index.html">Home</a> | <a href="qa/index.html">Q&amp;A</a> | <a href="news/index.html">News</a> | <a href="guides/index.html">Guides</a> | <a href="directory/index.html">Directory</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="methodology.html">Methodology</a> | <a href="sitemap.xml">XML Sitemap</a>
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

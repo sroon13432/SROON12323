@@ -3,26 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us & Contact — CanMySpec.com</title>
-  <meta name="description" content="Learn about CanMySpec.com, our PC system requirements engine, benchmarking methodologies, and how to contact our editorial team.">
+  <meta name="theme-color" content="#0b0f19">
+  <title>About CanMySpec — Who Runs It and Where the Data Comes From</title>
+  <meta name="description" content="CanMySpec is an independent PC game requirements reference covering 28,000+ titles. Who runs it, where the spec data comes from, how it is checked, and how to reach the editor.">
   <link rel="canonical" href="https://canmyspec.com/about.html">
-  <style>
-    :root { --bg: #0b0f19; --card-bg: #131b2e; --card-border: #1e293b; --accent: #6366f1; --text: #f8fafc; --text-muted: #94a3b8; }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background-color: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; line-height: 1.7; padding-bottom: 60px; }
-    .container { max-width: 860px; margin: 0 auto; padding: 0 20px; }
-    header { background: rgba(11, 15, 25, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border); padding: 16px 0; margin-bottom: 40px; }
-    .logo { font-size: 20px; font-weight: 800; color: #fff; text-decoration: none; }
-    .logo span { color: var(--accent); }
-    h1 { font-size: 32px; font-weight: 800; margin-bottom: 16px; }
-    h2 { font-size: 20px; font-weight: 700; margin: 28px 0 12px; color: #cbd5e1; }
-    p, ul { color: var(--text-muted); font-size: 15px; margin-bottom: 16px; }
-    .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 30px; margin-top: 20px; }
-    .contact-box { background: rgba(99, 102, 241, 0.1); border: 1px solid var(--accent); border-radius: 10px; padding: 20px; margin-top: 20px; }
-    footer { border-top: 1px solid var(--card-border); padding: 30px 0; color: #64748b; font-size: 13px; text-align: center; margin-top: 60px; }
-    footer a { color: #94a3b8; text-decoration: none; margin: 0 10px; }
-  </style>
-  <link rel="stylesheet" href="assets/nav.css?v=01b3098098">
+  <link rel="stylesheet" href="assets/nav.css?v=165a29afca">
+  <link rel="stylesheet" href="assets/legal.css?v=165a29afca">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3774179792647771" crossorigin="anonymous"></script>
   <!-- Google Analytics 4 (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P1F06LY5ZX"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-P1F06LY5ZX');</script>
@@ -32,7 +19,7 @@
     <div class="container nav-bar">
       <a href="index.html" class="logo">⚡ CanMy<span>Spec</span></a>
       <nav class="site-nav" aria-label="Main sections">
-        <a href="index.html" class="is-active" aria-current="page">Specs</a>
+        <a href="index.html">Specs</a>
         <a href="qa/index.html">Q&amp;A</a>
         <a href="news/index.html">News</a>
         <a href="guides/index.html">Guides</a>
@@ -40,28 +27,54 @@
       </nav>
     </div>
   </header>
+
   <main class="container">
-    <h1>About CanMySpec.com</h1>
-    <p>PC Gaming System Requirements & Hardware Benchmarks</p>
+    <p class="eyebrow">About</p>
+    <h1>About CanMySpec</h1>
+    <p class="lead">CanMySpec is an independent reference site for PC game system requirements. It holds the published minimum and recommended specifications of more than 28,000 Windows titles, around 600 App Store games, and a growing set of non-Steam PC releases, on one page per game, with no account and no client to install.</p>
+
     <div class="card">
-      <h2>Our Mission</h2>
-      <p>CanMySpec.com was built with one goal: to provide PC gamers with lightning-fast, zero-bloat access to accurate hardware requirements and real-world 60 FPS graphics optimization guides. Whether you are running an entry-level gaming laptop or an enthusiast RTX 40-series rig, we help you determine instantly if your PC can run the latest Steam releases.</p>
+      <h2>What the site is for</h2>
+      <p>Almost every game page on the web answers "can my PC run this?" with a copy of the store's requirement table and an advertisement. The table is necessary but rarely enough: it never says which of the two GPU columns actually matters at 1080p, whether 8 GB of memory is a bottleneck or a formality, or whether the card you own sits a whole class below the recommended one.</p>
+      <p>So each page here answers three questions in order. First, what did the publisher publish (the minimum and recommended rows, verbatim, including the resolution and frame-rate target each row was written against). Second, what does that mean for the machine in front of you: the gap between the two tiers by our relative GPU index, whether memory or storage is the real constraint, and which class of card the recommended figure belongs to. Third, what else changes the decision: the Steam Deck grade where Steam publishes one, the DirectX floor, the release year, and the genre's own habits.</p>
 
-      <h2>Data Sources and Methodologies</h2>
-      <p>Our database compiles official developer specifications, Steam community review scores, and engine architectures. Every game profile features side-by-side Minimum vs. Recommended specifications, GPU tier recommendations, and actionable graphics setting tweaks to maximize frame stability.</p>
+      <h2>Where the data comes from</h2>
+      <ul>
+        <li><strong>Steam</strong> — the store's own app-details records for minimum and recommended requirements, review summary (score and review count), release date, genres, supported platforms, and the Steam Deck compatibility grade.</li>
+        <li><strong>Apple App Store</strong> — listing data for iOS titles: download size, minimum iOS version, supported device count, price, screenshots and rating count.</li>
+        <li><strong>PCGamingWiki, GOG and Epic Games Store</strong> — requirement rows for PC releases that are not sold on Steam.</li>
+        <li><strong>Publisher pages</strong> — a small number of widely searched online games (for example League of Legends or VALORANT) whose requirements are published on the developer's own support site rather than in a store.</li>
+      </ul>
+      <p>Each figure on a page can therefore be traced to the store record it came from. Where a store publishes nothing for a field, the row is hidden rather than filled with a guess — a page never prints "Not specified" inside a sentence, and no rating is shown without a real score and a real review count behind it.</p>
 
-      <div class="contact-box">
-        <h2 style="margin-top:0; color:#fff;">Get in Touch</h2>
-        <p style="margin-bottom:8px;">Have feedback, found a missing game, or need to report inaccurate spec data? Reach our team directly:</p>
-        <p style="font-size:16px; color:#fff; font-weight:700;">Email: contact@canmyspec.com</p>
-      </div>
+      <h2>Who writes and checks it</h2>
+      <p>CanMySpec is written and maintained by one independent editor, not by a publisher, a store or an agency. Collection is automated — the catalogue is re-read from the sources above every morning and new titles are added — while the page templates, the analysis wording, the tier model and the guides are written and revised by hand. Corrections are handled by a person: when a reader reports a wrong requirement or a missing game, the page is checked against the store record and changed, and the next build carries the fix to every page that shares the template.</p>
+      <p>Nothing on this site is paid placement. No publisher, store or hardware vendor can pay for a game to be included, ranked higher, or given a kinder verdict, and no affiliate commission changes a recommendation.</p>
+
+      <h2>What this site does not claim</h2>
+      <p>We do not run our own frame-time benchmarks. Every frame-rate figure you see is either the publisher's own published target for that requirement row, or an estimate that is labelled as one. The GPU tiers, the FPS checker and the 4K estimates are derived calculations from published requirements and a relative performance index; they are honest approximations for comparing one title with another, not measurements of any particular machine. The <a href="methodology.html">editorial methodology</a> sets out exactly how each of them is produced, and what it cannot tell you.</p>
+
+      <h2>Corrections and contact</h2>
+      <p>If a requirement looks wrong, a game is missing, or a page will not load, write to <strong>contact@canmyspec.com</strong> with the page address and, where you have one, a link to the publisher's page that shows the right figure. Corrections are made on the page itself, and the fix reaches the whole catalogue with the next build. The <a href="contact.html">contact page</a> lists what to include for each kind of request.</p>
+      <p>CanMySpec is financed by display advertising and, where a page links to a shop, by affiliate commission on purchases. Both are disclosed on the <a href="privacy.html">privacy page</a> and in the <a href="terms.html">terms of use</a>.</p>
+    </div>
+
+    <div class="card">
+      <h2>Editorial documents</h2>
+      <ul class="doc-list">
+        <li><a href="methodology.html">Editorial methodology and data standards</a> — how requirements are read, how tiers and estimates are calculated, update cadence, accuracy limits.</li>
+        <li><a href="contact.html">Contact and corrections</a> — how to report a wrong spec, request a game, or reach us about anything else.</li>
+        <li><a href="privacy.html">Privacy policy</a> — what is collected, analytics and advertising cookies, your rights.</li>
+        <li><a href="terms.html">Terms of use</a> — acceptable use, disclaimers, third-party trademarks, liability.</li>
+      </ul>
     </div>
   </main>
+
   <footer>
     <div class="container">
-      <p>© 2026 CanMySpec.com · All rights reserved.</p>
-      <p style="margin-top: 8px;">
-        <a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Service</a> | <a href="about.html">About & Contact</a> | <a href="sitemap.xml">XML Sitemap</a>
+      <p>© 2026 CanMySpec.com · Independent PC game requirements reference</p>
+      <p class="foot-links">
+        <a href="index.html">Home</a> | <a href="qa/index.html">Q&amp;A</a> | <a href="news/index.html">News</a> | <a href="guides/index.html">Guides</a> | <a href="directory/index.html">Directory</a> | <a href="privacy.html">Privacy Policy</a> | <a href="terms.html">Terms of Use</a> | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="methodology.html">Methodology</a> | <a href="sitemap.xml">XML Sitemap</a>
       </p>
     </div>
   </footer>
