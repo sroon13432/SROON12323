@@ -338,8 +338,8 @@
       </a>
     </div>
     
-    <pre><code># Quick cURL API Integration
-curl -X POST https://canmyspec.com/api/process \
+    <pre><code># Quick cURL API Integration (local REST server from the source package)
+curl -X POST http://localhost:8080/api/process \
   -H "Content-Type: application/json" \
   -d '{"image": "data:image/png;base64,...", "remove_bg": true, "tolerance": 35, "upscale": 2}'</code></pre>
   </section>
