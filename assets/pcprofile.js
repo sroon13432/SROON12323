@@ -227,6 +227,49 @@
     return { html: html, cleared: false };
   }
 
+  /* A game page's Steam price banner was rendered when that page was built. The
+     store moves; the snapshot the deal hub uses is fresher. Match this page's
+     game id against it: refresh the numbers when the deal still exists and hide
+     the banner when it does not, so a page never advertises a price that ended. */
+  function syncDealBanner() {
+    var el = document.getElementById('steamDeal');
+    if (!el) return;
+    var slug = '';
+    try {
+      var m = String(location.pathname).match(/\/games\/([^\/]+)\.html$/);
+      if (m) slug = decodeURIComponent(m[1]);
+    } catch (e) { slug = ''; }
+    fetch('../data/deals.json', { cache: 'no-store' })
+      .then(function (r) { return r.json(); })
+      .then(function (snap) {
+        var items = (snap.items || []).concat(snap.free || []);
+        var hit = null;
+        for (var i = 0; i < items.length; i++) {
+          if (slug && items[i].game_id === slug) { hit = items[i]; break; }
+        }
+        if (!hit) { el.style.display = 'none'; return; }
+        var line = el.querySelector('.deal-line');
+        var stamp = el.querySelector('.deal-stamp');
+        if (line) {
+          line.innerHTML = '<strong>' + hit.discount_percent + '% off</strong> right now \u2014 '
+            + esc(hit.final_text) + ' <s>' + esc(hit.initial_text) + '</s>';
+        }
+        if (stamp) {
+          stamp.textContent = 'Price read ' + String(hit.checked_at || '').slice(0, 16).replace('T', ' ')
+            + ' UTC \u00b7 Steam publishes no end time for a store sale';
+        }
+      })
+      .catch(function () { /* the rendered banner stays as a dated record */ });
+  }
+
+  if (document.getElementById('steamDeal')) {
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', syncDealBanner);
+    } else {
+      syncDealBanner();
+    }
+  }
+
   window.CMSPc = {
     KEY: KEY,
     load: load,
@@ -239,6 +282,7 @@
     badgeHtml: badgeHtml,
     upgradePlan: upgradePlan,
     upgradeHtml: upgradeHtml,
+    syncDealBanner: syncDealBanner,
     cardsAtLeast: cardsAtLeast,
     all: function () { return gpus || []; }
   };
