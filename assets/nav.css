@@ -114,3 +114,6 @@
 .pt-note a { color: #a5b4fc; }
 .deal-track { font-size: 11.5px; color: #8592a8; }
 @media (max-width: 640px) { .pt-now { font-size: 18px; } .pt-facts { flex-direction: column; gap: 4px; } }
+
+/* A record-low chip on a deal card sits at the card body start, not full width. */
+.deal-body > .pt-chip { align-self: flex-start; }
