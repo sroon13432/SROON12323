@@ -183,6 +183,7 @@
     /* ---------------- game pages ---------------- */
     'game.verdictLabel': '\ud83d\ude80 Recommended GPU:',
     'game.verdictTarget': 'Target: 60 FPS',
+    'game.priceTitle': 'Price Tracker & Buy Verdict',
     'game.specsTitle': 'Official PC System Requirements',
     'game.minTitle': 'Minimum Requirements',
     'game.recTitle': 'Recommended Requirements',
@@ -421,6 +422,7 @@
 
     'game.verdictLabel': '\ud83d\ude80 \uad8c\uc7a5 GPU:',
     'game.verdictTarget': '\ubaa9\ud45c: 60 FPS',
+    'game.priceTitle': '\uac00\uaca9 \ucd94\uc801\uae30 & \uad6c\ub9e4 \ud310\uc815',
     'game.specsTitle': '\uacf5\uc2dd PC \uc2dc\uc2a4\ud15c \uc0ac\uc591',
     'game.minTitle': '\ucd5c\uc18c \uc0ac\uc591',
     'game.recTitle': '\uad8c\uc7a5 \uc0ac\uc591',
@@ -658,6 +660,7 @@
 
     'game.verdictLabel': '\ud83d\ude80 \u63a8\u5968GPU:',
     'game.verdictTarget': '\u76ee\u6a19: 60 FPS',
+    'game.priceTitle': '\u4fa1\u683c\u30c8\u30e9\u30c3\u30ab\u30fc\uff06\u8cfc\u5165\u5224\u65ad',
     'game.specsTitle': '\u516c\u5f0fPC\u52d5\u4f5c\u74b0\u5883',
     'game.minTitle': '\u6700\u4f4e\u52d5\u4f5c\u74b0\u5883',
     'game.recTitle': '\u63a8\u5968\u52d5\u4f5c\u74b0\u5883',

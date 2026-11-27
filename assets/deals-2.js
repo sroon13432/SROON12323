@@ -10,6 +10,8 @@
       var noteEl = document.getElementById('pcNote');
       var toggle = document.getElementById('pcToggle');
       var toggleWrap = document.getElementById('pcToggleWrap');
+      var lowToggle = document.getElementById('lowToggle');
+      var onlyLow = false;
       var emptyEl = document.getElementById('dealEmpty');
       var countEl = document.getElementById('dealCount');
       var baseCount = countEl ? countEl.textContent : '';
@@ -27,6 +29,7 @@
 
       function paint() {
         var runs = 0;
+        var shown = 0;
         cards.forEach(function (card) {
           var slot = card.querySelector('.pc-slot');
           var req = readReq(card);
@@ -34,12 +37,16 @@
           if (slot) slot.innerHTML = window.CMSPc ? CMSPc.badgeHtml(pc, req, '../can-i-run/index.html') : '';
           var passes = v.level === 'rec' || v.level === 'min';
           if (passes) runs++;
-          card.style.display = (onlyMine && !passes) ? 'none' : '';
+          var showPc = !onlyMine || passes;
+          var showLow = !onlyLow || card.getAttribute('data-low') === '1';
+          var show = showPc && showLow;
+          if (show) shown++;
+          card.style.display = show ? '' : 'none';
         });
-        if (emptyEl) emptyEl.style.display = (onlyMine && runs === 0) ? 'block' : 'none';
+        if (emptyEl) emptyEl.style.display = shown === 0 ? 'block' : 'none';
         if (countEl) {
-          countEl.textContent = onlyMine
-            ? runs + ' of ' + cards.length + ' deals run on your PC'
+          countEl.textContent = (onlyMine || onlyLow)
+            ? shown + ' of ' + cards.length + ' deals shown'
             : baseCount;
         }
         if (valueEl) {
@@ -115,6 +122,12 @@
               toggle.checked = false;
               onlyMine = false;
             }
+            paint();
+          });
+        }
+        if (lowToggle) {
+          lowToggle.addEventListener('change', function () {
+            onlyLow = lowToggle.checked;
             paint();
           });
         }
