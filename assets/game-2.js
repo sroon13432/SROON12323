@@ -45,6 +45,16 @@
         if (ogCards.children.length) gpuSel.appendChild(ogCards);
         if (ogPresets.children.length) gpuSel.appendChild(ogPresets);
         if (lastDetect) renderDetect(lastDetect);
+        // A visitor who already told another page what their PC is does not have
+        // to pick it again here: the profile saved in localStorage fills the form.
+        if (window.CMSPc) {
+          var saved = CMSPc.get();
+          if (saved) {
+            if (saved.gpu && bySlug[saved.gpu]) gpuSel.value = saved.gpu;
+            if (saved.ram) ramSel.value = String(saved.ram);
+            if (gpuSel.value) window.checkSpecs();
+          }
+        }
       });
 
       function renderDetect(result) {
@@ -128,6 +138,23 @@
         }
         res.innerHTML = html;
         res.style.display = 'block';
+        // Remember the pick for the deal hub and the "games my PC can run" page,
+        // then show the concrete upgrade: which card and how much memory.
+        var guide = document.getElementById('upgradeGuide');
+        if (window.CMSPc) {
+          CMSPc.load('../data/gpus.json').then(function () {
+            CMSPc.fromParts(g.slug, ramSel.value, false);
+            if (!guide) return;
+            var plan = CMSPc.upgradeHtml(
+              { gpuName: g.name, score: g.score, ram: ram },
+              { minScore: minScore, recScore: recScore, minRam: minRam, recRam: recRam,
+                minLabel: box.dataset.minlabel, recLabel: box.dataset.reclabel },
+              { cpu: box.dataset.reccpu || box.dataset.mincpu || '' });
+            guide.innerHTML = plan.html
+              ? plan.html + '<p style="margin-top:10px;font-size:13px;"><a href="../can-i-run/index.html" style="color:#a5b4fc;font-weight:600;">All games and Steam deals your PC can run \u2192</a></p>'
+              : '';
+          });
+        }
         var link = document.getElementById('seeAllLink');
         if (link) link.href = '../index.html?gpu=' + encodeURIComponent(g.slug) + (ram ? '&ram=' + ram : '');
       };

@@ -683,6 +683,30 @@
           }
           if (res.ram) state.ram = String(res.ram);
           if (res.osState === 'ok' && res.os) state.os = res.os;
+          // The same detection feeds the deal hub and the "my PC" page: one saved
+          // profile instead of three places asking again.
+          if (window.CMSPc) {
+            try {
+              CMSPc.save({
+                gpu: state.gpu || '',
+                gpuName: (function () {
+                  for (var j = 0; j < GPUS.length; j++) if (GPUS[j].slug === state.gpu) return GPUS[j].name;
+                  return '';
+                })(),
+                score: (function () {
+                  for (var k = 0; k < GPUS.length; k++) if (GPUS[k].slug === state.gpu) return GPUS[k].score;
+                  return null;
+                })(),
+                vram: (function () {
+                  for (var m = 0; m < GPUS.length; m++) if (GPUS[m].slug === state.gpu) return GPUS[m].vram;
+                  return null;
+                })(),
+                ram: state.ram ? parseInt(state.ram, 10) : null,
+                os: res.os || '',
+                detected: true
+              });
+            } catch (e) { /* private mode: the filter still works for this page */ }
+          }
           if (state.os || state.genre || state.storage || state.deck) expandMoreFilters(true);
           syncControls();
           page = 1;
@@ -715,6 +739,18 @@
       render();
       loadData().then(function () {
         if (GPUS.length) buildGpuSelect();
+        // A visitor who saved a PC on the deal hub or the game pages starts here
+        // with that hardware already selected, so both views agree.
+        if (window.CMSPc) {
+          var savedPc = CMSPc.get();
+          if (savedPc && savedPc.gpu && !readUrlState.gpuFromUrl) {
+            var p = new URLSearchParams(window.location.search);
+            if (!p.get('gpu') && !p.get('ram') && hasOption('gpuSelect', savedPc.gpu)) {
+              state.gpu = savedPc.gpu;
+              if (savedPc.ram) state.ram = String(savedPc.ram);
+            }
+          }
+        }
         // A link from an old guide may name a card this build no longer lists.
         if (state.gpu && !GPUS.some(function (g) { return g.slug === state.gpu; })) {
           state.gpu = '';
